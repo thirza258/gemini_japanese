@@ -1,38 +1,32 @@
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
-
-const client = generateClient<Schema>();
+import React, { useEffect, useState } from 'react';
+import Translator from './components/ChatPage';
+import background1 from './assets/image1.png';
+import background2 from './assets/image2.png';
+import background3 from './assets/image3.png';
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const backgrounds = [background1, background2, background3];
+  const [background, setBackground] = useState('');
 
   useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
+    // Randomly select a background
+    const randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+    setBackground(randomBackground);
+  }, []); // Empty dependency array to run only once on component mount
 
   return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
+    <main
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '100vh',
+      }}
+    >
+      <div className='p-4 bg-white h-screen bg-opacity-75'>
+      <Translator />
       </div>
+      
     </main>
   );
 }
