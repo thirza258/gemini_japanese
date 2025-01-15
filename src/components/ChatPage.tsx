@@ -6,12 +6,25 @@ function Translator() {
   const [romaji, setRomaji] = useState('');
   const [translation, setTranslation] = useState('');
   const [history, setHistory] = useState<{ input: string; romaji: string; translation: string }[]>([]);
+  const [error, setError] = useState('');
 
-const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value);
 };
 
+
+const isJapanese = (text: string): boolean => {
+    // Regex to check if the text contains Japanese characters (Hiragana, Katakana, Kanji)
+    const japaneseRegex = /[\u3040-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]/;
+    return japaneseRegex.test(text);
+};
+
   const translateText = async () => {
+    if (!isJapanese(input)) {
+      setError('Please enter valid Japanese text.');
+      return;
+    }
+
     const response = await run({ input });
     const responseJson = JSON.parse(response.response.text());
 
@@ -21,7 +34,6 @@ const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setRomaji(translatedRomaji);
     setTranslation(translatedText);
 
-    // Update the history state
     setHistory((prevHistory) => [
       ...prevHistory,
       {
@@ -41,6 +53,7 @@ const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         value={input}
         onChange={handleInputChange}
       />
+      {error && <p className="text-red-500">{error}</p>}
       <button
         className="bg-blue-500 text-white px-4 py-2 rounded"
         onClick={translateText}

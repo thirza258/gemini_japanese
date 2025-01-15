@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Translator from './components/ChatPage';
 import background1 from './assets/image1.png';
 import background2 from './assets/image2.png';
