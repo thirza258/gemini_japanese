@@ -35,20 +35,16 @@ jobs:
           curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
           sudo dpkg -i cloudflared.deb
 
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
       - name: Deploy via SSH
         run: |
-          # A. Prepare the SSH Key file
-          mkdir -p ~/.ssh/
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          
-          ssh -i ~/.ssh/id_rsa \
-            -o PasswordAuthentication=no \
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh \
             -o StrictHostKeyChecking=no \
-            -o ProxyCommand="cloudflared access ssh --hostname %h --id ${{ secrets.CF_CLIENT_ID }} --secret ${{ secrets.CF_CLIENT_SECRET }}" \
+            -o ProxyCommand="/usr/bin/cloudflared access ssh --hostname %h --id ${{ secrets.CF_CLIENT_ID }} --secret ${{ secrets.CF_CLIENT_SECRET }}" \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
             "
-              # Docker commands on remote server
               docker pull ${{ secrets.DOCKER_USERNAME }}/vite-react-app:latest && \
               docker stop vite-app || true && \
               docker rm vite-app || true && \
