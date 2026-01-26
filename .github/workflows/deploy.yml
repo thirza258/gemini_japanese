@@ -45,12 +45,12 @@ jobs:
             -o ProxyCommand="/usr/bin/cloudflared access ssh --hostname %h --id ${{ secrets.CF_CLIENT_ID }} --secret ${{ secrets.CF_CLIENT_SECRET }}" \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
             "
-              docker pull ${{ secrets.DOCKER_USERNAME }}/vite-react-app:latest && \
-              docker stop vite-app || true && \
-              docker rm vite-app || true && \
+              docker pull ${{ secrets.DOCKER_USERNAME }}/gemini-japanese:latest && \
+              docker stop gemini-japanese || true && \
+              docker rm gemini-japanese || true && \
               docker run -d \
-                --name vite-app \
+                --name gemini-japanese \
                 --restart always \
                 -p 3000:80 \
-                ${{ secrets.DOCKER_USERNAME }}/vite-react-app:latest
+                ${{ secrets.DOCKER_USERNAME }}/gemini-japanese:latest
             "
