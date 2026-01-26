@@ -7,6 +7,7 @@ function Translator() {
   const [translation, setTranslation] = useState('');
   const [history, setHistory] = useState<{ input: string; romaji: string; translation: string }[]>([]);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value);
@@ -14,25 +15,32 @@ function Translator() {
 
 
 const isJapanese = (text: string): boolean => {
-    // Regex to check if the text contains Japanese characters (Hiragana, Katakana, Kanji)
     const japaneseRegex = /[\u3040-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]/;
     return japaneseRegex.test(text);
 };
 
   const translateText = async () => {
+    setError('');
+    setLoading(true);
     if (!isJapanese(input)) {
       setError('Please enter valid Japanese text.');
+      setLoading(false);
       return;
     }
 
     const response = await run({ input });
-    const responseJson = JSON.parse(response.response.text());
+    if(!response || !response.text) {
+      setError('Translation failed. Please try again.');
+      return;
+    }
+    const responseJson = JSON.parse(response.text);
 
     const translatedRomaji = responseJson.romaji;
-    const translatedText = responseJson.translate;
+    const translatedText = responseJson.translation;
 
     setRomaji(translatedRomaji);
     setTranslation(translatedText);
+    setLoading(false);
 
     setHistory((prevHistory) => [
       ...prevHistory,
@@ -61,10 +69,16 @@ const isJapanese = (text: string): boolean => {
         Translate
       </button>
       <div className="mt-4">
+        {loading ? (
+          <p className="text-gray-500">Loading...</p>
+        ) : (
+          <>
         <h2 className="text-xl font-bold">Romaji:</h2>
         <p className="mb-2">{romaji}</p>
         <h2 className="text-xl font-bold">Translation:</h2>
         <p>{translation}</p>
+          </>
+        )}
       </div>
       <div className="mt-4">
         <h2 className="text-xl font-bold mb-2">Translation History:</h2>

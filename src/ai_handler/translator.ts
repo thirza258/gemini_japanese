@@ -1,60 +1,79 @@
-import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
+import {
+  GoogleGenAI,
+  Type,
+} from '@google/genai';
 
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(apiKey);
+const ai = new GoogleGenAI({
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
+});
 
-const histories = [
+const model = 'gemini-flash-lite-latest';
+
+const systemInstruction = [
   {
-    role: "user",
-    parts: [{ text: "何" }],
-  },
-  {
-    role: "model",
-    parts: [{ text: '```json\n{"romaji": "nani", "translate": "what"}\n```' }],
-  },
-  {
-    role: "user",
-    parts: [{ text: "お母\nかあ\nさん" }],
-  },
-  {
-    role: "model",
-    parts: [
-      { text: '```json\n{"romaji": "okaasan", "translate": "mother"}\n```' },
-    ],
+    text: `Return ONLY valid JSON with the following shape:
+{
+  "romaji": string,
+  "translation": string
+}
+Do not include markdown, backticks, or explanations.`,
   },
 ];
 
-const model = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash-exp",
-  systemInstruction:
-    "return the prompt with their romaji(Alphabet) and translate",
-});
+const histories = [
+  {
+    role: 'user',
+    parts: [{ text: '何' }],
+  },
+  {
+    role: 'model',
+    parts: [{ text: '{"romaji":"nani","translation":"what"}' }],
+  },
+  {
+    role: 'user',
+    parts: [{ text: 'お母\nかあ\nさん' }],
+  },
+  {
+    role: 'model',
+    parts: [{ text: '{"romaji":"okaasan","translation":"mother"}' }],
+  },
+];
 
-const generationConfig = {
-  temperature: 1,
-  topP: 0.95,
-  topK: 40,
-  maxOutputTokens: 8192,
-  responseMimeType: "application/json",
+const config = {
+  thinkingConfig: {
+    thinkingBudget: 0,
+  },
+  responseMimeType: 'application/json',
   responseSchema: {
-    type: SchemaType.OBJECT,
+    type: Type.OBJECT,
+    required: ['romaji', 'translation'],
     properties: {
       romaji: {
-        type: SchemaType.STRING,
+        type: Type.STRING,
       },
-      translate: {
-        type: SchemaType.STRING,
+      translation: {
+        type: Type.STRING,
       },
     },
   },
+  systemInstruction,
 };
 
 export async function run({ input }: { input: string }) {
-  const chatSession = model.startChat({
-    generationConfig,
-    history: histories,
+  const contents = [
+    ...histories,
+    {
+      role: 'user',
+      parts: [{ text: input }],
+    },
+  ];
+
+  const response = await ai.models.generateContent({
+    model,
+    config,
+    contents,
   });
 
-  const result = await chatSession.sendMessage(input);
-  return result;
+  
+  return response;
 }

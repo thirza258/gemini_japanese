@@ -9,10 +9,9 @@ function App() {
   const [background, setBackground] = useState('');
 
   useEffect(() => {
-    // Randomly select a background
     const randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
     setBackground(randomBackground);
-  }, []); // Empty dependency array to run only once on component mount
+  }, []); 
 
   return (
     <main
