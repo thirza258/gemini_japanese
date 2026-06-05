@@ -12,6 +12,13 @@ This template equips you with a foundational React application integrated with A
 - **API**: Ready-to-use GraphQL endpoint with AWS AppSync.
 - **Database**: Real-time database powered by Amazon DynamoDB.
 
+## AI Setup
+
+The translator uses OpenRouter's OpenAI-compatible chat completions endpoint.
+
+- `VITE_OPENROUTER_API_KEY`: your OpenRouter API key
+- `VITE_OPENROUTER_MODEL`: optional model override, defaults to `openai/gpt-4o-mini`
+
 ## Deploying to AWS
 
 For detailed instructions on deploying your application, refer to the [deployment section](https://docs.amplify.aws/react/start/quickstart/#deploy-a-fullstack-app-to-aws) of our documentation.

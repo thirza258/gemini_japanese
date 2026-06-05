@@ -4,7 +4,8 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        VITE_GEMINI_API_KEY: ${VITE_GEMINI_API_KEY}
+        VITE_OPENROUTER_API_KEY: ${VITE_OPENROUTER_API_KEY}
+        VITE_OPENROUTER_MODEL: ${VITE_OPENROUTER_MODEL:-openai/gpt-4o-mini}
     ports:
       - "5175:80" 
     restart: always

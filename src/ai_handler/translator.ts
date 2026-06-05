@@ -1,8 +1,3 @@
-import {
-  GoogleGenAI,
-  Type,
-} from '@google/genai';
-
 export type ScriptType =
   | 'kanji'
   | 'hiragana'
@@ -25,15 +20,29 @@ export interface TranslationResponse {
   breakdown: TranslationBreakdownItem[];
 }
 
-const ai = new GoogleGenAI({
-  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
-});
+type OpenRouterRole = 'system' | 'user' | 'assistant';
 
-const model = 'gemini-flash-lite-latest';
+interface OpenRouterMessage {
+  role: OpenRouterRole;
+  content: string;
+}
 
-const systemInstruction = [
-  {
-    text: `Return ONLY valid JSON with the following shape:
+interface OpenRouterChoice {
+  message?: {
+    content?: string | null;
+  };
+}
+
+interface OpenRouterResponse {
+  choices?: OpenRouterChoice[];
+}
+
+const openRouterApiUrl = 'https://openrouter.ai/api/v1/chat/completions';
+const openRouterModel = import.meta.env.VITE_OPENROUTER_MODEL || 'mistralai/mistral-nemo';
+const openRouterApiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
+const openRouterAppTitle = 'Japanese Translator';
+
+const systemInstruction = `Return ONLY valid JSON with the following shape:
 {
   "romaji": string,
   "translation": string,
@@ -56,75 +65,29 @@ Rules:
 - Set "reading" to the kana reading for that grapheme, in hiragana when possible.
 - For kanji graphemes, reading should be the contextual furigana-style reading for that character.
 - For each grapheme, translation should be a short meaning or gloss for that exact grapheme.
-- Do not include markdown, backticks, or explanations.`,
-  },
-];
+- Do not include markdown, backticks, or explanations.`;
 
-const histories = [
+const histories: OpenRouterMessage[] = [
   {
     role: 'user',
-    parts: [{ text: '日本' }],
+    content: '日本',
   },
   {
-    role: 'model',
-    parts: [{
-      text: '{"romaji":"nihon","translation":"Japan","breakdown":[{"text":"日","script":"kanji","reading":"に","romaji":"ni","translation":"sun/day"},{"text":"本","script":"kanji","reading":"ほん","romaji":"hon","translation":"origin/book"}]}',
-    }],
+    role: 'assistant',
+    content: '{"romaji":"nihon","translation":"Japan","breakdown":[{"text":"日","script":"kanji","reading":"に","romaji":"ni","translation":"sun/day"},{"text":"本","script":"kanji","reading":"ほん","romaji":"hon","translation":"origin/book"}]}',
   },
   {
     role: 'user',
-    parts: [{ text: 'カタカナ' }],
+    content: 'カタカナ',
   },
   {
-    role: 'model',
-    parts: [{
-      text: '{"romaji":"katakana","translation":"katakana","breakdown":[{"text":"カ","script":"katakana","reading":"か","romaji":"ka","translation":"ka sound"},{"text":"タ","script":"katakana","reading":"た","romaji":"ta","translation":"ta sound"},{"text":"カ","script":"katakana","reading":"か","romaji":"ka","translation":"ka sound"},{"text":"ナ","script":"katakana","reading":"な","romaji":"na","translation":"na sound"}]}',
-    }],
+    role: 'assistant',
+    content: '{"romaji":"katakana","translation":"katakana","breakdown":[{"text":"カ","script":"katakana","reading":"か","romaji":"ka","translation":"ka sound"},{"text":"タ","script":"katakana","reading":"た","romaji":"ta","translation":"ta sound"},{"text":"カ","script":"katakana","reading":"か","romaji":"ka","translation":"ka sound"},{"text":"ナ","script":"katakana","reading":"な","romaji":"na","translation":"na sound"}]}',
   },
 ];
 
-const config = {
-  thinkingConfig: {
-    thinkingBudget: 0,
-  },
-  responseMimeType: 'application/json',
-  responseSchema: {
-    type: Type.OBJECT,
-    required: ['romaji', 'translation', 'breakdown'],
-    properties: {
-      romaji: {
-        type: Type.STRING,
-      },
-      translation: {
-        type: Type.STRING,
-      },
-      breakdown: {
-        type: Type.ARRAY,
-        items: {
-          type: Type.OBJECT,
-          required: ['text', 'script', 'reading', 'romaji', 'translation'],
-          properties: {
-            text: {
-              type: Type.STRING,
-            },
-            script: {
-              type: Type.STRING,
-            },
-            reading: {
-              type: Type.STRING,
-            },
-            romaji: {
-              type: Type.STRING,
-            },
-            translation: {
-              type: Type.STRING,
-            },
-          },
-        },
-      },
-    },
-  },
-  systemInstruction,
+const responseFormat = {
+  type: 'json_object',
 };
 
 function normalizeBreakdownItem(item: unknown): TranslationBreakdownItem {
@@ -278,23 +241,70 @@ function parseTranslationResponse(text: string | undefined, input: string): Tran
   };
 }
 
-export async function run({ input }: { input: string }): Promise<TranslationResponse> {
+function buildMessages(input: string): OpenRouterMessage[] {
   const segments = splitGraphemes(input);
-  const contents = [
+
+  return [
+    {
+      role: 'system',
+      content: systemInstruction,
+    },
     ...histories,
     {
       role: 'user',
-      parts: [{
-        text: `Input: ${input}\nExact graphemes: ${JSON.stringify(segments)}`,
-      }],
+      content: `Input: ${input}\nExact graphemes: ${JSON.stringify(segments)}`,
     },
   ];
+}
 
-  const response = await ai.models.generateContent({
-    model,
-    config,
-    contents,
+function getOpenRouterReferer(): string {
+  if (typeof window !== 'undefined' && window.location?.origin) {
+    return window.location.origin;
+  }
+
+  return 'http://localhost:5173';
+}
+
+async function requestTranslation(input: string): Promise<string> {
+  if (!openRouterApiKey) {
+    throw new Error('Missing VITE_OPENROUTER_API_KEY.');
+  }
+
+  const response = await fetch(openRouterApiUrl, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${openRouterApiKey}`,
+      'Content-Type': 'application/json',
+      'HTTP-Referer': getOpenRouterReferer(),
+      'X-OpenRouter-Title': openRouterAppTitle,
+    },
+    body: JSON.stringify({
+      model: openRouterModel,
+      messages: buildMessages(input),
+      response_format: responseFormat,
+      temperature: 0,
+      max_tokens: 1024,
+    }),
   });
 
-  return parseTranslationResponse(response.text, input);
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(
+      `OpenRouter request failed (${response.status} ${response.statusText}): ${errorText || 'No response body'}`,
+    );
+  }
+
+  const payload = await response.json() as OpenRouterResponse;
+  const content = payload.choices?.[0]?.message?.content ?? undefined;
+
+  if (!content) {
+    throw new Error('OpenRouter returned an empty response.');
+  }
+
+  return content;
+}
+
+export async function run({ input }: { input: string }): Promise<TranslationResponse> {
+  const responseText = await requestTranslation(input);
+  return parseTranslationResponse(responseText, input);
 }

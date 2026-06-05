@@ -58,7 +58,7 @@ function Translator() {
 
   return (
     <div className="mx-auto max-w-5xl p-4 text-slate-900">
-      <h1 className="mb-4 text-2xl font-bold">Gemini Japanese Translator</h1>
+      <h1 className="mb-4 text-2xl font-bold">OpenRouter Japanese Translator</h1>
       <textarea
         className="mb-4 w-full rounded border border-gray-300 p-3"
         placeholder="Enter Japanese text (Hiragana, Katakana, or Kanji)"
