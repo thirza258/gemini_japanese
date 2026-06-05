@@ -11,6 +11,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set image tag
+        run: echo "IMAGE_TAG=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -26,9 +29,13 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/gemini-japanese:latest
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/gemini-japanese:${{ env.IMAGE_TAG }}
+            ${{ secrets.DOCKER_USERNAME }}/gemini-japanese:latest
           build-args: |
-            VITE_GEMINI_API_KEY=${{ secrets.VITE_GEMINI_API_KEY }}
+            VITE_GEMINI_API_KEY=${{ secrets.VITE_GEMINI_API_KEY }} \
+            VITE_OPENROUTER_API_KEY=${{ secrets.VITE_OPENROUTER_API_KEY }} \
+            VITE_OPENROUTER_MODEL=${{ secrets.VITE_OPENROUTER_MODEL }}
 
       - name: Install Cloudflared
         run: |
@@ -45,12 +52,12 @@ jobs:
             -o ProxyCommand="/usr/bin/cloudflared access ssh --hostname %h --id ${{ secrets.CF_CLIENT_ID }} --secret ${{ secrets.CF_CLIENT_SECRET }}" \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
             "
-              docker pull ${{ secrets.DOCKER_USERNAME }}/gemini-japanese:latest && \
+              docker pull ${{ secrets.DOCKER_USERNAME }}/gemini-japanese:${{ env.IMAGE_TAG }} && \
               docker stop gemini-japanese || true && \
               docker rm gemini-japanese || true && \
               docker run -d \
                 --name gemini-japanese \
                 --restart always \
                 -p 5175:80 \
-                ${{ secrets.DOCKER_USERNAME }}/gemini-japanese:latest
+                ${{ secrets.DOCKER_USERNAME }}/gemini-japanese:${{ env.IMAGE_TAG }}
             "
