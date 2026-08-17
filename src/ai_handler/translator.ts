@@ -1,3 +1,5 @@
+import { SAMPLE_PHRASES } from '../data/japaneseSamples';
+
 export type ScriptType =
   | 'kanji'
   | 'hiragana'
@@ -38,9 +40,9 @@ interface OpenRouterResponse {
 }
 
 const openRouterApiUrl = 'https://openrouter.ai/api/v1/chat/completions';
-const openRouterModel = import.meta.env.VITE_OPENROUTER_MODEL || 'mistralai/mistral-nemo';
-const openRouterApiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
-const openRouterAppTitle = 'Japanese Translator';
+const defaultModel = import.meta.env.VITE_OPENROUTER_MODEL || 'google/gemma-4-26b-a4b-it';
+const envApiKey = import.meta.env.VITE_OPENROUTER_API_KEY || '';
+const openRouterAppTitle = 'Nevatal Japanese AI Translator';
 
 const systemInstruction = `Return ONLY valid JSON with the following shape:
 {
@@ -112,7 +114,7 @@ function normalizeBreakdownItem(item: unknown): TranslationBreakdownItem {
   };
 }
 
-function splitGraphemes(text: string): string[] {
+export function splitGraphemes(text: string): string[] {
   const segmenterCtor = (Intl as any).Segmenter;
 
   if (typeof segmenterCtor === 'function') {
@@ -123,23 +125,23 @@ function splitGraphemes(text: string): string[] {
   return Array.from(text);
 }
 
-function isKanji(text: string): boolean {
+export function isKanji(text: string): boolean {
   return /^[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]+$/.test(text);
 }
 
-function isHiragana(text: string): boolean {
+export function isHiragana(text: string): boolean {
   return /^[\u3040-\u309F]+$/.test(text);
 }
 
-function isKatakana(text: string): boolean {
+export function isKatakana(text: string): boolean {
   return /^[\u30A0-\u30FF\u31F0-\u31FF]+$/.test(text);
 }
 
-function isPunctuation(text: string): boolean {
+export function isPunctuation(text: string): boolean {
   return /^[\s\p{P}\p{S}]+$/u.test(text);
 }
 
-function detectScript(text: string): ScriptType {
+export function detectScript(text: string): ScriptType {
   const hasKanji = isKanji(text);
   const hasHiragana = isHiragana(text);
   const hasKatakana = isKatakana(text);
@@ -262,49 +264,95 @@ function getOpenRouterReferer(): string {
     return window.location.origin;
   }
 
-  return 'http://localhost:5173';
+  return 'https://translate.nevatal.tech';
 }
 
-async function requestTranslation(input: string): Promise<string> {
-  if (!openRouterApiKey) {
-    throw new Error('Missing VITE_OPENROUTER_API_KEY.');
+function getActiveApiKey(customKey?: string): string {
+  if (customKey && customKey.trim().length > 0) {
+    return customKey.trim();
   }
-
-  const response = await fetch(openRouterApiUrl, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${openRouterApiKey}`,
-      'Content-Type': 'application/json',
-      'HTTP-Referer': getOpenRouterReferer(),
-      'X-OpenRouter-Title': openRouterAppTitle,
-    },
-    body: JSON.stringify({
-      model: openRouterModel,
-      messages: buildMessages(input),
-      response_format: responseFormat,
-      temperature: 0,
-      max_tokens: 1024,
-    }),
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(
-      `OpenRouter request failed (${response.status} ${response.statusText}): ${errorText || 'No response body'}`,
-    );
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem('nevatal_openrouter_key');
+    if (saved && saved.trim().length > 0) {
+      return saved.trim();
+    }
   }
-
-  const payload = await response.json() as OpenRouterResponse;
-  const content = payload.choices?.[0]?.message?.content ?? undefined;
-
-  if (!content) {
-    throw new Error('OpenRouter returned an empty response.');
-  }
-
-  return content;
+  return envApiKey;
 }
 
-export async function run({ input }: { input: string }): Promise<TranslationResponse> {
-  const responseText = await requestTranslation(input);
+async function requestTranslation(input: string, customKey?: string, customModel?: string): Promise<string> {
+  const apiKey = getActiveApiKey(customKey);
+  const model = customModel || defaultModel;
+
+  // Check if this input matches one of our rich cached samples
+  const matchedSample = SAMPLE_PHRASES.find(
+    (s) => s.japanese.trim() === input.trim()
+  );
+
+  if (!apiKey) {
+    if (matchedSample && matchedSample.cachedResponse) {
+      return JSON.stringify(matchedSample.cachedResponse);
+    }
+    throw new Error('API Key missing. Please provide an OpenRouter API key in settings or .env');
+  }
+
+  try {
+    const response = await fetch(openRouterApiUrl, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': getOpenRouterReferer(),
+        'X-OpenRouter-Title': openRouterAppTitle,
+      },
+      body: JSON.stringify({
+        model: model,
+        messages: buildMessages(input),
+        response_format: responseFormat,
+        temperature: 0.1,
+        max_tokens: 1024,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      // If error occurs and we have a cached sample, fallback gracefully
+      if (matchedSample && matchedSample.cachedResponse) {
+        return JSON.stringify(matchedSample.cachedResponse);
+      }
+      throw new Error(
+        `OpenRouter request failed (${response.status}): ${errorText || response.statusText}`
+      );
+    }
+
+    const payload = (await response.json()) as OpenRouterResponse;
+    const content = payload.choices?.[0]?.message?.content ?? undefined;
+
+    if (!content) {
+      if (matchedSample && matchedSample.cachedResponse) {
+        return JSON.stringify(matchedSample.cachedResponse);
+      }
+      throw new Error('OpenRouter returned an empty response.');
+    }
+
+    return content;
+  } catch (err) {
+    if (matchedSample && matchedSample.cachedResponse) {
+      return JSON.stringify(matchedSample.cachedResponse);
+    }
+    throw err;
+  }
+}
+
+export async function run({
+  input,
+  customKey,
+  customModel,
+}: {
+  input: string;
+  customKey?: string;
+  customModel?: string;
+}): Promise<TranslationResponse> {
+  const responseText = await requestTranslation(input, customKey, customModel);
   return parseTranslationResponse(responseText, input);
 }

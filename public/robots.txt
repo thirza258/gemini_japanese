@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Host
+Host: https://translate.nevatal.tech
+
+# Sitemaps
+Sitemap: https://translate.nevatal.tech/sitemap.xml

@@ -1,12 +1,161 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Japanese Gemini</title>
+
+    <!-- Primary Meta Tags -->
+    <title>Japanese AI Translator | Deep Kanji, Furigana & Romaji Breakdown</title>
+    <meta name="title" content="Japanese AI Translator | Deep Kanji, Furigana & Romaji Breakdown" />
+    <meta
+      name="description"
+      content="Translate Japanese text with AI-powered deep character analysis. Get instant Romaji transliteration, contextual Furigana readings, tri-script breakdown (Kanji, Hiragana, Katakana), and natural English translations at translate.nevatal.tech."
+    />
+    <meta
+      name="keywords"
+      content="Japanese translator, AI Japanese translation, Kanji breakdown, Furigana generator, Romaji translator, JLPT study tool, Japanese grammar analyzer, Japanese language learning, OpenRouter Japanese AI, Nevatal"
+    />
+    <meta name="author" content="Nevatal Tech" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="canonical" href="https://translate.nevatal.tech/" />
+
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://translate.nevatal.tech/" />
+    <meta property="og:title" content="Japanese AI Translator | Deep Kanji, Furigana & Romaji Breakdown" />
+    <meta
+      property="og:description"
+      content="Translate Japanese sentences while understanding every building block. Instant Romaji, contextual Furigana readings, tri-script breakdown (Kanji, Hiragana, Katakana), and nuanced English translations."
+    />
+    <meta property="og:image" content="https://translate.nevatal.tech/og-image.jpg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
+    <meta property="og:image:alt" content="Japanese AI Translator - Deep Kanji, Furigana and Romaji Breakdown" />
+    <meta property="og:site_name" content="Nevatal Japanese AI Translator" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="translate.nevatal.tech" />
+    <meta name="twitter:url" content="https://translate.nevatal.tech/" />
+    <meta name="twitter:title" content="Japanese AI Translator | Deep Kanji, Furigana & Romaji Breakdown" />
+    <meta
+      name="twitter:description"
+      content="Translate Japanese sentences with instant Romaji, contextual Furigana, and character-by-character semantic breakdown powered by AI."
+    />
+    <meta name="twitter:image" content="https://translate.nevatal.tech/og-image.jpg" />
+    <meta name="twitter:creator" content="@nevataltech" />
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data (JSON-LD) for Search Engines -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://translate.nevatal.tech/#webapp",
+            "name": "Nevatal Japanese AI Translator",
+            "url": "https://translate.nevatal.tech/",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "All",
+            "inLanguage": ["en", "ja"],
+            "description": "AI-powered Japanese translator with contextual Furigana readings, Romaji transliteration, and morphological Kanji breakdown.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Deep Character-by-Character Grapheme Breakdown",
+              "Contextual Furigana Reading Disambiguation",
+              "Romaji Transliteration",
+              "Tri-Script (Kanji, Hiragana, Katakana) Categorization",
+              "Natural Nuance English Translation",
+              "Native Japanese Speech Synthesis (TTS)",
+              "Interactive Sample Library for JLPT, Anime, Travel & Business",
+              "Translation History with Recall & Export"
+            ],
+            "screenshot": "https://translate.nevatal.tech/og-image.jpg",
+            "creator": {
+              "@type": "Organization",
+              "name": "Nevatal Tech",
+              "url": "https://nevatal.tech"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://translate.nevatal.tech/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How does the Kanji and Character Breakdown work?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The tool uses advanced AI and Unicode grapheme segmentation to dissect Japanese text into individual characters and compounds. For each segment, it identifies the script type (Kanji, Hiragana, Katakana), assigns contextual Furigana reading, provides Romaji, and explains the specific meaning."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Nevatal Japanese AI Translator suitable for JLPT preparation?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, it is designed specifically for Japanese language learners at all JLPT levels (N5 to N1). By revealing exact On'yomi and Kun'yomi readings in context alongside vocabulary meanings, learners can understand the grammar and vocabulary structure rather than just reading a raw translation."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can it translate spoken, colloquial, or anime Japanese?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, the AI neural model is trained on modern conversational Japanese, slangs, honorifics (Keigo, Sonkeigo, Kenjougo), and casual contractions commonly found in manga, light novels, and anime."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this translation tool free to use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, the web application is accessible for free online directly from your browser at translate.nevatal.tech without requiring sign-up."
+                }
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://translate.nevatal.tech/#breadcrumbs",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://translate.nevatal.tech/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Translator",
+                "item": "https://translate.nevatal.tech/#translator"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
-  <body>
+  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-rose-500 selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
