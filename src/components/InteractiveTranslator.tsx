@@ -45,6 +45,7 @@ export const InteractiveTranslator: React.FC<InteractiveTranslatorProps> = ({
       setInput(initialInput);
       executeTranslation(initialInput);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialInput]);
 
   // Initial translation for default text if empty
@@ -52,6 +53,7 @@ export const InteractiveTranslator: React.FC<InteractiveTranslatorProps> = ({
     if (!translation && input === '桜が満開です') {
       executeTranslation('桜が満開です');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const saveToHistory = (newEntry: { input: string } & TranslationResponse) => {

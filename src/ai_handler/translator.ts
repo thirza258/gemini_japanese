@@ -114,8 +114,17 @@ function normalizeBreakdownItem(item: unknown): TranslationBreakdownItem {
   };
 }
 
+interface IntlWithSegmenter {
+  Segmenter?: new (
+    locales?: string | string[],
+    options?: { granularity?: 'grapheme' | 'word' | 'sentence' }
+  ) => {
+    segment: (input: string) => Iterable<{ segment: string }>;
+  };
+}
+
 export function splitGraphemes(text: string): string[] {
-  const segmenterCtor = (Intl as any).Segmenter;
+  const segmenterCtor = (Intl as unknown as IntlWithSegmenter).Segmenter;
 
   if (typeof segmenterCtor === 'function') {
     const segmenter = new segmenterCtor('ja', { granularity: 'grapheme' });
