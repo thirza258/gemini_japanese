@@ -1,4 +1,14 @@
 import { SAMPLE_PHRASES } from '../data/japaneseSamples';
+import {
+  getStoredApiKey,
+  getStoredEndpoint,
+  getStoredModel,
+  decryptApiKey,
+  isEncrypted,
+  normalizeEndpoint,
+} from '../utils/crypto';
+
+
 
 export type ScriptType =
   | 'kanji'
@@ -39,10 +49,8 @@ interface OpenRouterResponse {
   choices?: OpenRouterChoice[];
 }
 
-const openRouterApiUrl = 'https://openrouter.ai/api/v1/chat/completions';
-const defaultModel = import.meta.env.VITE_OPENROUTER_MODEL || 'google/gemma-4-26b-a4b-it';
-const envApiKey = import.meta.env.VITE_OPENROUTER_API_KEY || '';
 const openRouterAppTitle = 'Nevatal Japanese AI Translator';
+
 
 const systemInstruction = `Return ONLY valid JSON with the following shape:
 {
@@ -276,45 +284,69 @@ function getOpenRouterReferer(): string {
   return 'https://translate.nevatal.tech';
 }
 
-function getActiveApiKey(customKey?: string): string {
+async function resolveApiKey(customKey?: string, customPassphrase?: string): Promise<string> {
   if (customKey && customKey.trim().length > 0) {
-    return customKey.trim();
-  }
-  if (typeof window !== 'undefined') {
-    const saved = localStorage.getItem('nevatal_openrouter_key');
-    if (saved && saved.trim().length > 0) {
-      return saved.trim();
+    const trimmed = customKey.trim();
+    if (isEncrypted(trimmed)) {
+      try {
+        return await decryptApiKey(trimmed, customPassphrase);
+      } catch (err) {
+        console.warn('Failed to decrypt custom key:', err);
+        return trimmed;
+      }
     }
+    return trimmed;
   }
-  return envApiKey;
+  return await getStoredApiKey(customPassphrase);
 }
 
-async function requestTranslation(input: string, customKey?: string, customModel?: string): Promise<string> {
-  const apiKey = getActiveApiKey(customKey);
-  const model = customModel || defaultModel;
+async function requestTranslation(
+  input: string,
+  customKey?: string,
+  customModel?: string,
+  customEndpoint?: string,
+  customPassphrase?: string
+): Promise<string> {
+  const apiKey = await resolveApiKey(customKey, customPassphrase);
+  const model = customModel && customModel.trim() ? customModel.trim() : getStoredModel();
+  const endpoint = customEndpoint ? normalizeEndpoint(customEndpoint) : getStoredEndpoint();
 
   // Check if this input matches one of our rich cached samples
   const matchedSample = SAMPLE_PHRASES.find(
     (s) => s.japanese.trim() === input.trim()
   );
 
-  if (!apiKey) {
+  const isProxyEndpoint =
+    endpoint.startsWith('/') ||
+    (typeof window !== 'undefined' && endpoint.includes(window.location?.host || ''));
+
+  if (!apiKey && !isProxyEndpoint) {
     if (matchedSample && matchedSample.cachedResponse) {
       return JSON.stringify(matchedSample.cachedResponse);
     }
-    throw new Error('API Key missing. Please provide an OpenRouter API key in settings or .env');
+    throw new Error(
+      'API Key missing. When connecting directly to OpenRouter, please configure your API key in settings or use the default server proxy (/api/openrouter/chat/completions).'
+    );
+  }
+
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    'HTTP-Referer': getOpenRouterReferer(),
+    'X-OpenRouter-Title': openRouterAppTitle,
+  };
+
+  // Only attach Authorization header if a custom API key is present.
+  // For the default server proxy, omit Authorization so Nginx / Vite dev proxy injects the server key securely.
+  if (apiKey) {
+    headers['Authorization'] = `Bearer ${apiKey}`;
   }
 
   try {
-    const response = await fetch(openRouterApiUrl, {
+    const response = await fetch(endpoint, {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': getOpenRouterReferer(),
-        'X-OpenRouter-Title': openRouterAppTitle,
-      },
+      headers,
       body: JSON.stringify({
+
         model: model,
         messages: buildMessages(input),
         response_format: responseFormat,
@@ -357,11 +389,22 @@ export async function run({
   input,
   customKey,
   customModel,
+  customEndpoint,
+  customPassphrase,
 }: {
   input: string;
   customKey?: string;
   customModel?: string;
+  customEndpoint?: string;
+  customPassphrase?: string;
 }): Promise<TranslationResponse> {
-  const responseText = await requestTranslation(input, customKey, customModel);
+  const responseText = await requestTranslation(
+    input,
+    customKey,
+    customModel,
+    customEndpoint,
+    customPassphrase
+  );
   return parseTranslationResponse(responseText, input);
 }
+

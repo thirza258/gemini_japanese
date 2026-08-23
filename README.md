@@ -12,12 +12,20 @@ This template equips you with a foundational React application integrated with A
 - **API**: Ready-to-use GraphQL endpoint with AWS AppSync.
 - **Database**: Real-time database powered by Amazon DynamoDB.
 
-## AI Setup
+## AI & OpenRouter Setup
 
-The translator uses OpenRouter's OpenAI-compatible chat completions endpoint.
+The translator uses OpenRouter's OpenAI-compatible chat completions endpoint with client-side **AES-256-GCM encryption** for API keys.
 
-- `VITE_OPENROUTER_API_KEY`: your OpenRouter API key
-- `VITE_OPENROUTER_MODEL`: optional model override, defaults to `openai/gpt-4o-mini`
+### Environment Variables
+- `OPENROUTER_API_KEY`: Server-side OpenRouter API key used by the reverse proxy (Nginx in production / Vite proxy in dev). Never exposed to the browser.
+- `VITE_OPENROUTER_ENDPOINT`: Router endpoint URL (defaults to `/api/openrouter/chat/completions` for proxy mode).
+- `VITE_OPENROUTER_MODEL`: Model override, defaults to `google/gemma-4-26b-a4b-it`.
+
+### Security & API Key Encryption
+- **Encapsulated Reverse Proxy**: Default requests route through `/api/openrouter/chat/completions`, where the proxy attaches authentication server-side so no API key or Authorization header is exposed in the browser's Network tab.
+- **AES-256-GCM Web Crypto**: When users optionally enter custom API keys in the settings modal, they are encrypted client-side using PBKDF2 (SHA-256, 100,000 iterations) and AES-GCM before being stored in `localStorage`.
+- **Custom Passphrase Support**: Users can optionally supply a master passphrase for key derivation.
+
 
 ## Deploying to AWS
 

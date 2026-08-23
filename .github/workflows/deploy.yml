@@ -34,8 +34,9 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/gemini-japanese:latest
           build-args: |
             VITE_GEMINI_API_KEY=${{ secrets.VITE_GEMINI_API_KEY }} \
-            VITE_OPENROUTER_API_KEY=${{ secrets.VITE_OPENROUTER_API_KEY }} \
-            VITE_OPENROUTER_MODEL=${{ secrets.VITE_OPENROUTER_MODEL }}
+            VITE_OPENROUTER_MODEL=${{ secrets.VITE_OPENROUTER_MODEL }} \
+            VITE_OPENROUTER_ENDPOINT=${{ secrets.VITE_OPENROUTER_ENDPOINT }}
+
 
       - name: Install Cloudflared
         run: |
@@ -59,5 +60,7 @@ jobs:
                 --name gemini-japanese \
                 --restart always \
                 -p 5175:80 \
+                -e OPENROUTER_API_KEY="${{ secrets.OPENROUTER_API_KEY || secrets.VITE_OPENROUTER_API_KEY }}" \
+                -e NGINX_ENVSUBST_FILTER="OPENROUTER_API_KEY" \
                 ${{ secrets.DOCKER_USERNAME }}/gemini-japanese:${{ env.IMAGE_TAG }}
             "

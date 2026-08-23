@@ -26,10 +26,16 @@ export const FaqSection: React.FC = () => {
         'Yes, the web application is hosted and accessible completely free directly from your web browser at translate.nevatal.tech without requiring account creation or subscriptions.',
     },
     {
-      question: 'Can I use my own OpenRouter API key or switch AI models?',
+      question: 'Can I use my own OpenRouter API key, custom router endpoint, or switch AI models?',
       answer:
-        'Yes! You can click the "AI Config" button in the top navigation bar to supply your own OpenRouter API key or choose custom models such as google/gemma-4-26b-a4b-it, openai/gpt-4o-mini, or anthropic/claude-3.5-sonnet.',
+        'Yes! You can click the "AI Config" button in the top navigation bar to supply your own OpenRouter API key, configure a custom proxy/router endpoint, or choose models such as google/gemma-4-26b-a4b-it, openai/gpt-4o-mini, or anthropic/claude-3.5-haiku.',
     },
+    {
+      question: 'How is my OpenRouter API key stored and encrypted?',
+      answer:
+        'Your API key is securely encrypted on your device using AES-256-GCM with PBKDF2 (SHA-256, 100,000 iterations) before saving to local storage. Your plaintext key is never stored in unencrypted format. You can also supply an optional custom master passphrase or configure a secure reverse proxy endpoint.',
+    },
+
     {
       question: 'How accurate is the Japanese audio pronunciation?',
       answer:

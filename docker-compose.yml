@@ -4,8 +4,12 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        VITE_OPENROUTER_API_KEY: ${VITE_OPENROUTER_API_KEY}
-        VITE_OPENROUTER_MODEL: ${VITE_OPENROUTER_MODEL:-openai/gpt-4o-mini}
+        VITE_OPENROUTER_MODEL: ${VITE_OPENROUTER_MODEL:-google/gemma-4-26b-a4b-it}
+        VITE_OPENROUTER_ENDPOINT: ${VITE_OPENROUTER_ENDPOINT:-/api/openrouter/chat/completions}
+    environment:
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-${VITE_OPENROUTER_API_KEY:-}}
+      NGINX_ENVSUBST_FILTER: "OPENROUTER_API_KEY"
     ports:
       - "5175:80" 
+
     restart: always
