@@ -1,38 +1,49 @@
-/**
- * Plays Japanese Speech Audio using Web Speech API
- */
-export function playJapaneseAudio(text: string, rate: number = 0.9): Promise<void> {
+let finishActive: (() => void) | undefined;
+
+export function stopJapaneseAudio(): void {
+  if (typeof window !== "undefined" && "speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+  finishActive?.();
+}
+
+/** Play a Japanese utterance and settle the previous request when audio changes. */
+export function playJapaneseAudio(text: string, rate = 0.9): Promise<void> {
+  stopJapaneseAudio();
   return new Promise((resolve) => {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
-      console.warn('Speech synthesis not supported in this browser.');
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
       resolve();
       return;
     }
-
-    try {
-      window.speechSynthesis.cancel(); // Stop any pending utterance
-
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'ja-JP';
-      utterance.rate = rate; // Slightly slower for clear Japanese learner pronunciation
-      utterance.pitch = 1.0;
-
-      // Find best Japanese voice if available
-      const voices = window.speechSynthesis.getVoices();
-      const jaVoice = voices.find(
-        (v) => v.lang === 'ja-JP' || v.lang.startsWith('ja') || v.name.includes('Japanese')
-      );
-      if (jaVoice) {
-        utterance.voice = jaVoice;
-      }
-
-      utterance.onend = () => resolve();
-      utterance.onerror = () => resolve();
-
-      window.speechSynthesis.speak(utterance);
-    } catch (e) {
-      console.error('Speech synthesis error:', e);
+    let timeout: ReturnType<typeof setTimeout>;
+    const finish = () => {
+      clearTimeout(timeout);
+      if (finishActive === finish) finishActive = undefined;
       resolve();
+    };
+    finishActive = finish;
+    try {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "ja-JP";
+      utterance.rate = rate;
+      utterance.pitch = 1;
+      const voice = window.speechSynthesis
+        .getVoices()
+        .find((item) => item.lang.startsWith("ja"));
+      if (voice) utterance.voice = voice;
+      utterance.onend = finish;
+      utterance.onerror = finish;
+      // Some engines omit completion events when interrupted or unavailable.
+      timeout = setTimeout(
+        () => {
+          if (finishActive === finish) window.speechSynthesis.cancel();
+          finish();
+        },
+        Math.min(120000, Math.max(12000, text.length * 550)),
+      );
+      window.speechSynthesis.speak(utterance);
+    } catch {
+      finish();
     }
   });
 }

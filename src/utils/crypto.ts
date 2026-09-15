@@ -1,48 +1,55 @@
+import { getConnectionStorage } from "./accountStorage";
+
 /**
  * Secure Web Crypto API Utility for API Key Encryption and Storage
  * Uses AES-GCM 256-bit encryption with PBKDF2 key derivation (100,000 iterations)
  * and cryptographically secure random salt and IV.
  */
 
-export const STORAGE_KEY_ENC = 'nevatal_openrouter_key_enc';
-export const STORAGE_KEY_LEGACY = 'nevatal_openrouter_key';
-export const STORAGE_ENDPOINT = 'nevatal_openrouter_endpoint';
-export const STORAGE_MODEL = 'nevatal_openrouter_model';
+export const STORAGE_KEY_ENC = "nevatal_openrouter_key_enc";
+export const STORAGE_KEY_LEGACY = "nevatal_openrouter_key";
+export const STORAGE_ENDPOINT = "nevatal_openrouter_endpoint";
+export const STORAGE_MODEL = "nevatal_openrouter_model";
 
-export const DEFAULT_ENDPOINT = '/api/openrouter/chat/completions';
-export const DIRECT_OPENROUTER_ENDPOINT = 'https://openrouter.ai/api/v1/chat/completions';
-export const DEFAULT_MODEL = 'google/gemma-4-26b-a4b-it';
-export const ENCRYPTED_PREFIX = 'enc:v1:';
+export const DEFAULT_ENDPOINT = "/api/openrouter/chat/completions";
+export const DIRECT_OPENROUTER_ENDPOINT =
+  "https://openrouter.ai/api/v1/chat/completions";
+export const DEFAULT_MODEL = "google/gemma-4-26b-a4b-it";
+export const ENCRYPTED_PREFIX = "enc:v1:";
 
 // Fallback pepper derived for local device-bound encryption when no user passphrase is provided
-const DEVICE_SALT_STORAGE = 'nevatal_device_salt';
+const DEVICE_SALT_STORAGE = "nevatal_device_salt";
 
 function getCrypto(): Crypto | undefined {
-  if (typeof window !== 'undefined' && window.crypto) {
+  if (typeof window !== "undefined" && window.crypto) {
     return window.crypto;
   }
-  if (typeof globalThis !== 'undefined' && (globalThis as unknown as { crypto?: Crypto }).crypto) {
+  if (
+    typeof globalThis !== "undefined" &&
+    (globalThis as unknown as { crypto?: Crypto }).crypto
+  ) {
     return (globalThis as unknown as { crypto: Crypto }).crypto;
   }
   return undefined;
 }
 
 function getOrCreateDeviceSalt(): string {
-  if (typeof window === 'undefined') return 'nevatal-default-server-salt';
-  let salt = localStorage.getItem(DEVICE_SALT_STORAGE);
+  if (typeof window === "undefined") return "nevatal-default-server-salt";
+  let salt = getConnectionStorage().getItem(DEVICE_SALT_STORAGE);
   if (!salt) {
     const cryptoInstance = getCrypto();
     const randomBytes = new Uint8Array(16);
     if (cryptoInstance && cryptoInstance.getRandomValues) {
       cryptoInstance.getRandomValues(randomBytes);
     } else {
-      for (let i = 0; i < 16; i++) randomBytes[i] = Math.floor(Math.random() * 256);
+      for (let i = 0; i < 16; i++)
+        randomBytes[i] = Math.floor(Math.random() * 256);
     }
     salt = Array.from(randomBytes)
-      .map((b) => b.toString(16).padStart(2, '0'))
-      .join('');
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
     try {
-      localStorage.setItem(DEVICE_SALT_STORAGE, salt);
+      getConnectionStorage().setItem(DEVICE_SALT_STORAGE, salt);
     } catch {
       // Ignore storage errors
     }
@@ -52,7 +59,7 @@ function getOrCreateDeviceSalt(): string {
 
 function bufferToBase64(buffer: ArrayBuffer | Uint8Array): string {
   const bytes = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
-  let binary = '';
+  let binary = "";
   for (let i = 0; i < bytes.byteLength; i++) {
     binary += String.fromCharCode(bytes[i]);
   }
@@ -70,42 +77,41 @@ function base64ToBuffer(base64: string): Uint8Array {
 
 async function deriveCryptoKey(
   passphrase: string,
-  salt: Uint8Array
+  salt: Uint8Array,
 ): Promise<CryptoKey> {
   const cryptoInstance = getCrypto();
   if (!cryptoInstance || !cryptoInstance.subtle) {
-    throw new Error('Web Crypto API is not available.');
+    throw new Error("Web Crypto API is not available.");
   }
 
   const encoder = new TextEncoder();
   const keyMaterial = await cryptoInstance.subtle.importKey(
-    'raw',
+    "raw",
     encoder.encode(passphrase),
-    { name: 'PBKDF2' },
+    { name: "PBKDF2" },
     false,
-    ['deriveKey']
+    ["deriveKey"],
   );
 
   return cryptoInstance.subtle.deriveKey(
     {
-      name: 'PBKDF2',
+      name: "PBKDF2",
       salt: salt,
       iterations: 100000,
-      hash: 'SHA-256',
+      hash: "SHA-256",
     },
     keyMaterial,
-    { name: 'AES-GCM', length: 256 },
+    { name: "AES-GCM", length: 256 },
     false,
-    ['encrypt', 'decrypt']
+    ["encrypt", "decrypt"],
   );
 }
-
 
 /**
  * Checks if a string is in the encrypted format: enc:v1:<salt>:<iv>:<ciphertext>
  */
 export function isEncrypted(data: string): boolean {
-  return typeof data === 'string' && data.startsWith(ENCRYPTED_PREFIX);
+  return typeof data === "string" && data.startsWith(ENCRYPTED_PREFIX);
 }
 
 /**
@@ -113,10 +119,10 @@ export function isEncrypted(data: string): boolean {
  */
 export async function encryptApiKey(
   plainKey: string,
-  customPassphrase?: string
+  customPassphrase?: string,
 ): Promise<string> {
   const trimmed = plainKey.trim();
-  if (!trimmed) return '';
+  if (!trimmed) return "";
 
   const cryptoInstance = getCrypto();
   if (!cryptoInstance || !cryptoInstance.subtle) {
@@ -133,7 +139,7 @@ export async function encryptApiKey(
   const effectivePassphrase =
     customPassphrase && customPassphrase.trim().length > 0
       ? customPassphrase.trim()
-      : `nevatal_secure_${getOrCreateDeviceSalt()}_${typeof window !== 'undefined' ? window.location?.origin || '' : ''}`;
+      : `nevatal_secure_${getOrCreateDeviceSalt()}_${typeof window !== "undefined" ? window.location?.origin || "" : ""}`;
 
   const cryptoKey = await deriveCryptoKey(effectivePassphrase, salt);
   const encoder = new TextEncoder();
@@ -141,11 +147,11 @@ export async function encryptApiKey(
 
   const encryptedBuffer = await cryptoInstance.subtle.encrypt(
     {
-      name: 'AES-GCM',
+      name: "AES-GCM",
       iv: iv,
     },
     cryptoKey,
-    encodedText
+    encodedText,
   );
 
   const saltB64 = bufferToBase64(salt);
@@ -161,10 +167,10 @@ export async function encryptApiKey(
  */
 export async function decryptApiKey(
   encryptedData: string,
-  customPassphrase?: string
+  customPassphrase?: string,
 ): Promise<string> {
   const trimmed = encryptedData.trim();
-  if (!trimmed) return '';
+  if (!trimmed) return "";
 
   // If not encrypted with our prefix, return as-is (backward compatibility)
   if (!isEncrypted(trimmed)) {
@@ -172,26 +178,26 @@ export async function decryptApiKey(
   }
 
   const payload = trimmed.slice(ENCRYPTED_PREFIX.length);
-  const parts = payload.split(':');
+  const parts = payload.split(":");
 
-  if (parts.length === 3 && parts[0] === 'raw') {
+  if (parts.length === 3 && parts[0] === "raw") {
     // Obfuscation fallback decode
     try {
       return decodeURIComponent(atob(parts[2]));
     } catch {
-      return '';
+      return "";
     }
   }
 
   if (parts.length !== 3) {
-    throw new Error('Invalid encrypted API key format.');
+    throw new Error("Invalid encrypted API key format.");
   }
 
   const [saltB64, ivB64, cipherB64] = parts;
   const cryptoInstance = getCrypto();
 
   if (!cryptoInstance || !cryptoInstance.subtle) {
-    throw new Error('Web Crypto API is not supported in this environment.');
+    throw new Error("Web Crypto API is not supported in this environment.");
   }
 
   const salt = base64ToBuffer(saltB64);
@@ -201,35 +207,36 @@ export async function decryptApiKey(
   const effectivePassphrase =
     customPassphrase && customPassphrase.trim().length > 0
       ? customPassphrase.trim()
-      : `nevatal_secure_${getOrCreateDeviceSalt()}_${typeof window !== 'undefined' ? window.location?.origin || '' : ''}`;
+      : `nevatal_secure_${getOrCreateDeviceSalt()}_${typeof window !== "undefined" ? window.location?.origin || "" : ""}`;
 
   const cryptoKey = await deriveCryptoKey(effectivePassphrase, salt);
 
   try {
     const decryptedBuffer = await cryptoInstance.subtle.decrypt(
       {
-        name: 'AES-GCM',
+        name: "AES-GCM",
         iv: iv,
       },
       cryptoKey,
-      cipher
+      cipher,
     );
-
 
     const decoder = new TextDecoder();
     return decoder.decode(decryptedBuffer);
   } catch {
-    throw new Error('Failed to decrypt API key. Passphrase or storage mismatch.');
+    throw new Error(
+      "Failed to decrypt API key. Passphrase or storage mismatch.",
+    );
   }
 }
 
 /**
- * Checks if a custom user API key is stored in localStorage.
+ * Checks if a custom user API key is stored in the current account’s settings.
  */
 export function hasStoredApiKey(): boolean {
-  if (typeof window === 'undefined') return false;
-  const encKey = localStorage.getItem(STORAGE_KEY_ENC);
-  const legacyKey = localStorage.getItem(STORAGE_KEY_LEGACY);
+  if (typeof window === "undefined") return false;
+  const encKey = getConnectionStorage().getItem(STORAGE_KEY_ENC);
+  const legacyKey = getConnectionStorage().getItem(STORAGE_KEY_LEGACY);
   return Boolean((encKey && encKey.trim()) || (legacyKey && legacyKey.trim()));
 }
 
@@ -237,46 +244,49 @@ export function hasStoredApiKey(): boolean {
  * Retrieves the custom user API key from encrypted storage if present.
  * Does NOT fallback to environment variables to prevent leaking server keys to client headers.
  */
-export async function getStoredApiKey(customPassphrase?: string): Promise<string> {
-  if (typeof window === 'undefined') {
-    return '';
+export async function getStoredApiKey(
+  customPassphrase?: string,
+): Promise<string> {
+  if (typeof window === "undefined") {
+    return "";
   }
 
+  const storage = getConnectionStorage();
   try {
-    const encKey = localStorage.getItem(STORAGE_KEY_ENC);
+    const encKey = storage.getItem(STORAGE_KEY_ENC);
     if (encKey && encKey.trim()) {
       return await decryptApiKey(encKey, customPassphrase);
     }
 
     // Check legacy unencrypted storage and auto-migrate
-    const legacyKey = localStorage.getItem(STORAGE_KEY_LEGACY);
+    const legacyKey = storage.getItem(STORAGE_KEY_LEGACY);
     if (legacyKey && legacyKey.trim()) {
       const plain = legacyKey.trim();
       // Auto-encrypt for future security
       try {
         const encrypted = await encryptApiKey(plain, customPassphrase);
-        localStorage.setItem(STORAGE_KEY_ENC, encrypted);
-        localStorage.removeItem(STORAGE_KEY_LEGACY);
+        storage.setItem(STORAGE_KEY_ENC, encrypted);
+        storage.removeItem(STORAGE_KEY_LEGACY);
       } catch {
         // Migration error ignored
       }
       return plain;
     }
   } catch (e) {
-    console.error('Error reading stored API key:', e);
+    console.error("Error reading stored API key:", e);
   }
 
-  return '';
+  return "";
 }
 
 /**
- * Encrypts and securely saves the API key to localStorage.
+ * Encrypts and securely saves the API key to the current account’s settings.
  */
 export async function saveStoredApiKey(
   apiKey: string,
-  customPassphrase?: string
+  customPassphrase?: string,
 ): Promise<void> {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
 
   const trimmed = apiKey.trim();
   if (!trimmed) {
@@ -284,19 +294,20 @@ export async function saveStoredApiKey(
     return;
   }
 
+  const storage = getConnectionStorage();
   const encrypted = await encryptApiKey(trimmed, customPassphrase);
-  localStorage.setItem(STORAGE_KEY_ENC, encrypted);
+  storage.setItem(STORAGE_KEY_ENC, encrypted);
   // Clean up any legacy plaintext key
-  localStorage.removeItem(STORAGE_KEY_LEGACY);
+  storage.removeItem(STORAGE_KEY_LEGACY);
 }
 
 /**
- * Removes the stored API key from localStorage.
+ * Removes the stored API key from the current account’s settings.
  */
 export function removeStoredApiKey(): void {
-  if (typeof window === 'undefined') return;
-  localStorage.removeItem(STORAGE_KEY_ENC);
-  localStorage.removeItem(STORAGE_KEY_LEGACY);
+  if (typeof window === "undefined") return;
+  getConnectionStorage().removeItem(STORAGE_KEY_ENC);
+  getConnectionStorage().removeItem(STORAGE_KEY_LEGACY);
 }
 
 /**
@@ -307,13 +318,17 @@ export function normalizeEndpoint(url: string): string {
   if (!clean) return DEFAULT_ENDPOINT;
 
   // Remove trailing slash
-  clean = clean.replace(/\/+$/, '');
+  clean = clean.replace(/\/+$/, "");
 
   // If it's a base URL like https://openrouter.ai/api/v1 or /api/openrouter
-  if (clean.endsWith('/chat/completions')) {
+  if (clean.endsWith("/chat/completions")) {
     return clean;
   }
-  if (clean.endsWith('/api/v1') || clean.endsWith('/api/openrouter') || clean.endsWith('/v1')) {
+  if (
+    clean.endsWith("/api/v1") ||
+    clean.endsWith("/api/openrouter") ||
+    clean.endsWith("/v1")
+  ) {
     return `${clean}/chat/completions`;
   }
 
@@ -324,8 +339,8 @@ export function normalizeEndpoint(url: string): string {
  * Retrieves the configured OpenRouter router endpoint.
  */
 export function getStoredEndpoint(): string {
-  if (typeof window !== 'undefined') {
-    const saved = localStorage.getItem(STORAGE_ENDPOINT);
+  if (typeof window !== "undefined") {
+    const saved = getConnectionStorage().getItem(STORAGE_ENDPOINT);
     if (saved && saved.trim().length > 0) {
       return normalizeEndpoint(saved.trim());
     }
@@ -340,15 +355,18 @@ export function getStoredEndpoint(): string {
 }
 
 /**
- * Saves custom OpenRouter endpoint to localStorage.
+ * Saves custom OpenRouter endpoint to the current account’s settings.
  */
 export function saveStoredEndpoint(endpoint: string): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
   const trimmed = endpoint.trim();
   if (trimmed && trimmed !== DEFAULT_ENDPOINT) {
-    localStorage.setItem(STORAGE_ENDPOINT, normalizeEndpoint(trimmed));
+    getConnectionStorage().setItem(
+      STORAGE_ENDPOINT,
+      normalizeEndpoint(trimmed),
+    );
   } else {
-    localStorage.removeItem(STORAGE_ENDPOINT);
+    getConnectionStorage().removeItem(STORAGE_ENDPOINT);
   }
 }
 
@@ -356,8 +374,8 @@ export function saveStoredEndpoint(endpoint: string): void {
  * Retrieves the configured OpenRouter model.
  */
 export function getStoredModel(): string {
-  if (typeof window !== 'undefined') {
-    const saved = localStorage.getItem(STORAGE_MODEL);
+  if (typeof window !== "undefined") {
+    const saved = getConnectionStorage().getItem(STORAGE_MODEL);
     if (saved && saved.trim().length > 0) {
       return saved.trim();
     }
@@ -367,12 +385,12 @@ export function getStoredModel(): string {
 }
 
 /**
- * Saves custom model to localStorage.
+ * Saves custom model to the current account’s settings.
  */
 export function saveStoredModel(model: string): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
   const trimmed = model.trim();
   if (trimmed) {
-    localStorage.setItem(STORAGE_MODEL, trimmed);
+    getConnectionStorage().setItem(STORAGE_MODEL, trimmed);
   }
 }

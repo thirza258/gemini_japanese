@@ -7,9 +7,15 @@ services:
         VITE_OPENROUTER_MODEL: ${VITE_OPENROUTER_MODEL:-google/gemma-4-26b-a4b-it}
         VITE_OPENROUTER_ENDPOINT: ${VITE_OPENROUTER_ENDPOINT:-/api/openrouter/chat/completions}
     environment:
-      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-${VITE_OPENROUTER_API_KEY:-}}
-      NGINX_ENVSUBST_FILTER: "OPENROUTER_API_KEY"
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      # Local HTTP preview. Set COOKIE_SECURE=true when using HTTPS in production.
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      TRUST_PROXY: ${TRUST_PROXY:-false}
     ports:
-      - "5175:80" 
+      - "5175:3000"
+    volumes:
+      - learning-data:/app/data
+    restart: unless-stopped
 
-    restart: always
+volumes:
+  learning-data:

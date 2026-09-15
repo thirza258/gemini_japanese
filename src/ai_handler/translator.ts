@@ -1,4 +1,4 @@
-import { SAMPLE_PHRASES } from '../data/japaneseSamples';
+import { SAMPLE_PHRASES } from "../data/japaneseSamples";
 import {
   getStoredApiKey,
   getStoredEndpoint,
@@ -6,17 +6,10 @@ import {
   decryptApiKey,
   isEncrypted,
   normalizeEndpoint,
-} from '../utils/crypto';
-
-
+} from "../utils/crypto";
 
 export type ScriptType =
-  | 'kanji'
-  | 'hiragana'
-  | 'katakana'
-  | 'mixed'
-  | 'punctuation'
-  | 'other';
+  "kanji" | "hiragana" | "katakana" | "mixed" | "punctuation" | "other";
 
 export interface TranslationBreakdownItem {
   text: string;
@@ -32,7 +25,7 @@ export interface TranslationResponse {
   breakdown: TranslationBreakdownItem[];
 }
 
-type OpenRouterRole = 'system' | 'user' | 'assistant';
+type OpenRouterRole = "system" | "user" | "assistant";
 
 interface OpenRouterMessage {
   role: OpenRouterRole;
@@ -49,8 +42,7 @@ interface OpenRouterResponse {
   choices?: OpenRouterChoice[];
 }
 
-const openRouterAppTitle = 'Nevatal Japanese AI Translator';
-
+const openRouterAppTitle = "Nevatal Japanese AI Translator";
 
 const systemInstruction = `Return ONLY valid JSON with the following shape:
 {
@@ -75,57 +67,64 @@ Rules:
 - Set "reading" to the kana reading for that grapheme, in hiragana when possible.
 - For kanji graphemes, reading should be the contextual furigana-style reading for that character.
 - For each grapheme, translation should be a short meaning or gloss for that exact grapheme.
+- Kana within a word or ending do not have independent meanings. Identify them as part of the complete word or ending instead of inventing a meaning.
+- If a compound has an indivisible whole-word reading, put that reading on its first character, leave the other readings empty, and explain the shared compound in the gloss. Do not invent per-character readings.
 - Do not include markdown, backticks, or explanations.`;
 
 const histories: OpenRouterMessage[] = [
   {
-    role: 'user',
-    content: '日本',
+    role: "user",
+    content: "日本",
   },
   {
-    role: 'assistant',
-    content: '{"romaji":"nihon","translation":"Japan","breakdown":[{"text":"日","script":"kanji","reading":"に","romaji":"ni","translation":"sun/day"},{"text":"本","script":"kanji","reading":"ほん","romaji":"hon","translation":"origin/book"}]}',
+    role: "assistant",
+    content:
+      '{"romaji":"nihon","translation":"Japan","breakdown":[{"text":"日","script":"kanji","reading":"に","romaji":"ni","translation":"sun/day"},{"text":"本","script":"kanji","reading":"ほん","romaji":"hon","translation":"origin/book"}]}',
   },
   {
-    role: 'user',
-    content: 'カタカナ',
+    role: "user",
+    content: "カタカナ",
   },
   {
-    role: 'assistant',
-    content: '{"romaji":"katakana","translation":"katakana","breakdown":[{"text":"カ","script":"katakana","reading":"か","romaji":"ka","translation":"ka sound"},{"text":"タ","script":"katakana","reading":"た","romaji":"ta","translation":"ta sound"},{"text":"カ","script":"katakana","reading":"か","romaji":"ka","translation":"ka sound"},{"text":"ナ","script":"katakana","reading":"な","romaji":"na","translation":"na sound"}]}',
+    role: "assistant",
+    content:
+      '{"romaji":"katakana","translation":"katakana","breakdown":[{"text":"カ","script":"katakana","reading":"か","romaji":"ka","translation":"ka sound"},{"text":"タ","script":"katakana","reading":"た","romaji":"ta","translation":"ta sound"},{"text":"カ","script":"katakana","reading":"か","romaji":"ka","translation":"ka sound"},{"text":"ナ","script":"katakana","reading":"な","romaji":"na","translation":"na sound"}]}',
   },
 ];
 
 const responseFormat = {
-  type: 'json_object',
+  type: "json_object",
 };
 
 function normalizeBreakdownItem(item: unknown): TranslationBreakdownItem {
-  const entry = item as Partial<TranslationBreakdownItem>;
+  const entry =
+    item && typeof item === "object"
+      ? (item as Partial<TranslationBreakdownItem>)
+      : {};
   const allowedScripts: ScriptType[] = [
-    'kanji',
-    'hiragana',
-    'katakana',
-    'mixed',
-    'punctuation',
-    'other',
+    "kanji",
+    "hiragana",
+    "katakana",
+    "mixed",
+    "punctuation",
+    "other",
   ];
 
   return {
-    text: typeof entry.text === 'string' ? entry.text : '',
+    text: typeof entry.text === "string" ? entry.text : "",
     script: allowedScripts.includes(entry.script as ScriptType)
       ? (entry.script as ScriptType)
-      : 'other',
-    reading: typeof entry.reading === 'string' ? entry.reading : '',
-    romaji: typeof entry.romaji === 'string' ? entry.romaji : '',
-    translation: typeof entry.translation === 'string' ? entry.translation : '',
+      : "other",
+    reading: typeof entry.reading === "string" ? entry.reading : "",
+    romaji: typeof entry.romaji === "string" ? entry.romaji : "",
+    translation: typeof entry.translation === "string" ? entry.translation : "",
   };
 }
 
 interface IntlWithSegmenter {
   Segmenter?: new (
     locales?: string | string[],
-    options?: { granularity?: 'grapheme' | 'word' | 'sentence' }
+    options?: { granularity?: "grapheme" | "word" | "sentence" },
   ) => {
     segment: (input: string) => Iterable<{ segment: string }>;
   };
@@ -134,9 +133,12 @@ interface IntlWithSegmenter {
 export function splitGraphemes(text: string): string[] {
   const segmenterCtor = (Intl as unknown as IntlWithSegmenter).Segmenter;
 
-  if (typeof segmenterCtor === 'function') {
-    const segmenter = new segmenterCtor('ja', { granularity: 'grapheme' });
-    return Array.from(segmenter.segment(text), (part: { segment: string }) => part.segment);
+  if (typeof segmenterCtor === "function") {
+    const segmenter = new segmenterCtor("ja", { granularity: "grapheme" });
+    return Array.from(
+      segmenter.segment(text),
+      (part: { segment: string }) => part.segment,
+    );
   }
 
   return Array.from(text);
@@ -164,52 +166,57 @@ export function detectScript(text: string): ScriptType {
   const hasKatakana = isKatakana(text);
 
   if (isPunctuation(text)) {
-    return 'punctuation';
+    return "punctuation";
   }
 
-  const scriptCount = [hasKanji, hasHiragana, hasKatakana].filter(Boolean).length;
+  const scriptCount = [hasKanji, hasHiragana, hasKatakana].filter(
+    Boolean,
+  ).length;
   if (scriptCount > 1) {
-    return 'mixed';
+    return "mixed";
   }
-  if (hasKanji) return 'kanji';
-  if (hasHiragana) return 'hiragana';
-  if (hasKatakana) return 'katakana';
-  return 'other';
+  if (hasKanji) return "kanji";
+  if (hasHiragana) return "hiragana";
+  if (hasKatakana) return "katakana";
+  return "other";
 }
 
 function katakanaToHiragana(text: string): string {
   return Array.from(text)
     .map((character) => {
       const codePoint = character.codePointAt(0);
-      if (typeof codePoint !== 'number') {
+      if (typeof codePoint !== "number") {
         return character;
       }
 
-      if (codePoint >= 0x30A1 && codePoint <= 0x30F6) {
+      if (codePoint >= 0x30a1 && codePoint <= 0x30f6) {
         return String.fromCodePoint(codePoint - 0x60);
       }
 
       return character;
     })
-    .join('');
+    .join("");
 }
 
 function fallbackReading(text: string, script: ScriptType): string {
-  if (script === 'hiragana') {
+  if (script === "hiragana") {
     return text;
   }
-  if (script === 'katakana') {
+  if (script === "katakana") {
     return katakanaToHiragana(text);
   }
-  if (script === 'punctuation' || script === 'other') {
-    return '';
+  if (script === "punctuation" || script === "other") {
+    return "";
   }
-  return '';
+  return "";
 }
 
-function parseTranslationResponse(text: string | undefined, input: string): TranslationResponse {
+function parseTranslationResponse(
+  text: string | undefined,
+  input: string,
+): TranslationResponse {
   if (!text) {
-    throw new Error('Translator returned an empty response.');
+    throw new Error("Translator returned an empty response.");
   }
 
   let parsed: Partial<TranslationResponse> & { breakdown?: unknown };
@@ -218,11 +225,15 @@ function parseTranslationResponse(text: string | undefined, input: string): Tran
       breakdown?: unknown;
     };
   } catch {
-    throw new Error('Translator returned malformed JSON.');
+    throw new Error("Translator returned malformed JSON.");
   }
 
-  if (typeof parsed.romaji !== 'string' || typeof parsed.translation !== 'string') {
-    throw new Error('Translator returned an invalid response.');
+  if (
+    !parsed ||
+    typeof parsed.romaji !== "string" ||
+    typeof parsed.translation !== "string"
+  ) {
+    throw new Error("Translator returned an invalid response.");
   }
 
   const segments = splitGraphemes(input);
@@ -248,8 +259,8 @@ function parseTranslationResponse(text: string | undefined, input: string): Tran
           text: segment,
           script,
           reading: fallbackReading(segment, script),
-          romaji: '',
-          translation: '',
+          romaji: "",
+          translation: "",
         };
       });
 
@@ -265,33 +276,36 @@ function buildMessages(input: string): OpenRouterMessage[] {
 
   return [
     {
-      role: 'system',
+      role: "system",
       content: systemInstruction,
     },
     ...histories,
     {
-      role: 'user',
+      role: "user",
       content: `Input: ${input}\nExact graphemes: ${JSON.stringify(segments)}`,
     },
   ];
 }
 
 function getOpenRouterReferer(): string {
-  if (typeof window !== 'undefined' && window.location?.origin) {
+  if (typeof window !== "undefined" && window.location?.origin) {
     return window.location.origin;
   }
 
-  return 'https://translate.nevatal.tech';
+  return "https://translate.nevatal.tech";
 }
 
-async function resolveApiKey(customKey?: string, customPassphrase?: string): Promise<string> {
+async function resolveApiKey(
+  customKey?: string,
+  customPassphrase?: string,
+): Promise<string> {
   if (customKey && customKey.trim().length > 0) {
     const trimmed = customKey.trim();
     if (isEncrypted(trimmed)) {
       try {
         return await decryptApiKey(trimmed, customPassphrase);
       } catch (err) {
-        console.warn('Failed to decrypt custom key:', err);
+        console.warn("Failed to decrypt custom key:", err);
         return trimmed;
       }
     }
@@ -305,64 +319,81 @@ async function requestTranslation(
   customKey?: string,
   customModel?: string,
   customEndpoint?: string,
-  customPassphrase?: string
+  customPassphrase?: string,
+  signal?: AbortSignal,
 ): Promise<string> {
   const apiKey = await resolveApiKey(customKey, customPassphrase);
-  const model = customModel && customModel.trim() ? customModel.trim() : getStoredModel();
-  const endpoint = customEndpoint ? normalizeEndpoint(customEndpoint) : getStoredEndpoint();
+  const model =
+    customModel && customModel.trim() ? customModel.trim() : getStoredModel();
+  const endpoint = customEndpoint
+    ? normalizeEndpoint(customEndpoint)
+    : getStoredEndpoint();
 
   // Check if this input matches one of our rich cached samples
   const matchedSample = SAMPLE_PHRASES.find(
-    (s) => s.japanese.trim() === input.trim()
+    (s) => s.japanese.trim() === input.trim(),
   );
 
   const isProxyEndpoint =
-    endpoint.startsWith('/') ||
-    (typeof window !== 'undefined' && endpoint.includes(window.location?.host || ''));
+    endpoint.startsWith("/") ||
+    (typeof window !== "undefined" &&
+      endpoint.includes(window.location?.host || ""));
 
   if (!apiKey && !isProxyEndpoint) {
     if (matchedSample && matchedSample.cachedResponse) {
       return JSON.stringify(matchedSample.cachedResponse);
     }
     throw new Error(
-      'API Key missing. When connecting directly to OpenRouter, please configure your API key in settings or use the default server proxy (/api/openrouter/chat/completions).'
+      "API Key missing. When connecting directly to OpenRouter, please configure your API key in settings or use the default server proxy (/api/openrouter/chat/completions).",
     );
   }
 
   const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-    'HTTP-Referer': getOpenRouterReferer(),
-    'X-OpenRouter-Title': openRouterAppTitle,
+    "Content-Type": "application/json",
+    "HTTP-Referer": getOpenRouterReferer(),
+    "X-OpenRouter-Title": openRouterAppTitle,
   };
 
   // Only attach Authorization header if a custom API key is present.
   // For the default server proxy, omit Authorization so Nginx / Vite dev proxy injects the server key securely.
   if (apiKey) {
-    headers['Authorization'] = `Bearer ${apiKey}`;
+    headers["Authorization"] = `Bearer ${apiKey}`;
   }
 
   try {
     const response = await fetch(endpoint, {
-      method: 'POST',
+      method: "POST",
       headers,
+      signal,
       body: JSON.stringify({
-
         model: model,
         messages: buildMessages(input),
         response_format: responseFormat,
         temperature: 0.1,
-        max_tokens: 1024,
+        max_tokens: Math.min(
+          16384,
+          Math.max(2048, splitGraphemes(input).length * 75),
+        ),
       }),
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
       // If error occurs and we have a cached sample, fallback gracefully
       if (matchedSample && matchedSample.cachedResponse) {
         return JSON.stringify(matchedSample.cachedResponse);
       }
+      if (response.status === 401 || response.status === 403) {
+        throw new Error(
+          "The translation service needs a valid API key. Add your OpenRouter key in Translator settings, or configure the server connection.",
+        );
+      }
+      if (response.status === 429) {
+        throw new Error(
+          "The translation service is busy or has reached its usage limit. Wait a moment, then try again.",
+        );
+      }
       throw new Error(
-        `OpenRouter request failed (${response.status}): ${errorText || response.statusText}`
+        `The translation service could not complete this request (${response.status}). Check your model and connection in Translator settings.`,
       );
     }
 
@@ -373,7 +404,7 @@ async function requestTranslation(
       if (matchedSample && matchedSample.cachedResponse) {
         return JSON.stringify(matchedSample.cachedResponse);
       }
-      throw new Error('OpenRouter returned an empty response.');
+      throw new Error("OpenRouter returned an empty response.");
     }
 
     return content;
@@ -391,20 +422,47 @@ export async function run({
   customModel,
   customEndpoint,
   customPassphrase,
+  signal,
 }: {
   input: string;
   customKey?: string;
   customModel?: string;
   customEndpoint?: string;
   customPassphrase?: string;
+  signal?: AbortSignal;
 }): Promise<TranslationResponse> {
-  const responseText = await requestTranslation(
-    input,
-    customKey,
-    customModel,
-    customEndpoint,
-    customPassphrase
-  );
-  return parseTranslationResponse(responseText, input);
-}
+  const query = input.trim();
+  if (!query) throw new Error("Enter Japanese text to translate.");
+  const sample = SAMPLE_PHRASES.find((item) => item.japanese === query);
+  if (sample?.cachedResponse) return sample.cachedResponse;
 
+  const controller = new AbortController();
+  const abort = () => controller.abort();
+  if (signal?.aborted) controller.abort();
+  signal?.addEventListener("abort", abort, { once: true });
+  let timedOut = false;
+  const timeout = setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, 60000);
+  try {
+    const responseText = await requestTranslation(
+      query,
+      customKey,
+      customModel,
+      customEndpoint,
+      customPassphrase,
+      controller.signal,
+    );
+    return parseTranslationResponse(responseText, query);
+  } catch (error) {
+    if (timedOut)
+      throw new Error(
+        "The translation took too long. Try a shorter sentence or another model.",
+      );
+    throw error;
+  } finally {
+    clearTimeout(timeout);
+    signal?.removeEventListener("abort", abort);
+  }
+}
