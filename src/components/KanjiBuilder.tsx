@@ -4,6 +4,7 @@ import {
   BUILDER_COURSES,
   COMPONENTS,
   KANJI_CHALLENGES,
+  getCourseChallenges,
   type KanjiChallenge,
 } from "../data/kanjiBuilder";
 import { type RecordAnswer } from "../hooks/useStudy";
@@ -28,13 +29,15 @@ export function KanjiBuilder({
   onLevelChange,
   onRecord,
 }: Props) {
+  const courses = BUILDER_COURSES.filter((item) => item.level === level);
+  const [courseId, setCourseId] = useState(courses[0].id);
+  const course = courses.find((item) => item.id === courseId) || courses[0];
   const [started, setStarted] = useState(false);
   const [index, setIndex] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
   const [score, setScore] = useState(0);
-  const lessons = KANJI_CHALLENGES.filter((item) => item.level === level);
+  const lessons = getCourseChallenges(course);
   const lesson = lessons[index];
-  const course = BUILDER_COURSES[level];
   function start() {
     setStarted(true);
     setIndex(0);
@@ -73,47 +76,79 @@ export function KanjiBuilder({
           </section>
           <div className="section-heading">
             <div>
-              <h2>Five courses, one step at a time</h2>
-              <p>Choose a course to explore its components.</p>
+              <h2>{BUILDER_COURSES.length} courses, one step at a time</h2>
+              <p>Choose a level, then a course to explore its components.</p>
             </div>
-            <span className="quiet-label">25 BUILDING CHALLENGES</span>
+            <span className="quiet-label">
+              {KANJI_CHALLENGES.length} BUILDING CHALLENGES
+            </span>
           </div>
-          <div className="course-selector">
+          <div
+            className="level-path"
+            role="group"
+            aria-label="Choose a course level"
+          >
             {LEVELS.map((item) => (
               <button
                 key={item}
-                className={`course-option ${item === level ? "selected" : ""}`}
+                className={item === level ? "selected" : ""}
                 aria-pressed={item === level}
                 onClick={() => onLevelChange(item)}
               >
-                <span className="badge">{item}</span>
-                <strong>{BUILDER_COURSES[item].title}</strong>
+                <strong>{item}</strong>
                 <span>
                   {
-                    KANJI_CHALLENGES.filter(
-                      (challenge) =>
-                        challenge.level === item &&
-                        learned.includes(challenge.id),
-                    ).length
+                    BUILDER_COURSES.filter((course) => course.level === item)
+                      .length
                   }{" "}
-                  / 5 learned
+                  courses
                 </span>
               </button>
             ))}
           </div>
-          <section className="panel course-detail">
+          <div
+            className="course-selector"
+            role="group"
+            aria-label={`${level} courses`}
+          >
+            {courses.map((item, i) => (
+              <button
+                key={item.id}
+                className={`course-option ${item.id === course.id ? "selected" : ""}`}
+                aria-pressed={item.id === course.id}
+                aria-controls="builder-course-detail"
+                onClick={() => setCourseId(item.id)}
+              >
+                <span className="badge">
+                  {level} · COURSE {i + 1}
+                </span>
+                <strong>{item.title}</strong>
+                <span>
+                  {
+                    item.challengeIds.filter((id) => learned.includes(id))
+                      .length
+                  }
+                  {" / "}
+                  {item.challengeIds.length} learned
+                </span>
+              </button>
+            ))}
+          </div>
+          <section className="panel course-detail" id="builder-course-detail">
             <div className="course-description">
               <p className="eyebrow">
-                COURSE {LEVELS.indexOf(level) + 1} · {level}
+                COURSE {courses.indexOf(course) + 1} OF {courses.length} ·{" "}
+                {level}
               </p>
               <h2>{course.title}</h2>
               <p>{course.description}</p>
               <div className="course-meta">
                 <span>
-                  <Icon name="build" size={16} /> 5 lessons
+                  <Icon name="build" size={16} /> {lessons.length} lessons
                 </span>
                 <span>
-                  <Icon name="clock" size={16} /> About 10 minutes
+                  <Icon name="clock" size={16} /> About {lessons.length * 2}{" "}
+                  minutes
                 </span>
               </div>
               <button className="button primary" onClick={start}>

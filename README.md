@@ -5,11 +5,11 @@ A focused Japanese study website built with React, TypeScript, Vite, and a Node.
 ## Study features
 
 - **Landing page:** an introduction to the study tools, an interactive kanji preview, and a starting-level selector. A subtle sakura background animation supports pausing and reduced-motion preferences. The site footer links to each study tool and all five starting levels. “Get started” opens the sidebar workspace; its logo returns to the landing page. Direct links to study activities still work.
-- **Kanji flashcards:** 100 curated cards across N5–N1, with meanings, representative on’yomi and kun’yomi, example words, audio, shuffle, and a “still learning” deck.
-- **Kanji builder:** five courses and 25 interactive challenges. Study the components, then place them in the correct order. Pieces are reusable for characters such as 林 and 森. Lessons include component notes, pronunciation examples, and clearly labeled memory stories.
-- **Particles and grammar:** 30 fill-the-gap questions, with answer explanations and progressively more complex expressions.
+- **Kanji flashcards:** 200 curated cards across N5–N1 (40 per level), with meanings, representative on’yomi and kun’yomi, example words, audio, shuffle, and a “still learning” deck.
+- **Kanji builder:** 15 courses and 75 interactive challenges, with three five-lesson courses per level. Choose a level and a themed course, study the components, then place them in the correct order. Pieces are reusable for characters such as 林 and 森. Lessons include component notes, pronunciation examples, and clearly labeled memory stories. Course progress and lesson totals come from the curriculum data.
+- **Particles and grammar:** 80 fill-the-gap questions (16 per level), with answer explanations and progressively more complex expressions.
 - **Hiragana and katakana:** both scripts, including 46 basic characters, 25 voiced forms, and 33 combined sounds per script. Study charts and randomized, ten-question reading quizzes accept common alternate romanizations.
-- **Reading room:** 15 original passages across the five levels, with optional furigana, English translations, vocabulary, audio, and comprehension checks.
+- **Reading room:** 25 original passages across the five levels (five per level), with optional furigana, English translations, vocabulary, audio, and comprehension checks.
 - **Detailed translator:** Japanese-to-English translation, romaji, contextual character readings, script filters, copy, and the last 20 translations. The included sample phrases work without API access.
 - **Accounts and guest access:** every page works without signing in. Guest progress, translation history, and translator connection settings stay in memory for the current visit. Email/password accounts save learning progress and the last 20 translations to the server.
 - **Progress:** learned items, practice activity, accuracy, local-calendar streaks, configurable daily goals, and JSON export. Signed-in accounts retain the most recent 3,000 attempts.

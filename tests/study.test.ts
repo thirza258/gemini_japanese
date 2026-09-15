@@ -8,7 +8,12 @@ import {
   READINGS,
   plainJapanese,
 } from "../src/data/curriculum";
-import { COMPONENTS, KANJI_CHALLENGES } from "../src/data/kanjiBuilder";
+import {
+  BUILDER_COURSES,
+  COMPONENTS,
+  KANJI_CHALLENGES,
+  getCourseChallenges,
+} from "../src/data/kanjiBuilder";
 import {
   getStudyStats,
   localDate,
@@ -21,10 +26,15 @@ test("every level offers distinct, usable flashcards, grammar, reading, and cons
   );
   assert.equal(new Set(ids).size, ids.length);
   for (const level of LEVELS) {
-    for (const collection of [KANJI, PARTICLES, READINGS, KANJI_CHALLENGES]) {
+    for (const [name, collection, minimum] of [
+      ["kanji cards", KANJI, 40],
+      ["grammar questions", PARTICLES, 16],
+      ["reading passages", READINGS, 5],
+      ["building challenges", KANJI_CHALLENGES, 15],
+    ] as const) {
       assert.ok(
-        collection.filter((item) => item.level === level).length >= 3,
-        `${level} has insufficient practice`,
+        collection.filter((item) => item.level === level).length >= minimum,
+        `${level} needs at least ${minimum} ${name}`,
       );
     }
   }
@@ -40,16 +50,74 @@ test("every level offers distinct, usable flashcards, grammar, reading, and cons
       question.id,
     );
     assert.ok(question.explanation.trim().length > 30, question.id);
+    assert.equal(question.options.length, 4, question.id);
+    assert.ok(
+      question.options.every((option) => option.trim()),
+      question.id,
+    );
   }
   for (const question of PARTICLES)
     assert.equal(question.sentence.split("＿").length, 2, question.id);
 });
 
+test("kanji cards are distinct and include usable readings and an example of the character", () => {
+  assert.equal(new Set(KANJI.map((card) => card.character)).size, KANJI.length);
+  for (const card of KANJI) {
+    assert.equal(Array.from(card.character).length, 1, card.id);
+    assert.ok(card.word.includes(card.character), card.id);
+    assert.match(card.reading, /^[ぁ-ゖー]+$/, card.id);
+    for (const value of Object.values(card)) assert.ok(value.trim(), card.id);
+  }
+});
+
+test("each level has themed courses covering every construction challenge exactly once", () => {
+  assert.equal(
+    new Set(BUILDER_COURSES.map((course) => course.id)).size,
+    BUILDER_COURSES.length,
+  );
+  for (const level of LEVELS) {
+    const courses = BUILDER_COURSES.filter((course) => course.level === level);
+    assert.ok(courses.length >= 3, `${level} needs at least three courses`);
+    const assigned = courses.flatMap((course) => course.challengeIds);
+    assert.equal(
+      new Set(assigned).size,
+      assigned.length,
+      `${level}: repeated lesson`,
+    );
+    assert.deepEqual(
+      [...assigned].sort(),
+      KANJI_CHALLENGES.filter((challenge) => challenge.level === level)
+        .map((challenge) => challenge.id)
+        .sort(),
+      `${level}: missing or unknown course lesson`,
+    );
+    for (const course of courses) {
+      assert.ok(course.title.trim() && course.description.trim(), course.id);
+      const lessons = getCourseChallenges(course);
+      assert.ok(lessons.length >= 3, `${course.id}: insufficient lessons`);
+      assert.deepEqual(
+        lessons.map((lesson) => lesson.id),
+        course.challengeIds,
+      );
+      assert.ok(
+        lessons.every((lesson) => lesson.level === level),
+        course.id,
+      );
+    }
+  }
+});
+
 test("construction courses support repeated components and fully explain every correct component", () => {
   for (const challenge of KANJI_CHALLENGES) {
-    for (const part of challenge.parts)
+    for (const part of [...challenge.parts, ...challenge.distractors])
       assert.ok(COMPONENTS[part]?.note, `${challenge.kanji}: missing ${part}`);
-    assert.ok(challenge.parts.length >= 2);
+    assert.equal(
+      challenge.parts.length,
+      challenge.layout === "triangle" ? 3 : 2,
+      challenge.id,
+    );
+    assert.ok(challenge.word.includes(challenge.kanji), challenge.id);
+    assert.match(challenge.wordReading, /^[ぁ-ゖー]+$/, challenge.id);
     assert.ok(
       challenge.distractors.every((part) => !challenge.parts.includes(part)),
       challenge.id,
@@ -92,6 +160,11 @@ test("furigana markup produces intact Japanese for speech, including mixed scrip
     const text = plainJapanese(passage.text);
     assert.ok(!/[{}|]/.test(text), passage.id);
     assert.ok(text.length > 40, passage.id);
+    for (const [word, reading, meaning] of passage.vocabulary) {
+      assert.ok(word.trim(), passage.id);
+      assert.match(reading, /^[ぁ-ゖー]+$/, passage.id);
+      assert.ok(meaning.trim(), passage.id);
+    }
   }
 });
 

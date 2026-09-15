@@ -46,7 +46,7 @@ export function Dashboard({ progress, onNavigate, onLevelChange }: Props) {
       title: "Kanji builder",
       description:
         "Piece it together. Discover how familiar parts form new kanji.",
-      meta: `${KANJI_CHALLENGES.filter((card) => card.level === level).length} challenges · ${level}`,
+      meta: `${BUILDER_COURSES.filter((course) => course.level === level).length} courses · ${KANJI_CHALLENGES.filter((card) => card.level === level).length} challenges`,
       icon: "build",
     },
     {
@@ -259,7 +259,12 @@ export function Dashboard({ progress, onNavigate, onLevelChange }: Props) {
             <span className="result">休</span>
           </div>
           <h3>See the parts. Remember the whole.</h3>
-          <p>{BUILDER_COURSES[level].description}</p>
+          <p>
+            Explore{" "}
+            {BUILDER_COURSES.filter((course) => course.level === level).length}{" "}
+            {level} courses with component guides, memory stories, and building
+            challenges.
+          </p>
           <button
             className="button secondary"
             onClick={() => onNavigate("builder")}
