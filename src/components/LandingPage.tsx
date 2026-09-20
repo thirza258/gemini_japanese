@@ -8,7 +8,6 @@ import {
 } from "../data/curriculum";
 import { KANJI_CHALLENGES } from "../data/kanjiBuilder";
 import { AccountButton, Icon } from "./StudyUI";
-import { SakuraBackground } from "./SakuraBackground";
 
 interface LandingPageProps {
   mainRef: RefObject<HTMLElement>;
@@ -20,6 +19,8 @@ interface LandingPageProps {
   accountEmail?: string;
   checkingAccount: boolean;
   onOpenAccount: () => void;
+  sakuraPaused?: boolean;
+  onToggleSakura?: () => void;
 }
 
 const practiceOptions: {
@@ -120,13 +121,13 @@ export function LandingPage({
   accountEmail,
   checkingAccount,
   onOpenAccount,
+  sakuraPaused = false,
+  onToggleSakura,
 }: LandingPageProps) {
   const [previewIndex, setPreviewIndex] = useState(0);
-  const [sakuraPaused, setSakuraPaused] = useState(false);
   const preview = previewLessons[previewIndex];
   return (
     <div className="landing-page">
-      <SakuraBackground paused={sakuraPaused} />
       <a
         className="skip-link"
         href="#main-content"
@@ -182,7 +183,7 @@ export function LandingPage({
             />
             <button
               className="icon-button sakura-motion-toggle"
-              onClick={() => setSakuraPaused((paused) => !paused)}
+              onClick={onToggleSakura}
               aria-label={`${sakuraPaused ? "Resume" : "Pause"} sakura animation`}
               title={`${sakuraPaused ? "Resume" : "Pause"} sakura animation`}
             >

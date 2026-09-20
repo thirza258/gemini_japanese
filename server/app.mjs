@@ -28,7 +28,9 @@ const MIME = {
   ".ico": "image/x-icon",
   ".woff2": "font/woff2",
   ".txt": "text/plain; charset=utf-8",
-  ".xml": "application/xml",
+  ".xml": "application/xml; charset=utf-8",
+  ".json": "application/json; charset=utf-8",
+  ".md": "text/markdown; charset=utf-8",
 };
 
 export function createApp({
@@ -302,23 +304,86 @@ export function createApp({
       if (!staticDirectory || !["GET", "HEAD"].includes(req.method))
         throw new HttpError(404, "Page not found.");
       const root = resolve(staticDirectory);
+
+      // Markdown Content Negotiation (Accept: text/markdown)
+      if (
+        req.headers.accept?.includes("text/markdown") &&
+        (path === "/" || path === "/index.html")
+      ) {
+        const llmsFile = resolve(root, "llms.txt");
+        try {
+          const content = await readFile(llmsFile, "utf-8");
+          const tokens = Math.round(content.split(/\s+/).length / 0.75);
+          res.writeHead(200, {
+            "Content-Type": "text/markdown; charset=utf-8",
+            "Cache-Control": "no-cache",
+            "X-Markdown-Tokens": String(tokens),
+            Link: '</.well-known/api-catalog>; rel="api-catalog", </auth.md>; rel="describedby"; type="text/markdown"',
+          });
+          return res.end(req.method === "HEAD" ? undefined : content);
+        } catch {}
+      }
+
       let file = resolve(root, `.${decodeURIComponent(path)}`);
       if (!file.startsWith(root + sep) && file !== root)
         throw new HttpError(404, "Page not found.");
+
+      let isIndexFallback = false;
       try {
-        if (!(await stat(file)).isFile()) file = resolve(root, "index.html");
-      } catch {
+        if (!(await stat(file)).isFile()) {
+          if (path.startsWith("/.well-known/") || extname(path) !== "") {
+            throw new HttpError(404, "Page not found.");
+          }
+          file = resolve(root, "index.html");
+          isIndexFallback = true;
+        }
+      } catch (err) {
+        if (err instanceof HttpError) throw err;
+        if (path.startsWith("/.well-known/") || extname(path) !== "") {
+          throw new HttpError(404, "Page not found.");
+        }
         file = resolve(root, "index.html");
+        isIndexFallback = true;
       }
+
       const content = await readFile(file);
-      res.writeHead(200, {
-        "Content-Type": MIME[extname(file)] || "application/octet-stream",
+      let contentType = MIME[extname(file)] || "application/octet-stream";
+      if (
+        path === "/.well-known/api-catalog" ||
+        file.endsWith(`${sep}.well-known${sep}api-catalog`)
+      ) {
+        contentType = "application/linkset+json; charset=utf-8";
+      } else if (file.endsWith(".md") || file.endsWith("SKILL.md")) {
+        contentType = "text/markdown; charset=utf-8";
+      } else if (
+        path === "/.well-known/openid-configuration" ||
+        path === "/.well-known/oauth-authorization-server" ||
+        path === "/.well-known/oauth-protected-resource" ||
+        path === "/.well-known/jwks.json" ||
+        file.includes(`${sep}.well-known${sep}`)
+      ) {
+        contentType = "application/json; charset=utf-8";
+      }
+
+      const headers = {
+        "Content-Type": contentType,
         "Cache-Control": file.includes(`${sep}assets${sep}`)
           ? "public, max-age=31536000, immutable"
           : "no-cache",
         "X-Content-Type-Options": "nosniff",
         "Referrer-Policy": "strict-origin-when-cross-origin",
-      });
+      };
+
+      if (path.startsWith("/.well-known/")) {
+        headers["Access-Control-Allow-Origin"] = "*";
+      }
+
+      if (path === "/" || path === "/index.html" || isIndexFallback) {
+        headers["Link"] =
+          '</.well-known/api-catalog>; rel="api-catalog", </auth.md>; rel="describedby"; type="text/markdown", </api/health>; rel="service-desc"; type="application/json", </.well-known/ai-catalog.json>; rel="ai-catalog"';
+      }
+
+      res.writeHead(200, headers);
       res.end(req.method === "HEAD" ? undefined : content);
     } catch (error) {
       if (res.headersSent) return res.end();

@@ -1,0 +1,18 @@
+{
+  "resource": "https://translate.nevatal.tech",
+  "authorization_servers": [
+    "https://translate.nevatal.tech"
+  ],
+  "scopes_supported": [
+    "read",
+    "write"
+  ],
+  "bearer_methods_supported": [
+    "header"
+  ],
+  "resource_documentation": "https://translate.nevatal.tech/auth.md",
+  "agent_auth": {
+    "skill": "https://translate.nevatal.tech/auth.md",
+    "register_uri": "https://translate.nevatal.tech/api/auth/register"
+  }
+}

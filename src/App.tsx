@@ -22,6 +22,7 @@ import { stopJapaneseAudio } from "./utils/speech";
 import { useAuth } from "./auth/useAuth";
 import { AccountDialog } from "./components/AccountDialog";
 import { SaveNotice } from "./components/SaveNotice";
+import { SakuraBackground } from "./components/SakuraBackground";
 import "./landing.css";
 import "./auth.css";
 
@@ -108,6 +109,16 @@ function initialTheme(): "light" | "dark" {
     ? "dark"
     : "light";
 }
+function initialSakuraPaused(): boolean {
+  try {
+    const saved = localStorage.getItem("sakura-motion");
+    if (saved === "paused") return true;
+    if (saved === "running") return false;
+  } catch {
+    /* Use default motion preference. */
+  }
+  return false;
+}
 function App() {
   const account = useAuth();
   const accountScope = account.user?.id || "guest";
@@ -124,6 +135,18 @@ function App() {
   } = useStudy(account.user?.id || null);
   const [page, setPage] = useState(readPage);
   const [theme, setTheme] = useState(initialTheme);
+  const [sakuraPaused, setSakuraPaused] = useState<boolean>(initialSakuraPaused);
+  const toggleSakura = () => {
+    setSakuraPaused((current) => {
+      const next = !current;
+      try {
+        localStorage.setItem("sakura-motion", next ? "paused" : "running");
+      } catch {
+        /* Storage quota exceeded or disabled. */
+      }
+      return next;
+    });
+  };
   const [menuOpen, setMenuOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
@@ -248,6 +271,7 @@ function App() {
   if (page === "landing") {
     return (
       <>
+        <SakuraBackground paused={sakuraPaused} />
         <LandingPage
           key={accountScope}
           mainRef={main}
@@ -261,6 +285,8 @@ function App() {
           accountEmail={account.user?.email}
           checkingAccount={account.checking}
           onOpenAccount={openAccount}
+          sakuraPaused={sakuraPaused}
+          onToggleSakura={toggleSakura}
         />
         {accountDialog}
       </>
@@ -268,6 +294,7 @@ function App() {
   }
   return (
     <>
+      <SakuraBackground paused={sakuraPaused} />
       <div className="app-shell" key={accountScope}>
         <a
           className="skip-link"
@@ -426,6 +453,33 @@ function App() {
                 ))}
               </select>
               <span className="topbar-divider" />
+              <button
+                className="icon-button sakura-motion-toggle"
+                onClick={toggleSakura}
+                aria-label={`${sakuraPaused ? "Resume" : "Pause"} sakura animation`}
+                title={`${sakuraPaused ? "Resume" : "Pause"} sakura animation`}
+              >
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  {sakuraPaused ? (
+                    <path d="m8 5 11 7-11 7Z" />
+                  ) : (
+                    <>
+                      <rect x="6" y="5" width="4" height="14" rx="1" />
+                      <rect x="14" y="5" width="4" height="14" rx="1" />
+                    </>
+                  )}
+                </svg>
+              </button>
               <button
                 className="icon-button theme-button"
                 onClick={() =>

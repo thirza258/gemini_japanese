@@ -1,20 +1,21 @@
 .landing-page {
   position: relative;
   isolation: isolate;
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
+  z-index: 1;
 }
 .sakura-background {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   overflow: hidden;
   pointer-events: none;
   color: var(--accent);
-  opacity: 0.32;
+  opacity: 0.38;
 }
 :root[data-theme="dark"] .sakura-background {
-  opacity: 0.16;
+  opacity: 0.22;
 }
 .sakura-petal {
   position: absolute;
@@ -971,7 +972,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .sakura-background,
-  .landing-header-actions .sakura-motion-toggle {
+  .sakura-motion-toggle {
     display: none;
   }
   .sakura-petal,

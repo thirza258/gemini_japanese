@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "japanese-translation",
+      "type": "skill-md",
+      "description": "Japanese English translation and language learning assistance",
+      "url": "https://translate.nevatal.tech/.well-known/agent-skills/japanese-translation/SKILL.md",
+      "digest": "sha256:8747a9e6d273646ad7465cc09d82c1289214c4e8b9af69d15e7673353d53045d"
+    }
+  ]
+}
