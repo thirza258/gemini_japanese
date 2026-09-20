@@ -1,0 +1,170 @@
+.kana-toolbar {
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.kana-practice-settings {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 20px 24px;
+  margin: 18px 0 26px;
+}
+.kana-practice-settings strong {
+  font-size: 14px;
+}
+.kana-practice-settings p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 6px 0 0;
+  max-width: 630px;
+}
+.kana-practice-settings label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.kana-practice-settings select {
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+}
+.kana-memory-card {
+  text-align: center;
+  padding: 28px;
+  margin-top: 20px;
+}
+.kana-memory-card > .eyebrow {
+  margin: 24px 0 12px;
+}
+.kana-flip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 245px;
+  gap: 18px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 25px;
+  margin: 20px 0;
+}
+.kana-flip.is-flipped {
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+}
+.kana-flip .large-kanji {
+  margin: 0;
+}
+.kana-flip-answer {
+  font-size: 35px;
+  color: var(--accent);
+  font-weight: 500;
+}
+.kana-romaji-prompt {
+  display: block;
+  font-size: 64px;
+  line-height: 1.4;
+  margin: 30px 0;
+  letter-spacing: 0.025em;
+}
+.kana-round-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 22px 0;
+}
+.kana-memory-card form > label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+}
+.kana-memory-card #kana-answer {
+  display: block;
+  width: min(100%, 290px);
+  margin: 14px auto 24px;
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 24px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  background: var(--surface-soft);
+}
+.kana-memory-card .answer-feedback {
+  text-align: left;
+  margin: 24px 0;
+}
+.kana-memory-card > .helper-text {
+  margin: 24px 0 0;
+}
+.kana-choice-fieldset {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  min-width: 0;
+}
+.kana-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 20px auto 24px;
+  max-width: 420px;
+}
+.kana-choice-grid label {
+  cursor: pointer;
+  justify-content: center;
+  font-size: 42px;
+  gap: 12px;
+}
+.kana-choice-grid input {
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+.kana-session-footer {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 22px;
+}
+.kana-session-footer p {
+  font-size: 12px;
+  color: var(--muted);
+}
+@media (max-width: 650px) {
+  .kana-practice-settings {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+  }
+  .kana-mode-tabs {
+    flex-wrap: wrap;
+  }
+  .kana-mode-tabs button {
+    flex: 1;
+    white-space: nowrap;
+  }
+  .kana-memory-card {
+    padding: 22px 18px;
+  }
+  .kana-memory-workspace .session-meta {
+    font-size: 11px;
+    gap: 10px;
+  }
+  .kana-session-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .kana-choice-grid label {
+    font-size: 34px;
+  }
+}

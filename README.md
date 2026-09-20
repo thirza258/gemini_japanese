@@ -5,16 +5,20 @@ A focused Japanese study website built with React, TypeScript, Vite, and a Node.
 ## Study features
 
 - **Landing page:** an introduction to the study tools, an interactive kanji preview, and a starting-level selector. A subtle sakura background animation supports pausing and reduced-motion preferences. The site footer links to each study tool and all five starting levels. “Get started” opens the sidebar workspace; its logo returns to the landing page. Direct links to study activities still work.
+- **N5–N1 courses:** 60 ordered courses (12 per level), with 360 lessons covering vocabulary and kanji, explained grammar, daily sentences, reading, listening, and course checkpoints. Courses contain 480 contextual vocabulary entries, 240 grammar explanations with examples, and 120 original reading/listening passages. Choose any lesson, correct missed checks, and resume at the first unfinished lesson. Completed lessons remain complete when reviewed.
+- **Daily sentence courses:** 360 original examples, from introductions, shopping, travel, and asking for help to workplace negotiation and nuanced opinions. Each set has a practical Can-do goal, translations, register guidance, audio, recall mode, and comprehension checks. N5/N4 examples include optional furigana. The course library can be filtered to sentence practice and searched by topic or grammar.
 - **Kanji flashcards:** 200 curated cards across N5–N1 (40 per level), with meanings, representative on’yomi and kun’yomi, example words, audio, shuffle, and a “still learning” deck.
 - **Kanji builder:** 15 courses and 75 interactive challenges, with three five-lesson courses per level. Choose a level and a themed course, study the components, then place them in the correct order. Pieces are reusable for characters such as 林 and 森. Lessons include component notes, pronunciation examples, and clearly labeled memory stories. Course progress and lesson totals come from the curriculum data.
 - **Particles and grammar:** 80 fill-the-gap questions (16 per level), with answer explanations and progressively more complex expressions.
-- **Hiragana and katakana:** both scripts, including 46 basic characters, 25 voiced forms, and 33 combined sounds per script. Study charts and randomized, ten-question reading quizzes accept common alternate romanizations.
+- **Hiragana and katakana:** 104 sounds per script (46 basic, 25 voiced, and 33 combined), with separate or mixed decks. Study charts, reveal-and-rate flashcards, unlimited repeat practice, and ten-question quizzes support kana → reading and reading → kana. Missed cards return after two other cards; correct cards return after the rest of the deck. Aim for three consecutive correct recalls per character in each practice round. Reading guesses accept common alternate romanizations, and reverse questions avoid ambiguous same-sound choices.
 - **Reading room:** 25 original passages across the five levels (five per level), with optional furigana, English translations, vocabulary, audio, and comprehension checks.
 - **Detailed translator:** Japanese-to-English translation, romaji, contextual character readings, script filters, copy, and the last 20 translations. The included sample phrases work without API access.
 - **Accounts and guest access:** every page works without signing in. Guest progress, translation history, and translator connection settings stay in memory for the current visit. Email/password accounts save learning progress and the last 20 translations to the server.
 - **Progress:** learned items, practice activity, accuracy, local-calendar streaks, configurable daily goals, and JSON export. Signed-in accounts retain the most recent 3,000 attempts.
 
 The collections are curated practice sets, **not a complete exam syllabus**. Level assignments are approximate study groupings. The JLPT does not publish official kanji, vocabulary, or grammar item lists. See the [official level descriptions](https://www.jlpt.jp/e/about/levelsummary.html) and [JLPT FAQ](https://www.jlpt.jp/e/faq/). The distinction between radicals and other components follows the [KanjiVG glossary](https://kanjivg.tagaini.net/glossary.html). Component memory stories are mnemonics, not historical etymologies.
+
+Course content is independently authored. Practical goals draw on the Can-do approach described in [Irodori](https://www.irodori.jpf.go.jp/en/about.html) and [JF Japanese e-Learning Minato](https://minato-jf.jp/). JF/CEFR and JLPT levels are different frameworks, with no one-to-one equivalence implied. Courses link to official resources for further study, recorded audio, and exam question formats. Kana recall streaks belong to the current practice round; individual attempts and course completion use the existing guest/account progress system.
 
 ## Local development
 
@@ -30,7 +34,7 @@ Open the local URL printed by Vite. The command starts both Vite and the account
 Guest practice resets on refresh or sign-in. A new signed-in session loads that account’s saved work. Signing out clears its data from the interface. Theme preference is the only setting persisted for anonymous visitors.
 
 ```sh
-npm test       # Authentication, persistence, isolation, curriculum, and translator checks
+npm test       # Authentication, persistence, courses, kana scheduling, curriculum, and translator checks
 npm run lint
 npm run build
 ```
@@ -72,6 +76,8 @@ Users can configure a custom endpoint, model ID, or personal key in **Translator
 ## Content and implementation
 
 - `src/data/curriculum.ts`: level descriptions, flashcards, grammar, kana, and reading passages.
+- `src/data/courses/`: the five course paths, daily sentence sets, lesson assembly, grading, and resume logic.
+- `src/data/kanaMemory.ts`: kana decks, reading aliases, repeat scheduling, and unambiguous reverse choices.
 - `src/data/kanjiBuilder.ts`: construction courses, components, arrangements, and hints.
 - `src/hooks/useStudy.ts` and `src/data/studySession.ts`: temporary guest sessions, account loading, and serialized saving.
 - `src/auth/`: session state and authenticated API requests.

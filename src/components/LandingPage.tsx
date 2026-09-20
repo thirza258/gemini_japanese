@@ -30,6 +30,14 @@ const practiceOptions: {
   label: string;
 }[] = [
   {
+    page: "courses",
+    symbol: "道",
+    title: "Follow a course, use a sentence",
+    description:
+      "Explore N5–N1 courses with everyday sentences, grammar, reading, listening, and review checkpoints.",
+    label: "JLPT courses & sentences",
+  },
+  {
     page: "kanji",
     symbol: "漢",
     title: "Make kanji familiar",
@@ -58,7 +66,7 @@ const practiceOptions: {
     symbol: "あ",
     title: "Start with the sounds",
     description:
-      "Get comfortable with hiragana and katakana through study charts and reading quizzes.",
+      "Build kana memory with flashcards, unlimited repeat practice, study charts, and reading quizzes.",
     label: "Hiragana & katakana",
   },
   {
@@ -241,7 +249,7 @@ export function LandingPage({
             <div className="landing-hero-actions">
               <button
                 className="button primary"
-                onClick={() => onGetStarted("dashboard")}
+                onClick={() => onGetStarted("courses")}
               >
                 Get started <Icon name="arrow" size={18} />
               </button>
@@ -521,11 +529,11 @@ export function LandingPage({
                 {LEVELS.map((item) => (
                   <li key={item}>
                     <a
-                      href="#dashboard"
+                      href="#courses"
                       onClick={(event) => {
                         event.preventDefault();
                         onLevelChange(item);
-                        onGetStarted("dashboard");
+                        onGetStarted("courses");
                       }}
                     >
                       <span className="landing-footer-level">{item}</span>

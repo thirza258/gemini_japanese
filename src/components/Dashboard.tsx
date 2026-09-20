@@ -9,6 +9,7 @@ import {
   type Page,
 } from "../data/curriculum";
 import { BUILDER_COURSES, KANJI_CHALLENGES } from "../data/kanjiBuilder";
+import { getCourses } from "../data/courses";
 import { getStudyStats, type StudyProgress } from "../hooks/useStudy";
 import { Icon, PageHeading, ProgressBar, type IconName } from "./StudyUI";
 
@@ -31,6 +32,14 @@ export function Dashboard({ progress, onNavigate, onLevelChange }: Props) {
     meta: string;
     icon: IconName;
   }[] = [
+    {
+      page: "courses",
+      symbol: "道",
+      title: "JLPT courses & daily sentences",
+      description: "Follow a complete course sequence with grammar, daily sentences, reading, listening, and checkpoints.",
+      meta: `${getCourses(level).length} courses · ${getCourses(level).flatMap((course) => course.lessons).length} lessons · ${level}`,
+      icon: "book",
+    },
     {
       page: "kanji",
       symbol: "漢",
@@ -61,7 +70,7 @@ export function Dashboard({ progress, onNavigate, onLevelChange }: Props) {
       page: "kana",
       symbol: "あ",
       title: "Hiragana & katakana",
-      description: "Get comfortable with the sounds and shapes of Japanese.",
+      description: "Build memory with flashcards, repeated guesses, and both scripts.",
       meta: `${KANA.length * 2} kana & combinations`,
       icon: "book",
     },
@@ -111,7 +120,7 @@ export function Dashboard({ progress, onNavigate, onLevelChange }: Props) {
           </p>
           <button
             className="button primary"
-            onClick={() => onNavigate("kanji")}
+            onClick={() => onNavigate("courses")}
           >
             {stats.todayCount ? "Keep learning" : "Start today’s practice"}
             <Icon name="arrow" size={17} />
@@ -240,13 +249,13 @@ export function Dashboard({ progress, onNavigate, onLevelChange }: Props) {
           </ul>
           <a
             className="text-link"
-            href="#reading"
+            href="#courses"
             onClick={(event) => {
               event.preventDefault();
-              onNavigate("reading");
+              onNavigate("courses");
             }}
           >
-            Explore {level} reading <Icon name="arrow" size={16} />
+            Explore {level} courses <Icon name="arrow" size={16} />
           </a>
         </section>
         <section className="panel builder-preview">

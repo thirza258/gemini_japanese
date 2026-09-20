@@ -7,6 +7,7 @@ import {
   type StudyModule,
 } from "../data/curriculum";
 import { KANJI_CHALLENGES } from "../data/kanjiBuilder";
+import { JLPT_COURSES } from "../data/courses";
 import {
   getStudyStats,
   localDate,
@@ -15,6 +16,7 @@ import {
 import { Icon, PageHeading, ProgressBar } from "./StudyUI";
 
 const names: Record<StudyModule, string> = {
+  courses: "JLPT course lessons",
   kanji: "Kanji flashcards",
   builder: "Kanji builder",
   particles: "Particles & grammar",
@@ -45,6 +47,7 @@ export function StudyProgress({
   });
   const maximum = Math.max(progress.goal, ...days.map((day) => day.count));
   const skills: { module: StudyModule; ids: string[] }[] = [
+    { module: "courses", ids: JLPT_COURSES.flatMap((course) => course.lessons.map((lesson) => lesson.id)) },
     { module: "kanji", ids: KANJI.map((item) => item.id) },
     { module: "builder", ids: KANJI_CHALLENGES.map((item) => item.id) },
     { module: "particles", ids: PARTICLES.map((item) => item.id) },

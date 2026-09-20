@@ -14,6 +14,13 @@ const profile = {
     goal: 20,
     events: [
       {
+        id: "course-n3-change-over-time-sentences",
+        module: "courses",
+        level: "N3",
+        correct: true,
+        date: "2026-09-20",
+      },
+      {
         id: "N3-test",
         module: "kanji",
         level: "N3",
@@ -21,7 +28,7 @@ const profile = {
         date: "2026-09-15",
       },
     ],
-    learned: ["N3-test"],
+    learned: ["N3-test", "course-n3-change-over-time-sentences"],
   },
   history: [],
 };

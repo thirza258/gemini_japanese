@@ -55,7 +55,7 @@ export function readLearningData(value: unknown): LearningData {
           (event: Partial<StudyEvent> | null) =>
             event &&
             typeof event.id === "string" &&
-            ["kanji", "builder", "particles", "kana", "reading"].includes(
+            ["courses", "kanji", "builder", "particles", "kana", "reading"].includes(
               event.module || "",
             ) &&
             LEVELS.includes(event.level as Level) &&
