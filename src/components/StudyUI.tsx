@@ -229,6 +229,7 @@ export function SpeakButton({
   return (
     <button
       className="icon-button"
+      type="button"
       disabled={!available || playing}
       title={available ? label : "Audio is unavailable in this browser"}
       aria-label={available ? label : "Audio is unavailable in this browser"}

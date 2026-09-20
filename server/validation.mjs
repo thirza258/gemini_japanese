@@ -1,7 +1,7 @@
 import { HttpError } from "./security.mjs";
 
 const levels = ["N5", "N4", "N3", "N2", "N1"];
-const modules = ["kanji", "builder", "particles", "kana", "reading"];
+const modules = ["courses", "kanji", "builder", "particles", "kana", "reading"];
 const isString = (value, max = 12000) =>
   typeof value === "string" && value.length <= max;
 const fail = () => {

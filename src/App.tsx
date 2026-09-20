@@ -6,6 +6,7 @@ import { KanjiBuilder } from "./components/KanjiBuilder";
 import { ParticlePractice } from "./components/ParticlePractice";
 import { KanaPractice } from "./components/KanaPractice";
 import { ReadingRoom } from "./components/ReadingRoom";
+import { Courses } from "./components/Courses";
 import { InteractiveTranslator } from "./components/InteractiveTranslator";
 import { StudyProgress } from "./components/StudyProgress";
 import { ApiKeyModal } from "./components/ApiKeyModal";
@@ -31,6 +32,7 @@ const navigation: {
   glyph?: string;
 }[] = [
   { page: "dashboard", label: "Overview", icon: "home" },
+  { page: "courses", label: "JLPT courses", icon: "book" },
   { page: "kanji", label: "Kanji flashcards", icon: "cards" },
   { page: "builder", label: "Kanji builder", icon: "build" },
   { page: "particles", label: "Particles & grammar", icon: "grammar" },
@@ -223,12 +225,12 @@ function App() {
           </a>
           <div className="sidebar-section-label">YOUR WORKSPACE</div>
           <nav aria-label="Main navigation">
-            {navigation.map((item, index) => (
+            {navigation.map((item) => (
               <a
                 key={item.page}
                 href={`#${item.page}`}
                 aria-current={page === item.page ? "page" : undefined}
-                className={`nav-link ${page === item.page ? "active" : ""} ${index === 6 ? "nav-separated" : ""}`}
+                className={`nav-link ${page === item.page ? "active" : ""} ${item.page === "translator" ? "nav-separated" : ""}`}
                 onClick={(event) => {
                   event.preventDefault();
                   navigate(item.page);
@@ -242,7 +244,7 @@ function App() {
                   <Icon name={item.icon} size={19} />
                 )}
                 <span>{item.label}</span>
-                {item.page === "builder" && (
+                {item.page === "courses" && (
                   <span className="nav-new">NEW</span>
                 )}
               </a>
@@ -370,6 +372,9 @@ function App() {
                 onNavigate={navigate}
                 onLevelChange={setLevel}
               />
+            )}
+            {page === "courses" && (
+              <Courses key={`courses-${progress.level}`} level={progress.level} learned={progress.learned} onLevelChange={setLevel} onNavigate={navigate} onRecord={record} />
             )}
             {page === "kanji" && (
               <KanjiPractice

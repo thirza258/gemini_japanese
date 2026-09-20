@@ -48,7 +48,9 @@ export function useStudy(userId: string | null) {
           ].slice(-3000),
           learned: correct
             ? [...new Set([...previous.progress.learned, id])]
-            : previous.progress.learned.filter((item) => item !== id),
+            : module === "courses"
+              ? previous.progress.learned
+              : previous.progress.learned.filter((item) => item !== id),
         },
       }));
     },
