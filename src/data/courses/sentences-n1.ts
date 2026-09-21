@@ -342,6 +342,99 @@ export const n1Sentences: Record<string, SentencePractice> = {
       ],
     ],
   ),
+  "delicate-requests": s(
+    "I can make a genuinely difficult request and decline one without ever giving a flat refusal.",
+    "Formal correspondence and delicate conversations",
+    "formal",
+    [
+      [
+        "{誠|まこと}に{恐縮|きょうしゅく}ですが、ご{再考|さいこう}いただけますでしょうか。",
+        "I am very sorry to trouble you, but might we ask you to reconsider?",
+      ],
+      [
+        "{今回|こんかい}の{出席|しゅっせき}は{控|ひか}えさせていただきます。",
+        "I shall have to refrain from attending on this occasion.",
+      ],
+      [
+        "{別|べつ}の{案|あん}もご{検討|けんとう}になってはいかがでしょうか。",
+        "Might it be worth considering another proposal as well?",
+      ],
+      [
+        "もう{少|すこ}しご{猶予|ゆうよ}をいただけますでしょうか。",
+        "Might we ask you for a little more time?",
+      ],
+      [
+        "ご{期待|きたい}にそえず、{心|こころ}よりおわび{申|もう}し{上|あ}げます。",
+        "I apologise sincerely for falling short of your expectations.",
+      ],
+      [
+        "{今後|こんご}とも{変|か}わらぬお{付|つ}き{合|あ}いをお{願|ねが}い{申|もう}し{上|あ}げます。",
+        "We hope for your continued goodwill in the years ahead.",
+      ],
+    ],
+  ),
+  "public-life-formalities": s(
+    "I can read an official notice and use the set announcement language of counters and ceremonies.",
+    "At a public counter or listening to an announcement",
+    "formal",
+    [
+      [
+        "ご{利用|りよう}にあたりまして、{身分|みぶん}{証明書|しょうめいしょ}をご{提示|ていじ}ください。",
+        "When using this service, please present your identification.",
+      ],
+      [
+        "{本日|ほんじつ}の{受付|うけつけ}は{午後|ごご}{五時|ごじ}をもちまして{終了|しゅうりょう}いたします。",
+        "Today's reception closes as of five in the afternoon.",
+      ],
+      [
+        "{記入|きにゅう}に{不備|ふび}がございましたので、{改|あらた}めてご{記入|きにゅう}ください。",
+        "There was something missing on the form, so please fill it in again.",
+      ],
+      [
+        "{欠席|けっせき}する{旨|むね}を{窓口|まどぐち}までご{連絡|れんらく}ください。",
+        "Please inform the counter that you will be absent.",
+      ],
+      [
+        "ただ{今|いま}{大変|たいへん}{混雑|こんざつ}しておりますので、お{待|ま}ちください。",
+        "It is extremely busy at the moment, so please wait a while.",
+      ],
+      [
+        "{控|ひか}えをお{手元|てもと}にお{持|も}ちくださいますようお{願|ねが}い{申|もう}し{上|あ}げます。",
+        "We ask that you keep your own copy close to hand.",
+      ],
+    ],
+  ),
+  "particles-precision": s(
+    "I can attribute something to one source alone, concede every case, and rule out the smallest exception.",
+    "Appraising and arguing in writing",
+    "formal",
+    [
+      [
+        "この{土地|とち}ならではの{味|あじ}があります。",
+        "It has a flavour that belongs to this place alone.",
+      ],
+      [
+        "{理由|りゆう}が{何|なん}であれ、{結論|けつろん}は{変|か}わりません。",
+        "Whatever the reason, the conclusion does not change.",
+      ],
+      [
+        "{一瞬|いっしゅん}たりとも{気|き}を{抜|ぬ}けません。",
+        "We cannot let our guard down for even an instant.",
+      ],
+      [
+        "{謝罪|しゃざい}はおろか、{説明|せつめい}さえありませんでした。",
+        "There was not even an explanation, let alone an apology.",
+      ],
+      [
+        "{妥協|だきょう}する{余地|よち}は{残|のこ}されていません。",
+        "No room for compromise has been left to us.",
+      ],
+      [
+        "{職人|しょくにん}の{真価|しんか}は{仕事|しごと}に{表|あらわ}れます。",
+        "A craftsman's true worth shows in the work itself.",
+      ],
+    ],
+  ),
   "n1-integration": s(
     "I can revise a position transparently and synthesize a nuanced decision.",
     "Concluding a complex discussion",

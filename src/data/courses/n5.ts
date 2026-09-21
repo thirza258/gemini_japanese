@@ -882,6 +882,248 @@ export const n5Courses: CourseSeed[] = [
       "Describe an actual past day and a lifetime experience separately. Add a clause describing a thing you bought, read, or made.",
   },
   {
+    slug: "everyday-greetings",
+    title: "Greetings through the day",
+    summary:
+      "Move through one ordinary day in Japanese: the greeting for each part of it, the phrases said at the door, and すみません for thanks, an apology, or attention.",
+    vocabulary: words(`朝|あさ|morning
+昼|ひる|midday
+晩|ばん|evening
+家族|かぞく|family
+元気|げんき|well; cheerful
+今日|きょう|today
+明日|あした|tomorrow
+少し|すこし|a little`),
+    grammar: [
+      g(
+        "Greetings for each part of the day",
+        "おはようございます belongs to the morning, こんにちは to the middle of the day, and こんばんは to the evening. With family and close friends the shorter おはよう is enough. These are fixed phrases, so the は written inside こんにちは and こんばんは is still pronounced wa.",
+        "こんばんは。{今日|きょう}はさむいですね。",
+        "Good evening. It is cold today, isn't it?",
+      ),
+      g(
+        "いってきます & ただいま",
+        "Four phrases come in pairs at the door. The person going out says いってきます and the person staying answers いってらっしゃい. The person coming back says ただいま and is welcomed with おかえりなさい. Learn each phrase together with its reply rather than on its own.",
+        "いってきます。{六時|ろくじ}に{帰|かえ}ります。",
+        "I'm off. I will be back at six.",
+      ),
+      g(
+        "すみません: thanks, apology & attention",
+        "すみません apologises, thanks someone for the trouble they took, and calls a stranger's attention. ありがとうございます only thanks, and ごめんなさい only apologises and sounds more personal. When you are not sure which one fits, すみません is the safe choice.",
+        "すみません、ちょっといいですか。",
+        "Excuse me, do you have a moment?",
+      ),
+      g(
+        "Sentence-final ね & よ",
+        "ね invites the listener to agree about something you both notice, and よ tells them something they may not know yet. Leaving both off sounds flat rather than rude, but using よ where ね belongs can sound as though you are correcting the listener.",
+        "{明日|あした}は{雨|あめ}ですよ。",
+        "It is going to rain tomorrow, you know.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which greeting fits the evening?",
+        "こんばんは",
+        ["おはようございます", "こんにちは", "おやすみなさい"],
+        "こんばんは greets someone in the evening; おやすみなさい is said before going to sleep, not on meeting.",
+      ),
+      q(
+        "You are leaving the house. What do you say?",
+        "いってきます",
+        ["ただいま", "おかえりなさい", "いってらっしゃい"],
+        "The person going out says いってきます, and the person staying behind answers いってらっしゃい.",
+      ),
+    ],
+    reading: p(
+      "One day at home",
+      "{朝|あさ}、{家族|かぞく}に「おはよう」と{言|い}います。{学校|がっこう}へ{行|い}くとき、「いってきます」と{言|い}います。{母|はは}は「いってらっしゃい」と{言|い}います。{夕方|ゆうがた}、うちに{帰|かえ}って「ただいま」と{言|い}います。{晩|ばん}は「おやすみなさい」と{言|い}って、{寝|ね}ます。",
+      "In the morning I say “good morning” to my family. When I leave for school I say “I'm off.” My mother says “have a good day.” In the evening I come home and say “I'm back.” At night I say “good night” and go to sleep.",
+      q(
+        "What does the writer's mother say at the door?",
+        "いってらっしゃい",
+        ["いってきます", "ただいま", "おやすみなさい"],
+        "いってきます is said by the person leaving; the mother stays at home, so she answers いってらっしゃい.",
+      ),
+    ),
+    listening: p(
+      "Meeting a neighbour",
+      "こんにちは。おひさしぶりです。お{元気|げんき}ですか。はい、{元気|げんき}です。すみません、{少|すこ}しいそいでいます。また{明日|あした}。",
+      "Hello. It has been a while. How are you? Yes, I'm well. Sorry, I'm in a bit of a hurry. See you tomorrow.",
+      q(
+        "Why is the conversation short?",
+        "The speaker is in a hurry",
+        [
+          "The speaker feels unwell",
+          "The speaker does not know the neighbour",
+          "The neighbour is leaving town",
+        ],
+        "少しいそいでいます gives the reason; the same speaker answers 元気です, so health is not the problem.",
+      ),
+    ),
+    practice:
+      "Say the greeting for each part of one day out loud, then match いってきます, いってらっしゃい, ただいま, and おかえりなさい to the person who says each one.",
+  },
+  {
+    slug: "home-and-meals",
+    title: "At home and at the table",
+    summary:
+      "Sit down to a meal in Japanese: name what is on the table, offer and decline politely, and say the set phrases that open and close every meal.",
+    vocabulary: words(`朝ご飯|あさごはん|breakfast
+昼ご飯|ひるごはん|lunch
+晩ご飯|ばんごはん|dinner
+台所|だいどころ|kitchen
+野菜|やさい|vegetables
+魚|さかな|fish
+お茶|おちゃ|green tea
+皿|さら|plate`),
+    grammar: [
+      g(
+        "いただきます & ごちそうさまでした",
+        "いただきます is said before eating and ごちそうさまでした after finishing. Both thank everyone behind the meal, not only the person who cooked it, so they are used at home as well as in a restaurant. Their form never changes with the speaker or the food.",
+        "いただきます。この{魚|さかな}はおいしいです。",
+        "Thank you for the meal. This fish is delicious.",
+      ),
+      g(
+        "Offering with いかがですか",
+        "いかがですか offers something politely and is the polite partner of どうですか. Accept it with はい、いただきます and decline it gently with いいえ、けっこうです。A flat いりません is grammatical but sounds blunt at somebody else's table.",
+        "お{茶|ちゃ}はいかがですか。",
+        "Would you like some tea?",
+      ),
+      g(
+        "もう & まだ",
+        "もう with a past verb says something is already finished, and まだ with a negative says it has not happened yet. もう{食|た}べましたか is answered with はい、もう{食|た}べました or with the very common short reply いいえ、まだです。",
+        "もう{昼|ひる}ご{飯|はん}を{食|た}べましたか。",
+        "Have you already had lunch?",
+      ),
+      g(
+        "どうぞ & どうも",
+        "どうぞ offers or invites: take one, go ahead, please come in. どうも is a light thank-you on its own and also strengthens ありがとうございます. At a table the two often answer each other, one person offering and the other thanking.",
+        "どうぞ、{食|た}べてください。",
+        "Please, go ahead and eat.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which reply politely declines more tea?",
+        "いいえ、けっこうです",
+        ["はい、いただきます", "もういちどおねがいします", "どういたしまして"],
+        "けっこうです declines what is being offered, while いただきます accepts it.",
+      ),
+      q(
+        "Choose the natural answer: もう晩ご飯を食べましたか。 — いいえ、___。",
+        "まだです",
+        ["もうです", "まだでした", "もうありません"],
+        "まだです is the standard short answer for something that has not happened yet.",
+      ),
+    ],
+    reading: p(
+      "Dinner at home",
+      "{今日|きょう}の{晩|ばん}ご{飯|はん}は{魚|さかな}と{野菜|やさい}です。{母|はは}が{台所|だいどころ}で{作|つく}りました。わたしは{皿|さら}をならべました。みんなで「いただきます」と{言|い}ってから、{食|た}べました。{父|ちち}は「この{魚|さかな}はおいしいですね」と{言|い}いました。",
+      "Today's dinner is fish and vegetables. My mother made it in the kitchen. I set out the plates. We all said “itadakimasu” and then ate. My father said, “This fish is delicious, isn't it?”",
+      q(
+        "What did the writer do before the meal?",
+        "Set out the plates",
+        ["Cooked the fish", "Bought the vegetables", "Made the tea"],
+        "皿をならべました says the writer laid out the plates; the mother did the cooking.",
+      ),
+    ),
+    listening: p(
+      "Offering a second helping",
+      "お{茶|ちゃ}はいかがですか。ありがとうございます。いただきます。ケーキもどうぞ。いいえ、けっこうです。もうおなかがいっぱいです。",
+      "Would you like some tea? Thank you, I'll have some. Please have some cake too. No, thank you. I'm already full.",
+      q(
+        "Which does the guest decline?",
+        "The cake",
+        ["The tea", "The fish", "The plates"],
+        "The guest accepts the tea with いただきます and declines the cake with けっこうです.",
+      ),
+    ),
+    practice:
+      "Lay out a pretend meal and say いただきます, offer one dish with いかがですか, and answer もう食べましたか both ways before closing with ごちそうさまでした.",
+  },
+  {
+    slug: "particles-core",
+    title: "Particles that hold a sentence together",
+    summary:
+      "Sort out the small words that decide who did what to whom: when to reach for は and when for が, and what を, の, and a contrasting は are each quietly doing.",
+    vocabulary: words(`助詞|じょし|a particle
+文|ぶん|a sentence
+主語|しゅご|the subject
+公園|こうえん|a park
+橋|はし|a bridge
+道|みち|a road
+弟|おとうと|younger brother
+色|いろ|colour`),
+    grammar: [
+      g(
+        "は & が: known and new",
+        "は marks what the sentence is about, something you both already have in mind, while が introduces what is new or answers a question word. だれが{来|き}ましたか is answered with {弟|おとうと}が{来|き}ました, because the person is the new part. Once they are established, switch to は.",
+        "{弟|おとうと}が{来|き}ました。{弟|おとうと}は{学生|がくせい}です。",
+        "My younger brother came. He is a student.",
+      ),
+      g(
+        "は for contrast & negation",
+        "は also marks a contrast, which is why it turns up so often in negative sentences: コーヒーは{飲|の}みません leaves open that you drink something else. When it takes over from を or が this way, the original particle simply drops rather than stacking up behind it.",
+        "{肉|にく}は{食|た}べませんが、{魚|さかな}は{食|た}べます。",
+        "I do not eat meat, but I do eat fish.",
+      ),
+      g(
+        "の standing in for a noun",
+        "の joins two nouns, but it also stands in for a noun you have already mentioned: {赤|あか}いのをください means the red one, please. Use it when the thing is obvious from the situation; repeating the whole noun is not wrong, only heavier than it needs to be.",
+        "{青|あお}いのと{赤|あか}いの、どちらがいいですか。",
+        "The blue one or the red one — which would you like?",
+      ),
+      g(
+        "を for a place you move through",
+        "を usually marks the object of a verb, but with verbs of motion it marks the space you move along or out of: {公園|こうえん}を{歩|ある}く、{橋|はし}を{渡|わた}る、{家|いえ}を{出|で}る. The place is not being acted on; it is simply the route the movement takes.",
+        "{毎朝|まいあさ}{公園|こうえん}を{歩|ある}きます。",
+        "I walk through the park every morning.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Someone asks だれが来ましたか。Which answer is natural?",
+        "弟が来ました",
+        ["弟は来ました", "弟も来ました", "弟を来ました"],
+        "A question word takes が, and the answer keeps が because the person is still the new information.",
+      ),
+      q(
+        "Choose the particle: 毎朝、公園 ___ 歩きます。",
+        "を",
+        ["に", "で", "へ"],
+        "With a verb of motion を marks the route you move along, not a thing that is being acted on.",
+      ),
+    ],
+    reading: p(
+      "Two brothers at the park",
+      "わたしは{毎朝|まいあさ}{公園|こうえん}を{歩|ある}きます。{今日|きょう}は{弟|おとうと}も{来|き}ました。{弟|おとうと}は{鳥|とり}が{好|す}きです。{青|あお}い{鳥|とり}がいましたが、{赤|あか}いのはいませんでした。{橋|はし}の{上|うえ}から{見|み}ると、{道|みち}がよく{見|み}えます。",
+      "I walk through the park every morning. Today my younger brother came too. He likes birds. There was a blue bird, but there was not a red one. Looking from the bridge, you can see the road clearly.",
+      q(
+        "What does the passage say about a red bird?",
+        "There was not one",
+        [
+          "It flew over the bridge",
+          "The brother caught it",
+          "It was standing on the road",
+        ],
+        "赤いのはいませんでした uses の for the bird and は to contrast it with the blue one that was there.",
+      ),
+    ),
+    listening: p(
+      "Choosing a colour",
+      "どの{色|いろ}がいいですか。{青|あお}いのがいいです。{赤|あか}いのはちょっと…。では、{青|あお}いのにしましょう。",
+      "Which colour would you like? The blue one is good. The red one is a bit... Then let's go with the blue one.",
+      q(
+        "Which one does the speaker choose?",
+        "The blue one",
+        ["The red one", "Neither one", "Both of them"],
+        "青いのがいいです picks the blue one, and 赤いのは with a trailing pause is a soft way of declining the red.",
+      ),
+    ),
+    practice:
+      "Write three pairs of sentences: one answering a だれが question, one contrasting two foods with は, and one describing a walk with を.",
+  },
+  {
     slug: "n5-integration",
     title: "N5 integration: plans, reasons & notices",
     summary:
@@ -965,6 +1207,6 @@ export const n5Courses: CourseSeed[] = [
       ),
     ),
     practice:
-      "Review all 12 N5 courses, then retry missed checks with translations hidden. Read a notice once for the purpose, once for time/place, and once for exceptions. Use the official sample questions for a separate exam-format check.",
+      "Review all 14 N5 courses, then retry missed checks with translations hidden. Read a notice once for the purpose, once for time/place, and once for exceptions. Use the official sample questions for a separate exam-format check.",
   },
 ];

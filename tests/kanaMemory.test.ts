@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { KANA } from "../src/data/curriculum";
+import { KANA, KANJI } from "../src/data/curriculum";
 import {
   answerKanaMemory,
   kanaChoices,
@@ -8,6 +8,11 @@ import {
   matchesKanaReading,
   startKanaMemory,
 } from "../src/data/kanaMemory";
+import {
+  acceptedKanjiReadings,
+  matchesReading,
+  romajiForms,
+} from "../src/data/readingInput";
 
 test("hiragana, katakana, and mixed decks cover every selected character exactly once", () => {
   assert.equal(makeKanaDeck("hiragana", "basic").length, 46);
@@ -100,4 +105,88 @@ test("reverse quizzes never offer two characters with an accepted reading for th
       );
     }
   }
+});
+
+test("a typed reading is accepted as hiragana, katakana, or romaji", () => {
+  for (const input of ["にほん", "ニホン", " Nihon ", "nihonn", "NIHON"])
+    assert.equal(matchesReading("にほん", input), true, input);
+  // Alternative romanization systems the kana table already records.
+  for (const [reading, input] of [
+    ["でんしゃ", "densha"],
+    ["でんしゃ", "densya"],
+    ["じしょ", "jisho"],
+    ["じしょ", "zisyo"],
+    ["つくえ", "tsukue"],
+    ["つくえ", "tukue"],
+  ] as const)
+    assert.equal(matchesReading(reading, input), true, `${reading} ${input}`);
+  // A small っ doubles the next consonant, and dropping it is a real miss.
+  assert.equal(matchesReading("がっこう", "gakkou"), true);
+  assert.equal(matchesReading("がっこう", "gakkoo"), true);
+  assert.equal(matchesReading("がっこう", "gakou"), false);
+  assert.equal(matchesReading("がっこう", "gakko"), false);
+  // Long vowels accept their spellings, but never a short vowel instead.
+  assert.equal(matchesReading("こうこう", "kōkō"), true);
+  assert.equal(matchesReading("こうこう", "koukou"), true);
+  assert.equal(matchesReading("こうこう", "kouko"), false);
+  assert.equal(matchesReading("こうこう", "ko"), false);
+  // Nothing empty, and no near miss of the right shape.
+  assert.equal(matchesReading("ひだりて", ""), false);
+  assert.equal(matchesReading("ひだりて", "   "), false);
+  assert.equal(matchesReading("ひだりて", "migite"), false);
+  assert.equal(matchesReading("ひだりて", "hidarita"), false);
+});
+
+test("no kanji card accepts the reading of a different card", () => {
+  const canonical = KANJI.map(
+    (card) => [card.reading, [...romajiForms(card.reading)][0]] as const,
+  );
+  for (const card of KANJI) {
+    assert.ok(
+      matchesReading(card.reading, card.reading),
+      `${card.id} rejects its own reading`,
+    );
+    for (const [reading, romaji] of canonical)
+      if (reading !== card.reading)
+        assert.equal(
+          matchesReading(card.reading, romaji),
+          false,
+          `${card.id} accepts ${reading} (${romaji})`,
+        );
+  }
+});
+
+test("a bare-kanji prompt accepts every reading it lists; a compound accepts one", () => {
+  let bare = 0;
+  for (const card of KANJI) {
+    const accepted = acceptedKanjiReadings(card);
+    assert.ok(accepted.includes(card.reading), card.id);
+    assert.ok(
+      accepted.every((reading) => reading && reading !== "—"),
+      card.id,
+    );
+    if (card.word !== card.character) {
+      assert.deepEqual(accepted, [card.reading], card.id);
+      continue;
+    }
+    bare += 1;
+    // The prompt is the character alone, so its on'yomi answers it too.
+    for (const reading of card.onyomi.split("・"))
+      assert.ok(
+        accepted.some((item) => matchesReading(item, reading)),
+        `${card.id} rejects on'yomi ${reading}`,
+      );
+  }
+  assert.ok(bare > 0, "expected some cards to prompt with the character alone");
+  const eye = KANJI.find((card) => card.id === "N5-目")!;
+  for (const input of ["め", "me", "モク", "もく", "moku"])
+    assert.ok(
+      acceptedKanjiReadings(eye).some((reading) =>
+        matchesReading(reading, input),
+      ),
+      input,
+    );
+  assert.ok(
+    !acceptedKanjiReadings(eye).some((reading) => matchesReading(reading, "hi")),
+  );
 });

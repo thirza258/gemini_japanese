@@ -978,6 +978,510 @@ export const n3Courses: CourseSeed[] = [
       "Mark a passage's claim, reason, example, and conclusion. Write a two-sentence summary that preserves the relationship between them.",
   },
   {
+    slug: "neighbourhood-life",
+    title: "Living alongside neighbours",
+    summary:
+      "Handle the small negotiations of living next to people: rubbish days, noise at night, an apology offered early, and a request that leaves everyone able to say yes.",
+    vocabulary: words(`近所|きんじょ|the neighbourhood
+迷惑|めいわく|a nuisance
+騒音|そうおん|noise
+掃除|そうじ|cleaning
+挨拶|あいさつ|a greeting
+規則|きそく|rules
+苦情|くじょう|a complaint
+助かる|たすかる|to be a help`),
+    grammar: [
+      g(
+        "〜ないといけない・〜なきゃ",
+        "なければならない has two everyday shortenings: ないといけない in ordinary polite conversation, and なきゃ or なくちゃ in casual speech. All three state the same obligation, but なきゃ belongs with friends and family rather than with a landlord or a stranger.",
+        "{管理人|かんりにん}さんに{言|い}わないといけませんね。",
+        "We will have to tell the building manager.",
+      ),
+      g(
+        "〜てくれると{助|たす}かります",
+        "てくれる marks an action done for your benefit, and {助|たす}かります turns it into a soft request. It asks for something without issuing an order, which is what you want with people you have to keep living beside. いただけると{助|たす}かります is the politer version.",
+        "{夜|よる}は{静|しず}かにしてくれると{助|たす}かります。",
+        "It would be a help if you could keep it quiet at night.",
+      ),
+      g(
+        "〜ばよかった",
+        "The ば-form plus よかった expresses regret about what you did or failed to do. For an action you did take and now regret, use なければよかった instead. The pattern always looks backwards, so it never states a present plan.",
+        "もっと{早|はや}く{挨拶|あいさつ}すればよかったです。",
+        "I should have introduced myself sooner.",
+      ),
+      g(
+        "〜ついでに",
+        "ついでに adds a second action you carry out while you are already doing the first. The purpose stays with the first action, so the offer sounds casual and helpful rather than like a favour you are granting.",
+        "{買|か}い{物|もの}のついでに、ごみを{出|だ}しておきます。",
+        "I will put the rubbish out while I am going shopping anyway.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which shortening suits a conversation with a landlord?",
+        "言わないといけません",
+        ["言わなきゃ", "言わなくちゃ", "言わなきゃだめ"],
+        "ないといけない keeps the polite register; なきゃ and なくちゃ are casual contractions for friends and family.",
+      ),
+      q(
+        "Choose the natural regret: もっと早く___。",
+        "挨拶すればよかった",
+        ["挨拶すればいい", "挨拶してよかった", "挨拶するでしょう"],
+        "ばよかった looks back at what should have been done; してよかった says the speaker is glad they did it.",
+      ),
+    ],
+    reading: p(
+      "A notice in the entrance hall",
+      "いつも{掃除|そうじ}にご{協力|きょうりょく}いただき、ありがとうございます。{燃|も}えるごみは{火曜日|かようび}と{金曜日|きんようび}の{朝|あさ}に{出|だ}すことになっています。{前日|ぜんじつ}の{夜|よる}に{出|だ}すと{近所|きんじょ}の{迷惑|めいわく}になりますので、おやめください。また、{夜|よる}{十時|じゅうじ}を{過|す}ぎてからの{洗濯|せんたく}については{騒音|そうおん}の{苦情|くじょう}が{多|おお}く{寄|よ}せられています。{静|しず}かにしていただけると{助|たす}かります。",
+      "Thank you as always for helping with the cleaning. Burnable rubbish is to be put out on Tuesday and Friday mornings. Putting it out the night before is a nuisance for the neighbourhood, so please refrain. We also receive many noise complaints about laundry done after ten at night. It would be a help if you could keep things quiet.",
+      q(
+        "What does the notice ask residents to stop doing?",
+        "Putting rubbish out the night before",
+        [
+          "Cleaning the entrance hall",
+          "Using the laundry at all",
+          "Greeting the neighbours",
+        ],
+        "前日の夜に出す…おやめください targets the timing; laundry is only discouraged late at night, not forbidden.",
+      ),
+    ),
+    listening: p(
+      "Apologising to a neighbour",
+      "{昨日|きのう}の{夜|よる}はうるさくてすみませんでした。{友達|ともだち}が{来|き}ていて、つい{遅|おそ}くなってしまいました。{今度|こんど}から{気|き}をつけます。",
+      "I am sorry it was noisy last night. Friends were over and it went on later than I meant it to. I will be careful from now on.",
+      q(
+        "What does the speaker promise?",
+        "To be more careful in future",
+        ["To move out", "To stop inviting friends", "To clean the hallway"],
+        "今度から気をつけます is a promise about future behaviour; nothing is said about the friends or the building itself.",
+      ),
+    ),
+    practice:
+      "Write a four-line note to a neighbour: thank them, state one rule, make one request with てくれると助かります, and add one regret with ばよかった.",
+  },
+  {
+    slug: "appointments-and-changes",
+    title: "Appointments & changes",
+    summary:
+      "Book a time, move it when plans fall through, and confirm the new details clearly enough that nobody turns up on the wrong day or at the wrong address.",
+    vocabulary: words(`予定|よてい|a plan
+日程|にってい|a schedule of dates
+変更|へんこう|a change
+連絡先|れんらくさき|contact details
+担当|たんとう|the person in charge
+訪問|ほうもん|a visit
+調整|ちょうせい|adjustment
+改めて|あらためて|again another time`),
+    grammar: [
+      g(
+        "〜させていただく",
+        "The humble causative asks permission and carries out the action in a single phrase: {説明|せつめい}させていただきます. It literally means to receive the favour of being allowed to act, so keep it for occasions where the other side really is granting something; used everywhere it sounds heavy.",
+        "{日程|にってい}を{変更|へんこう}させていただけますか。",
+        "Could I ask to be allowed to change the date?",
+      ),
+      g(
+        "〜でしたら・〜ようでしたら",
+        "でしたら is the polite conditional of なら and picks up the condition the other person has just raised. ようでしたら adds a layer of guesswork on top, so ご{都合|つごう}が{悪|わる}いようでしたら means if it looks inconvenient for you.",
+        "{金曜日|きんようび}がご{都合|つごう}が{悪|わる}いようでしたら、{来週|らいしゅう}でもかまいません。",
+        "If Friday looks inconvenient for you, next week is fine too.",
+      ),
+      g(
+        "〜とのことです",
+        "とのことです reports what you were told while keeping a step back from it: {担当|たんとう}は{出張|しゅっちょう}とのことです. It is more formal than そうです and fills business e-mail, where the writer is passing on somebody else's message rather than vouching for it.",
+        "{担当|たんとう}は{来週|らいしゅう}まで{出張|しゅっちょう}とのことです。",
+        "I am told the person in charge is away on business until next week.",
+      ),
+      g(
+        "〜ずに",
+        "ずに is the written-style equivalent of ないで and attaches to the ない-stem, so {連絡|れんらく}しないで becomes {連絡|れんらく}せずに. The irregular する turns into せずに, never しずに. It suits notices and business writing more than casual speech.",
+        "{連絡|れんらく}せずに{欠席|けっせき}しないでください。",
+        "Please do not miss it without getting in touch.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which asks permission most humbly?",
+        "変更させていただけますか",
+        ["変更してもいいですか", "変更しますか", "変更しませんか"],
+        "させていただく treats the change as a favour the listener grants; してもいいですか only asks whether it is allowed.",
+      ),
+      q(
+        "Choose the written-style 'without': 連絡___変更しないでください。",
+        "せずに",
+        ["しずに", "しなくて", "しないと"],
+        "する becomes せずに in this pattern, and しずに is not a possible form of the verb.",
+      ),
+    ],
+    reading: p(
+      "Moving an appointment by e-mail",
+      "{先日|せんじつ}はお{時間|じかん}をいただき、ありがとうございました。{申|もう}し{訳|わけ}ありませんが、{担当|たんとう}が{急|きゅう}に{出張|しゅっちょう}になったとのことで、{来週|らいしゅう}の{訪問|ほうもん}の{日程|にってい}を{変更|へんこう}させていただけないでしょうか。{水曜日|すいようび}か{木曜日|もくようび}の{午後|ごご}でしたら{調整|ちょうせい}できます。どちらもご{都合|つごう}が{悪|わる}いようでしたら、{改|あらた}めてこちらからご{連絡|れんらく}いたします。",
+      "Thank you for your time the other day. I am sorry to say that the person in charge has suddenly been sent on a business trip, so could we change the date of next week's visit? Wednesday or Thursday afternoon can be arranged. If neither suits you, I will contact you again with other options.",
+      q(
+        "What does the writer offer if the proposed days do not work?",
+        "To get in touch again themselves",
+        [
+          "To send somebody else instead",
+          "To cancel the visit",
+          "To meet in the morning",
+        ],
+        "改めてこちらからご連絡いたします promises a fresh approach from the writer's side, not a substitute or a cancellation.",
+      ),
+    ),
+    listening: p(
+      "Confirming on the phone",
+      "では、{来週|らいしゅう}の{水曜日|すいようび}、{午後|ごご}{二時|にじ}にお{伺|うかが}いします。{場所|ばしょ}は{前回|ぜんかい}と{同|おな}じでよろしいでしょうか。{変更|へんこう}がありましたら、{前日|ぜんじつ}までにご{連絡|れんらく}ください。",
+      "So, I will visit next Wednesday at two in the afternoon. Is the place the same as last time? If anything changes, please get in touch by the day before.",
+      q(
+        "What is the speaker checking?",
+        "Whether the location is unchanged",
+        [
+          "Whether the price is agreed",
+          "Who will attend",
+          "Whether the documents arrived",
+        ],
+        "場所は前回と同じでよろしいでしょうか asks about the venue; the day and the time have already been settled.",
+      ),
+    ),
+    practice:
+      "Draft a three-line reschedule message: apologise, ask with させていただけないでしょうか, and offer two alternatives with でしたら.",
+  },
+  {
+    slug: "business-email",
+    title: "Reading a business e-mail",
+    summary:
+      "Open, read and answer a work e-mail: the fixed greeting, what the subject line commits you to, where the real request hides in the middle, and how to reply without sounding blunt.",
+    vocabulary: words(`件名|けんめい|a subject line
+添付|てんぷ|an attachment
+返信|へんしん|a reply
+宛先|あてさき|the addressee
+承知|しょうち|acknowledging
+折り返し|おりかえし|getting back to someone
+早速|さっそく|promptly
+署名|しょめい|a signature block`),
+    grammar: [
+      g(
+        "{件名|けんめい} & 〜の{件|けん}につきまして",
+        "A work e-mail names its topic twice: once in the {件名|けんめい} and again in the opening line as 〜の{件|けん}につきまして. The second is not a repetition. It fixes which thread the message belongs to before any request arrives, which is why it is the first place to look.",
+        "{来週|らいしゅう}の{会議|かいぎ}の{件|けん}につきまして、ご{連絡|れんらく}いたします。",
+        "I am writing regarding next week's meeting.",
+      ),
+      g(
+        "Set openings: お{世話|せわ}になっております",
+        "Almost every work e-mail opens with いつもお{世話|せわ}になっております, which thanks the reader for an ongoing relationship rather than for anything in particular. A first approach uses {初|はじ}めてご{連絡|れんらく}いたします instead. Leaving the opening out reads as curt rather than efficient.",
+        "いつも{大変|たいへん}お{世話|せわ}になっております。",
+        "Thank you, as always, for your continued support.",
+      ),
+      g(
+        "〜のほど",
+        "〜のほど softens a request by blurring its edges, so ご{確認|かくにん}のほどよろしくお{願|ねが}いいたします asks for a check without pinning down exactly what or by when. It attaches to a noun of action, and it belongs in writing rather than in speech.",
+        "ご{確認|かくにん}のほどよろしくお{願|ねが}いいたします。",
+        "I would be grateful if you could look this over.",
+      ),
+      g(
+        "〜たく{存|ぞん}じます",
+        "The verb stem plus たく{存|ぞん}じます states what the writer would like to do, in humble written style. {存|ぞん}じます is simply the humble form of {思|おも}います, so you will meet it again in 〜かと{存|ぞん}じます. It never describes what the reader wants, only the writer.",
+        "{一度|いちど}お{打|う}ち{合|あ}わせをお{願|ねが}いしたく{存|ぞん}じます。",
+        "I would like to ask you for a meeting.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Where does a work e-mail state what it is about?",
+        "In the 件名 and again as 〜の件につきまして",
+        [
+          "Only in the signature block",
+          "Only in the closing line",
+          "Nowhere; it is left understood",
+        ],
+        "The subject line names the topic and the opening line fixes the thread with 〜の件につきまして before the request itself arrives.",
+      ),
+      q(
+        "Choose the softened written request.",
+        "ご確認のほどよろしくお願いいたします",
+        ["確認してください", "確認しましたか", "確認しておいて"],
+        "〜のほど blurs the edges of the request, which is what makes it fit written business Japanese rather than speech.",
+      ),
+    ],
+    reading: p(
+      "An e-mail about a deadline",
+      "いつも{大変|たいへん}お{世話|せわ}になっております。{来月|らいげつ}の{研修|けんしゅう}の{件|けん}につきまして、ご{連絡|れんらく}いたします。{添付|てんぷ}の{資料|しりょう}をご{確認|かくにん}のほどよろしくお{願|ねが}いいたします。{参加|さんか}される{方|かた}のお{名前|なまえ}を、{今週|こんしゅう}{金曜日|きんようび}までにご{返信|へんしん}いただけますでしょうか。なお、{会場|かいじょう}が{変|か}わる{可能性|かのうせい}がございますので、{決|き}まり{次第|しだい}、{改|あらた}めてご{案内|あんない}したく{存|ぞん}じます。ご{不明|ふめい}な{点|てん}がございましたら、{折|お}り{返|かえ}しご{連絡|れんらく}ください。",
+      "Thank you, as always, for your continued support. I am writing regarding next month's training. Please take a look at the attached materials. Could you reply with the names of those attending by this Friday? Also, the venue may change, so I would like to send fresh details once it is settled. If anything is unclear, please get back in touch.",
+      q(
+        "What must the reader send by Friday?",
+        "The names of those attending",
+        ["The venue details", "The attached materials", "A signed agreement"],
+        "参加される方のお名前を…ご返信いただけますでしょうか carries the Friday deadline; the venue is the writer's own follow-up, not the reader's task.",
+      ),
+    ),
+    listening: p(
+      "Acknowledging an e-mail by phone",
+      "{先|さき}ほどのメール、{拝見|はいけん}いたしました。{添付|てんぷ}の{資料|しりょう}も{確認|かくにん}いたしました。{参加者|さんかしゃ}の{名前|なまえ}は{明日|あした}までにご{返信|へんしん}いたします。{会場|かいじょう}が{決|き}まりましたら、{折|お}り{返|かえ}しご{連絡|れんらく}ください。",
+      "I have read the e-mail you just sent, and I have checked the attached materials as well. I will reply with the participants' names by tomorrow. Once the venue is settled, please get back to me.",
+      q(
+        "What does the speaker undertake to send?",
+        "The participants' names",
+        ["The attached materials", "The venue details", "A new subject line"],
+        "参加者の名前は明日までにご返信いたします is what the speaker promises; the venue is what they are waiting to receive.",
+      ),
+    ),
+    practice:
+      "Take one e-mail you have received and label its parts: the 件名, the opening greeting, the line carrying the actual request, and the deadline attached to it.",
+  },
+  {
+    slug: "reports-and-minutes",
+    title: "Reports & meeting minutes",
+    summary:
+      "Read a written report the way it is built: the plain written style, the finding that follows the check, the decisions recorded as decisions, and the single word that closes the whole document.",
+    vocabulary: words(`報告書|ほうこくしょ|a written report
+議事録|ぎじろく|meeting minutes
+決定|けってい|a decision
+課題|かだい|an issue to address
+対策|たいさく|a countermeasure
+現状|げんじょう|the present situation
+以上|いじょう|that is all
+概要|がいよう|an outline`),
+    grammar: [
+      g(
+        "である{体|たい} in written reports",
+        "A report drops です・ます for the plain written style: {必要|ひつよう}である、{報告|ほうこく}する。Nouns and な-adjectives take である rather than だ, which reads as more formal still. Mixing the two styles inside one document is the commonest mistake of all.",
+        "{現状|げんじょう}の{対策|たいさく}では{不十分|ふじゅうぶん}であると{考|かんが}えられる。",
+        "The present measures are considered insufficient.",
+      ),
+      g(
+        "〜した{結果|けっか}",
+        "The た-form plus {結果|けっか} reports what came out of an action once it had finished: {調査|ちょうさ}した{結果|けっか}、{原因|げんいん}が{分|わ}かった。It keeps the work and the finding in separate halves of the sentence, which is exactly the shape a report needs.",
+        "{調査|ちょうさ}した{結果|けっか}、{原因|げんいん}は{設定|せってい}ミスであることが{分|わ}かった。",
+        "As a result of the investigation, the cause was found to be a setting error.",
+      ),
+      g(
+        "{下記|かき}のとおり & 〜{通|とお}り",
+        "〜のとおり points the reader at something they can go and check: {下記|かき}のとおり、{別紙|べっし}のとおり、ご{連絡|れんらく}したとおり。After a noun it takes の, and after a verb the の disappears. It saves repeating content that is already written elsewhere.",
+        "{会議|かいぎ}の{内容|ないよう}は{下記|かき}のとおりである。",
+        "The content of the meeting is as set out below.",
+      ),
+      g(
+        "Closing a report with {以上|いじょう}",
+        "A report, a set of minutes and many e-mails end with {以上|いじょう} standing alone, meaning that is the whole of it. This is not the quantity sense that pairs with {未満|みまん} after a number; here it simply signals that nothing has been cut off, so a document without it can read as unfinished.",
+        "{以上|いじょう}、ご{報告|ほうこく}いたします。",
+        "That concludes my report.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which form belongs in a written report?",
+        "不十分である",
+        ["不十分です", "不十分でした", "不十分じゃない"],
+        "Reports use the plain written style, in which nouns and な-adjectives take である rather than です.",
+      ),
+      q(
+        "What does 以上 mean standing alone at the end of a document?",
+        "That is the whole of it",
+        [
+          "More than that amount",
+          "Please reply at once",
+          "Continued on the next page",
+        ],
+        "As a closing line 以上 marks the end of the document; the quantity sense belongs directly after a number instead.",
+      ),
+    ],
+    reading: p(
+      "Minutes of a short meeting",
+      "{会議|かいぎ}の{概要|がいよう}は{下記|かき}のとおりである。{現状|げんじょう}の{報告|ほうこく}では、{先月|せんげつ}の{問合|といあわ}せ{件数|けんすう}が{前月|ぜんげつ}より{増|ふ}えていることが{示|しめ}された。{原因|げんいん}を{調査|ちょうさ}した{結果|けっか}、{案内|あんない}ページの{説明|せつめい}が{分|わ}かりにくいことが{主|おも}な{課題|かだい}であると{分|わ}かった。{対策|たいさく}として、{来月|らいげつ}までにページを{書|か}き{直|なお}すことが{決定|けってい}された。{担当|たんとう}は{営業|えいぎょう}{部|ぶ}とする。{以上|いじょう}。",
+      "An outline of the meeting is set out below. The report on the present situation showed that the number of enquiries last month had risen compared with the month before. Investigation of the cause found that the main issue was an unclear explanation on the information page. As a countermeasure, it was decided to rewrite the page by next month. The sales department is to be responsible. That is all.",
+      q(
+        "What was decided at the meeting?",
+        "To rewrite the information page by next month",
+        [
+          "To reduce the number of enquiries",
+          "To move the sales department",
+          "To hold another meeting next month",
+        ],
+        "来月までにページを書き直すことが決定された is the recorded decision; the enquiry figures are the finding that led to it.",
+      ),
+    ),
+    listening: p(
+      "Reporting the outcome aloud",
+      "{調査|ちょうさ}した{結果|けっか}、{原因|げんいん}は{案内|あんない}ページの{説明|せつめい}であることが{分|わ}かりました。{対策|たいさく}は{下記|かき}のとおりで、{来月|らいげつ}までに{書|か}き{直|なお}します。{担当|たんとう}は{営業|えいぎょう}{部|ぶ}です。{以上|いじょう}、ご{報告|ほうこく}いたします。",
+      "The investigation found that the cause was the explanation on the information page. The countermeasures are as set out below, and we will rewrite it by next month. The sales department is responsible. That concludes my report.",
+      q(
+        "Who will carry out the countermeasure?",
+        "The sales department",
+        [
+          "The person giving the report",
+          "An outside company",
+          "Nobody has been decided yet",
+        ],
+        "担当は営業部です assigns the responsibility; the speaker is reporting the decision rather than volunteering for it.",
+      ),
+    ),
+    practice:
+      "Rewrite a three-line update in report style: put it into である form, join the check and the finding with した結果, and close it with 以上.",
+  },
+  {
+    slug: "workplace-documents",
+    title: "Notices, forms & instructions",
+    summary:
+      "Read the paperwork that circulates at work: a notice with the exception buried in the middle of it, a form that labels what is done and what is not, and instructions written as rules for nobody in particular.",
+    vocabulary: words(`通知|つうち|a notice
+申請書|しんせいしょ|an application form
+提出|ていしゅつ|submission
+期限|きげん|a deadline
+記入例|きにゅうれい|a filled-in example
+社内|しゃない|within the company
+該当|がいとう|being applicable
+備考|びこう|remarks`),
+    grammar: [
+      g(
+        "なお & ただし in notices",
+        "なお adds a further point that stands on its own feet, while ただし attaches an exception to what was just said. A notice reading {全員|ぜんいん}{提出|ていしゅつ}のこと。ただし、{提出|ていしゅつ}{済|ず}みの{方|かた}は{不要|ふよう} hides the part that may let you off behind that ただし.",
+        "ただし、{該当|がいとう}しない{方|かた}は{提出|ていしゅつ}{不要|ふよう}です。",
+        "However, those to whom this does not apply need not submit it.",
+      ),
+      g(
+        "〜{済|ず}み & {未|み}〜",
+        "〜{済|ず}み marks something already done and {未|み}〜 marks something still outstanding: {確認|かくにん}{済|ず}み、{未|み}{提出|ていしゅつ}。Both attach straight to a noun of action, and a form uses them as status labels rather than as sentences, so they carry no verb of their own.",
+        "{提出|ていしゅつ}{済|ず}みの{方|かた}は、{記入|きにゅう}の{必要|ひつよう}はありません。",
+        "Those who have already submitted it need not fill it in.",
+      ),
+      g(
+        "〜ごとに",
+        "〜ごとに means at every one of something, with nothing skipped: {部署|ぶしょ}ごとに、{三|さん}か{月|げつ}ごとに。It differs from 〜おきに, which counts the gaps in between, so {二日|ふつか}ごとに and {二日|ふつか}おきに do not describe the same interval at all.",
+        "{申請書|しんせいしょ}は{部署|ぶしょ}ごとにまとめて{提出|ていしゅつ}してください。",
+        "Please submit the application forms together, by department.",
+      ),
+      g(
+        "〜こと as a written instruction",
+        "A rule written for the page ends in the dictionary form plus こと: {期限|きげん}までに{提出|ていしゅつ}すること。It issues an instruction without addressing anybody, which is why notices and manuals are full of it; said aloud to a person standing in front of you it would sound cold.",
+        "{期限|きげん}までに{必|かなら}ず{提出|ていしゅつ}すること。",
+        "Be sure to submit it by the deadline.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "A notice reads 全員提出のこと。ただし、提出済みの方は不要。Who can skip it?",
+        "Those who have already submitted it",
+        ["Everybody", "Nobody", "Only new employees"],
+        "ただし introduces the exception, and 提出済み names exactly the people that exception covers.",
+      ),
+      q(
+        "Which label marks something not yet done on a form?",
+        "未提出",
+        ["提出済み", "提出ごと", "提出のこと"],
+        "未〜 marks an action still outstanding, whereas 〜済み marks one that has already been completed.",
+      ),
+    ],
+    reading: p(
+      "A notice on the company board",
+      "{社内|しゃない}{通知|つうち}。{健康|けんこう}{診断|しんだん}の{申請書|しんせいしょ}を{配|くば}りました。{期限|きげん}までに{必|かなら}ず{提出|ていしゅつ}すること。{申請書|しんせいしょ}は{部署|ぶしょ}ごとにまとめて{総務|そうむ}{部|ぶ}へお{出|だ}しください。なお、{記入例|きにゅうれい}は{掲示板|けいじばん}に{貼|は}ってあります。ただし、{昨年度|さくねんど}に{受診|じゅしん}{済|ず}みの{方|かた}と、{今年度|こんねんど}{入社|にゅうしゃ}の{方|かた}は{該当|がいとう}しませんので、{提出|ていしゅつ}は{不要|ふよう}です。ご{不明|ふめい}な{点|てん}は{備考|びこう}{欄|らん}にご{記入|きにゅう}ください。",
+      "Company notice. Application forms for the health check have been handed out. Be sure to submit yours by the deadline. Please collect the forms by department and hand them in to the general affairs department. In addition, a filled-in example is posted on the board. However, those who had a check last year and those who joined this year are not covered, so they need not submit one. If anything is unclear, please write it in the remarks column.",
+      q(
+        "Who does not need to submit the form?",
+        "People checked last year and people who joined this year",
+        [
+          "Everybody in the general affairs department",
+          "Anybody who has missed the deadline",
+          "Only the people who joined this year",
+        ],
+        "ただし introduces two exempt groups and 該当しません covers both of them, not only the new joiners.",
+      ),
+    ),
+    listening: p(
+      "A reminder at the morning meeting",
+      "{健康|けんこう}{診断|しんだん}の{申請書|しんせいしょ}ですが、{期限|きげん}は{今週|こんしゅう}の{金曜日|きんようび}です。{部署|ぶしょ}ごとにまとめますので、{木曜日|もくようび}までに{私|わたし}にお{渡|わた}しください。{提出|ていしゅつ}{済|ず}みの{方|かた}は{結構|けっこう}です。",
+      "About the health check application forms: the deadline is this Friday. I will be collecting them by department, so please hand yours to me by Thursday. Those who have already submitted one need not bother.",
+      q(
+        "By when should forms reach the speaker?",
+        "Thursday",
+        ["Friday", "Next Monday", "The end of the month"],
+        "The official deadline is Friday, but the speaker asks for them by Thursday in order to collect them by department first.",
+      ),
+    ),
+    practice:
+      "Take one notice and mark three things in it: the instruction written with こと, the exception introduced by ただし, and any status label using 済み or 未.",
+  },
+  {
+    slug: "particles-nuance",
+    title: "Particles that shade a statement",
+    summary:
+      "Add weight, dismissal, or a sweeping negative to a sentence you can already build, and hear the difference between insisting on something and brushing it aside.",
+    vocabulary: words(`努力|どりょく|effort
+経験|けいけん|experience
+機会|きかい|an opportunity
+価値|かち|value
+自信|じしん|confidence
+失敗|しっぱい|a failure
+結果|けっか|a result
+理解|りかい|understanding`),
+    grammar: [
+      g(
+        "〜こそ for emphasis",
+        "こそ singles out the word in front of it as the one that really counts: {今度|こんど}こそ means this time for certain, and こちらこそ returns a greeting by insisting the credit belongs to you. It replaces は or が rather than stacking on top of them.",
+        "{今度|こんど}こそ{成功|せいこう}させたいです。",
+        "This time I really want to make it work.",
+      ),
+      g(
+        "〜も with a negative",
+        "も after a counter and in front of a negative sweeps the whole range away: {一人|ひとり}も{来|こ}なかった means not a single person came. Without も the sentence only says that few came, so も is what turns a small number into none at all.",
+        "その{機会|きかい}は{一度|いちど}もありませんでした。",
+        "There was not a single such opportunity.",
+      ),
+      g(
+        "〜なんて for dismissal",
+        "なんて quotes something in order to brush it aside: {無理|むり}なんて{言|い}わないでください。It carries the speaker's own attitude, usually surprise or scorn, so it is never the neutral quoting particle that と is.",
+        "{失敗|しっぱい}したなんて{思|おも}っていません。",
+        "I do not think of it as having failed at all.",
+      ),
+      g(
+        "〜でも for 'even'",
+        "After a noun, でも means even: {子|こ}どもでも{分|わ}かります. With a question word it sweeps everything in, as in {誰|だれ}でも and いつでも. It also floats a loose suggestion, so お{茶|ちゃ}でもどうですか means tea or something like it.",
+        "{子|こ}どもでも{分|わ}かる{説明|せつめい}がほしいです。",
+        "I want an explanation even a child could follow.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "What does 一人も来なかった mean?",
+        "Nobody came at all",
+        ["One person came", "Only one person came", "A few people came"],
+        "も in front of a negative sweeps the whole range away, so not even one single person came.",
+      ),
+      q(
+        "Choose the phrase that brushes a remark aside.",
+        "無理なんて言わないで",
+        ["無理と言わないで", "無理こそ言わないで", "無理でも言わないで"],
+        "なんて carries the speaker's dismissal of the remark, while と would simply quote the same words neutrally.",
+      ),
+    ],
+    reading: p(
+      "A second attempt",
+      "{去年|きょねん}の{試験|しけん}では{一問|いちもん}も{解|と}けませんでした。{自信|じしん}をなくして、もうやめようかとも{思|おも}いました。でも、{失敗|しっぱい}なんて{何度|なんど}でもしていいと{先生|せんせい}に{言|い}われました。{努力|どりょく}した{経験|けいけん}にこそ{価値|かち}があるそうです。{今度|こんど}こそいい{結果|けっか}を{出|だ}したいと{思|おも}っています。",
+      "In last year's exam I could not solve a single question. I lost my confidence and even thought about giving up. But my teacher told me it is fine to fail as many times as you like. Apparently it is the experience of having made the effort that really has value. This time I want to get a good result.",
+      q(
+        "What does the teacher say has value?",
+        "The experience of having made the effort",
+        ["Passing the exam", "Giving up early", "Answering every question"],
+        "努力した経験にこそ価値がある singles out the experience itself with こそ, rather than the result it produced.",
+      ),
+    ),
+    listening: p(
+      "Encouraging a colleague",
+      "{準備|じゅんび}する{時間|じかん}が{一日|いちにち}もありませんでした。{大丈夫|だいじょうぶ}ですよ。{今度|こんど}こそうまくいきます。{理解|りかい}できないなんてことはありません。",
+      "I did not have even one day to prepare. It's all right. This time it will go well. It is not as though you cannot understand it.",
+      q(
+        "What does the second speaker say?",
+        "It will go well this time",
+        [
+          "There was enough time",
+          "The task is impossible",
+          "They will do it instead",
+        ],
+        "今度こそうまくいきます uses こそ to insist that this particular attempt is the one that will count.",
+      ),
+    ),
+    practice:
+      "Rewrite three flat sentences: add こそ to the part that matters, turn one into a sweeping negative with も, and dismiss one remark with なんて.",
+  },
+  {
     slug: "n3-integration",
     title: "N3 integration: messages & viewpoints",
     summary:
