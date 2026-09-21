@@ -1026,6 +1026,264 @@ export const n1Courses: CourseSeed[] = [
       "Make a comparison table for two sources: purpose, constraint, proposed action, and shared ground. Derive an option satisfying both.",
   },
   {
+    slug: "delicate-requests",
+    title: "Delicate requests & refusals",
+    summary:
+      "Ask for something genuinely burdensome, refuse without ever saying no outright, and leave the relationship in better repair than the answer alone would suggest.",
+    vocabulary: words(`依頼|いらい|a request
+恐縮|きょうしゅく|feeling obliged
+配慮|はいりょ|consideration
+猶予|ゆうよ|a grace period
+善処|ぜんしょ|doing what one can
+婉曲|えんきょく|indirectness
+含み|ふくみ|an implication
+辞退|じたい|declining an offer`),
+    grammar: [
+      g(
+        "ご〜いただけますでしょうか",
+        "Stacking いただけます with でしょうか produces the most cautious request frame in ordinary business Japanese. Some style guides call it doubly polite and discourage it, yet it remains standard wherever the request being made is genuinely burdensome for the other side.",
+        "ご{再考|さいこう}いただけますでしょうか。",
+        "Might we ask you to reconsider?",
+      ),
+      g(
+        "〜てはいかがでしょうか",
+        "Rather than telling somebody what to do, てはいかがでしょうか offers the action as a possibility for them to weigh. The decision stays visibly theirs, which is what makes the pattern usable towards a superior where a plain suggestion would not be.",
+        "{別|べつ}の{案|あん}もご{検討|けんとう}になってはいかがでしょうか。",
+        "Might it be worth considering another proposal as well?",
+      ),
+      g(
+        "〜は{控|ひか}えさせていただきます",
+        "{控|ひか}える means to refrain, and the humble causative turns the refusal into something you are being permitted to do. It never names the other side's request as unacceptable, so it reads as restraint on your own part rather than rejection of theirs.",
+        "{詳細|しょうさい}についてのご{説明|せつめい}は{控|ひか}えさせていただきます。",
+        "We will refrain from explaining the details.",
+      ),
+      g(
+        "〜ようお{願|ねが}い{申|もう}し{上|あ}げます",
+        "The most formal request frame quotes the desired state with よう and then raises {願|ねが}う twice over into {申|もう}し{上|あ}げます. It never names the reader as the one who must act, and that absence is precisely what makes it feel respectful on the page.",
+        "ご{理解|りかい}いただきますようお{願|ねが}い{申|もう}し{上|あ}げます。",
+        "We humbly ask for your understanding.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which declines without naming the request as unacceptable?",
+        "回答は控えさせていただきます",
+        ["回答しません", "回答できません", "回答したくありません"],
+        "控えさせていただきます frames the refusal as restraint on the speaker's own part rather than as a rejection.",
+      ),
+      q(
+        "Choose the suggestion that leaves the decision with the listener.",
+        "ご確認になってはいかがでしょうか",
+        ["確認してください", "確認しなさい", "確認するべきです"],
+        "てはいかがでしょうか offers the action as an option to weigh; the other three instruct or pass judgment.",
+      ),
+    ],
+    reading: p(
+      "Declining an invitation",
+      "このたびは{記念|きねん}{行事|ぎょうじ}へのご{招待|しょうたい}を{賜|たまわ}り、まことにありがとうございます。{長年|ながねん}にわたるご{配慮|はいりょ}に、{改|あらた}めて{御礼|おれい}{申|もう}し{上|あ}げます。{誠|まこと}に{恐縮|きょうしゅく}ではございますが、{当日|とうじつ}は{以前|いぜん}からの{予定|よてい}と{重|かさ}なっており、{出席|しゅっせき}は{控|ひか}えさせていただきます。ご{期待|きたい}にそえず、{心|こころ}よりおわび{申|もう}し{上|あ}げます。{代|か}わりに{弊社|へいしゃ}の{担当|たんとう}が{伺|うかが}う{形|かたち}でもよろしければ、{手配|てはい}いたしますので、ご{一報|いっぽう}いただけますでしょうか。{今後|こんご}とも{変|か}わらぬお{付|つ}き{合|あ}いをいただきますよう、お{願|ねが}い{申|もう}し{上|あ}げます。",
+      "Thank you most sincerely for your invitation to the commemorative event, and let me express our gratitude once more for the consideration you have shown us over so many years. It is with real regret that I must say the day clashes with a prior commitment, and I shall have to refrain from attending. I apologise from the heart for falling short of your expectations. If a member of our staff attending in my place would be acceptable, we would gladly arrange it, so might we ask you to let us know. We hope for your continued goodwill in the years ahead.",
+      q(
+        "What does the writer propose instead of attending?",
+        "Sending a member of staff",
+        [
+          "Attending on a different day",
+          "Sending a written message",
+          "Contributing to the costs",
+        ],
+        "弊社の担当が伺う形でもよろしければ offers a substitute attendee, conditional on the host finding that acceptable.",
+      ),
+    ),
+    listening: p(
+      "Asking for more time",
+      "{恐縮|きょうしゅく}ではございますが、{今回|こんかい}の{件|けん}につきましては、もう{少|すこ}しご{猶予|ゆうよ}をいただけますでしょうか。{来週|らいしゅう}{半|なか}ばまでには{必|かなら}ずご{回答|かいとう}いたします。",
+      "I am sorry to trouble you, but might we ask for a little more time on this matter? We will certainly give you an answer by the middle of next week.",
+      q(
+        "What does the speaker commit to?",
+        "An answer by the middle of next week",
+        ["A decision today", "A meeting next month", "A written apology"],
+        "来週半ばまでには必ずご回答いたします sets the deadline the speaker is undertaking to meet.",
+      ),
+    ),
+    practice:
+      "Write a refusal in four moves: thank the reader, name the obstacle, decline with 控えさせていただきます, and offer one alternative with いかがでしょうか.",
+  },
+  {
+    slug: "public-life-formalities",
+    title: "Counters, notices & announcements",
+    summary:
+      "Follow the set language of public life: the window at a city office, the small print on a printed notice, and the announcement that closes a building for the day.",
+    vocabulary: words(`窓口|まどぐち|a service window
+受付|うけつけ|reception
+書類|しょるい|documents
+記入|きにゅう|filling in a form
+名義|めいぎ|the name on an account
+控え|ひかえ|a copy for your records
+不備|ふび|something missing
+案内|あんない|an announcement`),
+    grammar: [
+      g(
+        "〜にあたりまして",
+        "にあたって marks a significant occasion on which something is done, and にあたりまして is its spoken, ceremonial form. Reserve it for openings, closings, and beginnings; attached to an everyday errand it sounds inflated rather than respectful.",
+        "ご{入場|にゅうじょう}にあたりまして、{整理券|せいりけん}をご{提示|ていじ}ください。",
+        "On entering, please present your numbered ticket.",
+      ),
+      g(
+        "〜をもちまして",
+        "をもって names the point at which something takes effect or comes to an end, and をもちまして is its ceremonial spoken form. The same particle also marks a means in written style, as in {書面|しょめん}をもってご{連絡|れんらく}いたします。",
+        "{本日|ほんじつ}をもちまして{受付|うけつけ}を{終了|しゅうりょう}いたします。",
+        "Applications close as of today.",
+      ),
+      g(
+        "〜{旨|むね}",
+        "{旨|むね} stands for the substance of what was said or decided, and is quoted with the clause that precedes it. Notices and minutes use it wherever the content of a message matters and its exact wording does not.",
+        "{欠席|けっせき}する{旨|むね}を{窓口|まどぐち}までご{連絡|れんらく}ください。",
+        "Please inform the counter that you will be absent.",
+      ),
+      g(
+        "Announcement style: 〜ております・〜でございます",
+        "Public announcements replace います with おります and です with でございます even when nobody in particular is being honoured. The humility attaches to the speaker's own side rather than to any individual listener, which is why it suits a room full of strangers.",
+        "ただ{今|いま}{窓口|まどぐち}が{大変|たいへん}{混雑|こんざつ}しております。",
+        "The service windows are extremely busy at present.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which marks the moment something closes?",
+        "本日をもちまして",
+        ["本日にあたりまして", "本日という旨で", "本日でございますので"],
+        "をもって names the point at which something takes effect or ends; にあたって marks the occasion of an action.",
+      ),
+      q(
+        "Choose the phrase for reporting the gist of a message.",
+        "欠席する旨",
+        ["欠席するにあたり", "欠席をもって", "欠席でございます"],
+        "旨 stands for the substance of what was said, and is used where the exact wording does not matter.",
+      ),
+    ],
+    reading: p(
+      "A notice at the city office",
+      "{住所|じゅうしょ}{変更|へんこう}のお{手続|てつづ}きにあたりまして、{本人|ほんにん}{確認|かくにん}{書類|しょるい}が{必要|ひつよう}でございます。{窓口|まどぐち}で{申請書|しんせいしょ}にご{記入|きにゅう}のうえ、{番号札|ばんごうふだ}をお{取|と}りください。{記入|きにゅう}に{不備|ふび}がある{場合|ばあい}はお{呼|よ}び{出|だ}しすることがございますので、{控|ひか}えをお{手元|てもと}にお{持|も}ちください。なお、{代理|だいり}の{方|かた}がお{越|こ}しになる{場合|ばあい}は、{委任状|いにんじょう}と{名義|めいぎ}の{方|かた}の{身分|みぶん}{証明書|しょうめいしょ}が{必要|ひつよう}です。{郵送|ゆうそう}での{申請|しんせい}をご{希望|きぼう}の{方|かた}は、{返信|へんしん}{用|よう}{封筒|ふうとう}を{同封|どうふう}のうえ、{市民|しみん}{課|か}{宛|あて}にお{送|おく}りください。{本日|ほんじつ}の{受付|うけつけ}は{午後|ごご}{五時|ごじ}をもちまして{終了|しゅうりょう}いたします。{時間|じかん}に{余裕|よゆう}をもってお{越|こ}しくださいますようお{願|ねが}い{申|もう}し{上|あ}げます。",
+      "For a change-of-address procedure, identification documents are required. Please fill in the application form at the window and take a numbered ticket. If anything is missing from the form you may be called back, so keep your copy to hand. If somebody attends on your behalf, a letter of authorisation and the identification of the person named on the account are both required. If you would rather apply by post, please enclose a reply envelope and send everything to the Citizens' Affairs Section. Today's reception closes at five in the afternoon. We ask that you allow yourself plenty of time.",
+      q(
+        "What is required if somebody comes on your behalf?",
+        "A letter of authorisation and the named person's identification",
+        [
+          "Only a numbered ticket",
+          "A copy of the completed form",
+          "Nothing beyond the application form",
+        ],
+        "委任状と名義の方の身分証明書が必要です names both documents for a representative; the ticket and the copy apply to everyone.",
+      ),
+    ),
+    listening: p(
+      "A closing announcement",
+      "{本日|ほんじつ}はご{来場|らいじょう}いただき、まことにありがとうございました。{当館|とうかん}は{午後|ごご}{六時|ろくじ}をもちまして{閉館|へいかん}いたします。お{忘|わす}れ{物|もの}のないよう、{今一度|いまいちど}お{手元|てもと}をお{確|たし}かめくださいますようお{願|ねが}い{申|もう}し{上|あ}げます。",
+      "Thank you very much for visiting us today. The building closes at six in the evening. We ask that you check your belongings once more so that nothing is left behind.",
+      q(
+        "What are visitors asked to do?",
+        "Check their belongings once more",
+        [
+          "Return to the entrance hall",
+          "Show their tickets again",
+          "Leave by a different exit",
+        ],
+        "今一度お手元をお確かめください asks visitors to check what they are carrying before the building closes.",
+      ),
+    ),
+    practice:
+      "Rewrite a plain notice in announcement style: mark the occasion with にあたりまして, close it with をもちまして, and finish with くださいますようお願い申し上げます.",
+  },
+  {
+    slug: "particles-precision",
+    title: "Particles at their most precise",
+    summary:
+      "Four particles that can carry an argument on their own: what only one source could produce, what holds whatever the case, what not even the smallest amount changes, and what is out of the question entirely.",
+    vocabulary: words(`真価|しんか|true worth
+風土|ふうど|the character of a place
+気概|きがい|spirit; mettle
+一端|いったん|a glimpse of something
+所産|しょさん|a product of something
+妥協|だきょう|a compromise
+是非|ぜひ|rights and wrongs
+余地|よち|room; scope`),
+    grammar: [
+      g(
+        "〜ならでは",
+        "ならでは names what only that one source could produce: {職人|しょくにん}ならではの{技|わざ}。It is almost always followed by の and a noun, and the praise is built into the pattern itself, which is why it does not take a negative continuation.",
+        "この{土地|とち}ならではの{風土|ふうど}が{料理|りょうり}に{表|あらわ}れています。",
+        "The character that belongs to this place alone comes through in its food.",
+      ),
+      g(
+        "〜であれ",
+        "であれ concedes every case at once: {理由|りゆう}が{何|なん}であれ、{結論|けつろん}は{変|か}わらない。Repeated as であれ〜であれ it lists the alternatives it is dismissing. It belongs to written argument, where にしても would be the spoken equivalent.",
+        "{理由|りゆう}が{何|なん}であれ、{妥協|だきょう}する{余地|よち}はありません。",
+        "Whatever the reason, there is no room for compromise.",
+      ),
+      g(
+        "〜たりとも",
+        "たりとも follows a counter of one and comes in front of a negative: {一日|いちにち}たりとも{忘|わす}れたことはない。It is stronger than {一日|いちにち}も and distinctly literary, so it suits a declaration rather than an ordinary report.",
+        "{一瞬|いっしゅん}たりとも{気|き}を{抜|ぬ}くことはできません。",
+        "We cannot let our guard down for even an instant.",
+      ),
+      g(
+        "〜はおろか",
+        "はおろか dismisses the smaller case in order to make the larger one land: {漢字|かんじ}はおろか、ひらがなも{読|よ}めない。The second clause has to be the more surprising of the two, and it almost always carries も or さえ with it.",
+        "{謝罪|しゃざい}はおろか、{説明|せつめい}さえありませんでした。",
+        "There was not even an explanation, let alone an apology.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which names what only that source can offer?",
+        "職人ならではの技",
+        ["職人であれの技", "職人たりともの技", "職人はおろかの技"],
+        "ならでは attributes something to one source alone and is followed by の and the noun it describes.",
+      ),
+      q(
+        "Choose the stronger version of 一日も休まなかった.",
+        "一日たりとも休まなかった",
+        [
+          "一日であれ休まなかった",
+          "一日はおろか休まなかった",
+          "一日ならでは休まなかった",
+        ],
+        "たりとも follows a counter of one in front of a negative and is both more emphatic and more literary than も.",
+      ),
+    ],
+    reading: p(
+      "An appraisal of a craft",
+      "{職人|しょくにん}の{仕事|しごと}を{評|ひょう}するにあたり、{完成|かんせい}した{品|しな}だけを{見|み}るのでは{真価|しんか}をとらえたことにならない。{材料|ざいりょう}を{選|えら}ぶ{段階|だんかい}から{仕上|しあ}げに{至|いた}るまで、{一瞬|いっしゅん}たりとも{気|き}を{抜|ぬ}かない{姿勢|しせい}こそが、その{土地|とち}ならではの{品|しな}を{生|う}むのである。{評価|ひょうか}が{高|たか}い{理由|りゆう}が{何|なん}であれ、{買|か}い{手|て}が{目|め}にするのは{結果|けっか}の{一端|いったん}にすぎない。{近年|きんねん}は{効率|こうりつ}が{優先|ゆうせん}され、{手間|てま}を{惜|お}しまぬ{気概|きがい}はおろか、{技|わざ}を{受|う}け{継|つ}ぐ{余地|よち}さえ{失|うしな}われつつある。{風土|ふうど}の{所産|しょさん}である{技術|ぎじゅつ}を{残|のこ}すには、{是非|ぜひ}を{論|ろん}じる{前|まえ}に{支|ささ}える{仕組|しく}みが{要|い}る。",
+      "In appraising a craftsman's work, looking only at the finished article does not amount to grasping its true worth. It is the refusal to relax for even an instant, from the choice of materials through to the finishing, that produces an article belonging to that place alone. Whatever the reason for a high reputation may be, what the buyer sees is no more than a glimpse of the result. In recent years efficiency has taken priority, and not only the spirit that spares no effort but even the scope to pass the craft on is being lost. Keeping alive a skill that is the product of a place calls for a supporting structure, before any argument about rights and wrongs.",
+      q(
+        "What does the passage say is being lost?",
+        "Both the spirit and the scope to pass the craft on",
+        [
+          "Only the finished articles",
+          "Only the buyers' interest",
+          "Only the choice of materials",
+        ],
+        "はおろか dismisses the smaller loss so that the larger one lands: not merely the spirit, but even the scope to hand the craft on.",
+      ),
+    ),
+    listening: p(
+      "A short comment on a workshop",
+      "あの{工房|こうぼう}の{品|しな}は、この{土地|とち}ならではのものです。{値段|ねだん}が{高|たか}いという{声|こえ}もありますが、{手間|てま}を{考|かんが}えれば{妥協|だきょう}の{余地|よち}はありません。{一点|いってん}たりとも{同|おな}じものはないそうです。",
+      "The pieces from that workshop belong to this place alone. Some say the prices are high, but given the labour involved there is no room for compromise. Apparently no two pieces are alike.",
+      q(
+        "What does the speaker say about the pieces?",
+        "No two of them are the same",
+        [
+          "They are all identical",
+          "They are made elsewhere",
+          "They are sold cheaply",
+        ],
+        "一点たりとも同じものはない uses たりとも in front of a negative to rule out even one identical piece.",
+      ),
+    ),
+    practice:
+      "Take one paragraph of praise and sharpen it: attribute the quality with ならでは, concede every objection with であれ, rule out the smallest exception with たりとも, and dismiss the lesser case with はおろか.",
+  },
+  {
     slug: "n1-integration",
     title: "N1 integration: synthesis, nuance & judgment",
     summary:

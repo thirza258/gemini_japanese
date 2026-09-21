@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { LEVELS, plainJapanese } from "../src/data/curriculum";
+import { LEVELS, plainJapanese, type Level } from "../src/data/curriculum";
 import {
   JLPT_COURSES,
   getCourseProgress,
@@ -14,15 +14,28 @@ import {
   readLearningData,
 } from "../src/data/learningProgress";
 
-test("every JLPT path contains twelve complete courses with all six learning activities", () => {
-  assert.equal(JLPT_COURSES.length, 60);
+// Courses per level; every total below is derived from this, not restated.
+const COURSE_COUNTS: Record<Level, number> = {
+  N5: 15,
+  N4: 18,
+  N3: 18,
+  N2: 15,
+  N1: 15,
+};
+const TOTAL_COURSES = LEVELS.reduce(
+  (total, level) => total + COURSE_COUNTS[level],
+  0,
+);
+
+test("every JLPT path contains complete courses with all six learning activities", () => {
+  assert.equal(JLPT_COURSES.length, TOTAL_COURSES);
   const identifiers: string[] = [];
   for (const level of LEVELS) {
     const courses = getCourses(level);
-    assert.equal(courses.length, 12, level);
+    assert.equal(courses.length, COURSE_COUNTS[level], level);
     assert.deepEqual(
       courses.map((course) => course.order),
-      Array.from({ length: 12 }, (_, i) => i + 1),
+      Array.from({ length: COURSE_COUNTS[level] }, (_, i) => i + 1),
     );
     for (const course of courses) {
       identifiers.push(course.id, ...course.lessons.map((lesson) => lesson.id));
@@ -76,10 +89,13 @@ test("every JLPT path contains twelve complete courses with all six learning act
     }
   }
   assert.equal(new Set(identifiers).size, identifiers.length);
-  assert.equal(JLPT_COURSES.flatMap((course) => course.lessons).length, 360);
+  assert.equal(
+    JLPT_COURSES.flatMap((course) => course.lessons).length,
+    TOTAL_COURSES * 6,
+  );
   assert.equal(
     JLPT_COURSES.flatMap((course) => course.sentencePractice.sentences).length,
-    360,
+    TOTAL_COURSES * 6,
   );
 });
 

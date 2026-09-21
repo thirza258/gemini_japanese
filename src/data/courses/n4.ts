@@ -933,6 +933,498 @@ export const n4Courses: CourseSeed[] = [
       "Role-play a visitor and receptionist. Underline the actor in every honorific or humble sentence to check the direction of respect.",
   },
   {
+    slug: "feeling-unwell",
+    title: "Feeling unwell",
+    summary:
+      "Say what hurts and how long it has lasted, follow the advice you are given at a clinic or a pharmacy, and report somebody else's symptoms too.",
+    vocabulary: words(`熱|ねつ|a fever
+頭|あたま|head
+喉|のど|throat
+薬|くすり|medicine
+風邪|かぜ|a cold
+体|からだ|body
+休む|やすむ|to rest; to take time off
+治る|なおる|to get better`),
+    grammar: [
+      g(
+        "Symptoms with が",
+        "A symptom is the subject of the sentence, so it is marked with が rather than を: {頭|あたま}が{痛|いた}いです、{熱|ねつ}があります。Switch to は only when you contrast one part with another, as in {喉|のど}は{痛|いた}くないですが、{頭|あたま}が{痛|いた}いです。",
+        "{頭|あたま}が{痛|いた}くて、{熱|ねつ}もあります。",
+        "My head hurts and I have a fever as well.",
+      ),
+      g(
+        "〜がする",
+        "Some sensations are described with する instead of an adjective: めまいがします、さむけがします。The noun takes が, and the same pattern covers what you smell, hear, or taste, as in いいにおいがします。",
+        "きのうからさむけがします。",
+        "I have had chills since yesterday.",
+      ),
+      g(
+        "〜てくる",
+        "The て-form plus くる traces a change that has continued up to the present moment, while ていく points forward from now. {咳|せき}が{出|で}てきました reports a cough that has developed; よくなっていくでしょう predicts improvement still to come.",
+        "だんだん{痛|いた}くなってきました。",
+        "It has gradually become more painful.",
+      ),
+      g(
+        "〜がる・〜がっている",
+        "Adjectives of feeling describe only the speaker. For somebody else, replace the final い with がる, and use がっている for a state you can see in front of you. Saying {子|こ}どもが{痛|いた}いです would claim to feel the child's pain yourself.",
+        "{子|こ}どもが{朝|あさ}から{頭|あたま}を{痛|いた}がっています。",
+        "My child has been complaining of a headache since morning.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Choose the particle: 喉 ___ 痛いです。",
+        "が",
+        ["を", "で", "に"],
+        "A symptom is the subject of the sentence, so it is marked with が rather than を.",
+      ),
+      q(
+        "How do you say that somebody else looks to be in pain?",
+        "痛がっています",
+        ["痛いです", "痛かったです", "痛くなります"],
+        "がる reports another person's feeling from the outside; 痛いです would claim that the speaker feels it.",
+      ),
+    ],
+    reading: p(
+      "Three days of fever",
+      "{三日|みっか}ほど{前|まえ}から{熱|ねつ}があります。{昨日|きのう}は{喉|のど}も{痛|いた}くなってきました。{病院|びょういん}で{薬|くすり}をもらって、{今日|きょう}は{会社|かいしゃ}を{休|やす}みました。{医者|いしゃ}は「{三日|みっか}ぐらいで{治|なお}るでしょう」と{言|い}いました。でも、お{風呂|ふろ}には{入|はい}らないほうがいいそうです。",
+      "I have had a fever for about three days. Yesterday my throat started hurting as well. I got medicine at the hospital and took today off work. The doctor said it would probably clear up in about three days. Apparently, though, I should not take a bath.",
+      q(
+        "What was the writer advised against?",
+        "Taking a bath",
+        ["Taking the medicine", "Resting at home", "Going to the hospital"],
+        "お風呂には入らないほうがいい is the one thing discouraged; the medicine and the rest were both part of the advice.",
+      ),
+    ),
+    listening: p(
+      "At the pharmacy",
+      "この{薬|くすり}は{一日|いちにち}に{三回|さんかい}、{食後|しょくご}に{飲|の}んでください。{眠|ねむ}くなることがありますから、{運転|うんてん}はしないでください。",
+      "Take this medicine three times a day, after meals. It can make you sleepy, so please do not drive.",
+      q(
+        "When should the medicine be taken?",
+        "After meals, three times a day",
+        [
+          "Before meals, once a day",
+          "Only at night",
+          "Whenever the pain returns",
+        ],
+        "一日に三回、食後に gives both the frequency and the timing of the dose.",
+      ),
+    ),
+    practice:
+      "Describe three symptoms with が, say how long each has lasted, then report the same symptoms for somebody else using がっています.",
+  },
+  {
+    slug: "phone-and-messages",
+    title: "Phone calls & messages",
+    summary:
+      "Open and close a call the way it is actually done, explain why you are calling before you ask for anything, and leave a message somebody else can pass on.",
+    vocabulary: words(`電話|でんわ|a telephone call
+伝言|でんごん|a message to pass on
+都合|つごう|availability
+会議|かいぎ|a meeting
+遅れる|おくれる|to be late
+戻る|もどる|to come back
+確認|かくにん|confirmation
+番号|ばんごう|a number`),
+    grammar: [
+      g(
+        "Telephone set phrases",
+        "A call opens with もしもし between friends, but at work you give your name first instead. {少々|しょうしょう}お{待|ま}ちください asks the caller to hold, and {失礼|しつれい}します closes the call in place of さようなら, which sounds abrupt on the telephone.",
+        "もしもし、{田中|たなか}ですが、{山田|やまだ}さんはいらっしゃいますか。",
+        "Hello, this is Tanaka. Is Yamada-san available?",
+      ),
+      g(
+        "Prefacing with 〜んですが",
+        "Starting with the background and trailing off with んですが prepares the listener before the request itself arrives. The unfinished ending is deliberate: it invites the other person to respond, and it sounds far softer than stating what you want straight out.",
+        "{予約|よやく}を{変|か}えたいんですが、よろしいですか。",
+        "I would like to change my booking — would that be all right?",
+      ),
+      g(
+        "Softening a question with 〜でしょうか",
+        "でしょうか replaces ですか when you want to sound less direct, which matters most with someone you have never met. いつ{戻|もど}りますか becomes いつお{戻|もど}りでしょうか: the same question, with more room left for the answer.",
+        "ご{都合|つごう}はいかがでしょうか。",
+        "How would that suit you?",
+      ),
+      g(
+        "〜とお{伝|つた}えください",
+        "Quote the message with と and attach お{伝|つた}えください to ask somebody to relay it. The お + stem + ください shape is politer than {伝|つた}えてください, and the と marks exactly where the quoted message ends.",
+        "また{電話|でんわ}しますとお{伝|つた}えください。",
+        "Please tell them that I will call again.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which phrase closes a business phone call?",
+        "失礼します",
+        ["いってきます", "おかえりなさい", "いただきます"],
+        "失礼します ends a call politely; the other three belong at a door or a table, not on the telephone.",
+      ),
+      q(
+        "Choose the less direct question for someone you have not met.",
+        "いつお戻りでしょうか",
+        ["いつ戻る", "いつ戻った", "いつ戻るの"],
+        "でしょうか asks indirectly and suits a stranger; the plain forms are not polite enough for a business call.",
+      ),
+    ],
+    reading: p(
+      "A note left on a desk",
+      "{山田|やまだ}さんへ。{午前|ごぜん}{十時|じゅうじ}に{中村|なかむら}さんからお{電話|でんわ}がありました。{明日|あした}の{会議|かいぎ}が{三時|さんじ}に{変|か}わったそうです。{資料|しりょう}は{今日|きょう}じゅうに{送|おく}ると{言|い}っていました。{確認|かくにん}のお{電話|でんわ}をおねがいします。{番号|ばんごう}は{机|つくえ}の{上|うえ}のメモにあります。",
+      "To Yamada-san. Nakamura-san called at ten this morning. Apparently tomorrow's meeting has moved to three o'clock. They said they would send the documents by the end of today. Please call back to confirm. The number is on the memo on your desk.",
+      q(
+        "What changed about the meeting?",
+        "Its time",
+        ["Its place", "Its topic", "The people attending"],
+        "三時に変わった reports a new time; nothing in the note mentions a different room or a different agenda.",
+      ),
+    ),
+    listening: p(
+      "Calling to say you will be late",
+      "もしもし、{田中|たなか}ですが、{電車|でんしゃ}が{遅|おく}れていて、{十分|じゅっぷん}ぐらい{遅|おく}れそうです。{会議|かいぎ}を{先|さき}に{始|はじ}めていただけますか。",
+      "Hello, this is Tanaka. The train is delayed, so I will probably be about ten minutes late. Could you start the meeting without me?",
+      q(
+        "What does the caller ask for?",
+        "That the meeting start without them",
+        [
+          "That the meeting be cancelled",
+          "That someone meet them at the station",
+          "That the documents be sent again",
+        ],
+        "先に始めていただけますか asks the others to begin first; the delay is explained, not used to call the meeting off.",
+      ),
+    ),
+    practice:
+      "Make a short call out loud: give your name, preface the reason with んですが, ask one question with でしょうか, and leave a message with とお伝えください.",
+  },
+  {
+    slug: "at-the-shopping-mall",
+    title: "A day at the shopping mall",
+    summary:
+      "Read a floor guide, work out what a sale sign is actually offering, ask staff about sizes and stock, and follow the notices posted around the till.",
+    vocabulary: words(`売り場|うりば|a sales floor
+値段|ねだん|a price
+半額|はんがく|half price
+試着|しちゃく|trying clothes on
+在庫|ざいこ|stock
+会計|かいけい|the checkout
+袋|ふくろ|a bag
+階段|かいだん|stairs`),
+    grammar: [
+      g(
+        "Sale signs: 〜{割引|わりびき}・{税込|ぜいこみ}",
+        "{三割引|さんわりびき} takes three tenths off the price, so it is thirty per cent off, while {半額|はんがく} is half. {税込|ぜいこみ} means the tax is already inside the figure and {税別|ぜいべつ} means it is not, so the same number on two signs can come to two different totals at the till.",
+        "こちらは{半額|はんがく}、{税込|ぜいこみ}{千円|せんえん}です。",
+        "This one is half price: a thousand yen including tax.",
+      ),
+      g(
+        "Thresholds on signs: {以上|いじょう} & {未満|みまん}",
+        "{以上|いじょう} includes the number in front of it and {未満|みまん} excludes it, so {三千円以上|さんぜんえんいじょう} covers a purchase of exactly three thousand yen while {三千円未満|さんぜんえんみまん} does not. Shop offers turn on that one word, and it decides whether the deal applies to you.",
+        "{三千円|さんぜんえん}{以上|いじょう}お{買|か}い{上|あ}げで{送料|そうりょう}が{無料|むりょう}になります。",
+        "Purchases of three thousand yen or more come with free delivery.",
+      ),
+      g(
+        "Labels with 〜{別|べつ} & 〜{向|む}け",
+        "〜{別|べつ} sorts goods by a category, as in サイズ{別|べつ} or {色別|いろべつ}, and 〜{向|む}け says who something is intended for, as in {子|こ}ども{向|む}け. The first tells you how the shelf has been arranged; the second tells you whether the item is meant for you at all.",
+        "{二階|にかい}は{子|こ}ども{向|む}けの{売|う}り{場|ば}です。",
+        "The second floor is the children's section.",
+      ),
+      g(
+        "〜の{方|かた}は on notices",
+        "A printed notice addresses people as 〜の{方|かた}は rather than あなた, which would read as blunt. {試着|しちゃく}をご{希望|きぼう}の{方|かた}は means those who would like to try something on, and it is left to the reader to decide whether the line is about them.",
+        "{試着|しちゃく}をご{希望|きぼう}の{方|かた}は、{店員|てんいん}にお{声|こえ}がけください。",
+        "Those wishing to try something on, please speak to a member of staff.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "A sign reads 三千円未満は送料がかかります。You spend exactly 3,000 yen. What happens?",
+        "Delivery is free",
+        ["Delivery costs extra", "The order is refused", "The price is halved"],
+        "未満 excludes the number itself, so exactly three thousand yen does not count as 未満 and no delivery charge applies.",
+      ),
+      q(
+        "Which label tells you who an item is meant for?",
+        "子ども向け",
+        ["サイズ別", "税込", "半額"],
+        "〜向け names the intended user, while 〜別 only says how the goods have been sorted on the shelf.",
+      ),
+    ],
+    reading: p(
+      "The floor guide",
+      "{一階|いっかい}は{食品|しょくひん}{売|う}り{場|ば}です。{二階|にかい}と{三階|さんがい}は{服|ふく}の{売|う}り{場|ば}で、{三階|さんがい}は{子|こ}ども{向|む}けです。{四階|よんかい}のレストランは{午前|ごぜん}{十一時|じゅういちじ}からです。{今週|こんしゅう}は{三千円|さんぜんえん}{以上|いじょう}お{買|か}い{上|あ}げの{方|かた}に、{駐車場|ちゅうしゃじょう}{一時間|いちじかん}{無料|むりょう}のサービスがあります。{試着|しちゃく}をご{希望|きぼう}の{方|かた}は{店員|てんいん}にお{声|こえ}がけください。",
+      "The first floor is the food hall. The second and third floors sell clothes, and the third floor is for children. The restaurants on the fourth floor open from eleven in the morning. This week, customers spending three thousand yen or more get an hour of free parking. If you would like to try something on, please speak to a member of staff.",
+      q(
+        "Who gets an hour of free parking?",
+        "Customers who spend 3,000 yen or more",
+        [
+          "Everybody who visits the mall",
+          "Customers on the third floor only",
+          "Customers who eat in a restaurant",
+        ],
+        "三千円以上お買い上げの方に sets the condition; the floors and the restaurant are described separately from the offer.",
+      ),
+    ),
+    listening: p(
+      "Asking about a size",
+      "すみません、このシャツのMサイズはありますか。{申|もう}し{訳|わけ}ございません、Mは{在庫|ざいこ}がありません。Lサイズでしたら{試着|しちゃく}していただけます。では、{試|ため}してみます。",
+      "Excuse me, do you have this shirt in medium? I am very sorry, we have no medium in stock. If a large would do, you are welcome to try it on. Then I will try it.",
+      q(
+        "What does the shop offer instead?",
+        "Trying on a large",
+        ["Ordering a medium", "A discount on the shirt", "A different colour"],
+        "Lサイズでしたら試着していただけます offers the larger size; nothing is said about ordering one in or reducing the price.",
+      ),
+    ),
+    practice:
+      "Walk through a shop or a Japanese shopping site and copy down three signs: one price sign using 税込 or 割引, one threshold using 以上, and one line addressed to 〜の方は.",
+  },
+  {
+    slug: "reading-a-menu",
+    title: "Reading a menu",
+    summary:
+      "Work out what a set meal actually includes, order what you want without the parts you cannot eat, and ask what is in a dish before it reaches the table.",
+    vocabulary: words(`定食|ていしょく|a set meal
+飲み物|のみもの|a drink
+料理|りょうり|a dish
+辛い|からい|spicy
+甘い|あまい|sweet
+注文|ちゅうもん|an order
+お勘定|おかんじょう|the bill
+苦手|にがて|not good with something`),
+    grammar: [
+      g(
+        "〜{付|つ}き & 〜{込|こ}み",
+        "〜{付|つ}き says what comes with a dish, as in サラダ{付|つ}き or {飲|の}み{物|もの}{付|つ}き, and 〜{込|こ}み says what is already inside the price, as in {税込|ぜいこみ} or サービス{料込|りょうこ}み. One is about what arrives on the tray, the other about what you pay.",
+        "この{定食|ていしょく}はサラダと{飲|の}み{物|もの}{付|つ}きです。",
+        "This set meal comes with a salad and a drink.",
+      ),
+      g(
+        "〜{抜|ぬ}きで",
+        "〜{抜|ぬ}きで asks for a dish without one of its parts: ねぎ{抜|ぬ}きで、わさび{抜|ぬ}きで。It attaches to the ingredient you want left out rather than to the dish, and it is the ordinary way to handle something you cannot eat.",
+        "わさび{抜|ぬ}きでおねがいできますか。",
+        "Could I have it without wasabi, please?",
+      ),
+      g(
+        "Choosing with 〜にします",
+        "〜にします announces the choice you have settled on out of the options in front of you, which is exactly what a menu offers. {定食|ていしょく}にします chooses the set meal, whereas {定食|ていしょく}を{食|た}べます would only describe what you are about to do.",
+        "わたしは{魚|さかな}の{定食|ていしょく}にします。",
+        "I will go for the fish set meal.",
+      ),
+      g(
+        "〜でお{願|ねが}いします",
+        "で marks the form an order takes and お{願|ねが}いします turns it into a request, so {以上|いじょう}でお{願|ねが}いします rounds off an order and {別々|べつべつ}でお{願|ねが}いします asks for separate bills. It is shorter and far more natural than a full sentence.",
+        "お{勘定|かんじょう}は{別々|べつべつ}でお{願|ねが}いします。",
+        "Separate bills, please.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "A menu says ドリンク付き. What does it mean?",
+        "A drink comes with it",
+        [
+          "The drink costs extra",
+          "Drinks are sold out",
+          "The price includes tax",
+        ],
+        "〜付き names what comes with the dish; tax already being in the price would be written 税込 instead.",
+      ),
+      q(
+        "How do you ask for a dish without onion?",
+        "ねぎ抜きで",
+        ["ねぎ付きで", "ねぎ込みで", "ねぎにします"],
+        "〜抜きで attaches to the ingredient you want left out, while 〜付き would add it to the dish instead.",
+      ),
+    ],
+    reading: p(
+      "A lunch menu",
+      "{昼|ひる}の{定食|ていしょく}は{午前|ごぜん}{十一時|じゅういちじ}から{午後|ごご}{二時|にじ}までです。どの{定食|ていしょく}もごはんとみそ{汁|しる}、サラダ{付|つ}きで、{値段|ねだん}はすべて{税込|ぜいこみ}です。{魚|さかな}の{定食|ていしょく}は{辛|から}くありませんが、とりの{定食|ていしょく}は{少|すこ}し{辛|から}いです。{飲|の}み{物|もの}は{別|べつ}で、{食後|しょくご}のコーヒーは{百円|ひゃくえん}{引|び}きになります。",
+      "The lunch sets are served from eleven in the morning until two in the afternoon. Every set comes with rice, miso soup and a salad, and all the prices include tax. The fish set is not spicy, but the chicken set is a little spicy. Drinks are separate, and coffee after the meal is a hundred yen off.",
+      q(
+        "Which set is described as spicy?",
+        "The chicken set",
+        ["The fish set", "Both sets", "Neither set"],
+        "とりの定食は少し辛いです marks the chicken set, and the fish set is explicitly described as 辛くありません.",
+      ),
+    ),
+    listening: p(
+      "Ordering lunch",
+      "ご{注文|ちゅうもん}はお{決|き}まりですか。{魚|さかな}の{定食|ていしょく}にします。わさび{抜|ぬ}きでおねがいできますか。かしこまりました。お{飲|の}み{物|もの}はいかがですか。では、コーヒーで。{以上|いじょう}でおねがいします。",
+      "Are you ready to order? I will have the fish set. Could I have it without wasabi? Certainly. Would you like a drink? Coffee, then. That is everything, thank you.",
+      q(
+        "What does the customer ask to leave out?",
+        "Wasabi",
+        ["The salad", "The rice", "The coffee"],
+        "わさび抜きで names the one thing left out; the coffee is something the customer adds to the order.",
+      ),
+    ),
+    practice:
+      "Find a real Japanese menu online and note three things: what one set comes with using 付き, one ingredient you would leave out with 抜きで, and the choice you would announce with にします.",
+  },
+  {
+    slug: "everyday-news",
+    title: "Newspaper & weather",
+    summary:
+      "Read a short news item and a weather forecast as they are actually written. These forms are for recognising on the page rather than producing yourself: cut-down headlines and the cautious verbs that report without promising.",
+    vocabulary: words(`新聞|しんぶん|a newspaper
+記事|きじ|an article
+天気予報|てんきよほう|a weather forecast
+台風|たいふう|a typhoon
+気温|きおん|temperature
+事故|じこ|an accident
+発表|はっぴょう|an announcement
+今後|こんご|from now on`),
+    grammar: [
+      g(
+        "Headline style: dropped particles",
+        "Headlines strip out the particles and the polite ending, so {台風|たいふう}{九州|きゅうしゅう}{上陸|じょうりく} stands for a full sentence with に and した missing. Reading one means putting those parts back yourself, and a noun at the end usually does the work of a verb. Recognise the style rather than write in it.",
+        "{台風|たいふう}{九州|きゅうしゅう}{上陸|じょうりく}、{列車|れっしゃ}{運休|うんきゅう}",
+        "Typhoon makes landfall in Kyushu; trains suspended",
+      ),
+      g(
+        "Forecasts with 〜{模様|もよう}・〜{見込|みこ}み",
+        "A forecast avoids a plain assertion. 〜{模様|もよう} reports how things appear and 〜{見込|みこ}み gives what is expected, as in {雨|あめ}の{模様|もよう} or {回復|かいふく}する{見込|みこ}み. Both let the writer report without promising, so read them as likely rather than certain; you only need to recognise them.",
+        "{明日|あした}は{雨|あめ}が{降|ふ}る{見込|みこ}みです。",
+        "Rain is expected tomorrow.",
+      ),
+      g(
+        "Warnings with 〜{恐|おそ}れがあります",
+        "〜{恐|おそ}れがあります warns that something unwanted may happen, and it is only ever used of bad outcomes. {大雨|おおあめ}の{恐|おそ}れがあります warns of heavy rain, but いい{天気|てんき}の{恐|おそ}れがあります is impossible. In speech at this level, 〜かもしれません still does the job.",
+        "{午後|ごご}から{大雨|おおあめ}の{恐|おそ}れがあります。",
+        "There is a risk of heavy rain from the afternoon.",
+      ),
+      g(
+        "{以降|いこう} & {現在|げんざい} in reports",
+        "{以降|いこう} means from that point onwards and includes the point itself, so {三時以降|さんじいこう} covers three o'clock. {現在|げんざい} fixes the moment at which a figure was true, as in {午前|ごぜん}{九時|くじ}{現在|げんざい}, which matters whenever the number keeps moving.",
+        "{午前|ごぜん}{九時|くじ}{現在|げんざい}、{復旧|ふっきゅう}の{見込|みこ}みは{立|た}っていません。",
+        "As of nine in the morning, there is no prospect of service being restored.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "A forecast says 雨が降る見込みです。How certain is it?",
+        "It is expected but not promised",
+        [
+          "It is already raining",
+          "It will definitely not rain",
+          "It rained yesterday",
+        ],
+        "見込み reports an expectation, so the writer is forecasting rather than stating something as a fact.",
+      ),
+      q(
+        "Which can fill the gap: ___の恐れがあります。",
+        "大雨",
+        ["いい天気", "楽しい休み", "安い値段"],
+        "恐れがあります only ever warns of an unwanted outcome, so a pleasant result cannot go in front of it.",
+      ),
+    ],
+    reading: p(
+      "A short news item",
+      "{昨日|きのう}の{午後|ごご}、{大雨|おおあめ}のため{東|ひがし}{地区|ちく}の{道路|どうろ}が{通|とお}れなくなりました。けがをした{人|ひと}はいません。{市|し}の{発表|はっぴょう}によると、{今日|きょう}の{午後|ごご}{三時|さんじ}{以降|いこう}に{通|とお}れるようになる{見込|みこ}みです。{今後|こんご}も{雨|あめ}が{続|つづ}く{模様|もよう}で、{川|かわ}の{近|ちか}くでは{注意|ちゅうい}が{必要|ひつよう}です。",
+      "Yesterday afternoon, heavy rain closed a road in the eastern district. Nobody was injured. According to the city's announcement, the road is expected to reopen from three o'clock this afternoon. Rain appears likely to continue, and care is needed near the river.",
+      q(
+        "When is the road expected to reopen?",
+        "From three this afternoon",
+        [
+          "Yesterday afternoon",
+          "Tomorrow morning",
+          "Once the rain has stopped",
+        ],
+        "午後三時以降に通れるようになる見込みです gives the expected time, and 以降 includes three o'clock itself.",
+      ),
+    ),
+    listening: p(
+      "The evening forecast",
+      "{明日|あした}の{天気|てんき}です。{朝|あさ}は{晴|は}れますが、{昼|ひる}{過|す}ぎから{雲|くも}が{多|おお}くなる{見込|みこ}みです。{夜|よる}は{大雨|おおあめ}の{恐|おそ}れがありますので、{早|はや}めにお{帰|かえ}りください。{気温|きおん}は{今日|きょう}より{低|ひく}くなる{模様|もよう}です。",
+      "Here is tomorrow's weather. It will be fine in the morning, but cloud is expected to build up from early afternoon. There is a risk of heavy rain at night, so please head home early. Temperatures appear likely to be lower than today.",
+      q(
+        "What is the warning about?",
+        "Heavy rain at night",
+        ["Snow in the morning", "Strong wind all day", "A rise in temperature"],
+        "夜は大雨の恐れがあります is the one warning; the temperature is forecast to fall rather than rise.",
+      ),
+    ),
+    practice:
+      "Take one Japanese headline and write it out as a full sentence with the particles put back, then rewrite a forecast line once with 見込み and once with 恐れがあります.",
+  },
+  {
+    slug: "particles-linking",
+    title: "Particles that link ideas",
+    summary:
+      "Turn a verb into something you can talk about, leave a list deliberately open, say how often you do something, and quote a friend the way people actually do it.",
+    vocabulary: words(`泳ぐ|およぐ|to swim
+趣味|しゅみ|a hobby
+回|かい|times; occasions
+週|しゅう|a week
+練習|れんしゅう|practice
+説明|せつめい|an explanation
+準備|じゅんび|preparation
+得意|とくい|being good at something`),
+    grammar: [
+      g(
+        "の & こと as nominalisers",
+        "To talk about an action you first turn the verb into a noun, with の or こと: {泳|およ}ぐのが{好|す}きです。の suits things you see, hear, and feel directly, while こと suits facts and abilities. After {好|す}き, {上手|じょうず}, and the verbs of the senses, の is the safer choice.",
+        "{泳|およ}ぐのが{好|す}きです。",
+        "I like swimming.",
+      ),
+      g(
+        "に for frequency & purpose",
+        "に fixes a point, and that covers how often as well as when: {週|しゅう}に{三回|さんかい} is three times a week, with the longer period named first. The same に marks the purpose of a trip when it follows a verb stem, as in {泳|およ}ぎに{行|い}く.",
+        "{週|しゅう}に{三回|さんかい}プールへ{泳|およ}ぎに{行|い}きます。",
+        "I go to the pool to swim three times a week.",
+      ),
+      g(
+        "とか & など for loose lists",
+        "と lists things exhaustively, but とか and など leave the list open: コーヒーとか{紅茶|こうちゃ}とか means coffee, tea, and so on. とか belongs in speech and など in writing, and both soften a statement by not claiming to have named everything.",
+        "コーヒーとか{紅茶|こうちゃ}とかが{好|す}きです。",
+        "I like coffee, tea, and that sort of thing.",
+      ),
+      g(
+        "って for casual quoting",
+        "In conversation って takes over from と for quoting and from という for naming: {明日|あした}{来|こ}ないって{言|い}ってた、{田中|たなか}さんって{人|ひと}。It is casual only, so keep と and という in writing and with anybody you would address using です.",
+        "{明日|あした}は{雨|あめ}だって{言|い}っていました。",
+        "They said it is going to rain tomorrow.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which particle turns 泳ぐ into something you can like?",
+        "の",
+        ["を", "に", "へ"],
+        "の nominalises the verb so that it can take が in front of 好き; を and に cannot do that job.",
+      ),
+      q(
+        "How often is 週に三回?",
+        "Three times a week",
+        ["Three weeks in a row", "In the third week", "Once every three weeks"],
+        "The longer period is named first with に, so 週に三回 is three times within a single week.",
+      ),
+    ],
+    reading: p(
+      "A swimming habit",
+      "{趣味|しゅみ}は{泳|およ}ぐことです。{週|しゅう}に{三回|さんかい}、{近|ちか}くのプールへ{泳|およ}ぎに{行|い}きます。{練習|れんしゅう}の{前|まえ}に{準備|じゅんび}{運動|うんどう}をするのが{大切|たいせつ}だと{先生|せんせい}が{説明|せつめい}してくれました。{友達|ともだち}は{水|みず}がつめたいって{言|い}っていましたが、わたしはつめたいのが{得意|とくい}です。",
+      "My hobby is swimming. Three times a week I go to a nearby pool to swim. The teacher explained that doing warm-up exercises before practice is important. My friend said the water was cold, but I am fine with cold water.",
+      q(
+        "How often does the writer swim?",
+        "Three times a week",
+        ["Once a week", "Every day", "Three times a month"],
+        "週に三回 names the longer period first, so it is three times within one week rather than one month.",
+      ),
+    ),
+    listening: p(
+      "Talking about hobbies",
+      "{趣味|しゅみ}は{何|なん}ですか。{本|ほん}を{読|よ}むのとか、{泳|およ}ぐのとかです。{泳|およ}ぐのはどこでですか。{駅|えき}の{近|ちか}くのプールです。{週|しゅう}に{二回|にかい}{行|い}きます。",
+      "What are your hobbies? Reading books, swimming, that sort of thing. Where do you swim? At the pool near the station. I go twice a week.",
+      q(
+        "Where does the speaker swim?",
+        "At a pool near the station",
+        ["At the sea", "At a school pool", "At a friend's house"],
+        "駅の近くのプールです names the place; nothing at all is said about the sea or about a school.",
+      ),
+    ),
+    practice:
+      "Describe one hobby in four lines: nominalise the verb with の, give a frequency with に, leave a list open with とか, and quote a friend with って.",
+  },
+  {
     slug: "n4-integration",
     title: "N4 integration: everyday decisions",
     summary:

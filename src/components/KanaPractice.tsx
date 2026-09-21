@@ -24,6 +24,7 @@ import "../kana.css";
 
 type Mode = "chart" | "flashcards" | "memory" | "quiz";
 type Direction = "reading" | "character";
+type AnswerKind = "type" | "choose";
 const MODES: { id: Mode; label: string }[] = [
   { id: "chart", label: "Study chart" },
   { id: "flashcards", label: "Flashcards" },
@@ -49,7 +50,7 @@ export function KanaPractice({
       <PageHeading
         eyebrow="BEGINNER FOUNDATIONS · PRACTICE AT ANY LEVEL"
         title="Hiragana & katakana"
-        description="See it, recall it, repeat it. Build your memory with flashcards and as many guesses as you need."
+        description="See it, recall it, write it. Every round asks you to produce the answer rather than just rate yourself."
       />
       <div className="toolbar kana-toolbar">
         <div className="segmented">
@@ -106,21 +107,30 @@ export function KanaPractice({
             <p>
               {mode === "quiz"
                 ? "A fresh set of 10 questions. Retry or continue with repeat practice afterward."
-                : "No question limit. Missed cards return sooner; recalled cards return after more practice. Aim for three correct recalls of each card."}
+                : mode === "flashcards"
+                  ? "One pass through the deck. Type each answer, or reveal it when a card will not come."
+                  : "No question limit. Missed cards return sooner; recalled cards return after more practice. Aim for three correct recalls of each card."}
             </p>
           </div>
-          <label>
-            Practice direction
-            <select
-              value={direction}
-              onChange={(event) =>
-                setDirection(event.target.value as Direction)
-              }
-            >
-              <option value="reading">Kana → reading</option>
-              <option value="character">Reading → kana</option>
-            </select>
-          </label>
+          <div className="kana-direction">
+            <span className="field-label">WHAT YOU PRACTICE</span>
+            <div className="segmented" aria-label="Practice direction">
+              <button
+                className={direction === "reading" ? "active" : ""}
+                aria-pressed={direction === "reading"}
+                onClick={() => setDirection("reading")}
+              >
+                Read it <span>かな → romaji</span>
+              </button>
+              <button
+                className={direction === "character" ? "active" : ""}
+                aria-pressed={direction === "character"}
+                onClick={() => setDirection("character")}
+              >
+                Write it <span>romaji → かな</span>
+              </button>
+            </div>
+          </div>
         </section>
       )}
       {mode === "chart" ? (
@@ -278,13 +288,15 @@ function KanaSession({
     next: KanaMemorySession;
   } | null>(null);
   const [finished, setFinished] = useState(false);
-  const [flipped, setFlipped] = useState(false);
+  const [answerKind, setAnswerKind] = useState<AnswerKind>("type");
   const [answer, setAnswer] = useState("");
   const submitted = useRef(false);
   const input = useRef<HTMLInputElement>(null);
   const nextButton = useRef<HTMLButtonElement>(null);
   const card = memory.queue[0];
   const [choices, setChoices] = useState(() => kanaChoices(card));
+  // Reading practice is always typed; writing the kana itself is optional.
+  const typing = direction === "reading" || answerKind === "type";
   const stats = feedback?.next || memory;
   const mastered = Object.values(stats.streaks).filter(
     (streak) => streak >= 3,
@@ -292,29 +304,32 @@ function KanaSession({
   useEffect(() => () => stopJapaneseAudio(), []);
   useEffect(() => {
     if (feedback) nextButton.current?.focus();
-    else if (mode !== "flashcards" && direction === "reading")
-      input.current?.focus();
-  }, [feedback, mode, direction]);
+    else if (typing) input.current?.focus();
+  }, [feedback, typing]);
 
   function record(correct: boolean) {
     if (submitted.current) return;
     submitted.current = true;
     const next = answerKanaMemory(memory, correct);
     if (mode === "quiz") next.queue = [...memory.queue.slice(1), card];
+    // Flashcards run once through the deck; repeat practice keeps cycling.
+    if (mode === "flashcards") next.queue = memory.queue.slice(1);
     setFeedback({ correct, next });
     onRecord("kana", card.id, level, correct);
   }
   function next() {
     if (!feedback) return;
     stopJapaneseAudio();
-    if (mode === "quiz" && feedback.next.attempts >= 10) {
+    if (
+      feedback.next.queue.length === 0 ||
+      (mode === "quiz" && feedback.next.attempts >= 10)
+    ) {
       setFinished(true);
       return;
     }
     setMemory(feedback.next);
     setChoices(kanaChoices(feedback.next.queue[0]));
     setFeedback(null);
-    setFlipped(false);
     setAnswer("");
     submitted.current = false;
   }
@@ -331,7 +346,7 @@ function KanaSession({
         <p>
           {stats.correct} correct recalls in {stats.attempts} attempts.
         </p>
-        {mode !== "quiz" && (
+        {mode === "memory" && (
           <p>
             {mastered} of {cards.length} characters recalled correctly three
             times in a row.
@@ -354,21 +369,25 @@ function KanaSession({
         <span>
           {mode === "quiz"
             ? `Question ${Math.min(10, memory.attempts + 1)} of 10`
-            : `${stats.attempts} attempts · ${stats.correct} correct`}
+            : mode === "flashcards"
+              ? `Card ${Math.min(cards.length, memory.attempts + 1)} of ${cards.length}`
+              : `${stats.attempts} attempts · ${stats.correct} correct`}
         </span>
         <span>
-          {mode === "quiz"
-            ? `${stats.correct} correct`
-            : `${mastered}/${cards.length} recalled 3 times`}
+          {mode === "memory"
+            ? `${mastered}/${cards.length} recalled 3 times`
+            : `${stats.correct} correct`}
         </span>
       </div>
       <ProgressBar
         value={
           mode === "quiz"
             ? stats.attempts * 10
-            : (mastered / cards.length) * 100
+            : mode === "flashcards"
+              ? (stats.attempts / cards.length) * 100
+              : (mastered / cards.length) * 100
         }
-        label={mode === "quiz" ? "Kana quiz progress" : "Kana memory goal"}
+        label={mode === "memory" ? "Kana memory goal" : "Kana session progress"}
       />
       <section className="panel kana-memory-card">
         <span className="badge">
@@ -384,120 +403,109 @@ function KanaSession({
             ? "HOW DO YOU READ THIS?"
             : `WHICH ${card.script.toUpperCase()} MATCHES THIS SOUND?`}
         </p>
-        {mode === "flashcards" ? (
-          <>
-            <button
-              className={`kana-flip ${flipped ? "is-flipped" : ""}`}
-              aria-label={
-                flipped ? "Hide flashcard answer" : "Reveal flashcard answer"
-              }
-              aria-pressed={flipped}
-              onClick={() => setFlipped((value) => !value)}
-            >
-              <span
-                className={
-                  direction === "reading" ? "large-kanji" : "kana-romaji-prompt"
-                }
-                lang={direction === "reading" ? "ja" : "en"}
-              >
-                {direction === "reading"
-                  ? card.kana[card.script]
-                  : card.kana.romaji}
-              </span>
-              {flipped ? (
-                <strong
-                  className="kana-flip-answer"
-                  lang={direction === "character" ? "ja" : "en"}
-                >
-                  {direction === "reading"
-                    ? card.kana.romaji
-                    : card.kana[card.script]}
-                </strong>
-              ) : (
-                <span className="helper-text">
-                  Think of the answer, then tap to reveal
-                </span>
-              )}
-            </button>
-            {flipped && !feedback && (
-              <div className="kana-round-actions">
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (!answer.trim()) return;
+            record(
+              direction === "reading"
+                ? matchesKanaReading(card.kana, answer)
+                : answer.trim() === card.kana[card.script],
+            );
+          }}
+        >
+          <span
+            className={
+              direction === "reading" ? "large-kanji" : "kana-romaji-prompt"
+            }
+            lang={direction === "reading" ? "ja" : "en"}
+          >
+            {direction === "reading"
+              ? card.kana[card.script]
+              : card.kana.romaji}
+          </span>
+          {direction === "character" && !feedback && (
+            <div className="segmented kana-answer-kind" aria-label="How to answer">
+              {(["type", "choose"] as const).map((kind) => (
                 <button
+                  key={kind}
+                  type="button"
+                  className={answerKind === kind ? "active" : ""}
+                  aria-pressed={answerKind === kind}
+                  onClick={() => {
+                    setAnswerKind(kind);
+                    setAnswer("");
+                  }}
+                >
+                  {kind === "type" ? "Write it" : "Choose it"}
+                </button>
+              ))}
+            </div>
+          )}
+          {typing ? (
+            <>
+              <label htmlFor="kana-answer">
+                {direction === "reading"
+                  ? "Type the reading in romaji"
+                  : `Type the ${card.script} character`}
+              </label>
+              <input
+                ref={input}
+                id="kana-answer"
+                className="reading-input"
+                autoComplete="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                value={answer}
+                onChange={(event) => setAnswer(event.target.value)}
+                placeholder={direction === "reading" ? "romaji" : "かな"}
+                disabled={Boolean(feedback)}
+              />
+              {direction === "character" && (
+                <p className="helper-text">
+                  Writing kana needs a Japanese keyboard. Switch to “Choose it”
+                  if you do not have one set up.
+                </p>
+              )}
+            </>
+          ) : (
+            <fieldset
+              className="kana-choice-fieldset"
+              disabled={Boolean(feedback)}
+            >
+              <legend className="sr-only">
+                Choose the {card.script} character for {card.kana.romaji}
+              </legend>
+              <div className="kana-choice-grid">
+                {choices.map((option) => (
+                  <label
+                    key={option}
+                    className={`answer-option ${answer === option ? "selected" : ""} ${feedback && option === card.kana[card.script] ? "right" : ""} ${feedback && answer === option && !feedback.correct ? "wrong" : ""}`}
+                  >
+                    <input
+                      type="radio"
+                      name="kana-choice"
+                      value={option}
+                      checked={answer === option}
+                      onChange={() => setAnswer(option)}
+                    />
+                    <span lang="ja">{option}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          )}
+          {!feedback && (
+            <div className="kana-round-actions">
+              {mode === "flashcards" && (
+                <button
+                  type="button"
                   className="button secondary"
                   onClick={() => record(false)}
                 >
-                  Still learning
+                  Show answer
                 </button>
-                <button className="button primary" onClick={() => record(true)}>
-                  I remembered
-                </button>
-              </div>
-            )}
-          </>
-        ) : (
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              if (answer.trim())
-                record(
-                  direction === "reading"
-                    ? matchesKanaReading(card.kana, answer)
-                    : answer === card.kana[card.script],
-                );
-            }}
-          >
-            <span
-              className={
-                direction === "reading" ? "large-kanji" : "kana-romaji-prompt"
-              }
-              lang={direction === "reading" ? "ja" : "en"}
-            >
-              {direction === "reading"
-                ? card.kana[card.script]
-                : card.kana.romaji}
-            </span>
-            {direction === "reading" ? (
-              <>
-                <label htmlFor="kana-answer">Type the reading in romaji</label>
-                <input
-                  ref={input}
-                  id="kana-answer"
-                  autoComplete="off"
-                  autoCapitalize="off"
-                  spellCheck={false}
-                  value={answer}
-                  onChange={(event) => setAnswer(event.target.value)}
-                  placeholder="e.g. ke"
-                  disabled={Boolean(feedback)}
-                />
-              </>
-            ) : (
-              <fieldset
-                className="kana-choice-fieldset"
-                disabled={Boolean(feedback)}
-              >
-                <legend className="sr-only">
-                  Choose the {card.script} character for {card.kana.romaji}
-                </legend>
-                <div className="kana-choice-grid">
-                  {choices.map((option) => (
-                    <label
-                      key={option}
-                      className={`answer-option ${answer === option ? "selected" : ""} ${feedback && option === card.kana[card.script] ? "right" : ""} ${feedback && answer === option && !feedback.correct ? "wrong" : ""}`}
-                    >
-                      <input
-                        type="radio"
-                        name="kana-choice"
-                        value={option}
-                        checked={answer === option}
-                        onChange={() => setAnswer(option)}
-                      />
-                      <span lang="ja">{option}</span>
-                    </label>
-                  ))}
-                </div>
-              </fieldset>
-            )}
-            {!feedback && (
+              )}
               <button
                 type="submit"
                 className="button primary"
@@ -505,9 +513,9 @@ function KanaSession({
               >
                 Check answer <Icon name="check" size={17} />
               </button>
-            )}
-          </form>
-        )}
+            </div>
+          )}
+        </form>
         {feedback && (
           <>
             <AnswerFeedback
@@ -534,10 +542,7 @@ function KanaSession({
             </div>
           </>
         )}
-        {!feedback && mode === "flashcards" && flipped && (
-          <SpeakButton text={card.kana[card.script]} />
-        )}
-        {mode !== "quiz" && (
+        {mode === "memory" && (
           <p className="helper-text">
             This card: {stats.streaks[card.id]} / 3 consecutive correct recalls.
             {mastered === cards.length
@@ -548,7 +553,11 @@ function KanaSession({
       </section>
       {mode !== "quiz" && (
         <div className="kana-session-footer">
-          <p>There is no limit. Take a break whenever you need one.</p>
+          <p>
+            {mode === "flashcards"
+              ? "Stop whenever you like; your answers are already saved."
+              : "There is no limit. Take a break whenever you need one."}
+          </p>
           <button
             className="button secondary"
             onClick={() => {

@@ -986,6 +986,256 @@ export const n2Courses: CourseSeed[] = [
       "Compare two short notices. List shared rules, differences, and the action required for a specific person's circumstances.",
   },
   {
+    slug: "everyday-negotiation",
+    title: "Returns, complaints & terms",
+    summary:
+      "Raise a problem with a product or a service, state your side of it without hardening the exchange, and land on terms that both parties can record as agreed.",
+    vocabulary: words(`返品|へんぴん|returning goods
+対応|たいおう|handling
+不具合|ふぐあい|a fault
+保証|ほしょう|a guarantee
+交換|こうかん|an exchange
+納得|なっとく|being convinced
+妥協|だきょう|a compromise
+手続き|てつづき|a procedure`),
+    grammar: [
+      g(
+        "〜ということで",
+        "ということで closes a discussion by naming the conclusion both sides are settling on. It presents the outcome as something shared rather than imposed, which is exactly why so many negotiations end with it instead of with a bare statement of the result.",
+        "{今回|こんかい}は{交換|こうかん}ということでいかがでしょうか。",
+        "Shall we settle on an exchange this time?",
+      ),
+      g(
+        "〜といたしましては",
+        "としては states a position from one particular standpoint, and the humble いたしまして raises it for business use. It signals that what follows is your side's position rather than an established fact, which leaves the other side room to state theirs.",
+        "{弊社|へいしゃ}といたしましては、{交換|こうかん}でのご{対応|たいおう}を{考|かんが}えております。",
+        "From our side, we are thinking in terms of handling this as an exchange.",
+      ),
+      g(
+        "〜ないことには",
+        "The ない-form plus ことには sets an indispensable condition, and the clause that follows must itself be negative. It is stronger than なければ: it says that nothing at all can move until the condition has been met.",
+        "{現物|げんぶつ}を{拝見|はいけん}しないことには、お{返事|へんじ}ができません。",
+        "Until we can see the item itself, we are unable to give you an answer.",
+      ),
+      g(
+        "〜{限|かぎ}りでは",
+        "A dictionary or た-form plus {限|かぎ}りでは limits a statement to the evidence you have actually seen. It protects you from claiming more than you checked, which is why reports and negotiations lean on it so heavily.",
+        "{記録|きろく}を{確認|かくにん}した{限|かぎ}りでは、{同|おな}じ{不具合|ふぐあい}は{出|で}ておりません。",
+        "As far as the records I have checked go, the same fault has not occurred.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which phrase settles on the outcome both sides accept?",
+        "交換ということで",
+        ["交換しないことには", "交換した限りでは", "交換といたしましては"],
+        "ということで names the agreed conclusion; the others set a condition, limit a claim, or mark one side's standpoint.",
+      ),
+      q(
+        "Choose the phrase that limits a claim to what was actually checked.",
+        "確認した限りでは",
+        ["確認しないことには", "確認ということで", "確認といたしましては"],
+        "限りでは keeps the statement inside the evidence the speaker has seen, and claims nothing beyond it.",
+      ),
+    ],
+    reading: p(
+      "A reply from customer support",
+      "このたびは{弊社|へいしゃ}{製品|せいひん}に{不具合|ふぐあい}がございましたこと、{深|ふか}くおわび{申|もう}し{上|あ}げます。お{送|おく}りいただいた{写真|しゃしん}を{確認|かくにん}いたしました{限|かぎ}りでは、{初期|しょき}{不良|ふりょう}であると{判断|はんだん}しております。{保証|ほしょう}{期間|きかん}はすでに{過|す}ぎておりますが、{今回|こんかい}は{無料|むりょう}で{交換|こうかん}させていただきます。{弊社|へいしゃ}といたしましては、{返品|へんぴん}による{返金|へんきん}ではなく{交換|こうかん}ということでお{願|ねが}いできればと{考|かんが}えております。{同封|どうふう}の{用紙|ようし}にご{記入|きにゅう}いただかないことには{手続|てつづ}きが{進|すす}められませんので、ご{記入|きにゅう}のうえご{返送|へんそう}ください。",
+      "We sincerely apologise for the fault in our product. As far as the photographs you sent allow us to judge, we consider it a manufacturing defect. Although the warranty period has already passed, we will replace the item free of charge this time. From our side, we would ask you to accept an exchange rather than a refund through a return. The procedure cannot move forward until the enclosed form is filled in, so please complete it and send it back to us.",
+      q(
+        "What does the company ask the customer to accept?",
+        "An exchange instead of a refund",
+        [
+          "A repair at their own cost",
+          "A longer warranty period",
+          "A delay of several weeks",
+        ],
+        "返金ではなく交換ということで names the outcome the company is proposing; the exchange itself is offered free of charge.",
+      ),
+    ),
+    listening: p(
+      "At the service counter",
+      "レシートがないので{返品|へんぴん}は{難|むずか}しいのですが、{同|おな}じ{商品|しょうひん}との{交換|こうかん}でしたら{対応|たいおう}できます。{在庫|ざいこ}を{確認|かくにん}しないことにはお{答|こた}えできませんので、{十分|じゅっぷん}ほどお{時間|じかん}をいただけますか。",
+      "Without a receipt a return is difficult, but we can handle an exchange for the same item. I cannot answer until I have checked the stock, so could you give me about ten minutes?",
+      q(
+        "What can the counter offer?",
+        "An exchange for the same item",
+        ["A full refund", "A store credit", "A free repair"],
+        "同じ商品との交換でしたら対応できます is the one option offered; the return itself is described as difficult.",
+      ),
+    ),
+    practice:
+      "Write a four-line reply to a complaint: apologise, report what you checked with 限りでは, state your side with といたしましては, and name the settlement with ということで.",
+  },
+  {
+    slug: "workplace-exchanges",
+    title: "Reporting, asking & declining at work",
+    summary:
+      "Report progress before anybody has to ask, flag a risk while there is still time to act on it, and turn down extra work without closing the door on the next request.",
+    vocabulary: words(`進捗|しんちょく|progress
+報告|ほうこく|a report
+相談|そうだん|talking something over
+残業|ざんぎょう|overtime
+締切|しめきり|a deadline
+引き継ぎ|ひきつぎ|a handover
+指示|しじ|instructions
+余裕|よゆう|room to spare`),
+    grammar: [
+      g(
+        "〜たところ",
+        "The た-form plus ところ reports what you found when you did something: {確認|かくにん}したところ、{数字|すうじ}が{違|ちが}っていました. It introduces a discovery neutrally and keeps the checking separate from what the check turned up, which keeps blame out of a progress report.",
+        "{確認|かくにん}したところ、{締切|しめきり}が{来週|らいしゅう}に{変|か}わっていました。",
+        "When I checked, the deadline had moved to next week.",
+      ),
+      g(
+        "〜のではないかと{思|おも}います",
+        "Wrapping a claim in のではないかと{思|おも}います turns it into a suggestion. The negative question inside does not make the sentence negative; it simply leaves the listener room to disagree, which is what makes it usable for raising a risk in a meeting.",
+        "この{進|すす}め{方|かた}では{間|ま}に{合|あ}わないのではないかと{思|おも}います。",
+        "I suspect we will not make it in time at this rate.",
+      ),
+      g(
+        "〜ば{幸|さいわ}いです",
+        "The ば-form plus {幸|さいわ}いです makes a request sound like a hope rather than a demand. It is at home in written Japanese and with someone senior; spoken between close colleagues it can come across as stiff or distant.",
+        "{提出|ていしゅつ}を{二日|ふつか}ほど{延|の}ばしていただければ{幸|さいわ}いです。",
+        "I would be grateful if the submission could be put back by about two days.",
+      ),
+      g(
+        "〜かと{存|ぞん}じます",
+        "{存|ぞん}じます is the humble form of {思|おも}います, and かと adds a layer of tentativeness on top of it. Together they state an opinion while declining to insist on it, which is why business correspondence is full of the pair.",
+        "{来週|らいしゅう}でしたら{対応|たいおう}できるかと{存|ぞん}じます。",
+        "I believe we could manage it if it were next week.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which reports what was found on checking?",
+        "確認したところ",
+        ["確認するにあたり", "確認した限りでは", "確認するかと存じます"],
+        "たところ introduces what the speaker discovered on checking, rather than limiting a claim or stating an opinion.",
+      ),
+      q(
+        "Choose the softest way to raise a concern.",
+        "間に合わないのではないかと思います",
+        ["間に合いません", "間に合わないでしょう", "間に合うはずがありません"],
+        "のではないかと思います frames the concern as a suspicion and leaves room for another view of the schedule.",
+      ),
+    ],
+    reading: p(
+      "A progress report by e-mail",
+      "{先週|せんしゅう}ご{指示|しじ}いただいた{件|けん}について、{現在|げんざい}の{進捗|しんちょく}をご{報告|ほうこく}いたします。{資料|しりょう}を{確認|かくにん}したところ、{数字|すうじ}が{一部|いちぶ}{古|ふる}いままになっておりました。{担当|たんとう}に{確認|かくにん}のうえ、{修正|しゅうせい}したものをお{送|おく}りいたします。{締切|しめきり}までに{余裕|よゆう}がないため、このままでは{間|ま}に{合|あ}わないのではないかと{思|おも}います。{可能|かのう}でしたら、{提出|ていしゅつ}を{二日|ふつか}ほど{延|の}ばしていただければ{幸|さいわ}いです。{難|むずか}しいようでしたら{残業|ざんぎょう}で{対応|たいおう}できるかと{存|ぞん}じますので、ご{指示|しじ}をいただけますでしょうか。",
+      "This is a report on the current progress of the matter you gave me instructions on last week. When I checked the documents, some of the figures were still out of date. I will confirm them with the person responsible and send you a corrected version. There is little leeway before the deadline, so I suspect we will not make it as things stand. If possible, I would be grateful if the submission could be put back by about two days. If that is difficult, I believe overtime could cover it, so could I ask for your instructions?",
+      q(
+        "What does the writer ask for first?",
+        "A two-day extension",
+        [
+          "Permission to work overtime",
+          "Somebody else to take the task over",
+          "A new set of instructions",
+        ],
+        "延ばしていただければ幸いです is the request; overtime appears only as the fallback if the extension is refused.",
+      ),
+    ),
+    listening: p(
+      "Declining extra work",
+      "{申|もう}し{訳|わけ}ありませんが、{今週|こんしゅう}は{引|ひ}き{継|つ}ぎがあって{余裕|よゆう}がありません。{来週|らいしゅう}でしたらお{手伝|てつだ}いできるかと{存|ぞん}じますので、{一度|いちど}ご{相談|そうだん}させていただけますか。",
+      "I am sorry, but I have a handover this week and have no room to spare. I believe I could help next week, so could we talk it over once?",
+      q(
+        "What does the speaker offer instead?",
+        "Help the following week",
+        [
+          "Finding a replacement",
+          "Working through the weekend",
+          "Cancelling the handover",
+        ],
+        "来週でしたらお手伝いできる keeps the offer open with different timing rather than refusing outright.",
+      ),
+    ),
+    practice:
+      "Write a five-line progress report: state the task, report a finding with たところ, raise one risk with のではないかと思います, make one request with ば幸いです, and offer a fallback with かと存じます.",
+  },
+  {
+    slug: "particles-formal",
+    title: "Particles in formal writing",
+    summary:
+      "Read the connective particles that hold a report or a public notice together, and use them where a plain に or で would sound too conversational for the page.",
+    vocabulary: words(`分野|ぶんや|a field
+機関|きかん|an institution
+普及|ふきゅう|widespread uptake
+連携|れんけい|collaboration
+実績|じっせき|a track record
+対象|たいしょう|the target group
+支援|しえん|support
+範囲|はんい|a scope`),
+    grammar: [
+      g(
+        "〜において・〜における",
+        "において marks the setting of something in formal writing, where で would do the job in speech: {会議|かいぎ}において{決定|けってい}された。In front of a noun it becomes における, as in {日本|にほん}における{普及|ふきゅう}。It covers a place, a time, and a field of activity alike.",
+        "この{分野|ぶんや}における{研究|けんきゅう}は{進|すす}んでいます。",
+        "Research in this field is advancing.",
+      ),
+      g(
+        "〜をはじめ",
+        "をはじめ names the leading example of a group and leaves the rest understood: {東京|とうきょう}をはじめ、{各地|かくち}で{行|おこな}われた。In front of a noun it takes the form をはじめとする。The item you name should be the most prominent one, not simply any member.",
+        "{大学|だいがく}をはじめ、{多|おお}くの{機関|きかん}が{参加|さんか}しました。",
+        "Many institutions took part, universities among the first.",
+      ),
+      g(
+        "〜にわたって",
+        "にわたって states the extent something covers, whether in time, in space, or in subject matter: {三年|さんねん}にわたって、{全国|ぜんこく}にわたって。In front of a noun it becomes にわたる。It stresses the whole span rather than any single point inside it.",
+        "{調査|ちょうさ}は{三年|さんねん}にわたって{続|つづ}けられました。",
+        "The survey was continued over three years.",
+      ),
+      g(
+        "〜を通じて・〜を通して",
+        "を通じて names the route by which something travels: インターネットを{通|つう}じて、{友人|ゆうじん}を{通|とお}して。It also covers a whole period, as in {一年|いちねん}を{通|つう}じて。を通して leans towards a channel the writer deliberately chose.",
+        "{支援|しえん}は{地元|じもと}の{機関|きかん}を{通|つう}じて{行|おこな}われます。",
+        "The support is delivered through local institutions.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which fits a written notice: 会議 ___ 決定された。",
+        "において",
+        ["にわたって", "をはじめ", "を通じて"],
+        "において marks the setting in which something happened; the others state an extent, a leading example, or a route.",
+      ),
+      q(
+        "Choose the phrase that names a leading example.",
+        "東京をはじめ",
+        ["東京において", "東京にわたって", "東京を通じて"],
+        "をはじめ picks out the most prominent member of a group and leaves the remainder understood.",
+      ),
+    ],
+    reading: p(
+      "A programme report",
+      "{本|ほん}{事業|じぎょう}は、{昨年度|さくねんど}より{三年|さんねん}にわたって{実施|じっし}されているものである。{都市部|としぶ}をはじめ、{地方|ちほう}の{各地|かくち}においても{同様|どうよう}の{取|と}り{組|く}みが{広|ひろ}がりつつある。{支援|しえん}は{地元|じもと}の{機関|きかん}を{通|つう}じて{提供|ていきょう}され、{対象|たいしょう}となる{範囲|はんい}は{年々|ねんねん}{拡大|かくだい}している。{連携|れんけい}する{団体|だんたい}の{数|かず}も{増|ふ}えており、この{分野|ぶんや}における{実績|じっせき}は{着実|ちゃくじつ}に{積|つ}み{上|あ}がってきた。{今後|こんご}は{普及|ふきゅう}の{速度|そくど}をいかに{保|たも}つかが{課題|かだい}である。",
+      "This programme has been running for three years, since last fiscal year. Similar initiatives are spreading in regional areas as well as in the cities. Support is provided through local institutions, and the scope of those covered expands year by year. The number of partner organisations is rising too, and the track record in this field has steadily accumulated. The question from here is how to maintain the pace of uptake.",
+      q(
+        "How is the support delivered?",
+        "Through local institutions",
+        [
+          "Directly by the government",
+          "Only in the cities",
+          "Through a single national body",
+        ],
+        "地元の機関を通じて提供され names the route; the cities appear as the leading example of where it spread, not as the only place.",
+      ),
+    ),
+    listening: p(
+      "A briefing",
+      "{本|ほん}{事業|じぎょう}は{三年|さんねん}にわたって{続|つづ}いております。{都市部|としぶ}をはじめ、{地方|ちほう}においても{参加|さんか}{団体|だんたい}が{増|ふ}えました。{今後|こんご}も{地元|じもと}の{機関|きかん}を{通|つう}じて{支援|しえん}を{続|つづ}けてまいります。",
+      "This programme has continued for three years. The number of participating organisations has grown in regional areas as well as in the cities. We will go on providing support through local institutions.",
+      q(
+        "What has grown?",
+        "The number of participating organisations",
+        ["The budget", "The number of cities", "The length of the programme"],
+        "参加団体が増えました names what grew; the three-year span is stated as a fact rather than as something that increased.",
+      ),
+    ),
+    practice:
+      "Rewrite a plain progress note for the page: replace で with において, name the leading example with をはじめ, state the span with にわたって, and name the route with を通じて.",
+  },
+  {
     slug: "n2-integration",
     title: "N2 integration: proposals & outcomes",
     summary:

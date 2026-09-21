@@ -342,6 +342,99 @@ export const n2Sentences: Record<string, SentencePractice> = {
       ],
     ],
   ),
+  "everyday-negotiation": s(
+    "I can raise a problem with a service, state my own side of it, and settle on terms both parties accept.",
+    "At a service counter or in a support e-mail",
+    "formal",
+    [
+      [
+        "{申|もう}し{訳|わけ}ありませんが、ご{返金|へんきん}は{難|むずか}しい{状況|じょうきょう}です。",
+        "I am very sorry, but a refund is difficult in this case.",
+      ],
+      [
+        "{記録|きろく}を{確認|かくにん}した{限|かぎ}りでは、{同|おな}じ{例|れい}はございません。",
+        "As far as the records I checked go, there is no similar case.",
+      ],
+      [
+        "{弊社|へいしゃ}といたしましては、{交換|こうかん}でのご{対応|たいおう}を{考|かんが}えております。",
+        "From our side, we are thinking of handling this as an exchange.",
+      ],
+      [
+        "{今回|こんかい}は{交換|こうかん}ということでいかがでしょうか。",
+        "Shall we settle on an exchange this time?",
+      ],
+      [
+        "{現物|げんぶつ}を{拝見|はいけん}しないことには、お{返事|へんじ}ができません。",
+        "Until we see the item itself, we cannot give you an answer.",
+      ],
+      [
+        "この{対応|たいおう}でご{納得|なっとく}いただけますでしょうか。",
+        "Would you be satisfied with this arrangement?",
+      ],
+    ],
+  ),
+  "workplace-exchanges": s(
+    "I can report progress, flag a risk early, and decline extra work while keeping the offer open.",
+    "Reporting to a manager or a colleague at work",
+    "formal",
+    [
+      [
+        "{確認|かくにん}したところ、{数字|すうじ}が{古|ふる}いままでした。",
+        "When I checked, the figures were still out of date.",
+      ],
+      [
+        "このままでは{間|ま}に{合|あ}わないのではないかと{思|おも}います。",
+        "I suspect we will not make it in time as things stand.",
+      ],
+      [
+        "{提出|ていしゅつ}を{二日|ふつか}ほど{延|の}ばしていただければ{幸|さいわ}いです。",
+        "I would be grateful for a two-day extension on the submission.",
+      ],
+      [
+        "{今週|こんしゅう}は{余裕|よゆう}がなく、{来週|らいしゅう}でしたらお{手伝|てつだ}いできます。",
+        "I have no room this week, but I could help next week.",
+      ],
+      [
+        "{残業|ざんぎょう}で{対応|たいおう}できるかと{存|ぞん}じます。",
+        "I believe overtime would be enough to cover it.",
+      ],
+      [
+        "{一度|いちど}ご{相談|そうだん}させていただけますでしょうか。",
+        "Could I possibly talk it over with you once?",
+      ],
+    ],
+  ),
+  "particles-formal": s(
+    "I can use the connective particles that a report, a notice, or a briefing is written with.",
+    "Writing or reading a formal report",
+    "formal",
+    [
+      [
+        "この{分野|ぶんや}における{研究|けんきゅう}は{進|すす}んでいます。",
+        "Research in this field is advancing.",
+      ],
+      [
+        "{大学|だいがく}をはじめ、{多|おお}くの{機関|きかん}が{参加|さんか}しました。",
+        "Many institutions took part, universities among the first.",
+      ],
+      [
+        "{調査|ちょうさ}は{三年|さんねん}にわたって{続|つづ}けられました。",
+        "The survey was continued over three years.",
+      ],
+      [
+        "{支援|しえん}は{地元|じもと}の{機関|きかん}を{通|つう}じて{行|おこな}われます。",
+        "The support is delivered through local institutions.",
+      ],
+      [
+        "{対象|たいしょう}となる{範囲|はんい}は{年々|ねんねん}{拡大|かくだい}しています。",
+        "The scope of those covered expands year by year.",
+      ],
+      [
+        "{会議|かいぎ}において{決定|けってい}された{事項|じこう}をご{確認|かくにん}ください。",
+        "Please check the matters decided at the meeting.",
+      ],
+    ],
+  ),
   "n2-integration": s(
     "I can propose a trial and summarize a balanced group decision.",
     "Deciding how to introduce a new process",

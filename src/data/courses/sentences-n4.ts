@@ -315,6 +315,180 @@ export const n4Sentences: Record<string, SentencePractice> = {
       ],
     ],
   ),
+  "feeling-unwell": s(
+    "I can describe symptoms, say how long they have lasted, and follow simple medical advice.",
+    "At a clinic, at a pharmacy, or calling in sick",
+    "polite",
+    [
+      [
+        "{頭|あたま}が{痛|いた}くて、{熱|ねつ}もあります。",
+        "My head hurts and I have a fever as well.",
+      ],
+      [
+        "{三日|みっか}ほど{前|まえ}からこの{風邪|かぜ}です。",
+        "I have had this cold since about three days ago.",
+      ],
+      ["きのうからさむけがします。", "I have had chills since yesterday."],
+      [
+        "すみません、{今日|きょう}は{休|やす}ませてください。",
+        "I am sorry, please let me take today off.",
+      ],
+      [
+        "この{薬|くすり}は{食後|しょくご}に{飲|の}みますか。",
+        "Should I take this medicine after meals?",
+      ],
+      [
+        "だいぶよくなってきました。ありがとうございます。",
+        "I have become much better. Thank you very much.",
+      ],
+    ],
+  ),
+  "phone-and-messages": s(
+    "I can open and close a phone call, explain a delay, and leave a message for somebody else.",
+    "Calling an office or replying to a message",
+    "polite",
+    [
+      [
+        "もしもし、{田中|たなか}ですが、{山田|やまだ}さんはいらっしゃいますか。",
+        "Hello, this is Tanaka. Is Yamada-san available?",
+      ],
+      [
+        "{明日|あした}の{会議|かいぎ}のことなんですが、よろしいでしょうか。",
+        "It is about tomorrow's meeting — do you have a moment?",
+      ],
+      [
+        "{電車|でんしゃ}が{遅|おく}れていて、{十分|じゅっぷん}ほど{遅|おく}れます。",
+        "The train is delayed, so I will be about ten minutes late.",
+      ],
+      [
+        "また{後|あと}で{電話|でんわ}しますとお{伝|つた}えください。",
+        "Please tell them that I will call again later.",
+      ],
+      [
+        "ご{都合|つごう}のよい{時間|じかん}をお{知|し}らせください。",
+        "Please let me know a time that suits you.",
+      ],
+      [
+        "ご{確認|かくにん}ありがとうございます。{失礼|しつれい}します。",
+        "Thank you for confirming. Goodbye for now.",
+      ],
+    ],
+  ),
+  "at-the-shopping-mall": s(
+    "I can read shop signs and floor guides, and ask staff about stock and sizes.",
+    "In a shopping centre or a department store",
+    "polite",
+    [
+      [
+        "この{値段|ねだん}は{税込|ぜいこみ}ですか。",
+        "Is this price including tax?",
+      ],
+      [
+        "{三千円|さんぜんえん}{以上|いじょう}で{送料|そうりょう}が{無料|むりょう}になります。",
+        "Delivery is free for purchases of three thousand yen or more.",
+      ],
+      [
+        "すみません、Mサイズの{在庫|ざいこ}はありますか。",
+        "Excuse me, do you have this in medium in stock?",
+      ],
+      ["これを{試着|しちゃく}してもいいですか。", "May I try this on?"],
+      [
+        "{子|こ}ども{向|む}けの{売|う}り{場|ば}は{何階|なんがい}ですか。",
+        "Which floor is the children's section on?",
+      ],
+      [
+        "{会計|かいけい}のとき、{袋|ふくろ}をおねがいします。",
+        "When I pay, I would like a bag, please.",
+      ],
+    ],
+  ),
+  "reading-a-menu": s(
+    "I can read a menu, order what I want, and ask for a dish without something in it.",
+    "In a restaurant or a food court",
+    "polite",
+    [
+      [
+        "わたしは{魚|さかな}の{定食|ていしょく}にします。",
+        "I will go for the fish set meal.",
+      ],
+      ["この{料理|りょうり}は{辛|から}いですか。", "Is this dish spicy?"],
+      [
+        "わさび{抜|ぬ}きでおねがいできますか。",
+        "Could I have it without wasabi, please?",
+      ],
+      [
+        "{飲|の}み{物|もの}{付|つ}きの{定食|ていしょく}はどれですか。",
+        "Which set meal comes with a drink?",
+      ],
+      [
+        "おすすめの{料理|りょうり}を{教|おし}えてください。",
+        "Please tell me which dish you recommend.",
+      ],
+      [
+        "お{勘定|かんじょう}は{別々|べつべつ}でおねがいします。",
+        "Separate bills, please, if you would.",
+      ],
+    ],
+  ),
+  "everyday-news": s(
+    "I can follow a short news item and a weather forecast, and tell a forecast from a fact.",
+    "Reading a paper or listening to the forecast",
+    "polite",
+    [
+      [
+        "{明日|あした}は{雨|あめ}が{降|ふ}る{見込|みこ}みです。",
+        "Rain is expected tomorrow.",
+      ],
+      [
+        "{午後|ごご}から{大雨|おおあめ}の{恐|おそ}れがあります。",
+        "There is a risk of heavy rain from the afternoon.",
+      ],
+      [
+        "{台風|たいふう}のため、{列車|れっしゃ}が{止|と}まっています。",
+        "Because of the typhoon, the trains have stopped.",
+      ],
+      [
+        "{市|し}の{発表|はっぴょう}によると、けが{人|にん}はいません。",
+        "According to the city's announcement, there are no injuries.",
+      ],
+      [
+        "{午前|ごぜん}{九時|くじ}{現在|げんざい}、まだ{復旧|ふっきゅう}していません。",
+        "As of nine this morning, service has still not been restored.",
+      ],
+      [
+        "{今後|こんご}も{気温|きおん}が{低|ひく}い{模様|もよう}です。",
+        "Temperatures appear likely to stay low from now on.",
+      ],
+    ],
+  ),
+  "particles-linking": s(
+    "I can talk about an action itself, say how often I do it, and quote what somebody told me.",
+    "Talking about habits and hobbies",
+    "polite",
+    [
+      ["{泳|およ}ぐのが{好|す}きです。", "I like swimming."],
+      [
+        "{週|しゅう}に{三回|さんかい}プールへ{行|い}きます。",
+        "I go to the pool three times a week.",
+      ],
+      [
+        "コーヒーとか{紅茶|こうちゃ}とかが{好|す}きです。",
+        "I like coffee, tea, and that sort of thing.",
+      ],
+      [
+        "{明日|あした}は{雨|あめ}だって{言|い}っていました。",
+        "They said it is going to rain tomorrow.",
+      ],
+      [
+        "{準備|じゅんび}{運動|うんどう}をするのが{大切|たいせつ}です。",
+        "Doing warm-up exercises is important.",
+      ],
+      [
+        "{練習|れんしゅう}に{行|い}く{前|まえ}に{電話|でんわ}します。",
+        "I will call before I go to practice.",
+      ],
+    ],
+  ),
   "n4-integration": s(
     "I can change an arrangement, confirm requirements, and explain my choice.",
     "Changing a booking and checking daily-life procedures",
