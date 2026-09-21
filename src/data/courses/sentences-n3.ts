@@ -339,6 +339,192 @@ export const n3Sentences: Record<string, SentencePractice> = {
       ],
     ],
   ),
+  "neighbourhood-life": s(
+    "I can raise a small problem with a neighbour, apologise, and ask for something without sounding demanding.",
+    "In an apartment building or on your own street",
+    "polite",
+    [
+      [
+        "ごみは{火曜日|かようび}に{出|だ}すことになっています。",
+        "Rubbish is to be put out on Tuesdays.",
+      ],
+      [
+        "{夜|よる}は{静|しず}かにしてくれると{助|たす}かります。",
+        "It would be a help if you could keep it quiet at night.",
+      ],
+      [
+        "{昨日|きのう}はうるさくしてしまって、すみませんでした。",
+        "I am sorry for being noisy yesterday.",
+      ],
+      [
+        "{管理人|かんりにん}さんに{言|い}わないといけませんね。",
+        "We will have to tell the building manager, won't we?",
+      ],
+      [
+        "もっと{早|はや}く{挨拶|あいさつ}すればよかったです。",
+        "I should have introduced myself sooner.",
+      ],
+      [
+        "{買|か}い{物|もの}のついでに{出|だ}しておきます。",
+        "I will put it out while I am going shopping anyway.",
+      ],
+    ],
+  ),
+  "appointments-and-changes": s(
+    "I can move an appointment, offer alternative times, and confirm the new arrangement.",
+    "Rescheduling a visit or a meeting",
+    "formal",
+    [
+      [
+        "{日程|にってい}を{変更|へんこう}させていただけないでしょうか。",
+        "Could I ask to change the date?",
+      ],
+      [
+        "{水曜日|すいようび}の{午後|ごご}でしたら{調整|ちょうせい}できます。",
+        "If it is Wednesday afternoon, I can arrange it.",
+      ],
+      [
+        "ご{都合|つごう}が{悪|わる}いようでしたら、{改|あらた}めてご{連絡|れんらく}します。",
+        "If it is inconvenient for you, I will contact you again.",
+      ],
+      [
+        "{担当|たんとう}は{来週|らいしゅう}まで{出張|しゅっちょう}とのことです。",
+        "I am told the person in charge is away until next week.",
+      ],
+      [
+        "{連絡|れんらく}せずに{変更|へんこう}することはございません。",
+        "We would never change it without getting in touch.",
+      ],
+      [
+        "{場所|ばしょ}は{前回|ぜんかい}と{同|おな}じでよろしいでしょうか。",
+        "Is the venue the same as it was last time?",
+      ],
+    ],
+  ),
+  "business-email": s(
+    "I can read a work e-mail, find the request inside it, and reply in the expected written style.",
+    "Handling e-mail at work",
+    "formal",
+    [
+      [
+        "いつも{大変|たいへん}お{世話|せわ}になっております。",
+        "Thank you, as always, for your continued support.",
+      ],
+      [
+        "{来週|らいしゅう}の{会議|かいぎ}の{件|けん}につきまして、ご{連絡|れんらく}いたします。",
+        "I am writing regarding next week's meeting.",
+      ],
+      [
+        "{添付|てんぷ}の{資料|しりょう}をご{確認|かくにん}のほどよろしくお{願|ねが}いいたします。",
+        "I would be grateful if you could check the attached materials.",
+      ],
+      [
+        "{金曜日|きんようび}までにご{返信|へんしん}いただけますでしょうか。",
+        "Could you send a reply by Friday?",
+      ],
+      [
+        "{一度|いちど}お{打|う}ち{合|あ}わせをお{願|ねが}いしたく{存|ぞん}じます。",
+        "I would like to ask you for a meeting.",
+      ],
+      [
+        "ご{不明|ふめい}な{点|てん}は{折|お}り{返|かえ}しご{連絡|れんらく}ください。",
+        "If anything is unclear, please get back in touch.",
+      ],
+    ],
+  ),
+  "reports-and-minutes": s(
+    "I can read a report or a set of minutes and separate the finding, the decision, and who is responsible.",
+    "Reading or writing a report at work",
+    "formal",
+    [
+      [
+        "{会議|かいぎ}の{概要|がいよう}は{下記|かき}のとおりである。",
+        "An outline of the meeting is set out below.",
+      ],
+      [
+        "{調査|ちょうさ}した{結果|けっか}、{原因|げんいん}が{分|わ}かった。",
+        "As a result of the investigation, the cause became clear.",
+      ],
+      [
+        "{現状|げんじょう}の{対策|たいさく}では{不十分|ふじゅうぶん}である。",
+        "The present countermeasures are insufficient.",
+      ],
+      [
+        "{来月|らいげつ}までに{書|か}き{直|なお}すことが{決定|けってい}された。",
+        "It was decided to rewrite it by next month.",
+      ],
+      [
+        "{主|おも}な{課題|かだい}は{説明|せつめい}の{分|わ}かりにくさである。",
+        "The main issue is how hard the explanation is to follow.",
+      ],
+      [
+        "{以上|いじょう}、ご{報告|ほうこく}いたします。",
+        "That concludes my report.",
+      ],
+    ],
+  ),
+  "workplace-documents": s(
+    "I can read a workplace notice or a form and tell what applies to me from what does not.",
+    "Reading notices and forms at work",
+    "formal",
+    [
+      [
+        "{期限|きげん}までに{必|かなら}ず{提出|ていしゅつ}すること。",
+        "Be sure to submit it by the deadline.",
+      ],
+      [
+        "ただし、{該当|がいとう}しない{方|かた}は{提出|ていしゅつ}{不要|ふよう}です。",
+        "However, those to whom this does not apply need not submit it.",
+      ],
+      [
+        "{申請書|しんせいしょ}は{部署|ぶしょ}ごとにまとめてください。",
+        "Please collect the application forms together by department.",
+      ],
+      [
+        "{提出|ていしゅつ}{済|ず}みの{方|かた}は{記入|きにゅう}の{必要|ひつよう}はありません。",
+        "Those who have already submitted it need not fill it in.",
+      ],
+      [
+        "なお、{記入例|きにゅうれい}は{掲示板|けいじばん}に{貼|は}ってあります。",
+        "In addition, a filled-in example is posted on the board.",
+      ],
+      [
+        "ご{不明|ふめい}な{点|てん}は{備考|びこう}{欄|らん}にご{記入|きにゅう}ください。",
+        "If anything is unclear, please write it in the remarks column.",
+      ],
+    ],
+  ),
+  "particles-nuance": s(
+    "I can insist on the part that matters, rule something out completely, and brush a remark aside.",
+    "Talking about setbacks and second attempts",
+    "polite",
+    [
+      [
+        "{今度|こんど}こそ{成功|せいこう}させたいです。",
+        "This time I really want to make it work.",
+      ],
+      [
+        "その{機会|きかい}は{一度|いちど}もありませんでした。",
+        "There was not a single such opportunity.",
+      ],
+      [
+        "{失敗|しっぱい}したなんて{思|おも}っていません。",
+        "I do not think of it as a failure at all.",
+      ],
+      [
+        "{子|こ}どもでも{分|わ}かる{説明|せつめい}がほしいです。",
+        "I want an explanation even a child could follow.",
+      ],
+      [
+        "{努力|どりょく}した{経験|けいけん}にこそ{価値|かち}があります。",
+        "It is the experience of having tried that has value.",
+      ],
+      [
+        "こちらこそ、よろしくおねがいします。",
+        "The pleasure is mine; I look forward to it.",
+      ],
+    ],
+  ),
   "n3-integration": s(
     "I can clarify my position and help a group agree on a workable plan.",
     "Discussing an event with friends or neighbors",

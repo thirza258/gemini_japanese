@@ -219,6 +219,93 @@ export const n5Sentences: Record<string, SentencePractice> = {
       ],
     ],
   ),
+  "everyday-greetings": s(
+    "I can greet people through the day and use すみません for thanks, an apology, or attention.",
+    "Everyday greetings at home and in the neighbourhood",
+    "polite",
+    [
+      [
+        "おはようございます。{今日|きょう}もよろしくおねがいします。",
+        "Good morning. I look forward to working with you again today.",
+      ],
+      [
+        "こんばんは。おそくなってすみません。",
+        "Good evening. I am sorry I am late.",
+      ],
+      [
+        "いってきます。{六時|ろくじ}ごろ{帰|かえ}ります。",
+        "I'm off. I will be back around six.",
+      ],
+      [
+        "ただいま。{今日|きょう}はつかれました。",
+        "I'm home. I am tired today.",
+      ],
+      [
+        "すみません、ちょっと{教|おし}えてください。",
+        "Excuse me, could you tell me something?",
+      ],
+      [
+        "おやすみなさい。また{明日|あした}。",
+        "Good night. See you again tomorrow.",
+      ],
+    ],
+  ),
+  "home-and-meals": s(
+    "I can offer food politely, accept or decline it, and say the set phrases around a meal.",
+    "At the table at home or with a host family",
+    "polite",
+    [
+      [
+        "いただきます。おいしそうですね。",
+        "Thank you for the meal. It looks delicious.",
+      ],
+      ["お{茶|ちゃ}はいかがですか。", "Would you like some green tea?"],
+      [
+        "ありがとうございます。いただきます。",
+        "Thank you very much. I will have some.",
+      ],
+      [
+        "いいえ、けっこうです。おなかがいっぱいです。",
+        "No, thank you. I am already full.",
+      ],
+      [
+        "この{野菜|やさい}はとてもおいしいです。",
+        "These vegetables are very delicious.",
+      ],
+      [
+        "ごちそうさまでした。{皿|さら}をあらいます。",
+        "Thank you for the meal. I will wash the dishes.",
+      ],
+    ],
+  ),
+  "particles-core": s(
+    "I can choose between は and が, and use の and を the way a natural sentence does.",
+    "Building everyday sentences correctly",
+    "polite",
+    [
+      [
+        "{弟|おとうと}が{来|き}ました。{弟|おとうと}は{学生|がくせい}です。",
+        "My younger brother came. He is a student.",
+      ],
+      [
+        "{肉|にく}は{食|た}べませんが、{魚|さかな}は{食|た}べます。",
+        "I do not eat meat, but I do eat fish.",
+      ],
+      ["{青|あお}いのをください。", "Please give me the blue one."],
+      [
+        "{毎朝|まいあさ}{公園|こうえん}を{歩|ある}きます。",
+        "I walk through the park every morning.",
+      ],
+      [
+        "この{道|みち}をまっすぐ{行|い}ってください。",
+        "Please go straight along this road.",
+      ],
+      [
+        "{橋|はし}を{渡|わた}ると{駅|えき}があります。",
+        "Cross the bridge and the station is there.",
+      ],
+    ],
+  ),
   "n5-integration": s(
     "I can handle a short everyday exchange from greeting to a clear plan.",
     "Arranging a visit and checking details",

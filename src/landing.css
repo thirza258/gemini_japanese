@@ -5,6 +5,7 @@
   color: var(--text);
   z-index: 1;
 }
+/* The petals keep their own layer so every section paints on top of them. */
 .sakura-background {
   position: fixed !important;
   inset: 0 !important;
@@ -19,6 +20,12 @@
 }
 :root[data-theme="dark"] .sakura-background {
   filter: drop-shadow(0 0 5px rgba(251, 113, 133, 0.75));
+}
+.landing-page > .landing-header,
+.landing-page > .landing-main,
+.landing-page > .landing-footer {
+  position: relative;
+  z-index: 1;
 }
 .sakura-petal {
   position: absolute;
