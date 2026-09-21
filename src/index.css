@@ -425,6 +425,18 @@ rt {
   background: var(--accent-soft);
   color: var(--accent);
 }
+.icon-button.sakura-theme-toggle.active,
+.icon-button.sakura-motion-toggle.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+}
+:root[data-theme="dark"] .icon-button.sakura-theme-toggle.active,
+:root[data-theme="dark"] .icon-button.sakura-motion-toggle.active {
+  color: #fb7185;
+  background: rgba(251, 113, 133, 0.16);
+  border-color: rgba(251, 113, 133, 0.35);
+}
 .main-content {
   width: 100%;
   max-width: 1360px;
@@ -2783,12 +2795,88 @@ rt {
     letter-spacing: 0.8px;
   }
 }
+.sakura-background {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+:root[data-theme="dark"] .sakura-background {
+  filter: drop-shadow(0 0 5px rgba(251, 113, 133, 0.75));
+}
+.sakura-petal {
+  position: absolute;
+  top: -50px;
+  pointer-events: none;
+  animation: sakura-drift var(--petal-duration) var(--petal-delay) linear infinite !important;
+  will-change: transform;
+}
+.sakura-petal-inner {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: sakura-flutter var(--petal-flutter) var(--petal-delay) ease-in-out infinite alternate !important;
+  will-change: transform;
+  transform-origin: center center;
+}
+.sakura-petal-inner svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+@keyframes sakura-drift {
+  0% {
+    transform: translate3d(0, -6vh, 0);
+    opacity: 0;
+  }
+  6% {
+    opacity: 0.95;
+  }
+  32% {
+    transform: translate3d(calc(var(--petal-drift) * 0.45), 33vh, 0);
+  }
+  65% {
+    transform: translate3d(calc(var(--petal-drift) * 0.8), 68vh, 0);
+  }
+  92% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(var(--petal-drift), 108vh, 0);
+    opacity: 0;
+  }
+}
+@keyframes sakura-flutter {
+  0% {
+    transform: rotate3d(1, 1, 0, 0deg) rotate(0deg);
+  }
+  50% {
+    transform: rotate3d(1, 0.8, 0.2, 60deg) rotate(60deg);
+  }
+  100% {
+    transform: rotate3d(0.5, 1, 0.5, 130deg) rotate(140deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *,
+  *:not(.sakura-petal):not(.sakura-petal-inner):not(.sakura-petal-inner *),
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .sakura-petal {
+    animation-duration: var(--petal-duration) !important;
+  }
+  .sakura-petal-inner {
+    animation-duration: var(--petal-flutter) !important;
+  }
 }
+

@@ -19,8 +19,6 @@ interface LandingPageProps {
   accountEmail?: string;
   checkingAccount: boolean;
   onOpenAccount: () => void;
-  sakuraPaused?: boolean;
-  onToggleSakura?: () => void;
 }
 
 const practiceOptions: {
@@ -121,8 +119,6 @@ export function LandingPage({
   accountEmail,
   checkingAccount,
   onOpenAccount,
-  sakuraPaused = false,
-  onToggleSakura,
 }: LandingPageProps) {
   const [previewIndex, setPreviewIndex] = useState(0);
   const preview = previewLessons[previewIndex];
@@ -181,33 +177,7 @@ export function LandingPage({
               checking={checkingAccount}
               onClick={onOpenAccount}
             />
-            <button
-              className="icon-button sakura-motion-toggle"
-              onClick={onToggleSakura}
-              aria-label={`${sakuraPaused ? "Resume" : "Pause"} sakura animation`}
-              title={`${sakuraPaused ? "Resume" : "Pause"} sakura animation`}
-            >
-              <svg
-                width="17"
-                height="17"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                {sakuraPaused ? (
-                  <path d="m8 5 11 7-11 7Z" />
-                ) : (
-                  <>
-                    <rect x="6" y="5" width="4" height="14" rx="1" />
-                    <rect x="14" y="5" width="4" height="14" rx="1" />
-                  </>
-                )}
-              </svg>
-            </button>
+
             <button
               className="icon-button theme-button"
               onClick={onToggleTheme}
