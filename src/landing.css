@@ -1,8 +1,9 @@
 .landing-page {
   position: relative;
   isolation: isolate;
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
+  z-index: 1;
 }
 /* The petals keep their own layer so every section paints on top of them. */
 .sakura-background {
@@ -12,16 +13,16 @@
   overflow: hidden;
   pointer-events: none;
   color: var(--accent);
-  opacity: 0.16;
+  opacity: 0.38;
+}
+:root[data-theme="dark"] .sakura-background {
+  opacity: 0.22;
 }
 .landing-page > .landing-header,
 .landing-page > .landing-main,
 .landing-page > .landing-footer {
   position: relative;
   z-index: 1;
-}
-:root[data-theme="dark"] .sakura-background {
-  opacity: 0.09;
 }
 .sakura-petal {
   position: absolute;
@@ -978,7 +979,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .sakura-background,
-  .landing-header-actions .sakura-motion-toggle {
+  .sakura-motion-toggle {
     display: none;
   }
   .sakura-petal,

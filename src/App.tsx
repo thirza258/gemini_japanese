@@ -22,6 +22,7 @@ import { stopJapaneseAudio } from "./utils/speech";
 import { useAuth } from "./auth/useAuth";
 import { AccountDialog } from "./components/AccountDialog";
 import { SaveNotice } from "./components/SaveNotice";
+import { SakuraBackground } from "./components/SakuraBackground";
 import "./landing.css";
 import "./auth.css";
 
@@ -43,9 +44,59 @@ const navigation: {
 ];
 type AppPage = Page | "landing";
 
+function parseRoute(): { page: AppPage; level?: Level } {
+  if (typeof window === "undefined") return { page: "landing" };
+
+  const hashRaw = window.location.hash.replace(/^#\/?/, "");
+  const [hashPath, hashQuery] = hashRaw.split("?");
+  const hashSegments = hashPath.split("/").filter(Boolean);
+
+  const pathRaw = window.location.pathname.replace(/^\/+|\/+$/g, "");
+  const [pathOnly] = pathRaw.split("?");
+  const pathSegments = pathOnly.split("/").filter(Boolean);
+
+  let page: AppPage = "landing";
+  let targetLevelStr: string | undefined;
+
+  if (hashSegments.length > 0) {
+    const first = hashSegments[0].toLowerCase();
+    const match = navigation.find((item) => item.page === first);
+    if (match) {
+      page = match.page;
+      if (hashSegments[1]) targetLevelStr = hashSegments[1];
+    } else if (first === "landing") {
+      page = "landing";
+    }
+  } else if (pathSegments.length > 0) {
+    const first = pathSegments[0].toLowerCase();
+    const match = navigation.find((item) => item.page === first);
+    if (match) {
+      page = match.page;
+      if (pathSegments[1]) targetLevelStr = pathSegments[1];
+    } else if (first === "landing") {
+      page = "landing";
+    }
+  }
+
+  const searchParams = new URLSearchParams(
+    hashQuery || window.location.search,
+  );
+  const queryLevel = searchParams.get("level");
+  if (queryLevel) targetLevelStr = queryLevel;
+
+  let level: Level | undefined;
+  if (targetLevelStr) {
+    const upper = targetLevelStr.toUpperCase();
+    if (LEVELS.includes(upper as Level)) {
+      level = upper as Level;
+    }
+  }
+
+  return { page, level };
+}
+
 function readPage(): AppPage {
-  const hash = window.location.hash.slice(1);
-  return navigation.find((item) => item.page === hash)?.page || "landing";
+  return parseRoute().page;
 }
 function initialTheme(): "light" | "dark" {
   try {
@@ -57,6 +108,16 @@ function initialTheme(): "light" | "dark" {
   return window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light";
+}
+function initialSakuraPaused(): boolean {
+  try {
+    const saved = localStorage.getItem("sakura-motion");
+    if (saved === "paused") return true;
+    if (saved === "running") return false;
+  } catch {
+    /* Use default motion preference. */
+  }
+  return false;
 }
 function App() {
   const account = useAuth();
@@ -74,12 +135,29 @@ function App() {
   } = useStudy(account.user?.id || null);
   const [page, setPage] = useState(readPage);
   const [theme, setTheme] = useState(initialTheme);
+  const [sakuraPaused, setSakuraPaused] = useState<boolean>(initialSakuraPaused);
+  const toggleSakura = () => {
+    setSakuraPaused((current) => {
+      const next = !current;
+      try {
+        localStorage.setItem("sakura-motion", next ? "paused" : "running");
+      } catch {
+        /* Storage quota exceeded or disabled. */
+      }
+      return next;
+    });
+  };
   const [menuOpen, setMenuOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
   const main = useRef<HTMLElement>(null);
   const stats = getStudyStats(progress);
   const activeLabel = navigation.find((item) => item.page === page)?.label;
+  const currentLevel = useRef(progress.level);
+  currentLevel.current = progress.level;
+  const syncLevel = useRef(setLevel);
+  syncLevel.current = setLevel;
+
   useEffect(() => () => stopJapaneseAudio(), [page]);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -94,15 +172,34 @@ function App() {
       ?.setAttribute("content", theme === "light" ? "#fbf9f8" : "#171717");
   }, [theme]);
   useEffect(() => {
-    const onHashChange = () => {
-      setPage(readPage());
+    const onRoute = () => {
+      const current = parseRoute();
+      setPage(current.page);
+      if (current.level && current.level !== currentLevel.current) {
+        syncLevel.current(current.level);
+      }
       setMenuOpen(false);
       window.scrollTo({ top: 0 });
       main.current?.focus({ preventScroll: true });
     };
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
+    onRoute();
+    window.addEventListener("hashchange", onRoute);
+    window.addEventListener("popstate", onRoute);
+    return () => {
+      window.removeEventListener("hashchange", onRoute);
+      window.removeEventListener("popstate", onRoute);
+    };
   }, []);
+  useEffect(() => {
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      const canonicalUrl =
+        page === "landing"
+          ? "https://translate.nevatal.tech/"
+          : `https://translate.nevatal.tech/${page}`;
+      canonical.setAttribute("href", canonicalUrl);
+    }
+  }, [page]);
   useEffect(() => {
     document.title = activeLabel
       ? `${activeLabel} · Gemini Japanese`
@@ -141,8 +238,19 @@ function App() {
       document.querySelector<HTMLButtonElement>(".mobile-menu-button")?.focus();
     };
   }, [menuOpen]);
-  function navigate(next: AppPage) {
-    if (next !== page) window.location.hash = next;
+  function navigate(next: AppPage, targetLevel?: Level) {
+    if (targetLevel) {
+      setLevel(targetLevel);
+    }
+    if (next !== page || targetLevel) {
+      if (window.location.pathname !== "/" && window.location.pathname !== "") {
+        const sub = targetLevel ? `/${targetLevel.toLowerCase()}` : "";
+        const nextPath = next === "landing" ? "/" : `/${next}${sub}`;
+        window.history.pushState(null, "", nextPath);
+      } else {
+        window.location.hash = next === "landing" ? "" : next;
+      }
+    }
     setPage(next);
     setMenuOpen(false);
     window.scrollTo({ top: 0 });
@@ -163,6 +271,7 @@ function App() {
   if (page === "landing") {
     return (
       <>
+        <SakuraBackground paused={sakuraPaused} />
         <LandingPage
           key={accountScope}
           mainRef={main}
@@ -176,6 +285,8 @@ function App() {
           accountEmail={account.user?.email}
           checkingAccount={account.checking}
           onOpenAccount={openAccount}
+          sakuraPaused={sakuraPaused}
+          onToggleSakura={toggleSakura}
         />
         {accountDialog}
       </>
@@ -183,6 +294,7 @@ function App() {
   }
   return (
     <>
+      <SakuraBackground paused={sakuraPaused} />
       <div className="app-shell" key={accountScope}>
         <a
           className="skip-link"
@@ -341,6 +453,33 @@ function App() {
                 ))}
               </select>
               <span className="topbar-divider" />
+              <button
+                className="icon-button sakura-motion-toggle"
+                onClick={toggleSakura}
+                aria-label={`${sakuraPaused ? "Resume" : "Pause"} sakura animation`}
+                title={`${sakuraPaused ? "Resume" : "Pause"} sakura animation`}
+              >
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  {sakuraPaused ? (
+                    <path d="m8 5 11 7-11 7Z" />
+                  ) : (
+                    <>
+                      <rect x="6" y="5" width="4" height="14" rx="1" />
+                      <rect x="14" y="5" width="4" height="14" rx="1" />
+                    </>
+                  )}
+                </svg>
+              </button>
               <button
                 className="icon-button theme-button"
                 onClick={() =>

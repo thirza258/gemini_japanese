@@ -1,0 +1,13 @@
+# Gemini Japanese
+
+> Modern Japanese learning platform covering JLPT N5 through N1, kanji, grammar, vocabulary, and interactive exercises.
+
+## Overview
+Gemini Japanese provides comprehensive Japanese learning tools, spaced repetition flashcards, JLPT practice, reading exercises, and AI-powered grammar and translation assistants.
+
+## Endpoints
+- Homepage: https://translate.nevatal.tech/
+- API Health: https://translate.nevatal.tech/api/health
+- API Catalog: https://translate.nevatal.tech/.well-known/api-catalog
+- Authentication Guide: https://translate.nevatal.tech/auth.md
+- Sitemap: https://translate.nevatal.tech/sitemap.xml

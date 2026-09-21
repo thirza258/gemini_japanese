@@ -31,6 +31,8 @@
   --shadow: 0 2px 8px #41202e05;
   --dialog-backdrop: #160c125e;
   --navigation-backdrop: #1d0f1766;
+  --pattern-dot-1: rgba(173, 73, 105, 0.07);
+  --pattern-dot-2: rgba(140, 100, 160, 0.05);
 }
 :root[data-theme="dark"] {
   --bg: #171717;
@@ -55,6 +57,8 @@
   --shadow: none;
   --dialog-backdrop: #00000080;
   --navigation-backdrop: #00000099;
+  --pattern-dot-1: rgba(255, 255, 255, 0.04);
+  --pattern-dot-2: rgba(220, 180, 200, 0.03);
   color: var(--text);
   background: var(--bg);
 }
@@ -64,7 +68,12 @@
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--pattern-dot-1) 1px, transparent 1px),
+    radial-gradient(var(--pattern-dot-2) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+  background-attachment: fixed;
   color: var(--text);
   font-size: 14px;
   line-height: 1.6;
@@ -201,6 +210,8 @@ rt {
 }
 .app-shell {
   min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 .sidebar {
   width: 244px;

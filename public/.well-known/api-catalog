@@ -1,0 +1,25 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://translate.nevatal.tech/api",
+      "service-desc": [
+        {
+          "href": "https://translate.nevatal.tech/api/health",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://translate.nevatal.tech/auth.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://translate.nevatal.tech/api/health",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}
