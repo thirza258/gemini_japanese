@@ -18,6 +18,7 @@ import {
   type CourseLesson,
   type JlptCourse,
 } from "../data/courses";
+import type { LessonKind } from "../data/courses/types";
 import type { RecordAnswer } from "../hooks/useStudy";
 import { stopJapaneseAudio } from "../utils/speech";
 import {
@@ -50,7 +51,9 @@ export function Courses({
     courseId: string;
     lessonId: string;
   } | null>(null);
-  const [view, setView] = useState<"courses" | "sentences">("courses");
+  const [view, setView] = useState<"courses" | "sentences" | "problems">(
+    "courses",
+  );
   const [search, setSearch] = useState("");
   const course = courses.find((item) => item.id === selection?.courseId);
   const lesson = course?.lessons.find(
@@ -69,16 +72,23 @@ export function Courses({
     (sum, item) => sum + item.sentencePractice.sentences.length,
     0,
   );
-  const visible = courses.filter((item) =>
-    `${item.title} ${item.summary} ${item.sentencePractice.canDo} ${item.sentencePractice.situation} ${item.grammar.map((point) => point.pattern).join(" ")}`
-      .toLowerCase()
-      .includes(search.trim().toLowerCase()),
+  const problemCourses = courses.filter((item) => item.problems);
+  const problemCount = problemCourses.reduce(
+    (sum, item) => sum + (item.problems?.problems.length || 0),
+    0,
+  );
+  const visible = (view === "problems" ? problemCourses : courses).filter(
+    (item) =>
+      `${item.title} ${item.summary} ${item.sentencePractice.canDo} ${item.sentencePractice.situation} ${item.problems?.title || ""} ${item.grammar.map((point) => plainJapanese(point.pattern)).join(" ")}`
+        .toLowerCase()
+        .includes(search.trim().toLowerCase()),
   );
 
-  function openCourse(item: JlptCourse, sentencesOnly = false) {
-    const next = sentencesOnly
-      ? item.lessons.find((entry) => entry.kind === "sentences")!
-      : getResumeLesson([item], learned)?.lesson || item.lessons[0];
+  function openCourse(item: JlptCourse, kind?: LessonKind) {
+    const next =
+      (kind && item.lessons.find((entry) => entry.kind === kind)) ||
+      getResumeLesson([item], learned)?.lesson ||
+      item.lessons[0];
     setSelection({ courseId: item.id, lessonId: next.id });
   }
 
@@ -211,6 +221,7 @@ export function Courses({
             <span>{lessonCount} lessons</span>
             <span>{sentenceCount} daily sentences</span>
             <span>{courses.length * 2} reading & listening passages</span>
+            {problemCount > 0 && <span>{problemCount} word problems</span>}
           </div>
         </div>
         <div className="course-resume">
@@ -262,6 +273,15 @@ export function Courses({
           >
             Daily sentences
           </button>
+          {problemCourses.length > 0 && (
+            <button
+              aria-pressed={view === "problems"}
+              className={view === "problems" ? "active" : ""}
+              onClick={() => setView("problems")}
+            >
+              Word problems
+            </button>
+          )}
         </div>
         <label className="course-search">
           <span className="sr-only">Search {level} courses and situations</span>
@@ -277,7 +297,9 @@ export function Courses({
         {visible.length} {level}{" "}
         {view === "sentences"
           ? "sentence lessons · Read, listen, recall, and choose a natural sentence."
-          : "courses · Vocabulary, grammar, daily sentences, reading, listening, and a checkpoint in every course."}
+          : view === "problems"
+            ? "word-problem lessons · Read a problem in Japanese, work it out, and check each step."
+            : "courses · Vocabulary, grammar, daily sentences, reading, listening, and a checkpoint in every course."}
       </p>
       <div className="course-library-grid">
         {visible.map((item) => {
@@ -298,16 +320,24 @@ export function Courses({
               <p>
                 {view === "sentences"
                   ? item.sentencePractice.situation
-                  : item.summary}
+                  : view === "problems"
+                    ? item.problems?.intro
+                    : item.summary}
               </p>
               <div className="course-can-do">
                 <Icon name="target" size={18} />
-                <span>{item.sentencePractice.canDo}</span>
+                <span>
+                  {view === "problems"
+                    ? item.problems?.title
+                    : item.sentencePractice.canDo}
+                </span>
               </div>
               <p className="helper-text">
                 {view === "sentences"
                   ? `${item.sentencePractice.sentences.length} sentences · ${item.sentencePractice.register} Japanese`
-                  : `${item.lessons.length} lessons · ${item.grammar.length} grammar topics · ${item.vocabulary.length} words`}
+                  : view === "problems"
+                    ? `${item.problems?.problems.length} word problems · a worked example first`
+                    : `${item.lessons.length} lessons · ${item.grammar.length} grammar topics · ${item.vocabulary.length} words${item.problems ? " · word problems" : ""}`}
               </p>
               <div className="course-card-footer">
                 <ProgressBar
@@ -320,13 +350,17 @@ export function Courses({
                   </small>
                   <button
                     className="text-link"
-                    onClick={() => openCourse(item, view === "sentences")}
+                    onClick={() =>
+                      openCourse(item, view === "courses" ? undefined : view)
+                    }
                   >
                     {view === "sentences"
                       ? "Practice sentences"
-                      : progress.completed
-                        ? "Continue course"
-                        : "Open course"}
+                      : view === "problems"
+                        ? "Solve problems"
+                        : progress.completed
+                          ? "Continue course"
+                          : "Open course"}
                     <Icon name="arrow" size={16} />
                   </button>
                 </div>
@@ -406,8 +440,14 @@ function CourseLessonView({
       : lesson.kind === "listening"
         ? course.listening
         : null;
+  const problems = lesson.kind === "problems" ? course.problems : undefined;
   const hasFurigana = /\{[^}]+\}/.test(
-    JSON.stringify([course.grammar, course.sentencePractice, passage]),
+    JSON.stringify([
+      course.grammar,
+      course.sentencePractice,
+      passage,
+      problems,
+    ]),
   );
   return (
     <div className="course-lesson-content">
@@ -450,7 +490,7 @@ function CourseLessonView({
                 <div key={word.word}>
                   <ruby lang="ja">
                     {word.word}
-                    <rt>{word.reading}</rt>
+                    {word.reading !== word.word && <rt>{word.reading}</rt>}
                   </ruby>
                   <span>{word.meaning}</span>
                   <SpeakButton
@@ -466,8 +506,12 @@ function CourseLessonView({
           <div className="course-grammar-list">
             {course.grammar.map((point) => (
               <section key={point.pattern}>
-                <h3>{point.pattern}</h3>
-                <p>{point.explanation}</p>
+                <h3>
+                  <RubyText text={point.pattern} show={furigana} mixed />
+                </h3>
+                <p>
+                  <RubyText text={point.explanation} show={furigana} mixed />
+                </p>
                 <div className="course-example">
                   <RubyText text={point.example} show={furigana} />
                   <SpeakButton text={plainJapanese(point.example)} />
@@ -578,12 +622,53 @@ function CourseLessonView({
             </details>
           </>
         )}
+        {problems && (
+          <>
+            <h3>{problems.title}</h3>
+            <p>{problems.intro}</p>
+            <div className="course-word-list">
+              {problems.terms.map((word) => (
+                <div key={word.word}>
+                  <ruby lang="ja">
+                    {word.word}
+                    {word.reading !== word.word && <rt>{word.reading}</rt>}
+                  </ruby>
+                  <span>{word.meaning}</span>
+                  <SpeakButton
+                    text={word.word}
+                    label={`Listen to ${word.word}`}
+                  />
+                </div>
+              ))}
+            </div>
+            <section className="course-worked-example">
+              <p className="eyebrow">WORKED EXAMPLE</p>
+              <div className="course-example">
+                <RubyText text={problems.example.text} show={furigana} />
+                <SpeakButton text={plainJapanese(problems.example.text)} />
+              </div>
+              <p className="helper-text">{problems.example.translation}</p>
+              <ol className="course-steps">
+                {problems.example.steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+            </section>
+            <p>
+              Now solve each problem below. Read it in Japanese first; open the
+              English only if you are stuck.
+            </p>
+          </>
+        )}
         {lesson.kind === "review" && (
           <>
             <p>
-              This checkpoint combines words, grammar, sentences, reading, and
-              listening from the course. Answer without opening the earlier
-              notes, then review any missed checks.
+              This checkpoint combines words, grammar, sentences, reading,
+              {course.problems
+                ? " listening, and a word problem"
+                : " and listening"}{" "}
+              from the course. Answer without opening the earlier notes, then
+              review any missed checks.
             </p>
             <div className="course-can-do">
               <Icon name="target" size={20} />
@@ -596,6 +681,7 @@ function CourseLessonView({
         key={lesson.id}
         course={course}
         lesson={lesson}
+        furigana={furigana}
         onRecord={onRecord}
         onNext={onNext}
         nextLabel={nextLabel}
@@ -607,12 +693,14 @@ function CourseLessonView({
 function CourseQuiz({
   course,
   lesson,
+  furigana,
   onRecord,
   onNext,
   nextLabel,
 }: {
   course: JlptCourse;
   lesson: CourseLesson;
+  furigana: boolean;
   onRecord: RecordAnswer;
   onNext: () => void;
   nextLabel: string;
@@ -646,6 +734,20 @@ function CourseQuiz({
           <legend>
             {i + 1}. {question.prompt}
           </legend>
+          {lesson.kind === "problems" && question.text && (
+            <div className="course-problem">
+              <div className="course-example">
+                <RubyText text={question.text} show={furigana} />
+                <SpeakButton text={plainJapanese(question.text)} />
+              </div>
+              {question.translation && (
+                <details className="course-transcript">
+                  <summary>Show English</summary>
+                  <p>{question.translation}</p>
+                </details>
+              )}
+            </div>
+          )}
           {lesson.kind === "review" && question.text && (
             <p className="course-japanese">
               <RubyText text={question.text} show={false} />

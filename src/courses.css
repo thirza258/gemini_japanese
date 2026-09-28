@@ -386,6 +386,33 @@
 .course-review-audio summary {
   cursor: pointer;
 }
+.course-worked-example {
+  border-top: 1px solid var(--border);
+  margin-top: 22px;
+  padding-top: 22px;
+}
+.course-steps {
+  list-style: decimal;
+  margin: 16px 0 0;
+  padding-left: 22px;
+  line-height: 1.9;
+}
+.course-steps li + li {
+  margin-top: 6px;
+}
+.course-problem {
+  margin-bottom: 16px;
+}
+.course-problem .course-example {
+  margin-top: 0;
+}
+.course-problem .course-transcript {
+  border-top: 0;
+  padding: 12px 0 0;
+}
+.course-problem summary {
+  cursor: pointer;
+}
 .course-quiz-result {
   margin-top: 22px;
   font-size: 13px;

@@ -1,7 +1,9 @@
 import {
   grammar as g,
   passage as p,
+  problemSet,
   question as q,
+  wordProblem,
   words,
   type CourseSeed,
 } from "./types";
@@ -48,6 +50,26 @@ export const n2Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
+        "Which sentence uses にあたって naturally?",
+        "新しい店を開くにあたって、近所に挨拶をした。",
+        [
+          "財布を落とすにあたって、警察に届けた。",
+          "雨が降るにあたって、傘を持って出た。",
+          "駅で転ぶにあたって、足をけがした。",
+        ],
+        "にあたって frames a deliberate undertaking and the preparation for it, like opening a shop; losing a wallet, rain, and a fall are not planned occasions.",
+      ),
+      q(
+        "What does 入会に際して mean in 入会に際して、写真が一枚必要です?",
+        "On the occasion of joining",
+        [
+          "After leaving the club",
+          "Instead of joining",
+          "Despite having joined",
+        ],
+        "に際して means on the occasion of, so the photo is needed at the point of joining; notices use it for exactly this kind of procedure.",
+      ),
+      q(
         "Choose the prerequisite form: 内容を ___ 上で、ご返信ください。",
         "確認した",
         ["確認しての", "確認します", "確認し"],
@@ -74,6 +96,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "The exception concerns entry procedures for outside participants and applies after the room is booked.",
       ),
+      q(
+        "How did room booking work before the change?",
+        "Users e-mailed the person in charge",
+        [
+          "Users booked directly online",
+          "Rooms could not be booked in advance",
+          "Only outside guests could book",
+        ],
+        "従来は担当者にメールを送る必要があった describes the old procedure; booking directly is what changes from next month.",
+      ),
     ),
     listening: p(
       "Confirm before sending",
@@ -88,6 +120,16 @@ export const n2Courses: CourseSeed[] = [
           "Publishing a correction",
         ],
         "Distribution depends on confirmation; list preparation is explicitly allowed now.",
+      ),
+      q(
+        "What is the announcement still waiting for?",
+        "The venue's confirmation of the time",
+        [
+          "The final wording of the text",
+          "Approval from a manager",
+          "An updated mailing list",
+        ],
+        "会場の担当者から時間の確認がまだ来ていません: the text is almost done, and only the venue's time confirmation is missing.",
       ),
     ),
     practice:
@@ -140,6 +182,22 @@ export const n2Courses: CourseSeed[] = [
         "Pursuing perfection excessively caused the missed deadline.",
       ),
       q(
+        "Choose the regretful cause: パスワードを一文字間違えた ___、ログインできなかった。",
+        "ばかりに",
+        ["反面", "に限り", "にあたって"],
+        "ばかりに singles out one small cause, a single mistyped character, for an unwelcome result, with a note of regret.",
+      ),
+      q(
+        "What does ことから introduce in 富士山が見えることから、富士見町と呼ばれている?",
+        "The fact that explains the name",
+        [
+          "A condition that must be met first",
+          "A result that happened by chance",
+          "An exception to a rule",
+        ],
+        "ことから presents an observed fact, that Mt Fuji can be seen, as the reason for the name 富士見町.",
+      ),
+      q(
         "What does 約束した以上は imply?",
         "The promise creates a responsibility",
         [
@@ -164,6 +222,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "Repeat inquiries expose the gap between a short reply time and an actual solution.",
       ),
+      q(
+        "What happened once staff also checked whether problems were solved?",
+        "Each case took a little longer, but total inquiries fell",
+        [
+          "Each case became faster and inquiries rose",
+          "Inquiries stopped completely",
+          "Staff went back to standard replies",
+        ],
+        "一件にかかる時間は少し増えたものの、全体の問い合わせ件数は減った: slower cases, but fewer inquiries overall.",
+      ),
     ),
     listening: p(
       "A responsibility after acceptance",
@@ -178,6 +246,16 @@ export const n2Courses: CourseSeed[] = [
           "Canceling all tasks immediately",
         ],
         "The commitment demands responsible communication, with workload review before deciding what to negotiate.",
+      ),
+      q(
+        "What should be done first?",
+        "Check the workload",
+        [
+          "Hire more staff",
+          "Deliver whatever is finished",
+          "Ask the client for a new deadline at once",
+        ],
+        "まず作業量を確認し sets the first step; consulting the client comes only if the check shows the deadline is at risk.",
       ),
     ),
     practice:
@@ -224,12 +302,6 @@ export const n2Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
-        "Choose the concession: 参加費は無料だ。___、事前の申し込みは必要だ。",
-        "とはいえ",
-        ["したがって", "なぜなら", "例えば"],
-        "The second sentence limits the possible inference that free means no application is needed.",
-      ),
-      q(
         "What does 改善したものの、問題は残る state?",
         "There was improvement, but problems remain",
         [
@@ -238,6 +310,28 @@ export const n2Courses: CourseSeed[] = [
           "Improvement is forbidden",
         ],
         "ものの preserves the first fact while introducing an unresolved limitation.",
+      ),
+      q(
+        "What does ながらも mean in 狭いながらも、明るい部屋です?",
+        "Although it is small",
+        [
+          "While it is getting smaller",
+          "Because it is small",
+          "Only if it is small",
+        ],
+        "Concessive ながらも means although: the room is small, yet bright. It is not the ながら of two simultaneous actions.",
+      ),
+      q(
+        "Choose the concession: 参加費は無料だ。___、事前の申し込みは必要だ。",
+        "とはいえ",
+        ["したがって", "なぜなら", "例えば"],
+        "The second sentence limits the possible inference that free means no application is needed.",
+      ),
+      q(
+        "Choose 'despite': 何度も注意した ___、同じ間違いが続いた。",
+        "にもかかわらず",
+        ["に限らず", "をもとに", "に応じて"],
+        "にもかかわらず marks a result contrary to an established fact: warnings were given many times, yet the same mistake continued.",
       ),
     ],
     reading: p(
@@ -254,6 +348,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "The passage acknowledges improvement but identifies understanding as a separate requirement.",
       ),
+      q(
+        "What did the staff decide to do?",
+        "Place explanations beside each field",
+        [
+          "Remove even more fields",
+          "Return to paper forms",
+          "Close the inquiry line",
+        ],
+        "項目をさらに減らすのではなく、必要な説明を各欄のそばに置く方針に変えた names the new approach.",
+      ),
     ),
     listening: p(
       "A qualified success",
@@ -268,6 +372,16 @@ export const n2Courses: CourseSeed[] = [
           "Surveys should be ignored",
         ],
         "とはいえ qualifies the positive attendance result with evidence about visitor experience.",
+      ),
+      q(
+        "What does the speaker propose for next time?",
+        "Revising the signs at the venue",
+        [
+          "Limiting the number of visitors",
+          "Dropping the survey",
+          "Moving to a larger venue",
+        ],
+        "次は会場の表示を見直しましょう proposes revising the signage, based on the survey comments about confusing guidance.",
       ),
     ),
     practice:
@@ -320,6 +434,16 @@ export const n2Courses: CourseSeed[] = [
         "に限り restricts the group, whereas に限らず extends it.",
       ),
       q(
+        "What does 週末に限らず、平日も混んでいます mean?",
+        "It is crowded on weekdays as well as at weekends",
+        [
+          "It is crowded only at weekends",
+          "It is never crowded on weekdays",
+          "It is crowded regardless of the weather",
+        ],
+        "に限らず extends the statement beyond weekends, and 平日も adds weekdays to it.",
+      ),
+      q(
         "What does 年齢を問わず mean?",
         "Regardless of age",
         [
@@ -328,6 +452,12 @@ export const n2Courses: CourseSeed[] = [
           "Except for every age group",
         ],
         "を問わず removes age as a selection criterion, but says nothing about other conditions.",
+      ),
+      q(
+        "Choose 'regardless of': 経験があるかないか ___、研修を受けてください。",
+        "にかかわらず",
+        ["にもかかわらず", "に限り", "に先立って"],
+        "にかかわらず follows the paired alternatives あるかないか: the training applies either way. にもかかわらず, despite, needs a single established fact.",
       ),
     ],
     reading: p(
@@ -344,6 +474,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "The notice explicitly excludes 機材の貸し出し料金 from the resident discount.",
       ),
+      q(
+        "When does enrollment close?",
+        "As soon as the class is full",
+        [
+          "The day before the class",
+          "When rain is forecast",
+          "After a lottery among applicants",
+        ],
+        "先着順で、定員に達した時点で締め切る: first come, first served, closing the moment capacity is reached.",
+      ),
     ),
     listening: p(
       "A membership benefit",
@@ -358,6 +498,16 @@ export const n2Courses: CourseSeed[] = [
           "They must wait until next month",
         ],
         "どちらの場合も broadens only the reservation requirement to both groups.",
+      ),
+      q(
+        "What can existing members still use?",
+        "Their usual discount",
+        [
+          "The free trial class",
+          "Nothing this month",
+          "A discount from next month only",
+        ],
+        "すでに会員の方は対象外ですが、通常の割引は使えます: existing members miss the free trial but keep their usual discount.",
       ),
     ),
     practice:
@@ -404,10 +554,26 @@ export const n2Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
+        "Choose the accompanying change: 人口の増加 ___、学校が新しく建てられた。",
+        "に伴って",
+        ["に限り", "を問わず", "にすぎず"],
+        "に伴って links the new schools to the population rise they accompanied, the formal way to report one change alongside another.",
+      ),
+      q(
         "Choose adaptation to need: 利用者の希望 ___、時間を調整します。",
         "に応じて",
         ["にもかかわらず", "に限らずの", "をめぐると"],
         "The schedule is adjusted to the users' wishes, a responsive action.",
+      ),
+      q(
+        "What does に従って express in 山を登るに従って、気温が下がる?",
+        "A change that progresses with the climb",
+        [
+          "Obeying an instruction",
+          "A contrast between two places",
+          "A condition that stops the climb",
+        ],
+        "Here に従って describes proportional development: the higher you climb, the lower the temperature. With 説明に従って it would mean following instructions.",
       ),
       q(
         "What does 減る一方だ describe?",
@@ -434,6 +600,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "The inquiry analysis identifies repeated simple questions that signs could answer without a staff interaction.",
       ),
+      q(
+        "What was first suggested to deal with the long lines?",
+        "Hiring more staff",
+        [
+          "Moving the desk to another station",
+          "Closing the information desk",
+          "Cutting bus services",
+        ],
+        "職員を増やす案も出たが: adding staff was proposed first, then set aside once the questions were analysed.",
+      ),
     ),
     listening: p(
       "Adjusting a class",
@@ -445,9 +621,64 @@ export const n2Courses: CourseSeed[] = [
         ["Equal group size", "Alphabetical order", "Arrival time"],
         "経験に応じて identifies the grouping criterion; the speaker explicitly rejects a purely numerical split.",
       ),
+      q(
+        "What should experienced participants be given?",
+        "Applied tasks",
+        ["Basic operations", "No tasks at all", "The same tasks as beginners"],
+        "経験のある人には応用課題を用意してください: applied tasks for the experienced, basic operations for first-timers.",
+      ),
     ),
     practice:
       "Describe a trend with に伴って and a deliberate response with に応じて. Explain why the response addresses the cause.",
+    problems: problemSet(
+      "Reading trends: percentages & multiples",
+      "Trend reports give a change as a percentage or a multiple of an earlier figure. Find the base first: 〜%増 and 〜%減 apply to the earlier amount, and 〜倍 multiplies it.",
+      words(`増加率|ぞうかりつ|rate of increase
+前年比|ぜんねんひ|compared with the previous year
+倍|ばい|times; -fold
+不足分|ふそくぶん|the shortfall
+生産量|せいさんりょう|the amount produced`),
+      {
+        text: "ある{町|まち}を{訪|おとず}れた{観光客|かんこうきゃく}は、{昨年|さくねん}は40{万|まん}{人|にん}だった。{今年|ことし}は{前年比|ぜんねんひ}15%{増|ぞう}だった。{今年|ことし}の{観光客|かんこうきゃく}は{何|なん}{人|にん}か。",
+        translation:
+          "Last year 400,000 tourists visited a town. This year the number was up 15% on the previous year. How many tourists came this year?",
+        steps: [
+          "前年比15%増 applies the 15% to last year's figure, 40万人 (400,000).",
+          "15% of 40万人 is 6万人: 400,000 × 0.15 = 60,000.",
+          "40万 + 6万 = 46万人, so 460,000 tourists came this year.",
+        ],
+      },
+      [
+        wordProblem(
+          "ある{教室|きょうしつ}の{会員|かいいん}は、3{年前|ねんまえ}は2,500{人|にん}だったが、{今年|ことし}は3,000{人|にん}に{増|ふ}えた。3{年前|ねんまえ}と{比|くら}べた{増加率|ぞうかりつ}は{何|なん}%か。",
+          "A hobby school had 2,500 members three years ago, and this year the number has grown to 3,000. What is the rate of increase compared with three years ago?",
+          "20%",
+          ["約17%", "120%", "約83%"],
+          "増加率 compares the increase with the earlier figure: 3,000 − 2,500 = 500, and 500 ÷ 2,500 = 0.2, or 20%. Dividing by this year's 3,000 instead gives about 17%.",
+        ),
+        wordProblem(
+          "{今年|ことし}の{米|こめ}の{生産量|せいさんりょう}は{前年比|ぜんねんひ}20%{減|げん}の4{万|まん}トンだった。{前年|ぜんねん}の{生産量|せいさんりょう}は{何|なん}トンか。",
+          "This year's rice production was 40,000 tonnes, down 20% on the previous year. How many tonnes were produced the previous year?",
+          "5万トン",
+          ["4万8,000トン", "3万2,000トン", "8,000トン"],
+          "前年比20%減 means this year is 80% of last year, so last year = 4万 ÷ 0.8 = 5万トン. Adding 20% to this year's 4万 gives 4万8,000トン, which applies the change to the wrong year.",
+        ),
+        wordProblem(
+          "{動画|どうが}{配信|はいしん}の{需要|じゅよう}は{伸|の}び{続|つづ}け、{現在|げんざい}の{利用|りよう}{件数|けんすう}は5{年前|ねんまえ}の1.5{倍|ばい}の1,200{万|まん}{件|けん}になった。5{年前|ねんまえ}の{利用|りよう}{件数|けんすう}は{何|なん}{万|まん}{件|けん}か。",
+          "Demand for video streaming keeps growing: usage now stands at 12 million, 1.5 times the figure five years ago. What was the usage figure five years ago?",
+          "800万件",
+          ["1,800万件", "600万件", "400万件"],
+          "現在は5年前の1.5倍 means the earlier figure × 1.5 = 1,200万件, so it was 1,200万 ÷ 1.5 = 800万件. Taking 50% off 1,200万 gives 600万, the usual trap.",
+        ),
+        wordProblem(
+          "ある{地域|ちいき}では、{野菜|やさい}の{需要|じゅよう}が100{万|まん}トン、{供給|きょうきゅう}が80{万|まん}トンである。{来年|らいねん}は{供給|きょうきゅう}を15%{増|ふ}やす{計画|けいかく}だ。{需要|じゅよう}が{変|か}わらない{場合|ばあい}、{来年|らいねん}の{不足分|ふそくぶん}は{何|なん}{万|まん}トンか。",
+          "In one region, demand for vegetables is 1 million tonnes and supply is 800,000 tonnes. Next year supply is planned to rise by 15%. If demand stays the same, how large will next year's shortfall be?",
+          "8万トン",
+          ["5万トン", "20万トン", "17万トン"],
+          "供給を15%増やす makes supply 80万 × 1.15 = 92万トン. Demand stays at 100万, so the shortfall is 100万 − 92万 = 8万トン. Taking 15% off today's 20万 shortfall gives 17万, which applies the change to the wrong figure.",
+        ),
+      ],
+    ),
   },
   {
     slug: "difficult-judgments",
@@ -505,6 +736,22 @@ export const n2Courses: CourseSeed[] = [
         ],
         "The negative verb plus わけにはいかない means one cannot avoid refusing.",
       ),
+      q(
+        "What does 行けないことはないが、少し遠い convey?",
+        "Going is possible, but with a reservation",
+        [
+          "Going is completely impossible",
+          "The speaker is eager to go",
+          "The speaker has already gone",
+        ],
+        "ないことはない grants a limited possibility, and the が clause adds the reservation; it is weaker than a plain 行けます.",
+      ),
+      q(
+        "Choose the warning: このままでは大きな事故につながり ___。",
+        "かねない",
+        ["かねる", "次第だ", "ざるを得ない"],
+        "Stem + かねない warns of a possible bad result; かねる instead says the speaker cannot comply, which makes no sense of an accident.",
+      ),
     ],
     reading: p(
       "When a delay is responsible",
@@ -520,6 +767,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "The passage allows technical possibility but emphasizes the risk expressed by 与えかねない.",
       ),
+      q(
+        "Which argument for launching on schedule does the writer reject?",
+        "Money had already been spent on preparation",
+        [
+          "Users were asking for fewer checks",
+          "The launch date was set by law",
+          "A rival had already launched",
+        ],
+        "準備に費用をかけた以上、公開すべきだ is rejected: money already spent cannot excuse ignoring unchecked parts.",
+      ),
     ),
     listening: p(
       "A cautious answer",
@@ -534,6 +791,16 @@ export const n2Courses: CourseSeed[] = [
           "Today with a guarantee of perfection",
         ],
         "The qualified possibility is rejected in favor of a checked delivery the following morning.",
+      ),
+      q(
+        "What would delivering today require?",
+        "Skipping the final check",
+        [
+          "Hiring extra staff",
+          "Paying a higher fee",
+          "Asking the client to collect it",
+        ],
+        "最終確認を省く必要があります: delivery today is possible only by skipping the final check, which risks overlooked errors.",
       ),
     ),
     practice:
@@ -586,6 +853,22 @@ export const n2Courses: CourseSeed[] = [
         "に基づいて makes the data the foundation for the decision.",
       ),
       q(
+        "What does をもとに express in 実話をもとに映画を作った?",
+        "The true story was the source material for the film",
+        [
+          "The film strictly follows a legal rule",
+          "The film was made despite the true story",
+          "The film replaced the true story",
+        ],
+        "をもとに names the source material that was developed into something new, here a film adapted from a true story.",
+      ),
+      q(
+        "Choose the phrase that frames a viewpoint: 利用者の立場 ___、この説明は分かりにくい。",
+        "から見ると",
+        ["に限り", "にすぎず", "どころか"],
+        "から見ると frames the judgment from the user's standpoint; that perspective, not a universal fact, finds the explanation unclear.",
+      ),
+      q(
         "What does 一部の回答にすぎない emphasize?",
         "The responses are only a limited subset",
         [
@@ -610,6 +893,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "The time-limited sample restricts whose preferences the results represent.",
       ),
+      q(
+        "Which option will the shop consider?",
+        "Extending the hours on some days only",
+        [
+          "Closing earlier every day",
+          "Stopping all surveys",
+          "Opening only in the morning",
+        ],
+        "延長する日を限定する案も含め: extending on selected days is one option to weigh against costs and demand.",
+      ),
     ),
     listening: p(
       "A claim kept in proportion",
@@ -624,6 +917,16 @@ export const n2Courses: CourseSeed[] = [
           "Canceling future events",
         ],
         "The limited observation is insufficient for a lasting-trend claim without a broader comparison.",
+      ),
+      q(
+        "Why might the sales figures be misleading?",
+        "They come from a week with a special event",
+        [
+          "They were entered incorrectly",
+          "They cover a whole year",
+          "They include only online sales",
+        ],
+        "特別な催しがあった一週間の結果にすぎません limits the figures to one unusual week.",
       ),
     ),
     practice:
@@ -670,6 +973,22 @@ export const n2Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
+        "Choose 'not only': この店は安い ___、品質もいい。",
+        "だけでなく",
+        ["反面", "に応じて", "にすぎず"],
+        "だけでなく adds a second, compatible point, and も in the next clause marks it; 反面 would need a drawback.",
+      ),
+      q(
+        "What does ばかりか add in 彼は謝らなかったばかりか、相手を責めた?",
+        "A further, more striking fact",
+        [
+          "A reason for apologising",
+          "A contrast that cancels the first fact",
+          "A condition for blaming",
+        ],
+        "ばかりか adds something more striking than the first fact: not only no apology, but blaming the other person as well.",
+      ),
+      q(
         "Choose a strong reversal: 楽になる ___、仕事が増えた。",
         "どころか",
         ["に応じて", "にあたって", "をもとに"],
@@ -700,6 +1019,12 @@ export const n2Courses: CourseSeed[] = [
         ],
         "The conclusion targets the surrounding workflow, not the mere existence of the tool.",
       ),
+      q(
+        "What fell after the app was introduced?",
+        "Phone calls",
+        ["Input errors", "Booking changes", "Staff workload at first"],
+        "確かに電話は少なくなったが: calls fell, while correcting input and handling changes became new work.",
+      ),
     ),
     listening: p(
       "Comparing two services",
@@ -714,6 +1039,16 @@ export const n2Courses: CourseSeed[] = [
           "Neither cost nor flexibility",
         ],
         "The trade-off means frequent change fees can outweigh the cheaper base price.",
+      ),
+      q(
+        "What is the advantage of the expensive plan?",
+        "Changes are free",
+        [
+          "A lower monthly fee",
+          "No booking is needed",
+          "A refund for each change",
+        ],
+        "高いプランは月額が高いですが、変更は無料です: the expensive plan trades a higher monthly fee for free changes.",
       ),
     ),
     practice:
@@ -760,10 +1095,10 @@ export const n2Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
-        "Choose the form for planned follow-up: 結果が分かり ___、お知らせします。",
-        "次第",
-        ["とたん", "最中", "かけの"],
-        "A verb stem + 次第 suits a planned notification as soon as information becomes available.",
+        "Choose the interruption in progress: 会議の ___、電話が鳴った。",
+        "最中に",
+        ["次第", "とたんに", "かけに"],
+        "Noun + の最中に places the ringing phone right in the middle of the ongoing meeting.",
       ),
       q(
         "What does 書きかけのメール describe?",
@@ -774,6 +1109,22 @@ export const n2Courses: CourseSeed[] = [
           "A printed instruction booklet",
         ],
         "かけ marks the unfinished state of the writing.",
+      ),
+      q(
+        "What does 立ち上がったとたんに、めまいがした describe?",
+        "An unexpected event right after standing up",
+        [
+          "A planned action after standing up",
+          "Two actions done together on purpose",
+          "Standing up after the dizziness had passed",
+        ],
+        "たとたんに links an immediate, unexpected event to the moment of standing; it is not used for a deliberate follow-up plan.",
+      ),
+      q(
+        "Choose the form for planned follow-up: 結果が分かり ___、お知らせします。",
+        "次第",
+        ["とたん", "最中", "かけの"],
+        "A verb stem + 次第 suits a planned notification as soon as information becomes available.",
       ),
     ],
     reading: p(
@@ -790,6 +1141,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "The final sentence explicitly replaces a complete restart with an understanding check and targeted explanation.",
       ),
+      q(
+        "What was missing from the first explanation?",
+        "How to decide when an exception occurs",
+        [
+          "The purpose of the procedure",
+          "The name of the person in charge",
+          "The deadline for the task",
+        ],
+        "手順の目的は説明されていたものの、例外が起きた場合の判断が抜けていた: the purpose was covered, the decisions for exceptions were not.",
+      ),
     ),
     listening: p(
       "When to contact the customer",
@@ -804,6 +1165,16 @@ export const n2Courses: CourseSeed[] = [
           "Before repair begins",
         ],
         "The request distinguishes part arrival, installation, and the final testing prerequisite.",
+      ),
+      q(
+        "When will the part be installed?",
+        "As soon as it arrives",
+        [
+          "After the customer calls",
+          "Tomorrow morning",
+          "After the operation check",
+        ],
+        "部品が届き次第、取り付けます: installation follows the moment the part arrives.",
       ),
     ),
     practice:
@@ -860,10 +1231,26 @@ export const n2Courses: CourseSeed[] = [
         "With quantities, につき expresses a per-unit allocation.",
       ),
       q(
+        "Which introduces the topic in the formal register of a notice?",
+        "申請に関して",
+        ["申請のことだけど", "申請って", "申請なんか"],
+        "に関して introduces the topic formally, close to について; the others are conversational, and なんか even sounds dismissive.",
+      ),
+      q(
         "Choose the disputed issue: 建設計画 ___、意見が分かれています。",
         "をめぐって",
         ["に先立つの", "かけての", "につれての"],
         "The construction plan is the issue around which opinions differ.",
+      ),
+      q(
+        "What does 開会に先立って mean in 開会に先立って、市長があいさつした?",
+        "Before the opening",
+        [
+          "After the closing",
+          "Instead of the opening",
+          "Throughout the session",
+        ],
+        "に先立って means prior to a significant event: the mayor's greeting came before the session opened.",
       ),
     ],
     reading: p(
@@ -880,6 +1267,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "An online reservation is still possible, but transfer delays mean readiness must be confirmed separately.",
       ),
+      q(
+        "Where should borrowers return items during the renovation?",
+        "The return box at the front",
+        [
+          "The temporary counter on the west side",
+          "The closed reading room",
+          "The online reservation page",
+        ],
+        "返却は正面の返却箱をご利用ください: returns go to the front box, while pickups use the west-side counter.",
+      ),
     ),
     listening: p(
       "A briefing before opening",
@@ -894,6 +1291,16 @@ export const n2Courses: CourseSeed[] = [
           "The need to distinguish decisions from proposals",
         ],
         "The speaker contrasts fixed 営業時間 with 搬入の時間 still under discussion.",
+      ),
+      q(
+        "What will happen before the shop opens?",
+        "A briefing for neighbours",
+        [
+          "A sale for the first customers",
+          "A vote on business hours",
+          "The first delivery of stock",
+        ],
+        "開店に先立って、近隣の方への説明を行います: the briefing for neighbours comes before the opening.",
       ),
     ),
     practice:
@@ -955,6 +1362,26 @@ export const n2Courses: CourseSeed[] = [
         ["限りの", "めぐって", "つき"],
         "て初めて identifies use as the experience that enabled understanding.",
       ),
+      q(
+        "What does にほかならない emphasize in 成功の理由は、準備の努力にほかならない?",
+        "The preparation was precisely the reason",
+        [
+          "Preparation was only a minor factor",
+          "The reason is still unknown",
+          "Success came despite the preparation",
+        ],
+        "にほかならない identifies the cause emphatically: nothing other than the effort put into preparation.",
+      ),
+      q(
+        "Which sentence uses さえ for a minimal condition?",
+        "住所さえ分かれば、届けられます。",
+        [
+          "専門家でさえ、答えられなかった。",
+          "子どもでさえ知っている。",
+          "雨さえ降り出した。",
+        ],
+        "さえ〜ば sets a minimal condition: only the address is needed. The others use さえ for an extreme example, meaning even.",
+      ),
     ],
     reading: p(
       "Policy plus organizer's message",
@@ -970,6 +1397,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "Combine the organizer's 2.5-hour requirement with the facility's two-hour booking units. The next sufficient whole unit is four hours.",
       ),
+      q(
+        "Until when can a booking be changed?",
+        "Noon on the previous day",
+        [
+          "The morning of the briefing",
+          "Two hours before the room is used",
+          "Any time before 4 p.m.",
+        ],
+        "予約変更は前日の正午まで受け付けます: changes close at noon the day before.",
+      ),
     ),
     listening: p(
       "A changed requirement",
@@ -980,6 +1417,16 @@ export const n2Courses: CourseSeed[] = [
         "ID and the printed confirmation form",
         ["ID only", "The form only", "Neither because it is a group"],
         "The spoken message adds a group-specific requirement without removing the general ID requirement.",
+      ),
+      q(
+        "Why is an extra document needed this time?",
+        "It is a group booking",
+        [
+          "The guide has been withdrawn",
+          "The listener lost their ID",
+          "The venue has changed",
+        ],
+        "団体予約の場合は代表者の確認書も必要です, and 今回は団体なので applies that rule to this booking.",
       ),
     ),
     practice:
@@ -1032,6 +1479,26 @@ export const n2Courses: CourseSeed[] = [
         "ということで names the agreed conclusion; the others set a condition, limit a claim, or mark one side's standpoint.",
       ),
       q(
+        "What does 弊社といたしましては signal?",
+        "What follows is the company's own position",
+        [
+          "What follows is a legal requirement",
+          "The customer has already agreed",
+          "The company refuses to discuss it",
+        ],
+        "といたしましては states a view from the speaker's standpoint in humble business form, leaving the other side room to state theirs.",
+      ),
+      q(
+        "What does 担当者に確認しないことには、お答えできません mean?",
+        "No answer is possible until the person in charge is consulted",
+        [
+          "The person in charge has already answered",
+          "An answer can be given without checking",
+          "The person in charge refuses to answer",
+        ],
+        "ないことには makes checking with the person in charge the one condition without which no answer can be given.",
+      ),
+      q(
         "Choose the phrase that limits a claim to what was actually checked.",
         "確認した限りでは",
         ["確認しないことには", "確認ということで", "確認といたしましては"],
@@ -1052,16 +1519,36 @@ export const n2Courses: CourseSeed[] = [
         ],
         "返金ではなく交換ということで names the outcome the company is proposing; the exchange itself is offered free of charge.",
       ),
+      q(
+        "What must the customer do for the procedure to go ahead?",
+        "Fill in and return the enclosed form",
+        [
+          "Send more photographs",
+          "Bring the product to a shop",
+          "Buy an extended warranty first",
+        ],
+        "同封の用紙にご記入いただかないことには手続きが進められません: nothing moves until the enclosed form comes back.",
+      ),
     ),
     listening: p(
       "At the service counter",
-      "レシートがないので{返品|へんぴん}は{難|むずか}しいのですが、{同|おな}じ{商品|しょうひん}との{交換|こうかん}でしたら{対応|たいおう}できます。{在庫|ざいこ}を{確認|かくにん}しないことにはお{答|こた}えできませんので、{十分|じゅっぷん}ほどお{時間|じかん}をいただけますか。",
+      "レシートがないので{返品|へんぴん}は{難|むずか}しいのですが、{同|おな}じ{商品|しょうひん}との{交換|こうかん}でしたら{対応|たいおう}できます。{在庫|ざいこ}を{確認|かくにん}しないことにはお{答|こた}えできませんので、10{分|ぷん}ほどお{時間|じかん}をいただけますか。",
       "Without a receipt a return is difficult, but we can handle an exchange for the same item. I cannot answer until I have checked the stock, so could you give me about ten minutes?",
       q(
         "What can the counter offer?",
         "An exchange for the same item",
         ["A full refund", "A store credit", "A free repair"],
         "同じ商品との交換でしたら対応できます is the one option offered; the return itself is described as difficult.",
+      ),
+      q(
+        "Why does the clerk ask for about ten minutes?",
+        "To check whether the item is in stock",
+        [
+          "To find the receipt",
+          "To call the manufacturer",
+          "To process a refund",
+        ],
+        "在庫を確認しないことにはお答えできません: the ten minutes are for the stock check the answer depends on.",
       ),
     ),
     practice:
@@ -1119,6 +1606,18 @@ export const n2Courses: CourseSeed[] = [
         ["間に合いません", "間に合わないでしょう", "間に合うはずがありません"],
         "のではないかと思います frames the concern as a suspicion and leaves room for another view of the schedule.",
       ),
+      q(
+        "Which request sounds like a hope rather than a demand in an e-mail to a senior colleague?",
+        "ご確認いただければ幸いです",
+        ["確認してください", "確認しろ", "確認してね"],
+        "ば幸いです phrases the request as the writer's hope, which suits writing to someone senior; the others are direct requests or orders.",
+      ),
+      q(
+        "What does かと存じます add in 来週でしたら対応できるかと存じます?",
+        "A humble, tentative opinion",
+        ["A firm promise", "A refusal", "A question to the listener"],
+        "存じます is humble 思います, and かと makes it tentative, so the speaker offers next week without insisting on it.",
+      ),
     ],
     reading: p(
       "A progress report by e-mail",
@@ -1134,6 +1633,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "延ばしていただければ幸いです is the request; overtime appears only as the fallback if the extension is refused.",
       ),
+      q(
+        "What problem did the writer find in the documents?",
+        "Some figures were out of date",
+        [
+          "A page was missing",
+          "The deadline was wrong",
+          "The file would not open",
+        ],
+        "資料を確認したところ、数字が一部古いままになっておりました reports the finding: some figures had not been updated.",
+      ),
     ),
     listening: p(
       "Declining extra work",
@@ -1148,6 +1657,16 @@ export const n2Courses: CourseSeed[] = [
           "Cancelling the handover",
         ],
         "来週でしたらお手伝いできる keeps the offer open with different timing rather than refusing outright.",
+      ),
+      q(
+        "Why can the speaker not help this week?",
+        "They have a handover this week",
+        [
+          "They are on holiday",
+          "They lack the skills needed",
+          "They are working overtime for a client",
+        ],
+        "今週は引き継ぎがあって余裕がありません gives the handover as the reason there is no room this week.",
       ),
     ),
     practice:
@@ -1205,6 +1724,22 @@ export const n2Courses: CourseSeed[] = [
         ["東京において", "東京にわたって", "東京を通じて"],
         "をはじめ picks out the most prominent member of a group and leaves the remainder understood.",
       ),
+      q(
+        "Choose the phrase that states the whole span: 工事は十年 ___ 続いた。",
+        "にわたって",
+        ["において", "をはじめ", "に対して"],
+        "にわたって stresses the whole span of ten years; において marks a setting and をはじめ a leading example.",
+      ),
+      q(
+        "What does を通じて mark in 友人を通じて、仕事を紹介してもらった?",
+        "The route by which the introduction came",
+        [
+          "The place where the work happens",
+          "The period the work lasted",
+          "The leading example among many friends",
+        ],
+        "を通じて names the route: the job introduction came by way of a friend.",
+      ),
     ],
     reading: p(
       "A programme report",
@@ -1220,6 +1755,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "地元の機関を通じて提供され names the route; the cities appear as the leading example of where it spread, not as the only place.",
       ),
+      q(
+        "What does the report name as the challenge ahead?",
+        "Keeping up the pace of uptake",
+        [
+          "Finding local institutions",
+          "Starting the programme in the cities",
+          "Reducing the number of partners",
+        ],
+        "今後は普及の速度をいかに保つかが課題である names maintaining the pace of uptake as the remaining challenge.",
+      ),
     ),
     listening: p(
       "A briefing",
@@ -1231,9 +1776,572 @@ export const n2Courses: CourseSeed[] = [
         ["The budget", "The number of cities", "The length of the programme"],
         "参加団体が増えました names what grew; the three-year span is stated as a fact rather than as something that increased.",
       ),
+      q(
+        "Where have participating organisations increased?",
+        "In regional areas as well as the cities",
+        ["Only in the cities", "Only abroad", "Nowhere yet"],
+        "都市部をはじめ、地方においても参加団体が増えました: the cities lead, and regional areas have seen growth too.",
+      ),
     ),
     practice:
       "Rewrite a plain progress note for the page: replace で with において, name the leading example with をはじめ, state the span with にわたって, and name the route with を通じて.",
+  },
+  {
+    slug: "commuting-city",
+    title: "Commuting, detours & rules of the road",
+    summary:
+      "Get through a city commute under roadworks: follow a detour along the route that has been set out, explain a delay that has more than one cause, and point out the unwritten rules for cycling and parking.",
+    vocabulary: words(`通勤|つうきん|commuting to work
+渋滞|じゅうたい|a traffic jam
+通行止め|つうこうどめ|a road closure
+工事|こうじ|construction work
+歩道|ほどう|a pavement
+駐輪場|ちゅうりんじょう|a bicycle parking area
+遅延|ちえん|a delay
+標識|ひょうしき|a road sign`),
+    grammar: [
+      g(
+        "〜に{沿|そ}って",
+        "Noun + に{沿|そ}って means along something that runs beside you, such as a river or a road, or in line with a plan, a policy, or a set of instructions. Before a noun it becomes に{沿|そ}った, as in {計画|けいかく}に{沿|そ}った{工事|こうじ}. Compared with に{従|したが}って, it keeps the image of a line you move beside.",
+        "{矢印|やじるし}に{沿|そ}って、{川沿|かわぞ}いの{道|みち}をお{進|すす}みください。",
+        "Please follow the arrows along the riverside road.",
+      ),
+      g(
+        "〜に{加|くわ}えて",
+        "Noun + に{加|くわ}えて adds a second factor on top of the first: {雨|あめ}に{加|くわ}えて{風|かぜ}も{強|つよ}い. It is common in news and announcements that list causes, and the added item usually takes も. In conversation, 〜だけじゃなくて says much the same thing less formally.",
+        "{工事|こうじ}に{加|くわ}えて{事故|じこ}もあり、{道|みち}がひどく{混|こ}んでいます。",
+        "On top of the roadworks there has been an accident, so the roads are badly congested.",
+      ),
+      g(
+        "〜ようがない",
+        "Verb stem + ようがない says there is no way to do something because the means are missing, not the will: {電話|でんわ}が{通|つう}じないので{連絡|れんらく}のしようがない. A する-noun takes のしようがない. It presents the inability as a matter of circumstance, which is why it often appears when explaining a delay.",
+        "{電車|でんしゃ}も{止|と}まっていて、{行|い}きようがありませんでした。",
+        "The trains had stopped as well, so there was no way to get there.",
+      ),
+      g(
+        "〜ものではない",
+        "Dictionary form + ものではない states a social rule about what people should not do, the way an older relative or a teacher might: {人|ひと}の{悪口|わるぐち}を{言|い}うものではない. It appeals to common sense rather than to a regulation, so said directly to someone it can sound like a lecture.",
+        "{歩道|ほどう}に{自転車|じてんしゃ}を{止|と}めておくものではありません。",
+        "You should not leave a bicycle standing on the pavement.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Choose the phrase for following the arrows: 矢印 ___ 進んでください。",
+        "に沿って",
+        ["に加えて", "をめぐって", "につき"],
+        "に沿って means along a line or in line with guidance; the arrows mark the route to follow.",
+      ),
+      q(
+        "What does 雨に加えて風も強い add?",
+        "Strong wind on top of the rain",
+        [
+          "Wind instead of rain",
+          "Rain because of the wind",
+          "Wind that has now stopped",
+        ],
+        "に加えて adds a second factor to the first, and も marks the added item: the wind is strong as well as it raining.",
+      ),
+      q(
+        "Which says there were no means of getting in touch?",
+        "連絡のしようがなかった",
+        [
+          "連絡しないことはなかった",
+          "連絡するものではなかった",
+          "連絡したばかりだった",
+        ],
+        "With a する-noun, ようがない becomes のしようがない: the means of contacting anyone were missing.",
+      ),
+      q(
+        "Choose the sentence that states a social rule.",
+        "歩道に自転車を止めるものではない",
+        [
+          "歩道に自転車を止めるものだった",
+          "歩道に自転車を止めようがない",
+          "歩道に自転車を止めるわけではない",
+        ],
+        "Dictionary form + ものではない says what people should not do as a matter of common sense.",
+      ),
+    ],
+    reading: p(
+      "Roadworks outside the station",
+      "{駅前|えきまえ}{通|どお}りの{工事|こうじ}が{始|はじ}まって{一週間|いっしゅうかん}になる。{工事|こうじ}による{通行止|つうこうど}めに{加|くわ}えて、{雨|あめ}の{日|ひ}には{駅|えき}へ{向|む}かう{車|くるま}も{増|ふ}えるため、{渋滞|じゅうたい}は{以前|いぜん}よりひどくなった。{車|くるま}で{通|とお}る{人|ひと}は{標識|ひょうしき}に{沿|そ}って{川沿|かわぞ}いの{道|みち}を{回|まわ}るしかないが、そこも{混|こ}んでいて、{時間|じかん}の{読|よ}みようがないという。そこで{自転車|じてんしゃ}で{通勤|つうきん}する{人|ひと}が{増|ふ}えたが、{駅前|えきまえ}の{駐輪場|ちゅうりんじょう}は{工事|こうじ}のために{半分|はんぶん}しか{使|つか}えない。{駐輪場|ちゅうりんじょう}がいっぱいでも、{歩道|ほどう}に{自転車|じてんしゃ}を{止|と}めるものではない。{歩道|ほどう}は{歩|ある}く{人|ひと}のための{場所|ばしょ}である。{少|すこ}し{早|はや}めに{家|いえ}を{出|で}て、{駅|えき}まで{歩|ある}くのも{一|ひと}つの{方法|ほうほう}だろう。",
+      "It has been a week since the roadworks on the station road began. On top of the closure caused by the works, more cars head for the station on rainy days, so the congestion is worse than before. Drivers have no choice but to follow the signs round by the riverside road, but that is busy too, and people say there is no way to judge how long a journey will take. More people now cycle to work as a result, but only half of the bicycle park by the station can be used because of the works. Even when it is full, you should not leave a bicycle on the pavement. The pavement is a place for people on foot. Leaving home a little earlier and walking to the station is another option.",
+      q(
+        "Why is the congestion worse than before?",
+        "A road closure plus extra cars on rainy days",
+        [
+          "The riverside road has been closed",
+          "The bicycle park has been removed",
+          "The trains have stopped running",
+        ],
+        "通行止めに加えて adds the rainy-day traffic on top of the closure; the two together make the congestion worse.",
+      ),
+      q(
+        "What does the writer say people should not do?",
+        "Leave a bicycle on the pavement",
+        [
+          "Drive along the riverside road",
+          "Walk to the station",
+          "Leave home earlier than usual",
+        ],
+        "歩道に自転車を止めるものではない states a rule of common sense: the pavement belongs to people on foot, even when the bicycle park is full.",
+      ),
+    ),
+    listening: p(
+      "A delay announcement",
+      "ただいま、{大雨|おおあめ}の{影響|えいきょう}に{加|くわ}えて、{線路|せんろ}の{点検|てんけん}を{行|おこな}っているため、{上|のぼ}り{線|せん}に{遅|おく}れが{出|で}ております。{運転|うんてん}{再開|さいかい}の{見込|みこ}みは{立|た}っておりません。お{急|いそ}ぎのお{客様|きゃくさま}は、{係員|かかりいん}の{案内|あんない}に{沿|そ}ってバスをご{利用|りよう}ください。",
+      "Owing to the heavy rain, and to an inspection of the track now under way, there are delays on the inbound line. There is no estimate yet of when services will resume. Passengers who are in a hurry, please follow the staff's directions and use the buses.",
+      q(
+        "Why are the trains delayed?",
+        "Heavy rain and a track inspection",
+        [
+          "An accident at the station",
+          "Roadworks beside the line",
+          "A shortage of drivers",
+        ],
+        "大雨の影響に加えて線路の点検 gives two causes, the second added on top of the first with に加えて.",
+      ),
+      q(
+        "What should passengers in a hurry do?",
+        "Take a bus, following the staff's directions",
+        [
+          "Wait on the platform for the next train",
+          "Walk to the next station",
+          "Ask for a refund at the gate",
+        ],
+        "係員の案内に沿ってバスをご利用ください sends hurried passengers to the buses along the route the staff show them.",
+      ),
+    ),
+    practice:
+      "Write a short detour notice: send traffic along a route with に沿って, add a second cause with に加えて, explain what cannot be done with ようがない, and finish with one ものではない rule for cyclists.",
+  },
+  {
+    slug: "seminar-data",
+    title: "Seminar presentations & reading the data",
+    summary:
+      "Present a finding in a university seminar: describe a trend on a chart, say where a trend turned and what surprised you, qualify what the data can show, and work out changes and shares from the numbers themselves.",
+    vocabulary: words(`発表|はっぴょう|a presentation
+前年比|ぜんねんひ|a comparison with the previous year
+構成比|こうせいひ|a share of the total
+平均|へいきん|an average
+増加率|ぞうかりつ|a rate of increase
+推移|すいい|a change over time
+図表|ずひょう|charts and tables
+質疑応答|しつぎおうとう|questions and answers`),
+    grammar: [
+      g(
+        "〜つつある",
+        "Verb stem + つつある describes a change that is under way and not yet complete: {利用者|りようしゃ}は{増|ふ}えつつある. It belongs to formal speech and writing about trends; where {増|ふ}えている can simply report a result, {増|ふ}えつつある insists that the shift is still in progress.",
+        "{若|わか}い{世代|せだい}の{新聞|しんぶん}{離|ばな}れが{進|すす}みつつあります。",
+        "Young people are steadily moving away from newspapers.",
+      ),
+      g(
+        "〜を{境|さかい}に",
+        "Noun + を{境|さかい}に marks the point at which a trend turns or a state changes: {値上|ねあ}げを{境|さかい}に{利用者|りようしゃ}が{減|へ}り{始|はじ}めた. It divides a chart into a before and an after, and the main clause says what changed from that point on. を{境|さかい}にして means the same, and the point can be a date, an event, or a threshold.",
+        "{駐輪場|ちゅうりんじょう}が{広|ひろ}くなった{三年前|さんねんまえ}を{境|さかい}に、{自転車|じてんしゃ}の{利用者|りようしゃ}が{増|ふ}え{始|はじ}めました。",
+        "Cycling began to rise from three years ago, when the bicycle park was enlarged.",
+      ),
+      g(
+        "〜に{反|はん}して",
+        "Noun + に{反|はん}して introduces a result that goes against an expectation, a forecast, or somebody's wishes: {予想|よそう}に{反|はん}して. It frames the surprise as a contrast with what was assumed, which makes it a natural way to present an unexpected finding. With a rule, the same phrase means in breach of it.",
+        "{予想|よそう}に{反|はん}して、{回答者|かいとうしゃ}の{数|かず}は{減|へ}りました。",
+        "Contrary to expectations, the number of respondents fell.",
+      ),
+      g(
+        "〜{得|う}る・〜{得|え}ない",
+        "Verb stem + {得|う}る says that something can happen, and 〜{得|え}ない that it cannot: {起|お}こり{得|う}る{誤差|ごさ}. It concerns logical possibility rather than a person's skill, so it describes outcomes and explanations. The dictionary form may also be read える, but the negative and the polite form always use え.",
+        "{調査|ちょうさ}の{方法|ほうほう}によっては、{違|ちが}う{結果|けっか}もあり{得|え}ます。",
+        "Depending on the survey method, a different result is also possible.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Choose the phrase for a decrease that is still in progress.",
+        "減りつつある",
+        ["減ったところだ", "減ったことがある", "減らずにすむ"],
+        "Verb stem + つつある presents the decrease as an ongoing shift; the other phrases report a finished event, a past experience, or avoiding the decrease.",
+      ),
+      q(
+        "Fill the gap so that 2020 is the turning point: 2020年 ___ 利用者が増え始めた。",
+        "を境に",
+        ["に反して", "をもとに", "に沿って"],
+        "を境に marks 2020 as the dividing line on the chart: the rise in users begins from that point on.",
+      ),
+      q(
+        "What does 予想に反して signal?",
+        "The result went against the forecast",
+        [
+          "The result confirmed the forecast",
+          "The forecast was withdrawn",
+          "The result has not come in yet",
+        ],
+        "に反して introduces an outcome that contradicts what was expected before the figures came in.",
+      ),
+      q(
+        "Which says an error is possible but not certain?",
+        "誤差もあり得る",
+        ["誤差もあり得ない", "誤差があるに違いない", "誤差があったはずだ"],
+        "Verb stem + 得る states a possibility; 得ない rules it out, and に違いない or はずだ would claim far more certainty.",
+      ),
+    ],
+    reading: p(
+      "Presenting a survey result",
+      "それでは、{調査|ちょうさ}の{結果|けっか}をご{報告|ほうこく}します。こちらの{図表|ずひょう}は、{学生|がくせい}の{通学|つうがく}{手段|しゅだん}の{推移|すいい}を{示|しめ}したものです。{自転車|じてんしゃ}の{利用|りよう}は{駐輪場|ちゅうりんじょう}が{広|ひろ}くなった{三年前|さんねんまえ}を{境|さかい}に{増|ふ}えつつあり、{全体|ぜんたい}に{占|し}める{割合|わりあい}は{二割|にわり}から{三割|さんわり}になりました。{一方|いっぽう}、{運賃|うんちん}が{上|あ}がったバスは、{予想|よそう}に{反|はん}して{利用者|りようしゃ}が{減|へ}っていません。ただし、{回答者|かいとうしゃ}は{二百人|にひゃくにん}ほどで、{学部|がくぶ}にも{偏|かたよ}りがあるため、{違|ちが}う{結果|けっか}もあり{得|え}ます。{次|つぎ}の{調査|ちょうさ}では、{対象|たいしょう}を{広|ひろ}げる{予定|よてい}です。",
+      "Now I will report the results of the survey. This chart shows how the ways students get to campus have changed over time. Cycling has been rising ever since the bicycle park was enlarged three years ago, and its share of the total has grown from 20 per cent to 30 per cent. Meanwhile, contrary to expectations, the bus has not lost riders even though its fares went up. However, there were only about 200 respondents and they are unevenly spread across faculties, so a different result is possible. In the next survey we plan to widen the group we study.",
+      q(
+        "What is the main change the chart shows?",
+        "Cycling has risen since the bicycle park was enlarged",
+        [
+          "Bus use has fallen sharply",
+          "Fewer students now travel to campus",
+          "Fares have made cycling more expensive",
+        ],
+        "駐輪場が広くなった三年前を境に増えつつあり names the turning point and the rise that has followed it.",
+      ),
+      q(
+        "Why does the presenter say a different result is possible?",
+        "The sample is small and uneven across faculties",
+        [
+          "The survey questions were changed",
+          "Bus fares have gone down again",
+          "The figures are three years old",
+        ],
+        "回答者は二百人ほどで、学部にも偏りがある gives the reasons for caution that lead to 違う結果もあり得ます.",
+      ),
+    ),
+    listening: p(
+      "A question from the floor",
+      "{質問|しつもん}してもよろしいでしょうか。{自転車|じてんしゃ}が{増|ふ}えつつあるとのことですが、{雨|あめ}の{日|ひ}も{同|おな}じ{傾向|けいこう}でしょうか。ありがとうございます。{雨|あめ}の{日|ひ}のデータはまだ{少|すく}ないので、{今|いま}の{段階|だんかい}では{何|なん}とも{言|い}えません。{次回|じかい}の{調査|ちょうさ}で{確|たし}かめます。",
+      "May I ask a question? You said cycling is on the rise, but is the trend the same on rainy days? Thank you. There is still little data for rainy days, so at this stage I cannot say either way. I will check it in the next survey.",
+      q(
+        "What does the questioner want to know?",
+        "Whether the trend holds on rainy days",
+        [
+          "How many students were asked",
+          "Why the bus fares went up",
+          "When the next survey will start",
+        ],
+        "雨の日も同じ傾向でしょうか asks whether the rise in cycling also holds in wet weather.",
+      ),
+      q(
+        "How does the presenter answer?",
+        "There is not yet enough data to say",
+        [
+          "The trend is the same in the rain",
+          "Cycling falls sharply in the rain",
+          "The question is outside the study",
+        ],
+        "雨の日のデータはまだ少ない and 今の段階では何とも言えません decline to claim anything until the next survey.",
+      ),
+    ),
+    practice:
+      "Present one chart in four sentences: a trend with つつある, the point where it turned with を境に, a surprise with に反して, and a caution about the data with あり得る.",
+    problems: problemSet(
+      "Seminar statistics: change, shares & averages",
+      "Read each figure the way a seminar handout states it. 前年比 and 前年に比べて compare with last year, 全体の何%を占める asks for a share of the whole, 平均 means add up and divide, and ポイント measures the gap between two percentages.",
+      words(`合計|ごうけい|a total
+差|さ|a difference
+割合を占める|わりあいをしめる|to make up a share of
+増|ぞう|an increase on a figure
+上昇|じょうしょう|a rise`),
+      {
+        text: "あるゼミの{参加者|さんかしゃ}は、{去年|きょねん}が40{人|にん}、{今年|ことし}が50{人|にん}でした。{参加者|さんかしゃ}は{前年|ぜんねん}に{比|くら}べて{何|なん}%{増|ふ}えましたか。",
+        translation:
+          "A seminar had 40 participants last year and 50 this year. By what percentage did the number of participants rise compared with the previous year?",
+        steps: [
+          "Find the difference (差) first: 50 − 40 = 10 people.",
+          "前年に比べて makes last year's 40 the base, not this year's 50.",
+          "Divide the difference by the base: 10 ÷ 40 = 0.25, so participants rose by 25%.",
+        ],
+      },
+      [
+        wordProblem(
+          "{昨年度|さくねんど}の{図書館|としょかん}の{利用者|りようしゃ}は8,000{人|にん}でした。{今年度|こんねんど}の{利用者|りようしゃ}は{前年比|ぜんねんひ}15%{増|ぞう}です。{今年度|こんねんど}の{利用者|りようしゃ}は{何人|なんにん}ですか。",
+          "Last year the library had 8,000 users. This year the number of users is up 15% on the previous year. How many users were there this year?",
+          "9,200人",
+          ["1,200人", "6,800人", "8,015人"],
+          "前年比15%増 means 15% more than last year's 8,000: 8,000 × 0.15 = 1,200, and 8,000 + 1,200 = 9,200人. 1,200 is only the increase.",
+        ),
+        wordProblem(
+          "アンケートに{答|こた}えた{学生|がくせい}は{全部|ぜんぶ}で250{人|にん}で、そのうち50{人|にん}が{自転車|じてんしゃ}で{通学|つうがく}しています。{自転車|じてんしゃ}で{通学|つうがく}する{学生|がくせい}は、{回答者|かいとうしゃ}{全体|ぜんたい}の{何|なん}%を{占|し}めていますか。",
+          "250 students answered the questionnaire, and 50 of them cycle to campus. What percentage of all respondents do the students who cycle make up?",
+          "20%",
+          ["25%", "5%", "50%"],
+          "全体の何%を占める asks for a share of the whole 250: 50 ÷ 250 = 0.2, so 20%. Dividing by the 200 who do not cycle (25%) uses the wrong total.",
+        ),
+        wordProblem(
+          "{次|つぎ}の{表|ひょう}は、4つのゼミの{発表|はっぴょう}{時間|じかん}をまとめたものです。Aゼミ18{分|ぷん}、Bゼミ22{分|ふん}、Cゼミ25{分|ふん}、Dゼミ15{分|ふん}。{発表|はっぴょう}{時間|じかん}の{平均|へいきん}は{何分|なんぷん}ですか。",
+          "The table below sums up the presentation times of four seminars: seminar A 18 minutes, B 22 minutes, C 25 minutes and D 15 minutes. What is the average presentation time?",
+          "20分",
+          ["80分", "16分", "25分"],
+          "平均 means add up the times and divide by how many there are: 18 + 22 + 25 + 15 = 80 (合計), and 80 ÷ 4 = 20分. 80 is only the total.",
+        ),
+        wordProblem(
+          "オンライン{授業|じゅぎょう}を{選|えら}んだ{学生|がくせい}の{割合|わりあい}は、{去年|きょねん}が20%、{今年|ことし}が30%でした。この{割合|わりあい}は{何|なん}ポイント{上昇|じょうしょう}しましたか。",
+          "The share of students choosing online classes was 20% last year and 30% this year. By how many percentage points did this share rise?",
+          "10ポイント",
+          ["50ポイント", "1.5ポイント", "30ポイント"],
+          "ポイント measures the gap between two percentages: 30 − 20 = 10ポイント. The relative rise, 10 ÷ 20 = 50%, is a different figure, and 30 is simply this year's share.",
+        ),
+      ],
+    ),
+  },
+  {
+    slug: "budget-meeting",
+    title: "Budgets, quotations & the sales meeting",
+    summary:
+      "Take part in a sales meeting: compare two quotations on more than price, report figures that fell short of the target, take a budget cut as the moment to change how money is spent, and set a goal for the next half.",
+    vocabulary: words(`予算|よさん|a budget
+見積もり|みつもり|a quotation
+売上|うりあげ|sales
+経費|けいひ|expenses
+利益|りえき|a profit
+取引先|とりひきさき|a client company
+削減|さくげん|a cut
+赤字|あかじ|a loss; being in the red`),
+    grammar: [
+      g(
+        "〜はもちろん",
+        "Noun + はもちろん treats the first item as too obvious to argue about, then adds the one you want noticed: {価格|かかく}はもちろん、{納期|のうき}も{大切|たいせつ}だ. The added item normally takes も. はもとより means the same thing and sounds more formal and written.",
+        "{価格|かかく}はもちろん、アフターサービスも{比|くら}べる{必要|ひつよう}があります。",
+        "We need to compare the after-sales service as well as, of course, the price.",
+      ),
+      g(
+        "〜に{向|む}けて",
+        "Noun + に{向|む}けて points an effort at a goal or a date that lies ahead: {目標|もくひょう}{達成|たっせい}に{向|む}けて. Before a noun it becomes に{向|む}けた, as in {発売|はつばい}に{向|む}けた{準備|じゅんび}. It describes the direction the work is heading, and is common in plans, reports, and speeches.",
+        "{来月|らいげつ}の{発売|はつばい}に{向|む}けて、{準備|じゅんび}を{進|すす}めています。",
+        "We are pressing ahead with preparations for next month's launch.",
+      ),
+      g(
+        "〜を{機|き}に",
+        "Noun + を{機|き}に marks an event taken as the moment to start or change something: {移転|いてん}を{機|き}に{業務|ぎょうむ}を{見直|みなお}す. It implies a deliberate decision prompted by the occasion. をきっかけに is close in meaning but more everyday, and is used even for changes nobody planned.",
+        "{新年度|しんねんど}を{機|き}に、{経費|けいひ}の{使|つか}い{方|かた}を{見直|みなお}します。",
+        "We are taking the new financial year as the moment to review how we spend.",
+      ),
+      g(
+        "〜ことだ",
+        "Dictionary or ない form + ことだ gives advice as the one thing that matters: {早|はや}く{寝|ね}ることだ. It speaks from experience or seniority, so it is natural from a manager to a junior colleague but sounds presumptuous addressed to a superior. In polite speech it becomes ことです.",
+        "{予算|よさん}を{守|まも}りたいなら、まず{細|こま}かい{経費|けいひ}を{見直|みなお}すことだ。",
+        "If you want to stay within budget, the first thing to do is review the small expenses.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Choose the phrase that treats the price as obvious: 価格 ___、納期も確認してください。",
+        "はもちろん",
+        ["に向けて", "を機に", "どころか"],
+        "はもちろん takes the price as given and adds the delivery date with も.",
+      ),
+      q(
+        "What does 発売に向けた準備 describe?",
+        "Preparation aimed at the launch",
+        [
+          "Preparation cancelled by the launch",
+          "Preparation that followed the launch",
+          "Preparation the launch made unnecessary",
+        ],
+        "に向けた points the preparation at a launch that is still ahead.",
+      ),
+      q(
+        "Which marks an occasion chosen for making a change?",
+        "移転を機に",
+        ["移転に向けて", "移転はもちろん", "移転にかかわらず"],
+        "を機に presents the move as the moment chosen to start doing things differently; に向けて only looks ahead to it.",
+      ),
+      q(
+        "Who would naturally say まず経費を見直すことだ?",
+        "A manager advising a junior colleague",
+        [
+          "A new employee addressing the company president",
+          "A shop assistant greeting a customer",
+          "A newsreader reporting the figures",
+        ],
+        "ことだ gives advice from experience or seniority, so it suits a manager speaking to a junior.",
+      ),
+    ],
+    reading: p(
+      "Choosing between two quotations",
+      "{来年|らいねん}{三月|さんがつ}の{展示会|てんじかい}に{向|む}けて、{二社|にしゃ}から{見積|みつ}もりを{取|と}りました。A{社|しゃ}はB{社|しゃ}より{二割|にわり}ほど{安|やす}いのですが、{会場|かいじょう}の{設営|せつえい}{費用|ひよう}が{含|ふく}まれていません。{価格|かかく}はもちろん、{何|なに}が{含|ふく}まれているかも{比|くら}べる{必要|ひつよう}があります。また、{今期|こんき}は{売上|うりあげ}が{目標|もくひょう}に{届|とど}かず、{部|ぶ}の{予算|よさん}も{削減|さくげん}されました。これを{機|き}に、{細|こま}かい{経費|けいひ}も{見直|みなお}したいと{思|おも}います。{赤字|あかじ}を{出|だ}さないためには、まず{無駄|むだ}な{支出|ししゅつ}を{減|へ}らすことです。{来週|らいしゅう}の{会議|かいぎ}までに、{各自|かくじ}の{意見|いけん}をまとめておいてください。",
+      "Ahead of the trade fair next March, we obtained quotations from two companies. Company A is about 20 per cent cheaper than Company B, but its price does not include the cost of setting up at the venue. We need to compare not only the price, of course, but also what is included. In addition, this term our sales fell short of the target and the department's budget has been cut. I would like to take this as the moment to review even small expenses. To avoid making a loss, the first thing to do is to cut wasteful spending. Please each put your views in order before next week's meeting.",
+      q(
+        "Why can the two quotations not be compared on price alone?",
+        "Company A's price leaves out the set-up cost",
+        [
+          "Company B has not sent its figures",
+          "The date of the trade fair has changed",
+          "Both companies charge the same amount",
+        ],
+        "設営費用が含まれていません shows that A's lower figure covers less, which is why the writer adds 何が含まれているかも比べる.",
+      ),
+      q(
+        "What does the writer want to review, prompted by the budget cut?",
+        "Even small everyday expenses",
+        [
+          "The sales target for next term",
+          "The date of the trade fair",
+          "The number of staff in the department",
+        ],
+        "これを機に、細かい経費も見直したい takes the cut as the occasion for reviewing small expenses.",
+      ),
+    ),
+    listening: p(
+      "Plans for the second half",
+      "{上半期|かみはんき}の{売上|うりあげ}は、{目標|もくひょう}の{九割|きゅうわり}にとどまりました。{下半期|しもはんき}は{新商品|しんしょうひん}の{発売|はつばい}に{向|む}けて、{取引先|とりひきさき}への{訪問|ほうもん}を{増|ふ}やします。ただし{経費|けいひ}は{増|ふ}やさないよう、{遠方|えんぽう}の{取引先|とりひきさき}とはオンラインで{打|う}ち{合|あ}わせをします。",
+      "First-half sales stopped at 90 per cent of the target. In the second half, ahead of the new product's launch, we will visit clients more often. To avoid increasing expenses, however, we will hold meetings online with clients who are far away.",
+      q(
+        "What is the plan for the second half?",
+        "More client visits ahead of the new launch",
+        [
+          "Cancelling the new product",
+          "Dropping some of the clients",
+          "Raising the sales target",
+        ],
+        "新商品の発売に向けて、取引先への訪問を増やします states the plan and what it is aimed at.",
+      ),
+      q(
+        "How will they keep expenses down?",
+        "By meeting distant clients online",
+        [
+          "By visiting only nearby clients",
+          "By postponing the launch",
+          "By reducing the sales staff",
+        ],
+        "遠方の取引先とはオンラインで打ち合わせをします keeps the travel costs of the extra contact down.",
+      ),
+    ),
+    practice:
+      "Compare two quotations in a short e-mail: use はもちろん for the obvious point, に向けて for the goal, を機に for the occasion of a change, and give one piece of advice with ことだ.",
+  },
+  {
+    slug: "client-visit",
+    title: "Visiting a client's office",
+    summary:
+      "Handle a business visit from start to finish: announce yourself at reception, exchange business cards, present what you changed at the client's request, commit to the next step in humble speech, and follow up the same day.",
+    vocabulary: words(`名刺|めいし|a business card
+応接室|おうせつしつ|a reception room
+手土産|てみやげ|a gift brought on a visit
+担当者|たんとうしゃ|the person in charge
+打ち合わせ|うちあわせ|a business meeting
+提案書|ていあんしょ|a written proposal
+御社|おんしゃ|your company (in speech)
+弊社|へいしゃ|our company (humble)`),
+    grammar: [
+      g(
+        "〜がてら",
+        "Noun or verb stem + がてら combines two purposes in one outing: ご{挨拶|あいさつ}がてら{寄|よ}る means dropping by partly to say hello. The first part is the occasion, and the main verb is usually a movement such as {行|い}く, {来|く}る, or {寄|よ}る. It sounds conversational, so a formal letter uses 〜かたがた instead.",
+        "{近|ちか}くまで{参|まい}りましたので、ご{挨拶|あいさつ}がてらお{寄|よ}りしました。",
+        "I was in the area, so I dropped by, partly to say hello.",
+      ),
+      g(
+        "〜にこたえて",
+        "Noun + にこたえて describes acting in response to a request, an expectation, or public opinion: ご{要望|ようぼう}にこたえて{改良|かいりょう}しました. It is written in kana or as {応|こた}えて, and it presents the action as meeting what the other side asked for, which makes it useful when presenting a proposal to a client.",
+        "{御社|おんしゃ}のご{要望|ようぼう}にこたえて、{納期|のうき}を{一週間|いっしゅうかん}{早|はや}めました。",
+        "In response to your company's request, we brought the delivery date forward by a week.",
+      ),
+      g(
+        "〜てまいります",
+        "まいる is the humble form of {行|い}く and {来|く}る, and verb て-form + まいります humbly states how your side will carry on from now: {改善|かいぜん}してまいります. It is the standard way to close a business commitment, and it speaks only of your own side's efforts, never of what the client will do.",
+        "{今後|こんご}とも、{品質|ひんしつ}の{向上|こうじょう}に{努|つと}めてまいります。",
+        "We will continue to strive to improve quality.",
+      ),
+      g(
+        "〜をこめて",
+        "Noun + をこめて says what feeling is put into an action or a thing: {感謝|かんしゃ}の{気持|きも}ちをこめて. It often closes a thank-you, and before a noun it becomes をこめた, as in {心|こころ}をこめた{手紙|てがみ}. It is written in kana or as {込|こ}めて.",
+        "{感謝|かんしゃ}の{気持|きも}ちをこめて、お{礼|れい}のメールをお{送|おく}りしました。",
+        "I sent a thank-you e-mail full of gratitude.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "What does ご挨拶がてら寄りました mean?",
+        "I dropped by, partly to say hello",
+        [
+          "I dropped by instead of saying hello",
+          "I said hello without dropping by",
+          "I dropped by only to deliver a document",
+        ],
+        "がてら joins two purposes to one outing: the visit was also a chance to say hello.",
+      ),
+      q(
+        "Choose the phrase meaning 'in response to': お客様の声 ___、デザインを変更しました。",
+        "にこたえて",
+        ["がてら", "をこめて", "に先立って"],
+        "にこたえて presents the design change as meeting what customers asked for.",
+      ),
+      q(
+        "Which is a humble commitment about your own side's efforts?",
+        "改善してまいります",
+        [
+          "改善していらっしゃいます",
+          "改善してくださいます",
+          "改善してもらいます",
+        ],
+        "てまいります humbly states how your side will carry on; the others honour or describe someone else's actions.",
+      ),
+      q(
+        "What does 感謝の気持ちをこめて add to a message?",
+        "That it is written with gratitude",
+        [
+          "That it replaces a thank-you",
+          "That no thanks are needed",
+          "That thanks will follow later",
+        ],
+        "をこめて names the feeling put into the action: the message carries the writer's gratitude.",
+      ),
+    ],
+    reading: p(
+      "Before your first client visit",
+      "{取引先|とりひきさき}を{訪問|ほうもん}するときは、{約束|やくそく}の{五分前|ごふんまえ}に{受付|うけつけ}に{着|つ}くようにしましょう。{受付|うけつけ}では{会社名|かいしゃめい}と{名前|なまえ}、{担当者|たんとうしゃ}の{名前|なまえ}をはっきり{伝|つた}えます。{応接室|おうせつしつ}では{入口|いりぐち}に{近|ちか}い{席|せき}に{座|すわ}り、{担当者|たんとうしゃ}が{入|はい}ってきたら{立|た}ち{上|あ}がって{挨拶|あいさつ}します。{名刺|めいし}は{相手|あいて}が{読|よ}める{向|む}きにして、{両手|りょうて}で{渡|わた}します。{話|はな}すときは{相手|あいて}の{会社|かいしゃ}を「{御社|おんしゃ}」、{自分|じぶん}の{会社|かいしゃ}を「{弊社|へいしゃ}」と{呼|よ}びますが、メールなどの{書|か}き{言葉|ことば}では「{貴社|きしゃ}」を{使|つか}います。{訪問|ほうもん}の{後|あと}は、その{日|ひ}のうちに{感謝|かんしゃ}の{気持|きも}ちをこめてお{礼|れい}のメールを{送|おく}りましょう。",
+      "When you visit a client, aim to arrive at reception five minutes before the appointment. At reception, clearly give your company name, your own name, and the name of the person you are meeting. In the reception room, sit in the seat nearest the door, and stand up to greet the person in charge when they come in. Hand over your business card with both hands, turned so that the other person can read it. When speaking, you call the other company 御社 and your own 弊社, but in written language such as e-mail you use 貴社. After the visit, send a thank-you e-mail, full of gratitude, on the same day.",
+      q(
+        "How does the guide say you refer to the client's company?",
+        "御社 when speaking, 貴社 in writing",
+        [
+          "御社 in both speech and writing",
+          "弊社 when speaking, 御社 in writing",
+          "貴社 when speaking, 御社 in writing",
+        ],
+        "話すときは「御社」 and 書き言葉では「貴社」 separate spoken and written usage; 弊社 is always the speaker's own company.",
+      ),
+      q(
+        "When should the thank-you e-mail be sent?",
+        "On the day of the visit",
+        [
+          "Before the visit",
+          "Within a week of the visit",
+          "Only if a deal is agreed",
+        ],
+        "その日のうちに…お礼のメールを送りましょう asks for the e-mail before the day of the visit is over.",
+      ),
+    ),
+    listening: p(
+      "At the reception desk",
+      "いらっしゃいませ。{恐|おそ}れ{入|い}ります。{東西|とうざい}{電機|でんき}の{佐藤|さとう}と{申|もう}します。{営業部|えいぎょうぶ}の{田中様|たなかさま}と{二時|にじ}にお{約束|やくそく}をいただいております。{佐藤様|さとうさま}ですね。お{待|ま}ちしておりました。ただ{今|いま}{田中|たなか}を{呼|よ}んでまいりますので、こちらでお{待|ま}ちください。",
+      "Welcome. Excuse me. My name is Sato, from Tozai Electric. I have a two o'clock appointment with Mr Tanaka of the sales department. Mr Sato, yes. We have been expecting you. I will go and call Tanaka now, so please wait here.",
+      q(
+        "What is the visitor doing?",
+        "Announcing an appointment at reception",
+        [
+          "Cancelling the appointment",
+          "Asking the way to the station",
+          "Delivering a parcel",
+        ],
+        "田中様と二時にお約束をいただいております announces the visitor and the appointment to the receptionist.",
+      ),
+      q(
+        "Why does the receptionist say 田中 without 様?",
+        "Tanaka works for the receptionist's own company",
+        [
+          "Tanaka is younger than the visitor",
+          "The receptionist forgot the honorific",
+          "Tanaka is out of the office",
+        ],
+        "Speaking to an outsider, staff refer to their own colleagues without 様, even senior ones; 呼んでまいります is humble for the same reason.",
+      ),
+    ),
+    practice:
+      "Role-play a visit: announce yourself at reception, give your card, explain one change made にこたえて the client's request, close with てまいります, and write a thank-you line with をこめて.",
   },
   {
     slug: "n2-integration",
@@ -1276,10 +2384,20 @@ export const n2Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
-        "Choose a result after deliberation: 検討の ___、別の方法を採用した。",
-        "末に",
-        ["最中で", "うちへ", "限りも"],
-        "の末に marks the eventual result of a process of consideration.",
+        "What does 戻れるものなら、学生時代に戻りたい express?",
+        "A wish the speaker thinks is unlikely",
+        [
+          "A plan that is already decided",
+          "A warning of a bad result",
+          "A reason for returning",
+        ],
+        "Potential form + ものなら introduces a hard-to-realise wish: if only it were possible to go back. Volitional + ものなら would warn of consequences.",
+      ),
+      q(
+        "Choose the concession: 参加しない ___、連絡だけはしてください。",
+        "にしても",
+        ["末に", "ことなく", "ものなら"],
+        "にしても concedes the assumed case, not attending, and the judgment that follows still holds: at least get in touch.",
       ),
       q(
         "What does 確認することなく送った mean?",
@@ -1290,6 +2408,12 @@ export const n2Courses: CourseSeed[] = [
           "Checking was legally forbidden",
         ],
         "ことなく expresses the omitted action; it does not establish a rule prohibiting checks.",
+      ),
+      q(
+        "Choose a result after deliberation: 検討の ___、別の方法を採用した。",
+        "末に",
+        ["最中で", "うちへ", "限りも"],
+        "の末に marks the eventual result of a process of consideration.",
       ),
     ],
     reading: p(
@@ -1306,6 +2430,16 @@ export const n2Courses: CourseSeed[] = [
         ],
         "The evaluation explicitly looks for loss of access among existing participants as well as overall gains.",
       ),
+      q(
+        "What was the concern about moving fully online?",
+        "People unsure of the equipment might find it hard to take part",
+        [
+          "Distant members could not join",
+          "The hall would have to close",
+          "Costs would rise sharply",
+        ],
+        "機器の操作に不安がある人が参加しにくくなる恐れがあった: the risk was excluding members unsure of the devices.",
+      ),
     ),
     listening: p(
       "Choosing what happens next",
@@ -1320,6 +2454,12 @@ export const n2Courses: CourseSeed[] = [
           "Expansion without checking results",
         ],
         "Both speakers accept a staged trial, with expansion dependent on later results.",
+      ),
+      q(
+        "What is the drawback of the new proposal?",
+        "There is not enough time to prepare",
+        ["It costs more", "Nobody supports it", "It cannot be tested"],
+        "費用の面では有利ですが、準備期間が足りません: the cost advantage comes with too little preparation time.",
       ),
     ),
     practice:

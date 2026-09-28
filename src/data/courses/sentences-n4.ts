@@ -70,7 +70,7 @@ export const n4Sentences: Record<string, SentencePractice> = {
         "I can read more kanji than before.",
       ],
       [
-        "{毎日|まいにち}{十分|じゅっぷん}{練習|れんしゅう}するようにしています。",
+        "{毎日|まいにち}10{分|ぷん}{練習|れんしゅう}するようにしています。",
         "I make a point of practicing for ten minutes every day.",
       ],
       [
@@ -357,7 +357,7 @@ export const n4Sentences: Record<string, SentencePractice> = {
         "It is about tomorrow's meeting — do you have a moment?",
       ],
       [
-        "{電車|でんしゃ}が{遅|おく}れていて、{十分|じゅっぷん}ほど{遅|おく}れます。",
+        "{電車|でんしゃ}が{遅|おく}れていて、10{分|ぷん}ほど{遅|おく}れます。",
         "The train is delayed, so I will be about ten minutes late.",
       ],
       [
@@ -486,6 +486,127 @@ export const n4Sentences: Record<string, SentencePractice> = {
       [
         "{練習|れんしゅう}に{行|い}く{前|まえ}に{電話|でんわ}します。",
         "I will call before I go to practice.",
+      ],
+    ],
+  ),
+  "street-signs": s(
+    "I can read common street signs, ask the way, and follow directions to cross safely.",
+    "Walking around town and asking a passer-by",
+    "polite",
+    [
+      [
+        "すみません、{駅|えき}へはどう{行|い}けばいいですか。",
+        "Excuse me, how do I get to the station?",
+      ],
+      [
+        "「{止|と}まれ」は「{止|と}まってください」という{意味|いみ}です。",
+        "'Tomare' means 'please stop'.",
+      ],
+      [
+        "ここに{自転車|じてんしゃ}を{止|と}めてはいけないそうです。",
+        "Apparently you must not leave bicycles here.",
+      ],
+      [
+        "{信号|しんごう}が{青|あお}になってから{渡|わた}りましょう。",
+        "Let's cross after the light turns green.",
+      ],
+      [
+        "{交番|こうばん}がどこにあるか{教|おし}えてください。",
+        "Please tell me where the police box is.",
+      ],
+      [
+        "{道|みち}に{迷|まよ}ってしまいました。この{地図|ちず}のどこにいるか{教|おし}えてもらえますか。",
+        "I've got lost. Could you tell me where I am on this map?",
+      ],
+    ],
+  ),
+  "school-life": s(
+    "I can follow classroom instructions, pass on what a teacher asked, and say a calculation aloud.",
+    "In class, at club activities, and doing homework",
+    "polite",
+    [
+      [
+        "{先生|せんせい}に{宿題|しゅくだい}を{明日|あした}までに{出|だ}すように{言|い}われました。",
+        "My teacher told me to hand in my homework by tomorrow.",
+      ],
+      [
+        "{試験|しけん}の{前|まえ}の{週|しゅう}は、{部活|ぶかつ}が{休|やす}みになります。",
+        "In the week before exams, club activities are cancelled.",
+      ],
+      [
+        "この{問題|もんだい}の{答|こた}えがわかりません。{教|おし}えてもらえませんか。",
+        "I don't understand the answer to this question. Could you explain it to me?",
+      ],
+      [
+        "プリントを{一人|ひとり}{一枚|いちまい}ずつ{取|と}ってください。",
+        "Please take one handout each.",
+      ],
+      ["3かける4は12です。", "Three times four is twelve."],
+      [
+        "{計算|けいさん}が{終|お}わったら、もう{一度|いちど}{確|たし}かめなさい。",
+        "When you have finished the calculation, check it again.",
+      ],
+    ],
+  ),
+  "new-job": s(
+    "I can ask how a task is done, report that I have finished, and ask before taking a break.",
+    "The first week at a new job",
+    "polite",
+    [
+      [
+        "この{機械|きかい}の{使|つか}い{方|かた}を{教|おし}えていただけませんか。",
+        "Could you show me how to use this machine?",
+      ],
+      [
+        "{入力|にゅうりょく}し{終|お}わりました。{確認|かくにん}をお{願|ねが}いします。",
+        "I have finished entering it. Could you check it, please?",
+      ],
+      [
+        "{来月|らいげつ}から{週|しゅう}に{三日|みっか}{働|はたら}き{始|はじ}めます。",
+        "From next month I will start working three days a week.",
+      ],
+      [
+        "{忙|いそが}しい{日|ひ}は{残業|ざんぎょう}することがあります。",
+        "On busy days I sometimes work overtime.",
+      ],
+      [
+        "{分|わ}からないときは、{先輩|せんぱい}に{聞|き}くようにしています。",
+        "When I don't understand something, I make a point of asking a senior colleague.",
+      ],
+      [
+        "{休憩|きゅうけい}に{行|い}ってもよろしいでしょうか。",
+        "Would it be all right if I went on my break?",
+      ],
+    ],
+  ),
+  "homestay-visit": s(
+    "I can arrive at someone's home politely, offer a gift, and thank my hosts for their kindness.",
+    "Visiting a host family or a teacher at home",
+    "polite",
+    [
+      [
+        "おじゃまします。これ、つまらないものですが。",
+        "Thank you for having me. This is just a small gift.",
+      ],
+      [
+        "{駅|えき}まで{迎|むか}えに{来|き}てくださって、ありがとうございます。",
+        "Thank you for coming to meet me at the station.",
+      ],
+      [
+        "{靴|くつ}はここで{脱|ぬ}げばいいですか。",
+        "Should I take my shoes off here?",
+      ],
+      [
+        "{先生|せんせい}に{着物|きもの}の{着方|きかた}を{教|おし}えていただきました。",
+        "My teacher kindly taught me how to put on a kimono.",
+      ],
+      [
+        "{手作|てづく}りの{料理|りょうり}、とてもおいしいです。",
+        "This home-cooked food is really delicious.",
+      ],
+      [
+        "そろそろ{失礼|しつれい}します。{今日|きょう}はありがとうございました。",
+        "I should be going now. Thank you for today.",
       ],
     ],
   ),

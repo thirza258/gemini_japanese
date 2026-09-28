@@ -46,6 +46,7 @@ export const LESSON_LABELS: Record<LessonKind, string> = {
   sentences: "Daily sentences",
   reading: "Reading for meaning",
   listening: "Listening practice",
+  problems: "Word problems in Japanese",
   review: "Course checkpoint",
 };
 
@@ -55,8 +56,15 @@ const lessonMinutes: Record<LessonKind, number> = {
   sentences: 15,
   reading: 15,
   listening: 10,
+  problems: 15,
   review: 10,
 };
+
+export function courseLessonKinds(seed: CourseSeed): LessonKind[] {
+  return seed.problems
+    ? [...LESSON_KINDS.slice(0, -1), "problems", "review"]
+    : [...LESSON_KINDS];
+}
 
 export const COURSE_PATHS: Record<
   Level,
@@ -170,26 +178,40 @@ function buildCourse(
       explanation: `${plainJapanese(sentence.text)} — ${sentence.translation} Use this in: ${sentencePractice.situation.toLowerCase()}. Register: ${sentencePractice.register}.`,
     }),
   );
-  const reading: CourseQuestion[] = [
-    {
-      ...seed.reading.question,
-      id: `${id}-reading-check`,
-      text: seed.reading.text,
-    },
-  ];
-  const listening: CourseQuestion[] = [
-    {
-      ...seed.listening.question,
-      id: `${id}-listening-check`,
+  // The first check keeps its original ID; later ones are numbered.
+  const checkId = (kind: string, i: number) =>
+    `${id}-${kind}-check${i ? `-${i + 1}` : ""}`;
+  const reading: CourseQuestion[] = seed.reading.questions.map((check, i) => ({
+    ...check,
+    id: checkId("reading", i),
+    text: seed.reading.text,
+  }));
+  const listening: CourseQuestion[] = seed.listening.questions.map(
+    (check, i) => ({
+      ...check,
+      id: checkId("listening", i),
       audio: seed.listening.text,
-    },
-  ];
+    }),
+  );
+  const problems: CourseQuestion[] = (seed.problems?.problems || []).map(
+    (problem, i) => ({
+      id: `${id}-problem-${i + 1}`,
+      prompt: `Problem ${i + 1}: read it in Japanese, then choose the answer.`,
+      answer: problem.answer,
+      options: [problem.answer, ...problem.distractors],
+      explanation: problem.solution,
+      text: problem.text,
+      translation: problem.translation,
+    }),
+  );
+  // One check from each activity, and every grammar point.
   const review = [
     vocabulary[0],
     ...grammar,
     sentences[2],
-    ...reading,
-    ...listening,
+    reading[0],
+    listening[0],
+    ...problems.slice(0, 1),
   ].map((check) => ({ ...check, id: `${check.id}-review` }));
   const questions: Record<LessonKind, CourseQuestion[]> = {
     vocabulary,
@@ -197,6 +219,7 @@ function buildCourse(
     sentences,
     reading,
     listening,
+    problems,
     review,
   };
   return {
@@ -205,7 +228,7 @@ function buildCourse(
     level,
     order: index + 1,
     sentencePractice,
-    lessons: LESSON_KINDS.map((kind) => ({
+    lessons: courseLessonKinds(seed).map((kind) => ({
       id: `${id}-${kind}`,
       kind,
       title: LESSON_LABELS[kind],

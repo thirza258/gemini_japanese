@@ -435,6 +435,130 @@ export const n2Sentences: Record<string, SentencePractice> = {
       ],
     ],
   ),
+  "commuting-city": s(
+    "I can follow a detour, explain a delay with more than one cause, and point out a rule for cyclists politely.",
+    "Commuting through a city under roadworks",
+    "polite",
+    [
+      [
+        "{矢印|やじるし}に{沿|そ}って{歩|ある}くと、{駅|えき}の{東口|ひがしぐち}に{出|で}ます。",
+        "Follow the arrows and you will come out at the east exit of the station.",
+      ],
+      [
+        "{工事|こうじ}に{加|くわ}えて{雨|あめ}も{降|ふ}っていて、バスが{遅|おく}れています。",
+        "On top of the roadworks it is raining, so the buses are running late.",
+      ],
+      [
+        "{携帯|けいたい}の{電池|でんち}が{切|き}れて、{連絡|れんらく}のしようがありませんでした。",
+        "My phone battery died, so there was no way to get in touch.",
+      ],
+      [
+        "すみません、ここは{歩道|ほどう}なので{自転車|じてんしゃ}を{押|お}して{歩|ある}いてください。",
+        "Excuse me, this is a pavement, so please walk your bicycle.",
+      ],
+      [
+        "{通行止|つうこうど}めだったので、{川沿|かわぞ}いの{道|みち}を{回|まわ}って{来|き}ました。",
+        "The road was closed, so I came round by the riverside road.",
+      ],
+      [
+        "{遅延|ちえん}{証明書|しょうめいしょ}をもらったので、{会社|かいしゃ}に{出|だ}しておきます。",
+        "I got a delay certificate from the station, so I will hand it in at work.",
+      ],
+    ],
+  ),
+  "seminar-data": s(
+    "I can present a trend from a chart, qualify what the data shows, and answer a question from the floor.",
+    "Presenting survey results in a university seminar",
+    "polite",
+    [
+      [
+        "こちらのグラフは、{通学|つうがく}{手段|しゅだん}の{推移|すいい}を{示|しめ}しています。",
+        "This graph shows how the ways of getting to campus have changed.",
+      ],
+      [
+        "{駐輪場|ちゅうりんじょう}ができたのを{境|さかい}に、{自転車|じてんしゃ}の{利用|りよう}が{増|ふ}えつつあります。",
+        "Since the bicycle park opened, cycling has been on the rise.",
+      ],
+      [
+        "{予想|よそう}に{反|はん}して、バスの{利用者|りようしゃ}は{減|へ}っていません。",
+        "Contrary to expectations, the number of bus users has not fallen.",
+      ],
+      [
+        "{回答者|かいとうしゃ}が{少|すく}ないので、{違|ちが}う{結果|けっか}もあり{得|え}ます。",
+        "There were few respondents, so a different result is possible.",
+      ],
+      [
+        "ご{質問|しつもん}ありがとうございます。{今|いま}の{段階|だんかい}では{何|なん}とも{言|い}えません。",
+        "Thank you for the question. At this stage I cannot say either way.",
+      ],
+      [
+        "{次|つぎ}の{調査|ちょうさ}では、{対象|たいしょう}を{広|ひろ}げる{予定|よてい}です。",
+        "In the next survey we plan to widen the group we study.",
+      ],
+    ],
+  ),
+  "budget-meeting": s(
+    "I can compare quotations, report figures against a target, and propose savings in a sales meeting.",
+    "A sales meeting on budgets and quotations",
+    "formal",
+    [
+      [
+        "{価格|かかく}はもちろん、{納期|のうき}も{比|くら}べる{必要|ひつよう}があります。",
+        "We need to compare the delivery date as well as, of course, the price.",
+      ],
+      [
+        "{今期|こんき}の{売上|うりあげ}は{目標|もくひょう}の{九割|きゅうわり}にとどまりました。",
+        "Sales this term stopped at 90 per cent of the target.",
+      ],
+      [
+        "{来月|らいげつ}の{展示会|てんじかい}に{向|む}けて、{二社|にしゃ}から{見積|みつ}もりを{取|と}りました。",
+        "Ahead of next month's trade fair, we obtained quotations from two companies.",
+      ],
+      [
+        "{予算|よさん}の{削減|さくげん}を{機|き}に、{経費|けいひ}の{使|つか}い{方|かた}を{見直|みなお}しましょう。",
+        "Let's take the budget cut as the moment to review how we spend.",
+      ],
+      [
+        "{赤字|あかじ}を{避|さ}けたいなら、まず{無駄|むだ}を{減|へ}らすことです。",
+        "If you want to avoid a loss, the first thing is to cut waste.",
+      ],
+      [
+        "お{見積|みつ}もりの{内容|ないよう}について、{一点|いってん}{確認|かくにん}させてください。",
+        "Please let me check one point about the content of the quotation.",
+      ],
+    ],
+  ),
+  "client-visit": s(
+    "I can announce myself at reception, exchange business cards, and follow up a visit with a polite thank-you.",
+    "Visiting a client company",
+    "formal",
+    [
+      [
+        "{東西|とうざい}{電機|でんき}の{佐藤|さとう}と{申|もう}します。{二時|にじ}にお{約束|やくそく}をいただいております。",
+        "My name is Sato, from Tozai Electric. I have an appointment at two.",
+      ],
+      [
+        "{名刺|めいし}を{頂戴|ちょうだい}いたします。",
+        "Thank you; I humbly accept your business card.",
+      ],
+      [
+        "{近|ちか}くまで{参|まい}りましたので、ご{挨拶|あいさつ}がてらお{伺|うかが}いしました。",
+        "I was in the area, so I called in, partly to say hello.",
+      ],
+      [
+        "{御社|おんしゃ}のご{要望|ようぼう}にこたえて、{提案書|ていあんしょ}を{修正|しゅうせい}いたしました。",
+        "We have revised the proposal in response to your company's requests.",
+      ],
+      [
+        "{今後|こんご}もご{期待|きたい}に{沿|そ}えるよう{努|つと}めてまいります。",
+        "We will keep working to live up to your expectations.",
+      ],
+      [
+        "{本日|ほんじつ}はお{忙|いそが}しいところ、お{時間|じかん}をいただきありがとうございました。",
+        "Thank you for making time for us today despite your busy schedule.",
+      ],
+    ],
+  ),
   "n2-integration": s(
     "I can propose a trial and summarize a balanced group decision.",
     "Deciding how to introduce a new process",

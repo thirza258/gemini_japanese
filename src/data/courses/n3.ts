@@ -1,7 +1,9 @@
 import {
   grammar as g,
   passage as p,
+  problemSet,
   question as q,
+  wordProblem,
   words,
   type CourseSeed,
 } from "./types";
@@ -54,10 +56,26 @@ export const n3Courses: CourseSeed[] = [
         "The food should be eaten before it cools, while the favorable state still lasts.",
       ),
       q(
+        "Choose the form for something that lasts the whole interval: 夏休みの ___、ずっと祖父の家にいました。",
+        "間",
+        ["間に", "うちに", "につれて"],
+        "ずっと shows the stay filled the whole holiday, so 間 fits; 間に would place one event at a single point inside it.",
+      ),
+      q(
         "Choose a recurring occasion: 旅行する ___、写真を整理します。",
         "たびに",
         ["まま", "ところを", "せいで"],
         "たびに connects photo organization to every trip.",
+      ),
+      q(
+        "What does 秋が深まるにつれて、葉が赤くなる mean?",
+        "As autumn deepens, the leaves gradually turn red",
+        [
+          "Before autumn deepens, the leaves turn red",
+          "Every time autumn comes, the leaves fall at once",
+          "While it is still autumn, the leaves stay green",
+        ],
+        "につれて links two developments that move together: the leaves redden step by step as autumn deepens.",
       ),
     ],
     reading: p(
@@ -74,6 +92,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "The writer reverses the initial assumption: joining was a way to practice, not a reward for already being fluent.",
       ),
+      q(
+        "What does the writer now try to do?",
+        "Speak first to people who have just moved in",
+        [
+          "Wait for newcomers to greet them",
+          "Skip the monthly cleanup",
+          "Teach Japanese at the cleanup",
+        ],
+        "新しく来た人にこちらから声をかけるようにしている: こちらから shows the writer now makes the first approach to newcomers.",
+      ),
     ),
     listening: p(
       "Before the weather changes",
@@ -88,6 +116,12 @@ export const n3Courses: CourseSeed[] = [
           "Cancel both tasks",
         ],
         "晴れているうちに gives the time-sensitive task priority. The document check is moved until after returning.",
+      ),
+      q(
+        "When is it expected to rain?",
+        "From the evening",
+        ["From the morning", "Right now", "Tomorrow afternoon"],
+        "夕方から雨になるそうです reports the forecast, which is why the outdoor photographs come first.",
       ),
     ),
     practice:
@@ -134,10 +168,26 @@ export const n3Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
+        "Choose 'I will try writing with it once and see': このペンで一度 ___。",
+        "書いてみます",
+        ["書いてしまいます", "書いたままです", "書きっぱなしです"],
+        "て-form + みる tries an action to find out how it turns out; the other forms describe a regretted result or a state left unchanged.",
+      ),
+      q(
         "Choose 'with the window still closed': 窓を閉めた ___ にしてください。",
         "まま",
         ["たび", "ほど", "ばかりに"],
         "た-form + まま asks for the state to stay unchanged.",
+      ),
+      q(
+        "What does 窓を開けっぱなしにして出かけた suggest?",
+        "The window was left open when it should have been shut",
+        [
+          "The window was shut before going out",
+          "Someone tried but failed to open the window",
+          "The window was opened after coming home",
+        ],
+        "っぱなし describes an action left unattended, usually with the sense that it should have been dealt with.",
       ),
       q(
         "What is the full form of 飲んじゃった?",
@@ -160,6 +210,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "音を消したまま identifies an unchanged setting. The suspected hardware fault was not the cause.",
       ),
+      q(
+        "What did the writer decide to do from now on?",
+        "Check simple causes first before assuming a fault",
+        [
+          "Keep a spare microphone at all times",
+          "Stop joining online meetings",
+          "Let a colleague run every meeting",
+        ],
+        "簡単な原因から順に確認することにした: ことにした marks the writer's new rule of starting with the simple causes.",
+      ),
     ),
     listening: p(
       "Before replacing a device",
@@ -174,6 +234,16 @@ export const n3Courses: CourseSeed[] = [
           "Leaving it running all night",
         ],
         "The restart is a diagnostic trial with てみる; contact comes only if the problem persists.",
+      ),
+      q(
+        "What was checked before the restart was suggested?",
+        "Whether there was paper in the printer",
+        [
+          "Whether the cable was damaged",
+          "Who was responsible for the printer",
+          "How old the printer was",
+        ],
+        "紙は入っていますか comes first, and はい confirms the paper before the restart is suggested.",
       ),
     ),
     practice:
@@ -220,6 +290,12 @@ export const n3Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
+        "Choose the purpose of a deliberate action: 日本の大学に入る ___、毎日勉強しています。",
+        "ために",
+        ["ように", "たびに", "つもりだった"],
+        "入る is an action the speaker sets out to do, so ために states the purpose; ように suits a hoped-for state such as 入れる or 聞こえる.",
+      ),
+      q(
         "Choose the desired ability: 後ろの人にも聞こえる ___、大きな声で話します。",
         "ように",
         ["つもりで", "ばかりに", "たびに"],
@@ -234,6 +310,16 @@ export const n3Courses: CourseSeed[] = [
           "The shop opened especially for the speaker",
         ],
         "ようとした marks an attempt, and が introduces the obstacle.",
+      ),
+      q(
+        "What does 電話するつもりだったが、忘れてしまった tell you?",
+        "The speaker planned to call but did not",
+        [
+          "The speaker called as planned",
+          "The speaker never meant to call",
+          "The speaker is about to call now",
+        ],
+        "つもりだった reports a past intention, and が with 忘れてしまった shows the plan was never carried out.",
       ),
     ],
     reading: p(
@@ -250,6 +336,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "使えるように identifies the desired outcome. The aim is useful retention rather than a larger raw count.",
       ),
+      q(
+        "What happened after the writer changed the plan?",
+        "Progress slowed, but familiar words turned up more often",
+        [
+          "The writer learned fifty more words a day",
+          "The writer forgot all the earlier words",
+          "The exam was moved to an earlier date",
+        ],
+        "進む速度は遅くなったが…知っている言葉に出会う回数は増えた gives both halves of the result.",
+      ),
     ),
     listening: p(
       "A missed application",
@@ -264,6 +360,16 @@ export const n3Courses: CourseSeed[] = [
           "The speaker completed an incorrect exam",
         ],
         "The intended weekend action was too late for Friday's deadline.",
+      ),
+      q(
+        "What will the second speaker do?",
+        "Send a notice about next month's enrollment",
+        [
+          "Extend Friday's deadline",
+          "Enroll the speaker on the spot",
+          "Cancel next month's course",
+        ],
+        "忘れないように、案内を送りますね: the notice is sent so that the next enrollment is not missed.",
       ),
     ),
     practice:
@@ -310,12 +416,6 @@ export const n3Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
-        "Choose the grateful cause: 先生のお ___ で、よく分かりました。",
-        "かげ",
-        ["せい", "ためし", "ところ"],
-        "おかげで credits the teacher for a positive result.",
-      ),
-      q(
         "What is the function of ため in 工事のため、通れません?",
         "It gives the cause of the closure",
         [
@@ -324,6 +424,24 @@ export const n3Courses: CourseSeed[] = [
           "It grants permission",
         ],
         "Construction causes the route to be unavailable; nobody is trying to achieve the closure as a personal goal.",
+      ),
+      q(
+        "Choose the grateful cause: 先生のお ___ で、よく分かりました。",
+        "かげ",
+        ["せい", "ためし", "ところ"],
+        "おかげで credits the teacher for a positive result.",
+      ),
+      q(
+        "Choose the cause of an unwelcome result: 渋滞の ___、会議に遅れました。",
+        "せいで",
+        ["おかげで", "ように", "につれて"],
+        "Arriving late is an unwelcome result, so せいで attributes it to the traffic jam; おかげで would credit a cause for a good outcome.",
+      ),
+      q(
+        "Choose the personal excuse: 急いでいた ___、傘を忘れてしまいました。",
+        "ものだから",
+        ["おかげで", "につれて", "ように"],
+        "ものだから gives the speaker's own explanation, close to an excuse, for forgetting the umbrella.",
       ),
     ],
     reading: p(
@@ -340,6 +458,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "The first blame is corrected after inquiry. Missing address information is the verified cause.",
       ),
+      q(
+        "How did the parcel finally reach the writer?",
+        "The delivery worker checked, and it arrived the next day",
+        [
+          "The shop sent a replacement",
+          "The writer collected it from the shop",
+          "It was returned to the shop",
+        ],
+        "配達員が確認してくれたおかげで、荷物は翌日に届いた credits the delivery worker for the next-day arrival.",
+      ),
     ),
     listening: p(
       "A completed project",
@@ -354,6 +482,16 @@ export const n3Courses: CourseSeed[] = [
           "Having unlimited review time",
         ],
         "おかげで credits cooperation; the short review time is a remaining concern.",
+      ),
+      q(
+        "What does the speaker suggest doing today?",
+        "Checking the content once more",
+        [
+          "Moving the deadline again",
+          "Starting a new project",
+          "Asking another department for help",
+        ],
+        "確認する時間は短かったので…もう一度見直しましょう: the short review time is the reason for checking again today.",
       ),
     ),
     practice:
@@ -411,6 +549,22 @@ export const n3Courses: CourseSeed[] = [
         ["おかげで", "ために", "ように"],
         "くせに commonly expresses an annoyed or blaming contrast.",
       ),
+      q(
+        "What does 料理を作ってもらうかわりに、皿を洗います mean?",
+        "In return for the cooking, I will wash the dishes",
+        [
+          "I will wash the dishes instead of eating",
+          "Even if someone cooks, I will not wash up",
+          "Because I cooked, someone else will wash up",
+        ],
+        "かわりに here marks a trade: washing the dishes pays back the favor of having the meal cooked.",
+      ),
+      q(
+        "Choose 'even if it is expensive': 高く ___、この辞書を買います。",
+        "ても",
+        ["たら", "ながら", "わりに"],
+        "い-adjectives take くても for a concession: 高くても means the purchase goes ahead whatever the price.",
+      ),
     ],
     reading: p(
       "Choosing an apartment",
@@ -426,6 +580,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "The final decision prioritizes calm study despite a less convenient commute. No rent comparison is given.",
       ),
+      q(
+        "What did the writer discover by visiting at night?",
+        "The room near the station had heavy road noise",
+        [
+          "The quiet room was far from any shops",
+          "Both rooms were equally noisy",
+          "The station was closed at night",
+        ],
+        "夜も見に行くと、近い部屋は道路の音がかなり大きかった: the night visit exposed the noise at the room near the station.",
+      ),
     ),
     listening: p(
       "Comparing two bags",
@@ -440,6 +604,12 @@ export const n3Courses: CourseSeed[] = [
           "Smaller size and less capacity",
         ],
         "たくさん入るかわりに、重い names the benefit and its compensating disadvantage.",
+      ),
+      q(
+        "Which bag does the speaker choose for everyday use?",
+        "The light one",
+        ["The large one", "Neither bag", "Whichever is cheaper"],
+        "毎日使うなら、わたしは軽いほうにします: for daily use the speaker picks the light bag despite its size.",
       ),
     ),
     practice:
@@ -486,6 +656,28 @@ export const n3Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
+        "Choose a grounded expectation: 九時に出たから、もう着いている ___ です。",
+        "はず",
+        ["つもり", "ため", "まま"],
+        "A known departure time supports an expectation with はず.",
+      ),
+      q(
+        "Choose the strong inference: 窓が全部閉まっているから、留守 ___。",
+        "に違いない",
+        ["とは限らない", "つもりだ", "ために"],
+        "The closed windows are the clue, and に違いない states a strong conviction that nobody is home; after a noun it needs no だ.",
+      ),
+      q(
+        "What does 毎日走っているから、元気なわけです mean?",
+        "They run every day, which explains why they are so energetic",
+        [
+          "They must run every day to stay energetic",
+          "It is strange that they are tired",
+          "They will start running tomorrow",
+        ],
+        "わけです draws the logical conclusion from a known fact: the daily running accounts for the energy.",
+      ),
+      q(
         "What does 人気があるとは限らない mean?",
         "It is not necessarily popular",
         [
@@ -494,12 +686,6 @@ export const n3Courses: CourseSeed[] = [
           "It used to be popular",
         ],
         "とは限らない rejects a universal assumption without asserting the opposite in every case.",
-      ),
-      q(
-        "Choose a grounded expectation: 九時に出たから、もう着いている ___ です。",
-        "はず",
-        ["つもり", "ため", "まま"],
-        "A known departure time supports an expectation with はず.",
       ),
     ],
     reading: p(
@@ -516,6 +702,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "The final limited denial leaves room for the book to suit some learners while not suiting the writer.",
       ),
+      q(
+        "Why was the textbook hard for the writer to use?",
+        "Its explanations were short, and the writer wanted many examples",
+        [
+          "It was too expensive",
+          "Its example sentences were too long",
+          "It covered only advanced grammar",
+        ],
+        "説明が短く、例文をたくさん読みたいわたしには使いにくかった ties the difficulty to the writer's own need for examples.",
+      ),
     ),
     listening: p(
       "An uncertain arrival",
@@ -530,6 +726,16 @@ export const n3Courses: CourseSeed[] = [
           "Sato canceled the visit",
         ],
         "The train's timing is stated as a fact. Arrival is an expectation and getting lost is a possibility.",
+      ),
+      q(
+        "What do they decide to do?",
+        "Call Sato once",
+        [
+          "Wait at the station",
+          "Assume Sato is not coming",
+          "Take the next train themselves",
+        ],
+        "決めずに、一度電話してみましょう: instead of concluding anything, they will try a single phone call.",
       ),
     ),
     practice:
@@ -591,6 +797,22 @@ export const n3Courses: CourseSeed[] = [
         ],
         "さえ identifies the ticket as the minimal sufficient condition in this statement.",
       ),
+      q(
+        "Complete the hypothetical concession: たとえ雨が ___、試合は行います。",
+        "降っても",
+        ["降れば", "降るなら", "降ったので"],
+        "たとえ is completed by a ても form: even if it rains, the match still goes ahead.",
+      ),
+      q(
+        "What does 今から出たとしても、間に合わない mean?",
+        "Even supposing we left now, we would not make it",
+        [
+          "If we leave now, we will make it",
+          "We left just now, so we made it",
+          "We will not leave until it is too late",
+        ],
+        "としても accepts the hypothetical premise of leaving now and still concludes that it will be too late.",
+      ),
     ],
     reading: p(
       "A flexible participation rule",
@@ -606,6 +828,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "The rule explicitly permits unfinished reading but asks for one selected sentence.",
       ),
+      q(
+        "According to the passage, what matters more than detailed knowledge?",
+        "Talking about how you yourself felt",
+        [
+          "Finishing the whole book first",
+          "Agreeing with the other members",
+          "Reading the book twice",
+        ],
+        "詳しい知識より、自分がどう感じたかを話すことが大切だ ranks a personal response above detailed knowledge.",
+      ),
     ),
     listening: p(
       "A minimum requirement",
@@ -620,6 +852,16 @@ export const n3Courses: CourseSeed[] = [
           "No, because it has at least six people",
         ],
         "以下 includes five and smaller numbers, so a group of three meets the no-reservation condition.",
+      ),
+      q(
+        "What must a group of six or more do?",
+        "Contact them by the previous day",
+        [
+          "Come without contacting them",
+          "Split into smaller groups",
+          "Call on the day of the visit",
+        ],
+        "六人以上の場合は、前日までにご連絡ください sets the rule for larger groups; 以上 includes six itself.",
       ),
     ),
     practice:
@@ -648,7 +890,7 @@ export const n3Courses: CourseSeed[] = [
       g(
         "〜しか〜ない",
         "しか pairs with a negative predicate to mean only, often emphasizing insufficiency. だけ is more neutral and need not take a negative.",
-        "あと十分しかありません。",
+        "あと10分しかありません。",
         "There are only ten minutes left.",
       ),
       g(
@@ -666,6 +908,16 @@ export const n3Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
+        "What does ゲームばかりしている mean?",
+        "Doing nothing but play games",
+        [
+          "Playing games for about an hour",
+          "Having just started a game",
+          "Hardly ever playing games",
+        ],
+        "After a noun, ばかり means nothing but or mostly that; たばかり, by contrast, would mark an action just completed.",
+      ),
+      q(
         "Choose the required ending: 千円しか ___。",
         "ありません",
         ["あります", "ですあります", "ありましょう"],
@@ -680,6 +932,12 @@ export const n3Courses: CourseSeed[] = [
           "Neither price is compared",
         ],
         "B before ほど is the reference; A falls below it in expense.",
+      ),
+      q(
+        "Choose 'so tired I could not stand': 立てない ___ 疲れました。",
+        "くらい",
+        ["しか", "ばかり", "ほどではなく"],
+        "くらい illustrates the degree with an example: the tiredness went as far as not being able to stand.",
       ),
     ],
     reading: p(
@@ -696,6 +954,12 @@ export const n3Courses: CourseSeed[] = [
         ],
         "The conclusion contrasts purchase price alone with usable quantity.",
       ),
+      q(
+        "How much did the writer sometimes throw away before?",
+        "Nearly half",
+        ["Almost nothing", "About a quarter", "Everything bought"],
+        "半分近く捨ててしまうこともあった: close to half was sometimes thrown away when the writer bought in bulk.",
+      ),
     ),
     listening: p(
       "Enough for the group?",
@@ -707,9 +971,64 @@ export const n3Courses: CourseSeed[] = [
         ["One", "Eighteen", "Twenty-one"],
         "The shortage is one, but the agreed action is to print three extra copies as a precaution.",
       ),
+      q(
+        "How many people need a copy in total?",
+        "Twenty-one",
+        ["Eighteen", "Twenty", "Twenty-three"],
+        "Eighteen participants plus three teachers makes twenty-one, which is why twenty copies leave them 一部足りない, one short.",
+      ),
     ),
     practice:
       "Compare two budgets using しか, だけ, and ほど〜ない. Explain whether each statement gives a quantity or an evaluation.",
+    problems: problemSet(
+      "Halves, tenths & what is left over",
+      "Each problem turns on one quantity word. Decide whether 割 and 半分 take a share of the whole, and whether 余る or 足りない asks what remains or what is missing.",
+      words(`割|わり|a tenth: 2割 is 20%
+ずつ|ずつ|each; the same amount apiece
+残り|のこり|what remains
+そのうち|そのうち|of those; out of that total
+足りない|たりない|to be short; not enough`),
+      {
+        text: "クラスの{学生|がくせい}は30{人|にん}です。そのうち4{割|わり}が{電車|でんしゃ}で{通学|つうがく}しています。{電車|でんしゃ}で{通学|つうがく}している{学生|がくせい}は{何人|なんにん}ですか。",
+        translation:
+          "There are 30 students in the class. Four tenths of them travel to school by train. How many students travel by train?",
+        steps: [
+          "そのうち points back to the whole: the 30 students in the class.",
+          "4割 is four tenths of that whole, or 40%: 30 × 0.4 = 12.",
+          "Answer: 12人 travel to school by train.",
+        ],
+      },
+      [
+        wordProblem(
+          "パーティーのために{飲|の}み{物|もの}を24{本|ほん}{買|か}いました。その{半分|はんぶん}が{飲|の}まれ、{残|のこ}りの{半分|はんぶん}は{参加者|さんかしゃ}が{持|も}って{帰|かえ}りました。{飲|の}み{物|もの}は{何本|なんぼん}{余|あま}っていますか。",
+          "You bought 24 bottles of drink for a party. Half of them were drunk, and the guests took home half of the rest. How many bottles are left over?",
+          "6本",
+          ["12本", "18本", "0本"],
+          "その半分が飲まれ leaves 24 − 12 = 12 bottles. 残りの半分 means half of those 12, so 6 go home: 12 − 6 = 6本 余っている.",
+        ),
+        wordProblem(
+          "ある{店|みせ}の{先月|せんげつ}の{売|う}り{上|あ}げは80{万円|まんえん}でした。{今月|こんげつ}は{先月|せんげつ}より2{割|わり}{減|へ}りました。{今月|こんげつ}の{売|う}り{上|あ}げはいくらですか。",
+          "Last month a shop's sales came to 800,000 yen. This month they fell by two tenths compared with last month. What were this month's sales?",
+          "64万円",
+          ["16万円", "78万円", "96万円"],
+          "2割減りました means 20% less than last month: 80万円 × 0.2 = 16万円 lost, so 80万円 − 16万円 = 64万円.",
+        ),
+        wordProblem(
+          "{子|こ}ども{会|かい}で、{参加者|さんかしゃ}18{人|にん}に{色紙|いろがみ}を5{枚|まい}ずつ{配|くば}ります。{色紙|いろがみ}は80{枚|まい}しかありません。{何枚|なんまい}{足|た}りませんか。",
+          "At a children's club, each of the 18 children is to be given 5 sheets of colored paper. There are only 80 sheets. How many sheets short are you?",
+          "10枚",
+          ["90枚", "16枚", "2枚"],
+          "5枚ずつ means five for every child: 18 × 5 = 90 sheets are needed. With only 80 (しかありません), 90 − 80 = 10枚 足りない.",
+        ),
+        wordProblem(
+          "ある{会社|かいしゃ}の{社員|しゃいん}は50{人|にん}で、そのうち{女性|じょせい}は32{人|にん}です。{男性|だんせい}の{割合|わりあい}は{何|なん}%ですか。",
+          "A company has 50 employees, and 32 of them are women. What percentage of the staff are men?",
+          "36%",
+          ["64%", "18%", "32%"],
+          "そのうち女性は32人 leaves 50 − 32 = 18 men. 割合 compares them with the whole 50: 18 ÷ 50 = 0.36, which is 36%.",
+        ),
+      ],
+    ),
   },
   {
     slug: "topics-perspectives",
@@ -752,16 +1071,32 @@ export const n3Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
+        "Mark a topic before a noun: 環境 ___ 記事を読みました。",
+        "についての",
+        ["にとってのです", "についてはの", "をについて"],
+        "についての connects the topic 環境 to 記事.",
+      ),
+      q(
+        "Choose the target of the response: お客様の質問 ___、丁寧に答えてください。",
+        "に対して",
+        ["にとって", "によって", "についての"],
+        "The answer is aimed at the customer's question, so に対して marks the target of the action.",
+      ),
+      q(
         "Frame a learner's evaluation: 私 ___、この辞書は便利です。",
         "にとって",
         ["について", "に対する", "によるの"],
         "便利 is evaluated from the speaker's standpoint.",
       ),
       q(
-        "Mark a topic before a noun: 環境 ___ 記事を読みました。",
-        "についての",
-        ["にとってのです", "についてはの", "をについて"],
-        "についての connects the topic 環境 to 記事.",
+        "What does 値段は店によって違います mean?",
+        "The price differs from shop to shop",
+        [
+          "The shop decided the price alone",
+          "The price is the same in every shop",
+          "The price is a topic for the shop",
+        ],
+        "によって with 違う expresses variation: the price changes depending on which shop you look at.",
       ),
     ],
     reading: p(
@@ -778,6 +1113,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "The students' account corrects the teacher's assumption and leads to a change in question timing.",
       ),
+      q(
+        "What change did the teacher make?",
+        "Always kept time for questions at the end of class",
+        [
+          "Stopped explaining in Japanese",
+          "Asked students to interrupt more often",
+          "Gave quiet students extra homework",
+        ],
+        "質問の時間を授業の最後に必ず設けることにした: questions moved to a fixed slot at the end, and the silent students then spoke up.",
+      ),
     ),
     listening: p(
       "Choosing a guide",
@@ -792,6 +1137,12 @@ export const n3Courses: CourseSeed[] = [
           "People leaving the country permanently",
         ],
         "The current guide suits travelers; the proposed additions address residents' daily needs.",
+      ),
+      q(
+        "Which information is singled out as especially needed?",
+        "How to put out the garbage",
+        ["Restaurants for tourists", "Train timetables", "Hotel prices"],
+        "特に、ごみの出し方に関する説明が必要です picks out garbage instructions as the most needed addition.",
       ),
     ),
     practice:
@@ -838,6 +1189,22 @@ export const n3Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
+        "What does この寮では十時までに帰ることになっている express?",
+        "An established rule of the dormitory",
+        [
+          "The speaker's own sudden decision",
+          "A guess about the other residents",
+          "A past habit the speaker has given up",
+        ],
+        "ことになっている reports an arrangement already fixed, rather than a decision the speaker has just made.",
+      ),
+      q(
+        "Choose the speaker's judgment of what ought to be done: 約束は守る ___ です。",
+        "べき",
+        ["ことはない", "ことになっている", "わけ"],
+        "べき gives the speaker's view of what one ought to do; ことはない would say the opposite, that it is unnecessary.",
+      ),
+      q(
         "What does 心配することはない mean here?",
         "There is no need to worry",
         ["I have never worried", "Worrying is compulsory", "I worry every day"],
@@ -868,6 +1235,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "The explanation connects reporting to matching records and preventing the same problem.",
       ),
+      q(
+        "What did the writer first try to do?",
+        "Correct the mistake alone without telling anyone",
+        [
+          "Report it to the supervisor at once",
+          "Ask the customer to pay the difference",
+          "Hide the records from the senior colleague",
+        ],
+        "自分だけで直そうとした: ようとした shows the writer set out to fix it alone before being told to report it.",
+      ),
     ),
     listening: p(
       "A reassuring response",
@@ -882,6 +1259,16 @@ export const n3Courses: CourseSeed[] = [
           "Memorize every word without notes",
         ],
         "The response combines reassurance with a specific improvement for accuracy.",
+      ),
+      q(
+        "What had the first speaker done?",
+        "Misspoken once during a presentation",
+        [
+          "Forgotten to bring any notes",
+          "Given wrong figures several times",
+          "Missed the presentation",
+        ],
+        "発表で一度言い間違えたんです reports a single slip; accuracy with numbers comes up only as advice for next time.",
       ),
     ),
     practice:
@@ -928,10 +1315,10 @@ export const n3Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
-        "Which expression signals a restatement?",
-        "言い換えると",
-        ["それにもかかわらず", "その前に", "たとえ"],
-        "言い換えると explicitly introduces another way of expressing the preceding point.",
+        "Choose the word that links a name to a noun: 「さくら」 ___ 店を知っていますか。",
+        "という",
+        ["というより", "つまり", "一方で"],
+        "という connects the name さくら to the noun 店, giving a shop called Sakura.",
       ),
       q(
         "What does 疲れたというより、眠い mean?",
@@ -942,6 +1329,22 @@ export const n3Courses: CourseSeed[] = [
           "Sleepiness has ended",
         ],
         "というより corrects the wording toward the second description.",
+      ),
+      q(
+        "Which expression signals a restatement?",
+        "言い換えると",
+        ["それにもかかわらず", "その前に", "たとえ"],
+        "言い換えると explicitly introduces another way of expressing the preceding point.",
+      ),
+      q(
+        "What does 都会は仕事が多い一方で、家賃が高い express?",
+        "Cities have plenty of work, but on the other side, rent is high",
+        [
+          "Rent is high because there is plenty of work",
+          "There is little work, so rent is low",
+          "Cities have plenty of work instead of high rent",
+        ],
+        "一方で sets a second side beside the first: plentiful work and high rent are both true of the city.",
       ),
     ],
     reading: p(
@@ -958,6 +1361,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "The writer defines summarizing through conclusions, reasons, and the relationships between them.",
       ),
+      q(
+        "What can happen if you simply delete the examples?",
+        "The writer's main point may be lost as well",
+        [
+          "The summary becomes too long",
+          "The reasons become easier to see",
+          "The conclusion turns into an example",
+        ],
+        "例だけを消しても、筆者が最も伝えたい点まで消えてしまう場合がある: まで shows even the key point can disappear.",
+      ),
     ),
     listening: p(
       "Two sides of an app",
@@ -972,6 +1385,16 @@ export const n3Courses: CourseSeed[] = [
           "Deny that communication improved",
         ],
         "つまり introduces the conclusion, combining the benefit with the identified drawback.",
+      ),
+      q(
+        "What drawback have people mentioned?",
+        "Notifications at night make it hard to rest",
+        [
+          "Messages have become slower",
+          "The app costs too much",
+          "Nobody uses the app at night",
+        ],
+        "一方で、夜にも通知が来て、休みにくいという声があります introduces the downside that balances faster contact.",
       ),
     ),
     practice:
@@ -1024,10 +1447,30 @@ export const n3Courses: CourseSeed[] = [
         "ないといけない keeps the polite register; なきゃ and なくちゃ are casual contractions for friends and family.",
       ),
       q(
+        "Which is the softest way to ask a neighbour to turn the music down?",
+        "音を小さくしてくれると助かります",
+        [
+          "音を小さくしなさい",
+          "音を小さくしなきゃ",
+          "音を小さくすればよかった",
+        ],
+        "てくれると助かります frames the request as a favour that would help you, so it asks without giving an order.",
+      ),
+      q(
         "Choose the natural regret: もっと早く___。",
         "挨拶すればよかった",
         ["挨拶すればいい", "挨拶してよかった", "挨拶するでしょう"],
         "ばよかった looks back at what should have been done; してよかった says the speaker is glad they did it.",
+      ),
+      q(
+        "What does 駅に行くついでに、手紙を出してきます mean?",
+        "I will post the letter while I am going to the station anyway",
+        [
+          "I am going to the station only to post the letter",
+          "I will post the letter instead of going to the station",
+          "I posted the letter before going to the station",
+        ],
+        "ついでに adds a second errand to a trip already being made; the main purpose is still going to the station.",
       ),
     ],
     reading: p(
@@ -1044,6 +1487,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "前日の夜に出す…おやめください targets the timing; laundry is only discouraged late at night, not forbidden.",
       ),
+      q(
+        "When is burnable rubbish to be put out?",
+        "On Tuesday and Friday mornings",
+        [
+          "On Monday and Thursday mornings",
+          "Any night after ten",
+          "On Tuesday and Friday evenings",
+        ],
+        "燃えるごみは火曜日と金曜日の朝に出すことになっています fixes both the days and the time of day.",
+      ),
     ),
     listening: p(
       "Apologising to a neighbour",
@@ -1054,6 +1507,16 @@ export const n3Courses: CourseSeed[] = [
         "To be more careful in future",
         ["To move out", "To stop inviting friends", "To clean the hallway"],
         "今度から気をつけます is a promise about future behaviour; nothing is said about the friends or the building itself.",
+      ),
+      q(
+        "Why was it noisy last night?",
+        "Friends were visiting and it went on late",
+        [
+          "The speaker was moving furniture",
+          "There was building work next door",
+          "The television was left on all night",
+        ],
+        "友達が来ていて、つい遅くなってしまいました gives the reason; つい and てしまう show it ran later than intended.",
       ),
     ),
     practice:
@@ -1106,6 +1569,22 @@ export const n3Courses: CourseSeed[] = [
         "させていただく treats the change as a favour the listener grants; してもいいですか only asks whether it is allowed.",
       ),
       q(
+        "What does ご都合が悪いようでしたら add to a request?",
+        "If it seems inconvenient for you",
+        [
+          "Because it is inconvenient for me",
+          "Even though it is convenient",
+          "Whenever it was inconvenient",
+        ],
+        "ようでしたら is a polite conditional with a layer of guesswork, so it offers an alternative without assuming the other person's answer.",
+      ),
+      q(
+        "Choose the phrase that passes on a message you were given: 部長は午後から会議 ___。",
+        "とのことです",
+        ["させていただきます", "でしたら", "せずに"],
+        "とのことです reports what you were told while keeping a step back from it, which suits relaying the manager's schedule.",
+      ),
+      q(
         "Choose the written-style 'without': 連絡___変更しないでください。",
         "せずに",
         ["しずに", "しなくて", "しないと"],
@@ -1126,6 +1605,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "改めてこちらからご連絡いたします promises a fresh approach from the writer's side, not a substitute or a cancellation.",
       ),
+      q(
+        "Why does the date need to change?",
+        "The person in charge has suddenly been sent on a business trip",
+        [
+          "The reader asked to cancel the visit",
+          "The office is closed next week",
+          "The writer is unwell",
+        ],
+        "担当が急に出張になったとのことで gives the reason, reported at one remove with とのことで.",
+      ),
     ),
     listening: p(
       "Confirming on the phone",
@@ -1140,6 +1629,16 @@ export const n3Courses: CourseSeed[] = [
           "Whether the documents arrived",
         ],
         "場所は前回と同じでよろしいでしょうか asks about the venue; the day and the time have already been settled.",
+      ),
+      q(
+        "When will the speaker visit?",
+        "Next Wednesday at two in the afternoon",
+        [
+          "This Wednesday at two in the afternoon",
+          "Next Thursday at two in the afternoon",
+          "Next Wednesday morning",
+        ],
+        "来週の水曜日、午後二時にお伺いします fixes the visit; 伺う is the humble verb for going to the other person's place.",
       ),
     ),
     practice:
@@ -1196,10 +1695,30 @@ export const n3Courses: CourseSeed[] = [
         "The subject line names the topic and the opening line fixes the thread with 〜の件につきまして before the request itself arrives.",
       ),
       q(
+        "How should an e-mail to someone you have never contacted begin?",
+        "初めてご連絡いたします",
+        [
+          "いつもお世話になっております",
+          "以上、よろしくお願いいたします",
+          "ご確認のほどお願いいたします",
+        ],
+        "いつもお世話になっております thanks an existing relationship, so a first approach opens with 初めてご連絡いたします instead.",
+      ),
+      q(
         "Choose the softened written request.",
         "ご確認のほどよろしくお願いいたします",
         ["確認してください", "確認しましたか", "確認しておいて"],
         "〜のほど blurs the edges of the request, which is what makes it fit written business Japanese rather than speech.",
+      ),
+      q(
+        "Whose wish does お伺いしたく存じます express?",
+        "The writer's own wish to visit",
+        [
+          "The reader's wish to visit",
+          "A plan made by a third person",
+          "A company rule about visits",
+        ],
+        "The verb stem plus たく存じます states what the writer would like to do, in humble written style; it never describes the reader.",
       ),
     ],
     reading: p(
@@ -1212,6 +1731,16 @@ export const n3Courses: CourseSeed[] = [
         ["The venue details", "The attached materials", "A signed agreement"],
         "参加される方のお名前を…ご返信いただけますでしょうか carries the Friday deadline; the venue is the writer's own follow-up, not the reader's task.",
       ),
+      q(
+        "What does the writer say may still change?",
+        "The venue",
+        [
+          "The Friday deadline",
+          "The date of the training",
+          "The attached materials",
+        ],
+        "会場が変わる可能性がございます flags the venue as unsettled, with fresh details promised once it is decided.",
+      ),
     ),
     listening: p(
       "Acknowledging an e-mail by phone",
@@ -1222,6 +1751,16 @@ export const n3Courses: CourseSeed[] = [
         "The participants' names",
         ["The attached materials", "The venue details", "A new subject line"],
         "参加者の名前は明日までにご返信いたします is what the speaker promises; the venue is what they are waiting to receive.",
+      ),
+      q(
+        "What has the speaker already done?",
+        "Read the e-mail and checked the attachment",
+        [
+          "Sent the participants' names",
+          "Booked the venue",
+          "Replied to everyone on the list",
+        ],
+        "拝見いたしました and 確認いたしました are both completed actions; the names are still to follow by tomorrow.",
       ),
     ),
     practice:
@@ -1274,6 +1813,18 @@ export const n3Courses: CourseSeed[] = [
         "Reports use the plain written style, in which nouns and な-adjectives take である rather than です.",
       ),
       q(
+        "Choose the phrase for what a completed tally showed: アンケートを集計 ___、満足度が上がったことが分かった。",
+        "した結果",
+        ["する結果", "したとおり", "するため"],
+        "The た-form plus 結果 reports the finding that followed a finished action: the tally came first, then what it showed.",
+      ),
+      q(
+        "Choose the phrase that points to details set out below: 日程は ___ です。",
+        "下記のとおり",
+        ["下記とおり", "下記のため", "下記以上"],
+        "After a noun, とおり takes の: 下記のとおり sends the reader to the details listed below.",
+      ),
+      q(
         "What does 以上 mean standing alone at the end of a document?",
         "That is the whole of it",
         [
@@ -1298,6 +1849,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "来月までにページを書き直すことが決定された is the recorded decision; the enquiry figures are the finding that led to it.",
       ),
+      q(
+        "What did the report on the present situation show?",
+        "Enquiries rose last month compared with the month before",
+        [
+          "Enquiries fell after the page was rewritten",
+          "The sales department lost staff",
+          "The page had already been rewritten",
+        ],
+        "先月の問合せ件数が前月より増えていることが示された reports the rise that prompted the investigation.",
+      ),
     ),
     listening: p(
       "Reporting the outcome aloud",
@@ -1312,6 +1873,16 @@ export const n3Courses: CourseSeed[] = [
           "Nobody has been decided yet",
         ],
         "担当は営業部です assigns the responsibility; the speaker is reporting the decision rather than volunteering for it.",
+      ),
+      q(
+        "What did the investigation find?",
+        "The cause was the explanation on the information page",
+        [
+          "The cause was a staff shortage",
+          "The website had crashed",
+          "No cause could be found",
+        ],
+        "調査した結果、原因は案内ページの説明であることが分かりました states the finding the investigation produced.",
       ),
     ),
     practice:
@@ -1369,6 +1940,22 @@ export const n3Courses: CourseSeed[] = [
         ["提出済み", "提出ごと", "提出のこと"],
         "未〜 marks an action still outstanding, whereas 〜済み marks one that has already been completed.",
       ),
+      q(
+        "A notice says 点検は三か月ごとに行います. How often is the inspection?",
+        "Every three months",
+        ["Once, three months from now", "Three times a month", "Only in March"],
+        "ごとに means at every one of the stated units, so the inspection comes round every three months with none skipped.",
+      ),
+      q(
+        "What is 期限までに提出すること on a notice?",
+        "A written instruction to submit it by the deadline",
+        [
+          "A question asking whether it was submitted",
+          "A report that it has been submitted",
+          "The writer's personal wish to submit it",
+        ],
+        "Dictionary form plus こと at the end of a written rule issues an instruction without addressing anybody in particular.",
+      ),
     ],
     reading: p(
       "A notice on the company board",
@@ -1384,6 +1971,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "ただし introduces two exempt groups and 該当しません covers both of them, not only the new joiners.",
       ),
+      q(
+        "Where can staff see a filled-in example of the form?",
+        "On the notice board",
+        [
+          "In the remarks column",
+          "At the general affairs department",
+          "Attached to an e-mail",
+        ],
+        "なお、記入例は掲示板に貼ってあります adds, as a separate point, where the example has been posted.",
+      ),
     ),
     listening: p(
       "A reminder at the morning meeting",
@@ -1394,6 +1991,16 @@ export const n3Courses: CourseSeed[] = [
         "Thursday",
         ["Friday", "Next Monday", "The end of the month"],
         "The official deadline is Friday, but the speaker asks for them by Thursday in order to collect them by department first.",
+      ),
+      q(
+        "Who does not need to hand anything in?",
+        "Those who have already submitted it",
+        [
+          "Everyone in the department",
+          "Anyone who missed the deadline",
+          "Those who will hand it in on Friday",
+        ],
+        "提出済みの方は結構です: 済み marks those already done, and 結構です tells them nothing more is needed.",
       ),
     ),
     practice:
@@ -1440,6 +2047,12 @@ export const n3Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
+        "Choose the reply to ありがとうございました that insists the thanks belong on your side.",
+        "こちらこそ",
+        ["こちらでも", "こちらなんて", "こちらしか"],
+        "こそ singles out the word before it, so こちらこそ insists that the gratitude really belongs on your side.",
+      ),
+      q(
         "What does 一人も来なかった mean?",
         "Nobody came at all",
         ["One person came", "Only one person came", "A few people came"],
@@ -1451,6 +2064,16 @@ export const n3Courses: CourseSeed[] = [
         ["無理と言わないで", "無理こそ言わないで", "無理でも言わないで"],
         "なんて carries the speaker's dismissal of the remark, while と would simply quote the same words neutrally.",
       ),
+      q(
+        "What does 日曜日でも店は開いています mean?",
+        "The shop is open even on Sundays",
+        [
+          "The shop is open only on Sundays",
+          "The shop is closed on Sundays",
+          "The shop was open last Sunday too",
+        ],
+        "でも after a noun means even: Sunday is the day you would least expect it, yet the shop is open.",
+      ),
     ],
     reading: p(
       "A second attempt",
@@ -1461,6 +2084,16 @@ export const n3Courses: CourseSeed[] = [
         "The experience of having made the effort",
         ["Passing the exam", "Giving up early", "Answering every question"],
         "努力した経験にこそ価値がある singles out the experience itself with こそ, rather than the result it produced.",
+      ),
+      q(
+        "How did the writer do in last year's exam?",
+        "Could not solve a single question",
+        [
+          "Solved about half of the questions",
+          "Passed with a good result",
+          "Did not sit the exam",
+        ],
+        "一問も解けませんでした uses も with a negative to say not even one question was solved.",
       ),
     ),
     listening: p(
@@ -1477,9 +2110,565 @@ export const n3Courses: CourseSeed[] = [
         ],
         "今度こそうまくいきます uses こそ to insist that this particular attempt is the one that will count.",
       ),
+      q(
+        "How much time did the first speaker have to prepare?",
+        "Not even one day",
+        ["Exactly one day", "A whole week", "More than enough"],
+        "一日もありませんでした sweeps the range to zero: there was not a single day to prepare.",
+      ),
     ),
     practice:
       "Rewrite three flat sentences: add こそ to the part that matters, turn one into a sweeping negative with も, and dismiss one remark with なんて.",
+  },
+  {
+    slug: "trouble-while-out",
+    title: "Trouble while out: lost items & near misses",
+    summary:
+      "Report a lost wallet at a police box, describe it well enough to be recognised, and explain a near miss on the street calmly, from what happened to how badly anyone was hurt.",
+    vocabulary: words(`交番|こうばん|a police box
+落とし物|おとしもの|a lost item
+届ける|とどける|to hand in
+特徴|とくちょう|a distinguishing feature
+見つかる|みつかる|to be found
+怪我|けが|an injury
+転ぶ|ころぶ|to fall over
+警察|けいさつ|the police`),
+    grammar: [
+      g(
+        "〜ところだった",
+        "Dictionary form + ところだった says something very nearly happened but in the end did not: {車|くるま}にぶつかるところだった. Unlike ところです, which fixes a moment in time, it looks back at a near miss with relief. もう{少|すこ}しで or {危|あぶ}なく in front stresses how close it came.",
+        "もう{少|すこ}しで{自転車|じてんしゃ}にぶつかるところでした。",
+        "I very nearly collided with a bicycle.",
+      ),
+      g(
+        "〜っぽい",
+        "っぽい turns a noun or a verb stem into an い-adjective meaning -ish. With a colour it helps describe something you cannot pin down exactly: {黒|くろ}っぽい{財布|さいふ} is a blackish wallet. After a person noun it means behaving like one, as in {子|こ}どもっぽい, and after a verb stem it names a habit, as in {忘|わす}れっぽい, forgetful. It suits speech rather than formal documents.",
+        "{黒|くろ}っぽい{革|かわ}の{財布|さいふ}です。",
+        "It is a blackish leather wallet.",
+      ),
+      g(
+        "〜{気|き}がする",
+        "A plain clause + {気|き}がする reports a hunch you cannot prove yet: {電車|でんしゃ}に{置|お}いてきた{気|き}がします. It is softer than と{思|おも}います, because it presents the idea as a feeling rather than a judgement. Compare {音|おと}がする, which reports a sound rather than an idea.",
+        "{駅|えき}のベンチに{置|お}いてきた{気|き}がします。",
+        "I have a feeling I left it on a bench at the station.",
+      ),
+      g(
+        "〜で{済|す}む・〜ずに{済|す}む",
+        "{済|す}む means a matter was settled with no more than something: {軽|かる}い{怪我|けが}で{済|す}んだ says the injury went no further than a light one. With a verb, ずに{済|す}む or ないで{済|す}む means you were spared it altogether: {入院|にゅういん}せずに{済|す}んだ. Both carry relief that things were not worse.",
+        "{幸|さいわ}い、{軽|かる}い{怪我|けが}で{済|す}みました。",
+        "Luckily, it was only a light injury.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Which sentence describes a near miss?",
+        "車にぶつかるところでした",
+        [
+          "車にぶつかったところです",
+          "車にぶつかっているところです",
+          "車にぶつかるところです",
+        ],
+        "Dictionary form + ところだった looks back at something that almost happened but did not; ところです places you at a moment in the present.",
+      ),
+      q(
+        "Describe a wallet whose colour you are not sure of: ___財布です。",
+        "黒っぽい",
+        ["黒らしい", "黒がちな", "黒気味の"],
+        "っぽい after a colour gives -ish, so 黒っぽい is blackish. らしい, がち and 気味 do not attach to a colour this way.",
+      ),
+      q(
+        "Which states a hunch rather than a firm opinion?",
+        "電車に置いてきた気がします",
+        [
+          "電車に置いてきたと言います",
+          "電車に置いてきたはずがありません",
+          "電車に置いてきたことがあります",
+        ],
+        "気がする presents an idea as a feeling you cannot prove yet; と言います reports words, and ことがあります describes past experience.",
+      ),
+      q(
+        "Choose the phrase of relief: 幸い、軽い怪我___。",
+        "で済みました",
+        ["に済みました", "を済ませました", "ずに済みました"],
+        "Noun + で済む means the damage went no further than that noun. ずに済む attaches to a verb, not to a noun such as 怪我.",
+      ),
+    ],
+    reading: p(
+      "A report at the police box",
+      "{昨日|きのう}の{夕方|ゆうがた}、{駅前|えきまえ}の{交番|こうばん}に{行|い}きました。{電車|でんしゃ}を{降|お}りようとしたとき、{財布|さいふ}がないことに{気|き}がついたからです。{警察|けいさつ}の{人|ひと}に{特徴|とくちょう}を{聞|き}かれたので、「{黒|くろ}っぽい{革|かわ}の{財布|さいふ}で、{中|なか}に{学生証|がくせいしょう}が{入|はい}っています」と{説明|せつめい}しました。{駅|えき}のベンチに{置|お}いてきた{気|き}がすると{言|い}うと、{落|お}とし{物|もの}の{届|とど}けを{出|だ}すように{言|い}われました。{今朝|けさ}、{交番|こうばん}から{財布|さいふ}が{見|み}つかったという{電話|でんわ}がありました。{誰|だれ}かが{届|とど}けてくれたおかげで、{学生証|がくせいしょう}を{再発行|さいはっこう}せずに{済|す}みました。",
+      "Yesterday evening I went to the police box in front of the station, because as I was about to get off the train I noticed my wallet was gone. The officer asked me what it looked like, so I explained, “It is a blackish leather wallet with my student ID inside.” When I said I had a feeling I had left it on a bench at the station, I was told to file a lost-property report. This morning the police box phoned to say the wallet had been found. Because somebody handed it in, I did not have to get my student ID reissued.",
+      q(
+        "Why did the writer go to the police box?",
+        "Their wallet was missing",
+        [
+          "They had found a wallet",
+          "They had been in an accident",
+          "They needed a new student ID",
+        ],
+        "財布がないことに気がついたからです gives the reason: the writer noticed their own wallet had gone missing on the train.",
+      ),
+      q(
+        "What was the writer spared in the end?",
+        "Having their student ID reissued",
+        [
+          "Filing a lost-property report",
+          "Going back to the station",
+          "Describing the wallet",
+        ],
+        "学生証を再発行せずに済みました: because someone handed the wallet in, the ID card did not need replacing. The report was still filed.",
+      ),
+    ),
+    listening: p(
+      "A near miss on the pavement",
+      "{大丈夫|だいじょうぶ}ですか。すみません、{急|いそ}いでいて、もう{少|すこ}しでぶつかるところでした。いえ、{私|わたし}も{前|まえ}を{見|み}ていなかったんです。{転|ころ}んだときに{手|て}を{少|すこ}しすりむいただけなので、{病院|びょういん}に{行|い}かずに{済|す}みそうです。",
+      "Are you all right? I am sorry, I was in a hurry and very nearly ran into you. No, I was not looking where I was going either. I only grazed my hand a little when I fell, so it looks as though I will not need to go to hospital.",
+      q(
+        "What does the first speaker apologise for?",
+        "Nearly running into the other person",
+        [
+          "Knocking over the other person's bag",
+          "Being late for a meeting",
+          "Taking the other person's seat",
+        ],
+        "もう少しでぶつかるところでした describes a collision that almost happened; the speaker was hurrying and apologises for it.",
+      ),
+      q(
+        "How badly is the second speaker hurt?",
+        "Only a slight graze on the hand",
+        [
+          "A broken wrist",
+          "A head injury that needs hospital",
+          "No injury, but a damaged phone",
+        ],
+        "手を少しすりむいただけ and 病院に行かずに済みそう show the injury is minor enough to avoid a trip to hospital.",
+      ),
+    ),
+    practice:
+      "Role-play a visit to a police box: describe a lost item with っぽい, give a hunch about where you left it with 気がする, and finish with a sentence of relief using で済む or ずに済む.",
+  },
+  {
+    slug: "campus-life",
+    title: "Campus life: seminars, reports & statistics",
+    summary:
+      "Follow a university seminar, define the key terms in a report, compare figures from a survey, and work through the numbers of a statistics class in Japanese.",
+    vocabulary: words(`講義|こうぎ|a lecture
+研究|けんきゅう|research
+専攻|せんこう|a major subject
+単位|たんい|a course credit
+学期|がっき|a term; a semester
+平均|へいきん|an average
+回答|かいとう|a response to a survey
+図表|ずひょう|charts and tables`),
+    grammar: [
+      g(
+        "〜に{比|くら}べて・〜と{比|くら}べて",
+        "Noun + に{比|くら}べて or と{比|くら}べて sets up a point of comparison and then says how the topic differs from it: {去年|きょねん}に{比|くら}べて{増|ふ}えた. It is the natural way to report survey figures and trends. Formal writing shortens it to に{比|くら}べ, with no て.",
+        "{去年|きょねん}に{比|くら}べて、{回答|かいとう}した{学生|がくせい}が{増|ふ}えました。",
+        "Compared with last year, more students responded.",
+      ),
+      g(
+        "〜を{中心|ちゅうしん}に",
+        "Noun + を{中心|ちゅうしん}に names the core of an activity while allowing that other things are included: {若者|わかもの}を{中心|ちゅうしん}に{人気|にんき}がある. Before another noun it becomes を{中心|ちゅうしん}とした, as in {留学生|りゅうがくせい}を{中心|ちゅうしん}とした{調査|ちょうさ}.",
+        "このゼミでは、{環境|かんきょう}{問題|もんだい}を{中心|ちゅうしん}に{研究|けんきゅう}しています。",
+        "In this seminar we mainly research environmental issues.",
+      ),
+      g(
+        "〜とは・〜というのは",
+        "Put a term before とは or というのは to define or explain it, and close the sentence with のことです or という{意味|いみ}です: {平均|へいきん}とは、{合計|ごうけい}を{人数|にんずう}で{割|わ}った{数|かず}のことです. とは is the written, textbook form; というのは is the one you hear in conversation.",
+        "ゼミというのは、{少人数|しょうにんずう}で{研究|けんきゅう}や{発表|はっぴょう}をする{授業|じゅぎょう}のことです。",
+        "A zemi is a small-group class where you research and give presentations.",
+      ),
+      g(
+        "Proportions: 〜{割|わり}・〜%・〜{分|ぶん}の〜",
+        "Japanese gives a proportion three ways. {割|わり} counts tenths, so {三割|さんわり} is 30%; パーセント follows the number, as in 25パーセント; and a fraction names the whole first, so {四分|よんぶん}の{一|いち} is one quarter. Saying the whole before the part is the step learners most often reverse.",
+        "{学生|がくせい}の{三割|さんわり}が、アルバイトをしていると{答|こた}えました。",
+        "Thirty percent of the students answered that they have a part-time job.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Choose the phrase that compares with last year: 去年___、回答が増えました。",
+        "に比べて",
+        ["について", "によって", "にとって"],
+        "に比べて sets last year up as the point of comparison; について, によって and にとって mark a topic, a cause or means, and a viewpoint.",
+      ),
+      q(
+        "What does 留学生を中心とした調査 describe?",
+        "A survey mainly of international students",
+        [
+          "A survey only of Japanese students",
+          "A survey that left out international students",
+          "A survey held in the middle of the campus",
+        ],
+        "を中心とした names the core group of the survey while allowing others to take part; 中心 here is not a place on campus.",
+      ),
+      q(
+        "Which sentence defines a term?",
+        "平均とは、合計を人数で割った数のことです",
+        [
+          "平均によって、合計を人数で割りました",
+          "平均なら、合計を人数で割ってください",
+          "平均だから、合計を人数で割ったのです",
+        ],
+        "とは introduces the term being defined, and のことです closes the definition; the other sentences give an instruction or a reason.",
+      ),
+      q(
+        "What does 四分の一 mean?",
+        "One quarter",
+        ["Four quarters", "Forty percent", "One fifth"],
+        "A Japanese fraction names the whole first, so 四分の一 is one of four equal parts, a quarter. Forty percent would be 四割.",
+      ),
+    ],
+    reading: p(
+      "A seminar report on part-time work",
+      "{私|わたし}たちのゼミでは、{学生|がくせい}の{生活|せいかつ}を{中心|ちゅうしん}に{研究|けんきゅう}しています。{今学期|こんがっき}は、{二年生|にねんせい}{二百人|にひゃくにん}にアルバイトについてのアンケートを{行|おこな}いました。{回答|かいとう}した{学生|がくせい}の{六割|ろくわり}がアルバイトをしていて、{一週間|いっしゅうかん}の{平均|へいきん}は{十二時間|じゅうにじかん}でした。{去年|きょねん}の{調査|ちょうさ}に{比|くら}べて、{時間|じかん}は{少|すこ}し{減|へ}っています。{授業|じゅぎょう}の{単位|たんい}を{落|お}とさないように、{働|はたら}く{時間|じかん}を{減|へ}らした{学生|がくせい}が{多|おお}いようです。",
+      "Our seminar mainly researches student life. This term we gave two hundred second-year students a questionnaire about part-time work. Sixty percent of those who responded have a part-time job, and they work twelve hours a week on average. Compared with last year's survey, the hours have fallen slightly. It seems many students have cut their working hours so that they do not fail any of their course credits.",
+      q(
+        "What was the questionnaire about?",
+        "Second-year students' part-time work",
+        [
+          "How students choose a seminar",
+          "Which lectures students prefer",
+          "How much students spend on food",
+        ],
+        "二年生二百人にアルバイトについてのアンケートを行いました states both the group asked and the topic of the questionnaire.",
+      ),
+      q(
+        "How have the students' working hours changed since last year?",
+        "They have fallen slightly",
+        [
+          "They have doubled",
+          "They have not changed",
+          "They have risen to twelve hours",
+        ],
+        "去年の調査に比べて、時間は少し減っています compares the two years: the hours went down a little, apparently to protect course credits.",
+      ),
+    ),
+    listening: p(
+      "A statistics class",
+      "では、{問題|もんだい}です。あるクラスの{学生|がくせい}は{四十人|よんじゅうにん}で、そのうち{四分|よんぶん}の{一|いち}が{自転車|じてんしゃ}で{通学|つうがく}しています。{自転車|じてんしゃ}で{来|く}る{学生|がくせい}は{何人|なんにん}でしょうか。{答|こた}えは{十人|じゅうにん}ですね。{全体|ぜんたい}を{先|さき}に{言|い}うのが、{分数|ぶんすう}の{読|よ}み{方|かた}のポイントです。",
+      "Now, a problem. A class has forty students, and a quarter of them come to school by bicycle. How many students come by bicycle? The answer is ten. The key to reading a fraction is to say the whole first.",
+      q(
+        "How many students cycle to school?",
+        "Ten",
+        ["Four", "Thirty", "Forty"],
+        "四十人のうち四分の一 means a quarter of forty, and the teacher confirms the answer as 十人.",
+      ),
+      q(
+        "What tip does the teacher give?",
+        "Say the whole before the part in a fraction",
+        [
+          "Always turn a fraction into a percentage",
+          "Count the students twice",
+          "Say the part before the whole in a fraction",
+        ],
+        "全体を先に言うのが、分数の読み方のポイントです: in 四分の一 the whole, 四, comes before the part, 一.",
+      ),
+    ),
+    practice:
+      "Summarise a small survey of your own: define one term with とは, compare two figures with に比べて, and give one result as a 割, as a percentage, and as a fraction.",
+    problems: problemSet(
+      "Statistics class: percentages, averages & speed",
+      "Find the whole before you calculate: そのうち points back to it, 割 and % take a share of it, 平均 divides a total by how many there are, and 時速 is a distance divided by hours.",
+      words(`割合|わりあい|a proportion
+合計|ごうけい|a total
+割る|わる|to divide
+距離|きょり|distance
+時速|じそく|speed per hour
+比|ひ|a ratio`),
+      {
+        text: "テストを{受|う}けた{学生|がくせい}は50{人|にん}で、そのうち6{割|わり}が{合格|ごうかく}しました。{合格|ごうかく}した{学生|がくせい}は{何人|なんにん}ですか。",
+        translation:
+          "Fifty students took the test, and 60% of them passed. How many students passed?",
+        steps: [
+          "そのうち points back to the 50 students, so the whole is 50.",
+          "6割 means six tenths, or 0.6.",
+          "Multiply the whole by the share: 50 × 0.6 = 30, so 30人 passed.",
+        ],
+      },
+      [
+        wordProblem(
+          "アンケートに{答|こた}えた{学生|がくせい}は200{人|にん}でした。そのうち35%が「{毎日|まいにち}{図書館|としょかん}を{使|つか}う」と{答|こた}えました。{毎日|まいにち}{図書館|としょかん}を{使|つか}う{学生|がくせい}は{何人|なんにん}ですか。",
+          "Two hundred students answered the questionnaire. Of them, 35% said they use the library every day. How many students use the library every day?",
+          "70人",
+          ["35人", "130人", "7人"],
+          "そのうち refers back to the 200 students, and 35% is 0.35: 200 × 0.35 = 70, so 70人. 130人 is the other 65%, and 35人 mistakes the percentage for a number of people.",
+        ),
+        wordProblem(
+          "ゼミの{学生|がくせい}5{人|にん}がレポートを{書|か}きました。{枚数|まいすう}は3{枚|まい}、5{枚|まい}、4{枚|まい}、6{枚|まい}、7{枚|まい}でした。{1人|ひとり}{平均|へいきん}{何枚|なんまい}{書|か}きましたか。",
+          "Five students in the seminar wrote reports. Their lengths were 3, 5, 4, 6 and 7 pages. How many pages did each student write on average?",
+          "5枚",
+          ["25枚", "4枚", "6枚"],
+          "平均 is the total divided by how many there are: 3 + 5 + 4 + 6 + 7 = 25 pages, and 25 ÷ 5 = 5, so 5枚. 25枚 is the total before dividing, and 4枚 is only the middle number in the list.",
+        ),
+        wordProblem(
+          "{駅|えき}から{大学|だいがく}まで3キロあります。{自転車|じてんしゃ}で15{分|ふん}かかりました。{自転車|じてんしゃ}の{速|はや}さは{時速|じそく}{何|なん}キロですか。",
+          "It is 3 km from the station to the university, and the trip took 15 minutes by bicycle. What was the bicycle's speed in kilometres per hour?",
+          "時速12キロ",
+          ["時速5キロ", "時速45キロ", "時速0.2キロ"],
+          "時速 asks for kilometres per hour. 15分 is a quarter of an hour, 0.25時間, so 3 ÷ 0.25 = 12, giving 時速12キロ. 3 ÷ 15 = 0.2 is the distance per minute, not per hour.",
+        ),
+        wordProblem(
+          "{講義|こうぎ}の{登録者|とうろくしゃ}は120{人|にん}で、{男子|だんし}と{女子|じょし}の{比|ひ}は2{対|たい}3です。{女子|じょし}は{何人|なんにん}ですか。",
+          "A lecture has 120 registered students, and the ratio of men to women is 2 to 3. How many women are there?",
+          "72人",
+          ["48人", "40人", "60人"],
+          "A 比 of 2対3 splits the whole into 2 + 3 = 5 equal parts. Each part is 120 ÷ 5 = 24, and 女子 has 3 parts: 24 × 3 = 72, so 72人. 48人 is the number of 男子.",
+        ),
+      ],
+    ),
+  },
+  {
+    slug: "job-interview",
+    title: "Job interviews: motivation, strengths & habits",
+    summary:
+      "Answer the standard questions of a Japanese job interview: why you applied, what you did as a student, what your strengths are, and which habits show how you work.",
+    vocabulary: words(`面接|めんせつ|a job interview
+応募|おうぼ|an application
+履歴書|りれきしょ|a CV; a résumé
+志望動機|しぼうどうき|reasons for applying
+長所|ちょうしょ|a strong point
+短所|たんしょ|a weak point
+採用|さいよう|being hired
+御社|おんしゃ|your company (spoken)`),
+    grammar: [
+      g(
+        "〜をきっかけに",
+        "Noun + をきっかけに names the event that set something off: {留学|りゅうがく}をきっかけに{日本|にほん}の{会社|かいしゃ}に{興味|きょうみ}を{持|も}った. It suits the story of how an interest or a decision began, which is exactly what an interviewer asks about. A clause needs こと first: {入院|にゅういん}したことをきっかけに.",
+        "アルバイトをきっかけに、{接客|せっきゃく}の{仕事|しごと}に{興味|きょうみ}を{持|も}ちました。",
+        "My part-time job was what got me interested in customer-service work.",
+      ),
+      g(
+        "〜として",
+        "Noun + として gives the role or capacity in which you act: リーダーとして, {社会人|しゃかいじん}として. Before another noun it becomes としての, as in リーダーとしての{経験|けいけん}. It lets you describe what you did through the position you held rather than by listing tasks.",
+        "{大学|だいがく}では、サークルのリーダーとして{合宿|がっしゅく}を{企画|きかく}しました。",
+        "At university, I organised our club's training camp as its leader.",
+      ),
+      g(
+        "〜ことにしている",
+        "Dictionary form + ことにしている describes a personal rule you keep because you once decided on it: {毎朝|まいあさ}ニュースを{読|よ}むことにしています. Compare ことにした, the single decision, and ようにしている, which stresses effort rather than a fixed rule. In an interview it shows a habit you chose on purpose.",
+        "{仕事|しごと}の{前|まえ}に、その{日|ひ}の{予定|よてい}を{確認|かくにん}することにしています。",
+        "I make a point of checking the day's schedule before I start work.",
+      ),
+      g(
+        "{長所|ちょうしょ}は〜ところです",
+        "ところ after a plain clause can mean a side of someone's character, so {長所|ちょうしょ}は{最後|さいご}まであきらめないところです names a strength. It differs from {食|た}べるところです, where ところ places an action in time. Follow the answer with a short example, or it sounds like a slogan.",
+        "{私|わたし}の{長所|ちょうしょ}は、{最後|さいご}まであきらめないところです。",
+        "My strength is that I never give up before the end.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Choose the phrase for what set your interest off: 留学___、日本の会社に興味を持ちました。",
+        "をきっかけに",
+        ["をもとに", "のかわりに", "のくせに"],
+        "をきっかけに names the event that started the interest; をもとに names source material, and かわりに and くせに express substitution and criticism.",
+      ),
+      q(
+        "Which phrase describes experience gained in a role?",
+        "リーダーとしての経験",
+        [
+          "リーダーにしての経験",
+          "リーダーとした経験",
+          "リーダーについての経験",
+        ],
+        "Before a noun, として becomes としての. リーダーについての経験 would mean experience about leaders, not experience as one.",
+      ),
+      q(
+        "Which describes a habit you keep as a personal rule?",
+        "毎朝ニュースを読むことにしています",
+        [
+          "毎朝ニュースを読むことにしました",
+          "毎朝ニュースを読むことになっています",
+          "毎朝ニュースを読んだことがあります",
+        ],
+        "ことにしている is a rule you set yourself and keep following; ことにした is the one-off decision, and ことになっている is a rule set by others.",
+      ),
+      q(
+        "What does 長所は最後まであきらめないところです mean?",
+        "My strength is that I never give up",
+        [
+          "My strength is the place where I never give up",
+          "I am about to give up at the end",
+          "I have just given up at the end",
+        ],
+        "ところ here means a side of someone's character, not a place or a moment in time, so the sentence names a strength.",
+      ),
+    ],
+    reading: p(
+      "Notes for an interview",
+      "{来週|らいしゅう}、ホテルの{面接|めんせつ}があります。{志望動機|しぼうどうき}は、{二年前|にねんまえ}の{日本|にほん}{旅行|りょこう}をきっかけに{接客|せっきゃく}に{興味|きょうみ}を{持|も}ったことです。{大学|だいがく}では{留学生|りゅうがくせい}{会|かい}のリーダーとして、{新入生|しんにゅうせい}の{案内|あんない}をしてきました。{長所|ちょうしょ}は、{困|こま}っている{人|ひと}にすぐ{声|こえ}をかけられるところです。{短所|たんしょ}は{心配性|しんぱいしょう}なところですが、{準備|じゅんび}を{早|はや}めにすることにしているので、{仕事|しごと}では{役|やく}に{立|た}っていると{思|おも}います。",
+      "Next week I have an interview at a hotel. My reason for applying is that a trip to Japan two years ago got me interested in customer service. At university I have been showing new students around as leader of the international students' association. My strength is that I am quick to offer help to people who look lost. My weakness is that I worry a lot, but because I make a point of preparing early, I think it actually helps me at work.",
+      q(
+        "What started the writer's interest in customer service?",
+        "A trip to Japan two years ago",
+        [
+          "A part-time job at a hotel",
+          "A class at university",
+          "Advice from a teacher",
+        ],
+        "二年前の日本旅行をきっかけに names the trip as the event that set off the interest in 接客.",
+      ),
+      q(
+        "How does the writer present their weakness?",
+        "As worrying, balanced by always preparing early",
+        [
+          "As being too quiet with strangers",
+          "As arriving late to meetings",
+          "As having no experience as a leader",
+        ],
+        "短所は心配性なところですが is followed by 準備を早めにすることにしている, a habit that turns the weakness into something useful.",
+      ),
+    ),
+    listening: p(
+      "The first interview question",
+      "では、{応募|おうぼ}した{理由|りゆう}を{教|おし}えてください。はい。{学生|がくせい}のときにカフェでアルバイトをしたことをきっかけに、お{客様|きゃくさま}と{話|はな}す{仕事|しごと}がしたいと{思|おも}うようになりました。{御社|おんしゃ}は{新人|しんじん}の{研修|けんしゅう}が{充実|じゅうじつ}していると{聞|き}き、{応募|おうぼ}いたしました。",
+      "Now, please tell us why you applied. Yes. Working part-time at a café as a student made me want a job talking with customers. I heard that your company has a thorough training programme for new staff, so I applied.",
+      q(
+        "Why does the candidate want this kind of work?",
+        "A café job made them want to work with customers",
+        [
+          "They studied hotel management",
+          "A friend works at the company",
+          "They want a higher salary",
+        ],
+        "カフェでアルバイトをしたことをきっかけに introduces the café job as the starting point of wanting a job talking with お客様.",
+      ),
+      q(
+        "What had the candidate heard about the company?",
+        "Its training for new staff is thorough",
+        [
+          "It is hiring many students",
+          "It pays well for overtime",
+          "It has cafés abroad",
+        ],
+        "新人の研修が充実していると聞き gives what attracted the candidate to this particular company.",
+      ),
+    ),
+    practice:
+      "Prepare three interview answers: why you applied, using をきっかけに; what you did as a student, using として; and one strength with ところです, backed by a habit you keep with ことにしている.",
+  },
+  {
+    slug: "hospital-visit",
+    title: "Visiting someone in hospital",
+    summary:
+      "Visit a friend or colleague in hospital: check the visiting rules, ask how they are feeling, and leave with words that wish them well without tiring them out.",
+    vocabulary: words(`お見舞い|おみまい|visiting someone who is ill
+入院|にゅういん|a stay in hospital
+退院|たいいん|leaving hospital
+面会時間|めんかいじかん|visiting hours
+病室|びょうしつ|a hospital room
+看護師|かんごし|a nurse
+手術|しゅじゅつ|an operation
+回復|かいふく|recovery`),
+    grammar: [
+      g(
+        "〜{気味|ぎみ}",
+        "{気味|ぎみ} after a noun or a verb stem means a slight touch of something, usually unwelcome: {風邪|かぜ}{気味|ぎみ}, {疲|つか}れ{気味|ぎみ}. It names a mild state rather than the full condition, so {風邪|かぜ}{気味|ぎみ}なので{遠慮|えんりょ}します is a considerate reason not to visit a patient.",
+        "{少|すこ}し{風邪|かぜ}{気味|ぎみ}なので、{今日|きょう}のお{見舞|みま}いはやめておきます。",
+        "I have a bit of a cold, so I will not visit today.",
+      ),
+      g(
+        "〜がち",
+        "がち after a noun or a verb stem says something tends to happen, often more than you would like: {入院中|にゅういんちゅう}は{運動|うんどう}{不足|ぶそく}になりがちです. Unlike {気味|ぎみ}, which describes how you are now, がち describes a pattern over time. It is rarely used for good tendencies.",
+        "{入院中|にゅういんちゅう}は、{気持|きも}ちが{暗|くら}くなりがちです。",
+        "While in hospital, people tend to feel low.",
+      ),
+      g(
+        "〜てほしい・〜ないでほしい",
+        "て-form + ほしい says you want someone else to do something: {早|はや}く{元気|げんき}になってほしい. Use ないでほしい for what you want them not to do: {無理|むり}しないでほしい. The person asked takes に, and saying it straight to a superior sounds too direct, so keep it for friends or for talking about someone.",
+        "{無理|むり}しないでほしいと、みんな{言|い}っていましたよ。",
+        "Everyone was saying they do not want you to push yourself.",
+      ),
+      g(
+        "〜ますように",
+        "ますように at the end of a sentence turns it into a wish or a small prayer that something will turn out well: {早|はや}くよくなりますように. It is common on get-well cards and at shrines. Unlike てほしい, it does not ask anyone to act; it simply hopes for the outcome.",
+        "{手術|しゅじゅつ}がうまくいきますように。",
+        "I hope the operation goes well.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "Choose the reason for staying away from a patient: 少し風邪___なので、今日は行きません。",
+        "気味",
+        ["がち", "っぽさ", "らしさ"],
+        "気味 names a slight touch of a condition you have now; がち describes a tendency over time and does not fit a single day.",
+      ),
+      q(
+        "What does 入院中は運動不足になりがちです mean?",
+        "In hospital, people tend not to get enough exercise",
+        [
+          "In hospital, people are not allowed to exercise",
+          "In hospital, exercise is compulsory",
+          "In hospital, people get slightly too much exercise",
+        ],
+        "がち says something tends to happen, usually an unwelcome pattern; here it is a lack of exercise during a hospital stay.",
+      ),
+      q(
+        "Which sentence asks someone not to push themselves?",
+        "無理しないでほしいです",
+        ["無理してほしいです", "無理しないでしまいます", "無理しがちです"],
+        "ないでほしい says what you want someone else not to do; してほしい would ask them to push themselves.",
+      ),
+      q(
+        "Which is a wish for a get-well card?",
+        "早くよくなりますように",
+        [
+          "早くよくなるように言いました",
+          "早くよくなってしまいました",
+          "早くよくなるところでした",
+        ],
+        "ますように at the end of a sentence expresses a hope that things turn out well; the other sentences report words or events.",
+      ),
+    ],
+    reading: p(
+      "A visit to the ward",
+      "{先週|せんしゅう}、{足|あし}の{手術|しゅじゅつ}を{受|う}けた{田中|たなか}さんのお{見舞|みま}いに{行|い}きました。{面会時間|めんかいじかん}は{午後|ごご}{二時|にじ}から{七時|しちじ}までで、{病室|びょうしつ}には{一度|いちど}に{二人|ふたり}までしか{入|はい}れません。{田中|たなか}さんは「{入院中|にゅういんちゅう}は{体|からだ}を{動|うご}かさないので、{太|ふと}りがちなんです」と{笑|わら}っていました。{看護師|かんごし}さんの{話|はなし}では、{回復|かいふく}は{順調|じゅんちょう}で、{来週|らいしゅう}には{退院|たいいん}できるそうです。{会社|かいしゃ}のみんなから、{無理|むり}しないでほしいというカードを{預|あず}かってきたので、{渡|わた}してきました。",
+      "I went to visit Mr Tanaka, who had an operation on his leg last week. Visiting hours are from two to seven in the afternoon, and no more than two people can be in the room at one time. Mr Tanaka laughed and said, “You hardly move in hospital, so you tend to put on weight.” According to the nurse, his recovery is going well and he should be able to leave hospital next week. Everyone at work had given me a card saying they did not want him to push himself, so I handed it over.",
+      q(
+        "How is Mr Tanaka's recovery going?",
+        "Well; he may leave hospital next week",
+        [
+          "Slowly; he needs another operation",
+          "He has already left hospital",
+          "Nobody has told the writer",
+        ],
+        "看護師さんの話では、回復は順調で、来週には退院できるそうです reports the nurse's news: the recovery is on track.",
+      ),
+      q(
+        "How many visitors may be in the room at once?",
+        "Two at most",
+        ["Only one", "Any number", "Up to seven"],
+        "一度に二人までしか入れません sets the limit at two people at a time; 七時 is when visiting hours end.",
+      ),
+    ),
+    listening: p(
+      "At the bedside",
+      "お{加減|かげん}はいかがですか。おかげさまで、だいぶよくなりました。よかったです。でも、{疲|つか}れ{気味|ぎみ}に{見|み}えるので、{今日|きょう}はこれで{失礼|しつれい}しますね。{早|はや}く{退院|たいいん}できますように。",
+      "How are you feeling? Much better, thank you. I am glad. But you look a little tired, so I will leave it there for today. I hope you can go home soon.",
+      q(
+        "Why does the visitor leave early?",
+        "The patient looks a little tired",
+        [
+          "Visiting hours are over",
+          "The nurse asked them to go",
+          "The visitor has a cold",
+        ],
+        "疲れ気味に見えるので gives the visitor's reason for leaving: the patient looks slightly tired.",
+      ),
+      q(
+        "How does the patient say they are?",
+        "Much better than before",
+        [
+          "Worse than yesterday",
+          "About to have an operation",
+          "Ready to leave today",
+        ],
+        "おかげさまで、だいぶよくなりました means the patient has improved a great deal, and thanks the visitor for asking.",
+      ),
+    ),
+    practice:
+      "Write a short get-well card: mention one tendency with がち, ask the person not to overdo it with ないでほしい, and end with a wish using ますように.",
   },
   {
     slug: "n3-integration",
@@ -1522,6 +2711,22 @@ export const n3Courses: CourseSeed[] = [
     ],
     grammarChecks: [
       q(
+        "In 天気予報によると、明日は雪だそうです, what does によると mark?",
+        "The source of the information",
+        [
+          "The reason it will snow",
+          "The person hoping for snow",
+          "The time the snow will start",
+        ],
+        "によると names whose information is being relayed, and そうです at the end confirms that it is reported rather than the speaker's own claim.",
+      ),
+      q(
+        "What does らしい mean in 今日は春らしい暖かい日だ?",
+        "Typical of spring",
+        ["Apparently it is spring", "Unlike spring", "Just before spring"],
+        "After a noun, らしい can describe a characteristic quality: the day has the warmth you would expect of spring.",
+      ),
+      q(
         "What does 行きたくないわけではない express?",
         "It is not that the speaker does not want to go",
         [
@@ -1552,6 +2757,16 @@ export const n3Courses: CourseSeed[] = [
         ],
         "わけではない rejects opposition as the motive; the following sentence supplies the actual concern.",
       ),
+      q(
+        "What was finally agreed?",
+        "Participants would bring only drinks instead of a meal being provided",
+        [
+          "The gathering would be canceled",
+          "A more expensive meal would be served",
+          "The fee would be doubled",
+        ],
+        "食事を用意するかわりに、参加者が飲み物だけ持ってくる形になった records the compromise reached after discussion.",
+      ),
     ),
     listening: p(
       "Making a balanced decision",
@@ -1566,6 +2781,16 @@ export const n3Courses: CourseSeed[] = [
           "No further meetings",
         ],
         "The limited denial motivates a mixed format; neither preference is treated as universal.",
+      ),
+      q(
+        "Who is online said to be convenient for?",
+        "People who live far away",
+        [
+          "People who want to talk face to face",
+          "Everyone without exception",
+          "Only the organizers",
+        ],
+        "遠くの人には便利ですが names the group online suits; が then turns to those who want to meet in person.",
       ),
     ),
     practice:

@@ -306,6 +306,121 @@ export const n5Sentences: Record<string, SentencePractice> = {
       ],
     ],
   ),
+  "on-the-street": s(
+    "I can stop someone on the street, ask the way, and follow simple directions.",
+    "Asking a passer-by for directions or the right bus",
+    "polite",
+    [
+      [
+        "すみません、この{近|ちか}くにコンビニはありますか。",
+        "Excuse me, is there a convenience store near here?",
+      ],
+      [
+        "{次|つぎ}の{信号|しんごう}まで、まっすぐ{行|い}ってください。",
+        "Go straight on as far as the next traffic light.",
+      ],
+      [
+        "{二|ふた}つ{目|め}の{角|かど}を{左|ひだり}に{曲|ま}がってください。",
+        "Please turn left at the second corner.",
+      ],
+      [
+        "{駅|えき}まで{歩|ある}いてどのくらいかかりますか。",
+        "How long does it take to walk to the station?",
+      ],
+      [
+        "{何番|なんばん}のバスに{乗|の}りますか。",
+        "Which number bus do I take?",
+      ],
+      [
+        "{病院|びょういん}の{前|まえ}で{降|お}りてください。",
+        "Please get off in front of the hospital.",
+      ],
+    ],
+  ),
+  "at-school": s(
+    "I can ask what a word means in class, ask for help, and read a simple sum aloud.",
+    "In a classroom or a maths lesson",
+    "polite",
+    [
+      [
+        "すみません、これは{日本語|にほんご}で{何|なん}ですか。",
+        "Excuse me, what is this called in Japanese?",
+      ],
+      [
+        "「しゅくだい」はどういう{意味|いみ}ですか。",
+        "What does しゅくだい mean?",
+      ],
+      [
+        "{先生|せんせい}、{質問|しつもん}があります。",
+        "Excuse me, I have a question.",
+      ],
+      [
+        "{分|わ}からないとき、{手|て}を{挙|あ}げます。",
+        "When I don't understand, I raise my hand.",
+      ],
+      ["5たす7は12です。", "Five plus seven is twelve."],
+      [
+        "わたしの{答|こた}えは{友達|ともだち}と{同|おな}じです。",
+        "My answer is the same as my friend's.",
+      ],
+    ],
+  ),
+  "part-time-job": s(
+    "I can greet co-workers, talk about my shifts, and decline a request politely.",
+    "At a part-time job in a shop or restaurant",
+    "polite",
+    [
+      [
+        "はじめまして。{今日|きょう}からここで{働|はたら}きます。",
+        "Nice to meet you. I start working here today.",
+      ],
+      [
+        "おつかれさまです。{休|やす}み{時間|じかん}ですか。",
+        "Hi, thanks for your hard work. Are you on your break?",
+      ],
+      [
+        "{毎週|まいしゅう}{月曜日|げつようび}と{木曜日|もくようび}に{働|はたら}いています。",
+        "I work every Monday and Thursday.",
+      ],
+      [
+        "{日曜日|にちようび}はあまり{忙|いそが}しくないです。",
+        "Sundays are not very busy.",
+      ],
+      [
+        "すみません、{来週|らいしゅう}の{土曜日|どようび}はちょっと…。",
+        "Sorry, next Saturday is a bit difficult...",
+      ],
+      [
+        "お{先|さき}に{失礼|しつれい}します。おつかれさまでした。",
+        "Excuse me for leaving first. Thanks for all your work today.",
+      ],
+    ],
+  ),
+  "visiting-a-home": s(
+    "I can arrive at a friend's home, give a small gift, compliment the home, and leave politely.",
+    "Visiting a friend or a host family at home",
+    "polite",
+    [
+      ["ごめんください。アナです。", "Hello, is anyone home? It's Ana."],
+      [
+        "おじゃまします。{靴|くつ}はここでいいですか。",
+        "Thank you for having me. Is it all right to leave my shoes here?",
+      ],
+      ["これ、みなさんでどうぞ。", "This is for all of you to share."],
+      [
+        "{広|ひろ}くてきれいな{部屋|へや}ですね。",
+        "What a spacious, lovely room.",
+      ],
+      [
+        "もう{暗|くら}くなりましたね。そろそろ{失礼|しつれい}します。",
+        "It's already dark. I should be going.",
+      ],
+      [
+        "{今日|きょう}はありがとうございました。おじゃましました。",
+        "Thank you for today, and for having me.",
+      ],
+    ],
+  ),
   "n5-integration": s(
     "I can handle a short everyday exchange from greeting to a clear plan.",
     "Arranging a visit and checking details",

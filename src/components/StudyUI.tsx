@@ -250,16 +250,19 @@ export function SpeakButton({
 export function RubyText({
   text,
   show = true,
+  mixed = false,
 }: {
   text: string;
   show?: boolean;
+  // English prose with Japanese inside marks only the Japanese as ja.
+  mixed?: boolean;
 }) {
   return (
-    <span lang="ja">
+    <span lang={mixed ? undefined : "ja"}>
       {text.split(/(\{[^}]+\})/g).map((part, index) => {
         const match = part.match(/^\{([^|]+)\|([^}]+)\}$/);
         return match ? (
-          <ruby key={index}>
+          <ruby key={index} lang={mixed ? "ja" : undefined}>
             {match[1]}
             {show && <rt>{match[2]}</rt>}
           </ruby>
