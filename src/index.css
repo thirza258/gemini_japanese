@@ -2800,7 +2800,7 @@ rt {
   inset: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  z-index: 9999 !important;
+  z-index: 0 !important;
   overflow: hidden !important;
   pointer-events: none !important;
   opacity: 1 !important;

@@ -7,14 +7,14 @@ test("sakura petal falling theme background and styles are correctly configured"
   const indexCss = readFileSync("src/index.css", "utf8");
   const html = readFileSync("index.html", "utf8");
 
-  // Verify z-index: 9999 ensures petals float over cards and are never hidden behind elements
+  // Verify z-index: 0 ensures petals remain in the background behind buttons and elements
   assert.ok(
-    landingCss.includes("z-index: 9999 !important"),
-    "landing.css should have z-index: 9999 !important for sakura-background",
+    landingCss.includes("z-index: 0 !important"),
+    "landing.css should have z-index: 0 !important for sakura-background",
   );
   assert.ok(
-    indexCss.includes("z-index: 9999 !important"),
-    "index.css should have z-index: 9999 !important for sakura-background",
+    indexCss.includes("z-index: 0 !important"),
+    "index.css should have z-index: 0 !important for sakura-background",
   );
 
   // Verify pointer-events: none ensures non-blocking interaction

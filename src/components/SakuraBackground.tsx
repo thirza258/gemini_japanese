@@ -54,7 +54,7 @@ export function SakuraBackground({ paused = false }: { paused?: boolean }) {
         width: "100vw",
         height: "100vh",
         pointerEvents: "none",
-        zIndex: 9999,
+        zIndex: 0,
         overflow: "hidden",
       }}
     >
