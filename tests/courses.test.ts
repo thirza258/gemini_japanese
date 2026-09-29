@@ -16,11 +16,11 @@ import {
 
 // Courses per level; every total below is derived from this, not restated.
 const COURSE_COUNTS: Record<Level, number> = {
-  N5: 15,
-  N4: 18,
-  N3: 18,
-  N2: 15,
-  N1: 15,
+  N5: 19,
+  N4: 22,
+  N3: 22,
+  N2: 19,
+  N1: 19,
 };
 const TOTAL_COURSES = LEVELS.reduce(
   (total, level) => total + COURSE_COUNTS[level],
@@ -41,11 +41,17 @@ test("every JLPT path contains complete courses with all six learning activities
       identifiers.push(course.id, ...course.lessons.map((lesson) => lesson.id));
       assert.deepEqual(
         course.lessons.map((lesson) => lesson.kind),
-        LESSON_KINDS,
+        course.problems
+          ? [...LESSON_KINDS.slice(0, -1), "problems", "review"]
+          : LESSON_KINDS,
         course.id,
       );
       assert.equal(course.vocabulary.length, 8, course.id);
       assert.equal(course.grammar.length, 4, course.id);
+      // Every grammar point taught is also checked.
+      assert.equal(course.grammarChecks.length, 4, course.id);
+      for (const part of [course.reading, course.listening])
+        assert.equal(part.questions.length, 2, `${course.id}: ${part.title}`);
       assert.equal(course.sentencePractice.sentences.length, 6, course.id);
       assert.match(course.sentencePractice.canDo, /^I can /, course.id);
       assert.ok(
@@ -91,7 +97,7 @@ test("every JLPT path contains complete courses with all six learning activities
   assert.equal(new Set(identifiers).size, identifiers.length);
   assert.equal(
     JLPT_COURSES.flatMap((course) => course.lessons).length,
-    TOTAL_COURSES * 6,
+    TOTAL_COURSES * 6 + JLPT_COURSES.filter((course) => course.problems).length,
   );
   assert.equal(
     JLPT_COURSES.flatMap((course) => course.sentencePractice.sentences).length,
@@ -146,6 +152,49 @@ test("every assessment has a unique ID, one keyed answer, explanations, and usab
     }
   }
   assert.equal(new Set(ids).size, ids.length);
+});
+
+test("word problems appear at every level, with a worked example and Japanese to solve", () => {
+  for (const level of LEVELS) {
+    const courses = getCourses(level).filter((course) => course.problems);
+    assert.ok(courses.length >= 2, `${level} needs two word-problem courses`);
+    for (const course of courses) {
+      const set = course.problems!;
+      assert.ok(set.title.trim() && set.intro.length > 50, course.id);
+      assert.ok(set.terms.length >= 3, course.id);
+      for (const term of set.terms)
+        assert.match(
+          term.reading,
+          /^[ぁ-ゖー]+$/,
+          `${course.id}: ${term.word}`,
+        );
+      assert.ok(set.example.steps.length >= 2, course.id);
+      assert.ok(set.problems.length >= 3, course.id);
+      for (const problem of [set.example, ...set.problems]) {
+        const text = plainJapanese(problem.text);
+        assert.match(text, /[ぁ-ゖ]/, course.id);
+        assert.match(
+          text,
+          /[0-9]/,
+          `${course.id}: numbers are written in digits`,
+        );
+        assert.doesNotMatch(text, /[{}|]/, course.id);
+        assert.ok(problem.translation.length > 20, course.id);
+      }
+      const lesson = course.lessons.find((item) => item.kind === "problems")!;
+      assert.equal(lesson.questions.length, set.problems.length, course.id);
+      assert.ok(
+        lesson.questions.every((item) => item.text && item.translation),
+        course.id,
+      );
+      assert.ok(
+        course.lessons
+          .at(-1)!
+          .questions.some((item) => item.id.includes("-problem-")),
+        `${course.id}: the checkpoint reviews a word problem`,
+      );
+    }
+  }
 });
 
 test("lesson grading requires all valid answers and detects a wrong or missing response", () => {

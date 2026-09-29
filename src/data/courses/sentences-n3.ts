@@ -224,7 +224,7 @@ export const n3Sentences: Record<string, SentencePractice> = {
     "polite",
     [
       [
-        "あと十分しかないので、先に注文しましょう。",
+        "あと10分しかないので、先に注文しましょう。",
         "There are only ten minutes left, so let's order first.",
       ],
       [
@@ -522,6 +522,127 @@ export const n3Sentences: Record<string, SentencePractice> = {
       [
         "こちらこそ、よろしくおねがいします。",
         "The pleasure is mine; I look forward to it.",
+      ],
+    ],
+  ),
+  "trouble-while-out": s(
+    "I can report a lost item at a police box, describe it, and explain a minor accident calmly.",
+    "At a police box or on a busy street",
+    "polite",
+    [
+      [
+        "すみません、{財布|さいふ}を{落|お}としてしまったんですが。",
+        "Excuse me, I seem to have lost my wallet.",
+      ],
+      [
+        "{黒|くろ}っぽい{革|かわ}の{財布|さいふ}で、{中|なか}にカードが{入|はい}っています。",
+        "It is a blackish leather wallet with my cards inside.",
+      ],
+      [
+        "{駅|えき}のトイレに{置|お}いてきた{気|き}がします。",
+        "I have a feeling I left it in the station toilets.",
+      ],
+      [
+        "もう{少|すこ}しで{車|くるま}にぶつかるところでした。",
+        "I very nearly walked into a car.",
+      ],
+      [
+        "{見|み}つかったら、この{番号|ばんごう}に{連絡|れんらく}していただけますか。",
+        "If it is found, could you contact me on this number?",
+      ],
+      [
+        "{幸|さいわ}い、{軽|かる}い{怪我|けが}で{済|す}みました。",
+        "Luckily, it was only a light injury.",
+      ],
+    ],
+  ),
+  "campus-life": s(
+    "I can follow a seminar, define a term, and report figures from a survey as shares and averages.",
+    "In a university seminar or statistics class",
+    "polite",
+    [
+      [
+        "{去年|きょねん}に{比|くら}べて、{回答|かいとう}が{二割|にわり}{増|ふ}えました。",
+        "Compared with last year, responses went up by twenty percent.",
+      ],
+      [
+        "このゼミでは、{地域|ちいき}の{交通|こうつう}を{中心|ちゅうしん}に{研究|けんきゅう}しています。",
+        "This seminar mainly researches local transport.",
+      ],
+      [
+        "{平均|へいきん}とは、{合計|ごうけい}を{人数|にんずう}で{割|わ}った{数|かず}のことです。",
+        "An average is the total divided by the number of people.",
+      ],
+      [
+        "{学生|がくせい}の{四分|よんぶん}の{一|いち}が、{自転車|じてんしゃ}で{通学|つうがく}しています。",
+        "A quarter of the students come to school by bicycle.",
+      ],
+      [
+        "この{図表|ずひょう}を{見|み}てください。",
+        "Please look at this chart.",
+      ],
+      [
+        "{来週|らいしゅう}の{発表|はっぴょう}までに、{資料|しりょう}をまとめておきます。",
+        "I will put the materials together before next week's presentation.",
+      ],
+    ],
+  ),
+  "job-interview": s(
+    "I can explain why I applied for a job, describe my experience, and name a strength in an interview.",
+    "In a job interview or when writing an application",
+    "formal",
+    [
+      [
+        "{本日|ほんじつ}はよろしくお{願|ねが}いいたします。",
+        "Thank you for seeing me today.",
+      ],
+      [
+        "{留学|りゅうがく}をきっかけに、{御社|おんしゃ}に{興味|きょうみ}を{持|も}ちました。",
+        "Studying abroad was what first interested me in your company.",
+      ],
+      [
+        "サークルのリーダーとして、{五十人|ごじゅうにん}の{合宿|がっしゅく}を{企画|きかく}しました。",
+        "As club leader, I organised a training camp for fifty people.",
+      ],
+      [
+        "{私|わたし}の{長所|ちょうしょ}は、{人|ひと}の{話|はなし}をよく{聞|き}くところです。",
+        "My strength is that I listen carefully to people.",
+      ],
+      [
+        "{毎晩|まいばん}、{寝|ね}る{前|まえ}に{日本語|にほんご}のニュースを{聞|き}くことにしています。",
+        "I make a point of listening to the news in Japanese every night before bed.",
+      ],
+      [
+        "{採用|さいよう}していただけましたら、{精一杯|せいいっぱい}{頑張|がんば}ります。",
+        "If you hire me, I will do my very best.",
+      ],
+    ],
+  ),
+  "hospital-visit": s(
+    "I can ask a patient how they are, keep a hospital visit short, and wish them a quick recovery.",
+    "Visiting a friend or colleague in hospital",
+    "polite",
+    [
+      [
+        "{面会時間|めんかいじかん}は{何時|なんじ}までですか。",
+        "Until what time are visiting hours?",
+      ],
+      ["お{加減|かげん}はいかがですか。", "How are you feeling?"],
+      [
+        "{入院中|にゅういんちゅう}は{運動|うんどう}{不足|ぶそく}になりがちですね。",
+        "It is easy to get too little exercise in hospital, isn't it?",
+      ],
+      [
+        "{無理|むり}しないでほしいと、みんな{心配|しんぱい}していますよ。",
+        "Everyone is worried and does not want you to push yourself.",
+      ],
+      [
+        "{疲|つか}れ{気味|ぎみ}のようなので、そろそろ{失礼|しつれい}します。",
+        "You seem a little tired, so I will be going now.",
+      ],
+      [
+        "{一日|いちにち}も{早|はや}くよくなりますように。",
+        "I hope you get well as soon as possible.",
       ],
     ],
   ),

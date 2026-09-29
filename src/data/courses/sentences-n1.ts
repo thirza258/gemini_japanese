@@ -435,6 +435,130 @@ export const n1Sentences: Record<string, SentencePractice> = {
       ],
     ],
   ),
+  "shopping-street-hearing": s(
+    "I can state a position at a public hearing, concede a milder option, and object to a decision taken without consultation.",
+    "Speaking at a local planning hearing",
+    "formal",
+    [
+      [
+        "{住民|じゅうみん}の{声|こえ}をよそに{計画|けいかく}を{進|すす}めるのは{問題|もんだい}だと{考|かんが}えます。",
+        "I believe it is wrong to press ahead with the plan in disregard of residents' voices.",
+      ],
+      [
+        "{駅前|えきまえ}の{通|とお}りに{至|いた}っては、{営業|えいぎょう}している{店|みせ}が{三軒|さんげん}しかありません。",
+        "On the street by the station, only three shops are still open for business.",
+      ],
+      [
+        "{来月|らいげつ}の{朝市|あさいち}を{皮切|かわき}りに、{毎月|まいつき}{催|もよお}しを{開|ひら}いてまいります。",
+        "Starting with next month's morning market, we will hold an event every month.",
+      ],
+      [
+        "{一時的|いちじてき}な{通行|つうこう}{止|ど}めならまだしも、{全面|ぜんめん}{禁止|きんし}には{反対|はんたい}です。",
+        "A temporary road closure would be one thing, but I oppose a complete ban.",
+      ],
+      [
+        "{空|あ}き{店舗|てんぽ}を{活用|かつよう}する{案|あん}も、ぜひご{検討|けんとう}いただきたく{存|ぞん}じます。",
+        "I would ask that you also consider the proposal to make use of empty units.",
+      ],
+      [
+        "{商店街|しょうてんがい}の{存続|そんぞく}のために、{市|し}と{住民|じゅうみん}が{同|おな}じ{席|せき}で{話|はな}し{合|あ}うべきです。",
+        "For the shopping street to survive, the city and residents should sit down and talk together.",
+      ],
+    ],
+  ),
+  "research-seminar": s(
+    "I can report a finding in a research seminar, state its assumptions, and respond carefully to criticism.",
+    "Presenting at a graduate seminar",
+    "formal",
+    [
+      [
+        "{本|ほん}{調査|ちょうさ}では、{回答|かいとう}は{互|たが}いに{独立|どくりつ}であるものとしました。",
+        "In this survey, the responses were assumed to be independent of one another.",
+      ],
+      [
+        "{先行|せんこう}{研究|けんきゅう}に{照|て}らして、{結果|けっか}を{考察|こうさつ}いたします。",
+        "I will discuss the results in the light of previous research.",
+      ],
+      [
+        "ご{指摘|してき}の{点|てん}は、{次回|じかい}までに{検証|けんしょう}しておきます。",
+        "I will verify the point you raised before the next session.",
+      ],
+      [
+        "{標本|ひょうほん}が{限|かぎ}られているため、{一般化|いっぱんか}は{控|ひか}えるべきだと{考|かんが}えます。",
+        "Because the sample is limited, I believe generalisation should be avoided.",
+      ],
+      [
+        "{大学院|だいがくいん}ともなると、{自分|じぶん}で{問|と}いを{立|た}てなければなりません。",
+        "At graduate school, you have to pose your own questions.",
+      ],
+      [
+        "この{仮説|かせつ}が{正|ただ}しいとすれば、{別|べつ}の{説明|せつめい}はどう{退|しりぞ}けられるでしょうか。",
+        "If this hypothesis is correct, how can the alternative explanation be ruled out?",
+      ],
+    ],
+  ),
+  "crisis-response": s(
+    "I can apologise formally on behalf of an organisation, acknowledge what should have been done, and explain the measures that will follow.",
+    "Handling a public apology at work",
+    "formal",
+    [
+      [
+        "{多大|ただい}なご{迷惑|めいわく}をおかけしましたことを、{深|ふか}くお{詫|わ}び{申|もう}し{上|あ}げます。",
+        "We offer our deepest apologies for the great inconvenience we have caused.",
+      ],
+      [
+        "{本来|ほんらい}であれば、もっと{早|はや}く{公表|こうひょう}されてしかるべきでした。",
+        "Properly speaking, it ought to have been made public much sooner.",
+      ],
+      [
+        "{社会|しゃかい}の{信頼|しんらい}を{裏切|うらぎ}る、{企業|きぎょう}にあるまじき{行為|こうい}でした。",
+        "It was conduct unworthy of a company, and it betrayed the public's trust.",
+      ],
+      [
+        "{現在|げんざい}、{外部|がいぶ}の{専門家|せんもんか}とともに{経緯|けいい}を{調査|ちょうさ}しております。",
+        "We are currently investigating how this happened, together with outside experts.",
+      ],
+      [
+        "{信頼|しんらい}は{一度|いちど}{失|うしな}えばそれまでだと{肝|きも}に{銘|めい}じております。",
+        "We have taken to heart that trust, once lost, is gone for good.",
+      ],
+      [
+        "{再発|さいはつ}{防止|ぼうし}{策|さく}がまとまり{次第|しだい}、{改|あらた}めてご{報告|ほうこく}いたします。",
+        "As soon as the measures against a recurrence are settled, we will report to you again.",
+      ],
+    ],
+  ),
+  "formal-visits": s(
+    "I can make a courtesy call, combine thanks with a greeting, and offer brief condolences in appropriate words.",
+    "Visiting a client, a mentor, or a bereaved family",
+    "formal",
+    [
+      [
+        "{就任|しゅうにん}のご{報告|ほうこく}かたがた、ご{挨拶|あいさつ}に{参|まい}りました。",
+        "I have come to report my appointment and to pay my respects.",
+      ],
+      [
+        "お{招|まね}きいただき、{光栄|こうえい}の{至|いた}りに{存|ぞん}じます。",
+        "I am deeply honoured to have been invited.",
+      ],
+      [
+        "ささやかではございますが、お{納|おさ}めください。",
+        "It is only a small token, but please accept it.",
+      ],
+      [
+        "このたびはご{愁傷|しゅうしょう}{様|さま}でございます。",
+        "Please accept my deepest sympathy.",
+      ],
+      [
+        "{故人|こじん}のご{冥福|めいふく}を{心|こころ}よりお{祈|いの}りいたします。",
+        "I pray from my heart that the deceased may rest in peace.",
+      ],
+      [
+        "{皆様|みなさま}のご{健勝|けんしょう}を{祈|いの}ってやみません。",
+        "I wish you all continued good health, always.",
+      ],
+    ],
+  ),
   "n1-integration": s(
     "I can revise a position transparently and synthesize a nuanced decision.",
     "Concluding a complex discussion",

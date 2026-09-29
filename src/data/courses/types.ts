@@ -9,6 +9,8 @@ export interface CourseQuestion {
   // A review keeps comprehension context with its question.
   text?: string;
   audio?: string;
+  // A word problem can reveal its English on request.
+  translation?: string;
 }
 
 export interface CourseWord {
@@ -28,7 +30,23 @@ export interface CoursePassage {
   title: string;
   text: string;
   translation: string;
-  question: Omit<CourseQuestion, "id">;
+  questions: Omit<CourseQuestion, "id">[];
+}
+
+export interface WordProblem {
+  text: string;
+  translation: string;
+  answer: string;
+  distractors: [string, string, string];
+  solution: string;
+}
+
+export interface ProblemSet {
+  title: string;
+  intro: string;
+  terms: CourseWord[];
+  example: { text: string; translation: string; steps: string[] };
+  problems: WordProblem[];
 }
 
 export interface CourseSeed {
@@ -41,6 +59,8 @@ export interface CourseSeed {
   reading: CoursePassage;
   listening: CoursePassage;
   practice: string;
+  // Word problems are optional; a course with them adds a lesson.
+  problems?: ProblemSet;
 }
 
 export interface SentencePractice {
@@ -58,7 +78,9 @@ export const LESSON_KINDS = [
   "listening",
   "review",
 ] as const;
-export type LessonKind = (typeof LESSON_KINDS)[number];
+// Every course has the six kinds above; word problems, when a course has
+// them, sit just before the checkpoint.
+export type LessonKind = (typeof LESSON_KINDS)[number] | "problems";
 
 export interface CourseLesson {
   id: string;
@@ -123,7 +145,27 @@ export function passage(
   title: string,
   text: string,
   translation: string,
-  check: Omit<CourseQuestion, "id">,
+  ...checks: Omit<CourseQuestion, "id">[]
 ): CoursePassage {
-  return { title, text, translation, question: check };
+  return { title, text, translation, questions: checks };
+}
+
+export function wordProblem(
+  text: string,
+  translation: string,
+  answer: string,
+  distractors: [string, string, string],
+  solution: string,
+): WordProblem {
+  return { text, translation, answer, distractors, solution };
+}
+
+export function problemSet(
+  title: string,
+  intro: string,
+  terms: CourseWord[],
+  example: ProblemSet["example"],
+  problems: WordProblem[],
+): ProblemSet {
+  return { title, intro, terms, example, problems };
 }
