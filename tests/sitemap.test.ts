@@ -30,7 +30,7 @@ test("sitemap.xml contains valid, comprehensive pages for indexing", () => {
   for (const match of urlMatches) {
     const block = match[1];
 
-    const locMatch = /<loc>(https:\/\/translate\.nevatal\.tech[^<]*)<\/loc>/.exec(block);
+    const locMatch = /<loc>(https:\/\/translate\.nevatal\.id[^<]*)<\/loc>/.exec(block);
     assert.ok(locMatch, `Invalid or missing <loc> in block: ${block}`);
     const loc = locMatch[1];
     assert.ok(!locs.has(loc), `Duplicate <loc> found in sitemap: ${loc}`);
@@ -61,15 +61,15 @@ test("sitemap.xml contains valid, comprehensive pages for indexing", () => {
 
   // Ensure all core routes exist in the sitemap
   const requiredRoutes = [
-    "https://translate.nevatal.tech/",
-    "https://translate.nevatal.tech/dashboard",
-    "https://translate.nevatal.tech/kanji",
-    "https://translate.nevatal.tech/builder",
-    "https://translate.nevatal.tech/particles",
-    "https://translate.nevatal.tech/kana",
-    "https://translate.nevatal.tech/reading",
-    "https://translate.nevatal.tech/translator",
-    "https://translate.nevatal.tech/progress",
+    "https://translate.nevatal.id/",
+    "https://translate.nevatal.id/dashboard",
+    "https://translate.nevatal.id/kanji",
+    "https://translate.nevatal.id/builder",
+    "https://translate.nevatal.id/particles",
+    "https://translate.nevatal.id/kana",
+    "https://translate.nevatal.id/reading",
+    "https://translate.nevatal.id/translator",
+    "https://translate.nevatal.id/progress",
   ];
 
   for (const route of requiredRoutes) {

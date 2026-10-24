@@ -1534,6 +1534,108 @@ export const n5Courses: CourseSeed[] = [
       "Write three pairs of sentences: one answering a だれが question, one contrasting two foods with は, and one describing a walk with を.",
   },
   {
+    slug: "sentence-principles",
+    title: "Sentence building: word order, non-past & past",
+    summary:
+      "Master the core principles of building Japanese sentences: Subject-Object-Verb word order, predicate-final architecture, the non-past tense for present habits and future actions, and polite past tense endings.",
+    vocabulary: words(`主語|しゅご|subject of a sentence
+述語|じゅつご|predicate of a sentence
+動詞|どうし|verb
+文法|ぶんぽう|grammar rules
+現在|げんざい|present time
+過去|かこ|past time
+作る|つくる|to make or build
+並べる|ならべる|to line up or arrange`),
+    grammar: [
+      g(
+        "Predicate-final rule & word order",
+        "The fundamental principle of Japanese is predicate-final word order: the main verb, adjective, or copula always concludes the clause. While English follows Subject-Verb-Object (I read books), Japanese places the verb last: Subject/Topic (わたしは) + Object (ほんを) + Verb (よみます). Elements marked by particles can move before the verb, but the predicate never leaves the final position.",
+        "{私|わたし}は{図書館|としょかん}で{本|ほん}を{読|よ}みます。",
+        "I read books at the library.",
+      ),
+      g(
+        "The non-past tense: present & future",
+        "Japanese verbs have two basic tenses: non-past and past. Japanese does not have an auxiliary like English 'will' for a separate future tense. The polite non-past ending 〜ます expresses both ongoing habitual truths in the present (I drink tea every morning) and specific actions scheduled for the future (I will drink tea tomorrow), with time words clarifying which meaning applies.",
+        "{明日|あした}、{東京|とうきょう}へ{行|い}きます。",
+        "I will go to Tokyo tomorrow.",
+      ),
+      g(
+        "The past tense: completed events & states",
+        "The Japanese past tense marks completed actions and past states. For polite action verbs, change 〜ます to 〜ました for affirmative statements (食べました - ate) and 〜ませんでした for negative statements (食べませんでした - did not eat). For nouns and な-adjectives, the past copula is でした / ではありませんでした. Polite past endings attach uniformly to the verb stem.",
+        "{昨日|きのう}は{家|いえ}で{日本語|にほんご}を{勉強|べんきょう}しました。",
+        "Yesterday I studied Japanese at home.",
+      ),
+      g(
+        "Building full sentences & topic omission",
+        "To assemble a natural Japanese sentence, begin with the time or context, introduce the topic with は, add specific locations or objects with particles like で, に, or を, and finish with your non-past or past predicate. Crucially, whenever the topic or subject is already clear to the listener, Japanese naturally omits it rather than repeatedly saying 'I' or 'you.'",
+        "{今朝|けさ}、{駅|えき}で{友達|ともだち}に{会|あ}いました。",
+        "This morning, I met a friend at the station.",
+      ),
+    ],
+    grammarChecks: [
+      q(
+        "In a Japanese sentence, where does the verb or predicate always appear?",
+        "At the very end of the sentence",
+        ["At the very beginning", "Immediately after the topic", "Before the direct object"],
+        "A fundamental principle of Japanese grammar is predicate-final word order: verbs, adjectives, and the copula always conclude the clause.",
+      ),
+      q(
+        "Which English tenses correspond to the single Japanese non-past form (〜ます)?",
+        "Habitual present and future actions",
+        ["Only past completed actions", "Only present continuous actions", "Only hypothetical past actions"],
+        "Japanese verbs have non-past and past tenses; the non-past form expresses both habitual present activities and upcoming future actions.",
+      ),
+      q(
+        "Choose the polite past affirmative: 'Yesterday I studied Japanese.'",
+        "きのう、日本語を勉強しました。",
+        ["きのう、日本語を勉強します。", "きのう、日本語を勉強しましたでした。", "きのう、日本語を勉強するでした。"],
+        "Polite past affirmative verbs end in ました: 勉強します becomes 勉強しました. Ending with でした after a verb is ungrammatical.",
+      ),
+      q(
+        "Fill in the particles: わたしは 図書館 ___ 本 ___ 読みました。",
+        "で・を",
+        ["を・で", "に・が", "へ・に"],
+        "で marks the location where the action took place (図書館で), and を marks the direct object of reading (本を).",
+      ),
+    ],
+    reading: p(
+      "Principles of sentence structure",
+      "{日本語|にほんご}の{文|ぶん}には、{大切|たいせつ}な{原則|げんそく}があります。{英語|えいご}と{違|ちが}って、{動詞|どうし}や{述語|じゅつご}はいつも{文|ぶん}の{最後|さいご}に{来|き}ます。たとえば、「わたしは{図書館|としょかん}で{本|ほん}を{読|よ}みます」のように、{述語|じゅつご}を{最後|さいご}に{置|お}きます。また、{日本語|にほんご}の{動詞|どうし}には「{非過去|ひかこ}」と「{過去|かこ}」があります。{現在|げんざい}の{習慣|しゅうかん}やこれからの{予定|よてい}には「〜ます」を{使|つか}い、{昨日|きのう}の{出来事|できごと}には「〜ました」を{使|つか}います。{話|はな}す{相手|あいて}に{分|わ}かる{主語|しゅご}は、{言|い}わないのが{自然|しぜん}です。",
+      "Japanese sentences have an important principle. Unlike English, the verb or predicate always comes at the very end of the sentence. For example, one says 'I read books at the library' with the predicate placed at the finish. Japanese verbs have non-past and past forms. Use 〜ます for present habits and future plans, and use 〜ました for yesterday's completed events. When the subject is obvious to the listener, leaving it unsaid is most natural.",
+      q(
+        "According to the text, where does the verb or predicate belong in Japanese?",
+        "At the very end of the sentence",
+        ["At the very beginning of the sentence", "Right before the direct object", "Right after the subject"],
+        "The passage explains that unlike English, Japanese verbs and predicates always conclude the sentence: 述語を最後に置きます.",
+      ),
+      q(
+        "Which verb form is used for present habits and future plans?",
+        "The non-past form ending in 〜ます",
+        ["The past form ending in 〜ました", "The past negative ending in 〜ませんでした", "The dictionary form ending in でした"],
+        "The text explains that 現在の習慣やこれからの予定には「〜ます」を使い: 〜ます covers both present habits and future plans.",
+      ),
+    ),
+    listening: p(
+      "Talking about yesterday and tomorrow",
+      "{明日|あした}は{何|なに}をしますか。{明日|あした}は{友達|ともだち}と{映画|えいが}を{見|み}に{行|い}きます。{昨日|きのう}は{何|なに}をしましたか。{昨日|きのう}は{一日中|いちにちじゅう}{家|いえ}で{日本語|にほんご}の{文法|ぶんぽう}を{勉強|べんきょう}しました。とても{楽|たの}しかったです。",
+      "What will you do tomorrow? Tomorrow I will go to watch a movie with a friend. What did you do yesterday? Yesterday I studied Japanese grammar at home all day. It was very enjoyable.",
+      q(
+        "What did the speaker do yesterday?",
+        "Studied Japanese grammar at home",
+        ["Watched a movie with a friend", "Went shopping at the station", "Cleaned the whole classroom"],
+        "The speaker used the polite past 勉強しました to state that they studied Japanese grammar at home all day yesterday.",
+      ),
+      q(
+        "What tense or form did the speaker use to express tomorrow's plan?",
+        "The non-past form 行きます",
+        ["The past form 行きました", "The negative form 行きません", "The continuous form 行っています"],
+        "Tomorrow's scheduled plan is expressed with the non-past verb 行きます: Japanese uses the non-past for future actions.",
+      ),
+    ),
+    practice:
+      "Draft four complete Japanese sentences: two in the non-past (one for a daily habit, one for tomorrow's plan) and two in the past (one affirmative action, one negative). Ensure the verb stays at the very end of each sentence.",
+  },
+  {
     slug: "on-the-street",
     title: "On the street: asking the way",
     summary:

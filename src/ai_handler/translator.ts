@@ -292,7 +292,7 @@ function getOpenRouterReferer(): string {
     return window.location.origin;
   }
 
-  return "https://translate.nevatal.tech";
+  return "https://translate.nevatal.id";
 }
 
 async function resolveApiKey(

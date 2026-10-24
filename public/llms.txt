@@ -6,8 +6,8 @@
 Gemini Japanese provides comprehensive Japanese learning tools, spaced repetition flashcards, JLPT practice, reading exercises, and AI-powered grammar and translation assistants.
 
 ## Endpoints
-- Homepage: https://translate.nevatal.tech/
-- API Health: https://translate.nevatal.tech/api/health
-- API Catalog: https://translate.nevatal.tech/.well-known/api-catalog
-- Authentication Guide: https://translate.nevatal.tech/auth.md
-- Sitemap: https://translate.nevatal.tech/sitemap.xml
+- Homepage: https://translate.nevatal.id/
+- API Health: https://translate.nevatal.id/api/health
+- API Catalog: https://translate.nevatal.id/.well-known/api-catalog
+- Authentication Guide: https://translate.nevatal.id/auth.md
+- Sitemap: https://translate.nevatal.id/sitemap.xml

@@ -11,17 +11,17 @@ This guide is intended for AI agents, automated systems, and client integrations
 
 ## Metadata & Discovery Endpoints
 
-- OAuth Protected Resource Metadata: https://translate.nevatal.tech/.well-known/oauth-protected-resource
-- OAuth 2.0 Authorization Server Metadata: https://translate.nevatal.tech/.well-known/oauth-authorization-server
-- OpenID Connect Discovery: https://translate.nevatal.tech/.well-known/openid-configuration
-- API Catalog: https://translate.nevatal.tech/.well-known/api-catalog
+- OAuth Protected Resource Metadata: https://translate.nevatal.id/.well-known/oauth-protected-resource
+- OAuth 2.0 Authorization Server Metadata: https://translate.nevatal.id/.well-known/oauth-authorization-server
+- OpenID Connect Discovery: https://translate.nevatal.id/.well-known/openid-configuration
+- API Catalog: https://translate.nevatal.id/.well-known/api-catalog
 
 ## Registration Flow
 
 Agents can register dynamically or provision access via the registration endpoints:
-- Registration URI: https://translate.nevatal.tech/api/auth/register
-- Claim URI: https://translate.nevatal.tech/api/auth/recover
-- Revocation URI: https://translate.nevatal.tech/api/auth/logout
+- Registration URI: https://translate.nevatal.id/api/auth/register
+- Claim URI: https://translate.nevatal.id/api/auth/recover
+- Revocation URI: https://translate.nevatal.id/api/auth/logout
 
 ### Step 1: Agent Registration Request
 
@@ -29,7 +29,7 @@ To register an agent, submit a POST request to the registration endpoint:
 
 ```http
 POST /api/auth/register HTTP/1.1
-Host: translate.nevatal.tech
+Host: translate.nevatal.id
 Content-Type: application/json
 
 {
@@ -60,19 +60,19 @@ Content-Type: application/json
 1. Anonymous Agent Access:
    - Identity Types: anonymous
    - Credential Types: api_key, bearer_token
-   - Claim URI: https://translate.nevatal.tech/api/auth/recover
+   - Claim URI: https://translate.nevatal.id/api/auth/recover
 
 2. Verified Email Identity:
    - Assertion Types: verified_email
    - Credential Types: api_key, bearer_token
-   - Claim URI: https://translate.nevatal.tech/api/auth/recover
+   - Claim URI: https://translate.nevatal.id/api/auth/recover
 
 3. ID-JAG (Identity Assertion):
    - Assertion Type: urn:ietf:params:oauth:token-type:id-jag
    - Identity Types: identity_assertion
    - Credential Types: bearer_token
    - Revocation Event: revocation
-   - Revocation URI: https://translate.nevatal.tech/api/auth/logout
+   - Revocation URI: https://translate.nevatal.id/api/auth/logout
 
 ## Credential Use
 

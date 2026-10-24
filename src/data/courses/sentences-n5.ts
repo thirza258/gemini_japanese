@@ -306,6 +306,37 @@ export const n5Sentences: Record<string, SentencePractice> = {
       ],
     ],
   ),
+  "sentence-principles": s(
+    "I can construct sentences using Japanese word order and distinguish non-past and past tenses.",
+    "Discussing daily routines, past events, and future plans",
+    "polite",
+    [
+      [
+        "わたしは{毎朝|まいあさ}コーヒーを{飲|の}みます。",
+        "I drink coffee every morning.",
+      ],
+      [
+        "{明日|あした}、{友達|ともだち}と{映画|えいが}を{見|み}ます。",
+        "Tomorrow I will watch a movie with a friend.",
+      ],
+      [
+        "きのうは{七時|しちじ}に{起|お}きました。",
+        "Yesterday I woke up at seven.",
+      ],
+      [
+        "{図書館|としょかん}で{日本語|にほんご}を{勉強|べんきょう}しました。",
+        "I studied Japanese at the library.",
+      ],
+      [
+        "きのうはテレビを{見|み}ませんでした。",
+        "I did not watch television yesterday.",
+      ],
+      [
+        "{今晩|こんばん}、{家|いえ}でカレーを{作|つく}ります。",
+        "Tonight I will make curry at home.",
+      ],
+    ],
+  ),
   "on-the-street": s(
     "I can stop someone on the street, ask the way, and follow simple directions.",
     "Asking a passer-by for directions or the right bus",

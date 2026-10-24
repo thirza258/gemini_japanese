@@ -2,14 +2,14 @@
   "specVersion": "1.0",
   "host": {
     "displayName": "Gemini Japanese",
-    "identifier": "did:web:translate.nevatal.tech"
+    "identifier": "did:web:translate.nevatal.id"
   },
   "entries": [
     {
-      "identifier": "urn:air:translate.nevatal.tech:server:mcp",
+      "identifier": "urn:air:translate.nevatal.id:server:mcp",
       "displayName": "Gemini Japanese MCP Server",
       "type": "application/mcp-server-card+json",
-      "url": "https://translate.nevatal.tech/.well-known/mcp/server-card.json",
+      "url": "https://translate.nevatal.id/.well-known/mcp/server-card.json",
       "representativeQueries": [
         "translate japanese to english",
         "lookup kanji meanings and readings",
@@ -17,10 +17,10 @@
       ]
     },
     {
-      "identifier": "urn:air:translate.nevatal.tech:api:health",
+      "identifier": "urn:air:translate.nevatal.id:api:health",
       "displayName": "Gemini Japanese Health API",
       "type": "application/json",
-      "url": "https://translate.nevatal.tech/api/health",
+      "url": "https://translate.nevatal.id/api/health",
       "representativeQueries": [
         "check translation service status",
         "verify gemini japanese health"

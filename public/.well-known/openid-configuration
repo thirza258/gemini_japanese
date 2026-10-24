@@ -1,9 +1,9 @@
 {
-  "issuer": "https://translate.nevatal.tech",
-  "authorization_endpoint": "https://translate.nevatal.tech/api/auth/login",
-  "token_endpoint": "https://translate.nevatal.tech/api/auth/login",
-  "userinfo_endpoint": "https://translate.nevatal.tech/api/auth/session",
-  "jwks_uri": "https://translate.nevatal.tech/.well-known/jwks.json",
+  "issuer": "https://translate.nevatal.id",
+  "authorization_endpoint": "https://translate.nevatal.id/api/auth/login",
+  "token_endpoint": "https://translate.nevatal.id/api/auth/login",
+  "userinfo_endpoint": "https://translate.nevatal.id/api/auth/session",
+  "jwks_uri": "https://translate.nevatal.id/.well-known/jwks.json",
   "response_types_supported": [
     "code",
     "token",

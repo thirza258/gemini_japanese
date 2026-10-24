@@ -16,7 +16,7 @@ import {
 
 // Courses per level; every total below is derived from this, not restated.
 const COURSE_COUNTS: Record<Level, number> = {
-  N5: 19,
+  N5: 20,
   N4: 22,
   N3: 22,
   N2: 19,

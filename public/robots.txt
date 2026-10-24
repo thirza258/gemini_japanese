@@ -4,8 +4,8 @@ Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 
 # Host
-Host: https://translate.nevatal.tech
+Host: https://translate.nevatal.id
 
 # Sitemaps
-Sitemap: https://translate.nevatal.tech/sitemap.xml
-Agentmap: https://translate.nevatal.tech/.well-known/ai-catalog.json
+Sitemap: https://translate.nevatal.id/sitemap.xml
+Agentmap: https://translate.nevatal.id/.well-known/ai-catalog.json
