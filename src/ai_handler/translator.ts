@@ -211,6 +211,46 @@ function fallbackReading(text: string, script: ScriptType): string {
   return "";
 }
 
+export const DEFAULT_FREE_MODELS: string[] = [
+  "openrouter/free",
+  "google/gemma-4-26b-a4b-it:free",
+  "google/gemma-4-31b-it:free",
+  "nvidia/nemotron-3.5-lightning:free",
+  "nvidia/nemotron-3.5-super-vl:free",
+  "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+  "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "cohere/north-mini-code:free",
+  "liquid/lfm-2.5-2.6b:free",
+  "recursive/flint-v1.0:free",
+  "dots-studio/dots-3-note-preview:free",
+];
+
+export function getShuffledFreeModels(excludeModel?: string): string[] {
+  const models = DEFAULT_FREE_MODELS.filter((m) => m !== excludeModel);
+  for (let i = models.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [models[i], models[j]] = [models[j], models[i]];
+  }
+  return models;
+}
+
+export function isCreditExhausted(status: number, text?: string): boolean {
+  if (status === 402) return true;
+  if (!text) return false;
+  const lower = text.toLowerCase();
+  return (
+    lower.includes("402") ||
+    lower.includes("insufficient credit") ||
+    lower.includes("payment required") ||
+    lower.includes("credit limit") ||
+    lower.includes("credits is over") ||
+    lower.includes("credits are over") ||
+    lower.includes("out of credits") ||
+    lower.includes("balance is too low") ||
+    lower.includes("quota")
+  );
+}
+
 function parseTranslationResponse(
   text: string | undefined,
   input: string,
@@ -219,9 +259,16 @@ function parseTranslationResponse(
     throw new Error("Translator returned an empty response.");
   }
 
+  // Strip code fences in case free models wrap output in ```json
+  const cleaned = text
+    .trim()
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/```$/, "")
+    .trim();
+
   let parsed: Partial<TranslationResponse> & { breakdown?: unknown };
   try {
-    parsed = JSON.parse(text) as Partial<TranslationResponse> & {
+    parsed = JSON.parse(cleaned) as Partial<TranslationResponse> & {
       breakdown?: unknown;
     };
   } catch {
@@ -360,41 +407,81 @@ async function requestTranslation(
     headers["Authorization"] = `Bearer ${apiKey}`;
   }
 
+  const createRequestBody = (targetModel: string) =>
+    JSON.stringify({
+      model: targetModel,
+      messages: buildMessages(input),
+      response_format: responseFormat,
+      temperature: 0.1,
+      max_tokens: Math.min(
+        16384,
+        Math.max(2048, splitGraphemes(input).length * 75),
+      ),
+    });
+
   try {
-    const response = await fetch(endpoint, {
+    let response = await fetch(endpoint, {
       method: "POST",
       headers,
       signal,
-      body: JSON.stringify({
-        model: model,
-        messages: buildMessages(input),
-        response_format: responseFormat,
-        temperature: 0.1,
-        max_tokens: Math.min(
-          16384,
-          Math.max(2048, splitGraphemes(input).length * 75),
-        ),
-      }),
+      body: createRequestBody(model),
     });
 
     if (!response.ok) {
-      // If error occurs and we have a cached sample, fallback gracefully
-      if (matchedSample && matchedSample.cachedResponse) {
-        return JSON.stringify(matchedSample.cachedResponse);
-      }
-      if (response.status === 401 || response.status === 403) {
+      const errText = await response.text().catch(() => "");
+      if (isCreditExhausted(response.status, errText)) {
+        console.warn(
+          `OpenRouter credits exhausted for ${model}. Falling back to shuffled free models...`,
+        );
+        const freeModels = getShuffledFreeModels(model);
+        let fallbackSucceeded = false;
+        for (const freeModel of freeModels) {
+          try {
+            console.info(`Attempting translation fallback to: ${freeModel}`);
+            const fbResponse = await fetch(endpoint, {
+              method: "POST",
+              headers,
+              signal,
+              body: createRequestBody(freeModel),
+            });
+            if (fbResponse.ok) {
+              response = fbResponse;
+              fallbackSucceeded = true;
+              console.info(`Translation fallback succeeded with: ${freeModel}`);
+              break;
+            }
+          } catch (fbErr) {
+            if (signal?.aborted) throw fbErr;
+            console.warn(`Fallback to ${freeModel} failed:`, fbErr);
+          }
+        }
+        if (!fallbackSucceeded) {
+          if (matchedSample && matchedSample.cachedResponse) {
+            return JSON.stringify(matchedSample.cachedResponse);
+          }
+          throw new Error(
+            "Credits are exhausted and free model fallbacks were unavailable. Add credits or try again shortly.",
+          );
+        }
+      } else {
+        // If error occurs and we have a cached sample, fallback gracefully
+        if (matchedSample && matchedSample.cachedResponse) {
+          return JSON.stringify(matchedSample.cachedResponse);
+        }
+        if (response.status === 401 || response.status === 403) {
+          throw new Error(
+            "The translation service needs a valid API key. Add your OpenRouter key in Translator settings, or configure the server connection.",
+          );
+        }
+        if (response.status === 429) {
+          throw new Error(
+            "The translation service is busy or has reached its usage limit. Wait a moment, then try again.",
+          );
+        }
         throw new Error(
-          "The translation service needs a valid API key. Add your OpenRouter key in Translator settings, or configure the server connection.",
+          `The translation service could not complete this request (${response.status}). Check your model and connection in Translator settings.`,
         );
       }
-      if (response.status === 429) {
-        throw new Error(
-          "The translation service is busy or has reached its usage limit. Wait a moment, then try again.",
-        );
-      }
-      throw new Error(
-        `The translation service could not complete this request (${response.status}). Check your model and connection in Translator settings.`,
-      );
     }
 
     const payload = (await response.json()) as OpenRouterResponse;

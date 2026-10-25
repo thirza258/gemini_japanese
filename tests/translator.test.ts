@@ -86,3 +86,46 @@ test("leaving or replacing a translation can cancel the active request", async (
   controller.abort();
   await assert.rejects(pending, { name: "AbortError" });
 });
+
+test("falls back to free model when credits are exhausted", async (context) => {
+  const modelsCalled: string[] = [];
+  context.mock.method(globalThis, "fetch", async (_url, init) => {
+    const body = JSON.parse(String(init?.body));
+    modelsCalled.push(body.model);
+    if (body.model === "test/model") {
+      return new Response(
+        JSON.stringify({
+          error: {
+            code: 402,
+            message: "You have insufficient credits to run this model.",
+          },
+        }),
+        { status: 402, statusText: "Payment Required" },
+      );
+    }
+    return new Response(
+      JSON.stringify({
+        choices: [
+          {
+            message: {
+              content: JSON.stringify({
+                romaji: "neko",
+                translation: "cat (fallback)",
+                breakdown: [
+                  { text: "ね", script: "hiragana", reading: "ね", romaji: "ne", translation: "ne" },
+                  { text: "こ", script: "hiragana", reading: "こ", romaji: "ko", translation: "ko" },
+                ],
+              }),
+            },
+          },
+        ],
+      }),
+    );
+  });
+
+  const result = await run({ ...config, input: "ねこ" });
+  assert.equal(result.translation, "cat (fallback)");
+  assert.equal(modelsCalled[0], "test/model");
+  assert.ok(modelsCalled.length >= 2);
+  assert.ok(modelsCalled[1].includes(":free") || modelsCalled[1] === "openrouter/free");
+});

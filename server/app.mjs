@@ -33,6 +33,46 @@ const MIME = {
   ".md": "text/markdown; charset=utf-8",
 };
 
+const DEFAULT_FREE_MODELS = [
+  "openrouter/free",
+  "google/gemma-4-26b-a4b-it:free",
+  "google/gemma-4-31b-it:free",
+  "nvidia/nemotron-3.5-lightning:free",
+  "nvidia/nemotron-3.5-super-vl:free",
+  "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+  "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "cohere/north-mini-code:free",
+  "liquid/lfm-2.5-2.6b:free",
+  "recursive/flint-v1.0:free",
+  "dots-studio/dots-3-note-preview:free",
+];
+
+function getShuffledFreeModels(excludeModel) {
+  const models = DEFAULT_FREE_MODELS.filter((m) => m !== excludeModel);
+  for (let i = models.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [models[i], models[j]] = [models[j], models[i]];
+  }
+  return models;
+}
+
+function isCreditExhausted(status, text) {
+  if (status === 402) return true;
+  if (!text) return false;
+  const lower = String(text).toLowerCase();
+  return (
+    lower.includes("402") ||
+    lower.includes("insufficient credit") ||
+    lower.includes("payment required") ||
+    lower.includes("credit limit") ||
+    lower.includes("credits is over") ||
+    lower.includes("credits are over") ||
+    lower.includes("out of credits") ||
+    lower.includes("balance is too low") ||
+    lower.includes("quota")
+  );
+}
+
 export function createApp({
   databasePath = "data/gemini-japanese.sqlite",
   secureCookies = false,
@@ -282,7 +322,7 @@ export function createApp({
               503,
               "Add your API key in Translator settings to translate custom text. Sample phrases are ready to use.",
             );
-          const upstream = await fetch(
+          let upstream = await fetch(
             "https://openrouter.ai/api/v1/chat/completions",
             {
               method: "POST",
@@ -294,10 +334,46 @@ export function createApp({
               signal: AbortSignal.timeout(60_000),
             },
           );
+          let responseText = await upstream.text();
+
+          if (isCreditExhausted(upstream.status, responseText)) {
+            console.warn(
+              `OpenRouter credits exhausted for ${body?.model}. Falling back to shuffled free models...`,
+            );
+            const freeModels = getShuffledFreeModels(body?.model);
+            for (const freeModel of freeModels) {
+              try {
+                const fallbackBody = { ...body, model: freeModel };
+                const fbUpstream = await fetch(
+                  "https://openrouter.ai/api/v1/chat/completions",
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: authorization,
+                    },
+                    body: JSON.stringify(fallbackBody),
+                    signal: AbortSignal.timeout(60_000),
+                  },
+                );
+                if (fbUpstream.ok) {
+                  upstream = fbUpstream;
+                  responseText = await fbUpstream.text();
+                  console.info(
+                    `Server proxy fallback succeeded with free model: ${freeModel}`,
+                  );
+                  break;
+                }
+              } catch (fbErr) {
+                console.warn(`Fallback to free model ${freeModel} failed:`, fbErr);
+              }
+            }
+          }
+
           res.writeHead(upstream.status, {
             "Content-Type": "application/json; charset=utf-8",
           });
-          return res.end(await upstream.text());
+          return res.end(responseText);
         }
         throw new HttpError(404, "This endpoint does not exist.");
       }
