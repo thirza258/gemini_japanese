@@ -3,7 +3,7 @@
     "name": "gemini-japanese-mcp",
     "version": "1.0.0"
   },
-  "endpoint": "https://translate.nevatal.id/mcp",
+  "endpoint": "https://hira.nevatal.id/mcp",
   "capabilities": {
     "tools": {
       "listChanged": false

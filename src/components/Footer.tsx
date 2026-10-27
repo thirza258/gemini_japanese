@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
                   Nevatal Japanese AI
                 </span>
                 <span className="block text-xs text-rose-400 font-mono">
-                  translate.nevatal.id
+                  hira.nevatal.id
                 </span>
               </div>
             </div>
@@ -92,8 +92,8 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-xs text-slate-300">
               <li>
-                <a href="https://translate.nevatal.id" className="hover:text-rose-400 transition-colors">
-                  translate.nevatal.id
+                <a href="https://hira.nevatal.id" className="hover:text-rose-400 transition-colors">
+                  hira.nevatal.id
                 </a>
               </li>
               <li>
@@ -120,8 +120,8 @@ export const Footer: React.FC = () => {
         <div className="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
             © {new Date().getFullYear()} Nevatal Tech. All rights reserved. Deployed at{' '}
-            <a href="https://translate.nevatal.id" className="text-rose-400 hover:underline">
-              translate.nevatal.id
+            <a href="https://hira.nevatal.id" className="text-rose-400 hover:underline">
+              hira.nevatal.id
             </a>
           </div>
 

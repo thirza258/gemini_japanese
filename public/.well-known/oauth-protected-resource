@@ -1,7 +1,7 @@
 {
-  "resource": "https://translate.nevatal.id",
+  "resource": "https://hira.nevatal.id",
   "authorization_servers": [
-    "https://translate.nevatal.id"
+    "https://hira.nevatal.id"
   ],
   "scopes_supported": [
     "read",
@@ -10,9 +10,9 @@
   "bearer_methods_supported": [
     "header"
   ],
-  "resource_documentation": "https://translate.nevatal.id/auth.md",
+  "resource_documentation": "https://hira.nevatal.id/auth.md",
   "agent_auth": {
-    "skill": "https://translate.nevatal.id/auth.md",
-    "register_uri": "https://translate.nevatal.id/api/auth/register"
+    "skill": "https://hira.nevatal.id/auth.md",
+    "register_uri": "https://hira.nevatal.id/api/auth/register"
   }
 }

@@ -5,55 +5,55 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Core Pages -->
   <url>
-    <loc>https://translate.nevatal.id/</loc>
+    <loc>https://hira.nevatal.id/</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/dashboard</loc>
+    <loc>https://hira.nevatal.id/dashboard</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/kanji</loc>
+    <loc>https://hira.nevatal.id/kanji</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/builder</loc>
+    <loc>https://hira.nevatal.id/builder</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/particles</loc>
+    <loc>https://hira.nevatal.id/particles</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/kana</loc>
+    <loc>https://hira.nevatal.id/kana</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/reading</loc>
+    <loc>https://hira.nevatal.id/reading</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/translator</loc>
+    <loc>https://hira.nevatal.id/translator</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/progress</loc>
+    <loc>https://hira.nevatal.id/progress</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -61,31 +61,31 @@
 
   <!-- Kanji Flashcards by JLPT Level -->
   <url>
-    <loc>https://translate.nevatal.id/kanji/n5</loc>
+    <loc>https://hira.nevatal.id/kanji/n5</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/kanji/n4</loc>
+    <loc>https://hira.nevatal.id/kanji/n4</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/kanji/n3</loc>
+    <loc>https://hira.nevatal.id/kanji/n3</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/kanji/n2</loc>
+    <loc>https://hira.nevatal.id/kanji/n2</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/kanji/n1</loc>
+    <loc>https://hira.nevatal.id/kanji/n1</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -93,31 +93,31 @@
 
   <!-- Kanji Builder by JLPT Level -->
   <url>
-    <loc>https://translate.nevatal.id/builder/n5</loc>
+    <loc>https://hira.nevatal.id/builder/n5</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/builder/n4</loc>
+    <loc>https://hira.nevatal.id/builder/n4</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/builder/n3</loc>
+    <loc>https://hira.nevatal.id/builder/n3</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/builder/n2</loc>
+    <loc>https://hira.nevatal.id/builder/n2</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/builder/n1</loc>
+    <loc>https://hira.nevatal.id/builder/n1</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -125,31 +125,31 @@
 
   <!-- Particles and Grammar by JLPT Level -->
   <url>
-    <loc>https://translate.nevatal.id/particles/n5</loc>
+    <loc>https://hira.nevatal.id/particles/n5</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/particles/n4</loc>
+    <loc>https://hira.nevatal.id/particles/n4</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/particles/n3</loc>
+    <loc>https://hira.nevatal.id/particles/n3</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/particles/n2</loc>
+    <loc>https://hira.nevatal.id/particles/n2</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/particles/n1</loc>
+    <loc>https://hira.nevatal.id/particles/n1</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -157,31 +157,31 @@
 
   <!-- Reading Room Passages by JLPT Level -->
   <url>
-    <loc>https://translate.nevatal.id/reading/n5</loc>
+    <loc>https://hira.nevatal.id/reading/n5</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/reading/n4</loc>
+    <loc>https://hira.nevatal.id/reading/n4</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/reading/n3</loc>
+    <loc>https://hira.nevatal.id/reading/n3</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/reading/n2</loc>
+    <loc>https://hira.nevatal.id/reading/n2</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/reading/n1</loc>
+    <loc>https://hira.nevatal.id/reading/n1</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -189,31 +189,31 @@
 
   <!-- Overview & Dashboard by JLPT Level -->
   <url>
-    <loc>https://translate.nevatal.id/dashboard/n5</loc>
+    <loc>https://hira.nevatal.id/dashboard/n5</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/dashboard/n4</loc>
+    <loc>https://hira.nevatal.id/dashboard/n4</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/dashboard/n3</loc>
+    <loc>https://hira.nevatal.id/dashboard/n3</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/dashboard/n2</loc>
+    <loc>https://hira.nevatal.id/dashboard/n2</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://translate.nevatal.id/dashboard/n1</loc>
+    <loc>https://hira.nevatal.id/dashboard/n1</loc>
     <lastmod>2026-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

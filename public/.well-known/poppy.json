@@ -1,0 +1,46 @@
+{
+  "protocol_version": "0.1",
+  "organization": {
+    "name": "Nevatal",
+    "domain": "hira.nevatal.id"
+  },
+  "auth": {
+    "issuer": "https://hira.nevatal.id",
+    "direct": {
+      "scopes": [
+        "poppy:read",
+        "poppy:write"
+      ]
+    },
+    "device": {
+      "scopes": [
+        "poppy:read",
+        "poppy:write"
+      ]
+    }
+  },
+  "agent": {
+    "protocols": [
+      {
+        "type": "poppy",
+        "endpoint": "https://hira.nevatal.id/api"
+      }
+    ]
+  },
+  "apis": [
+    {
+      "type": "openapi",
+      "url": "https://hira.nevatal.id/api/health",
+      "description": "Gemini Japanese API"
+    },
+    {
+      "type": "mcp",
+      "url": "https://hira.nevatal.id/mcp",
+      "description": "Gemini Japanese MCP server"
+    }
+  ],
+  "web": {
+    "browser_session_endpoint": "https://hira.nevatal.id/"
+  },
+  "extensions": {}
+}

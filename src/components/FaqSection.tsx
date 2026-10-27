@@ -21,9 +21,9 @@ export const FaqSection: React.FC = () => {
         'Absolutely. The AI model is trained on diverse conversational dialogue, casual contractions (like ちゃう, なきゃ, っす), youth slang, and anime idioms that standard dictionary tools frequently fail to tokenize.',
     },
     {
-      question: 'Is this translation tool free to use at translate.nevatal.id?',
+      question: 'Is this translation tool free to use at hira.nevatal.id?',
       answer:
-        'Yes, the web application is hosted and accessible completely free directly from your web browser at translate.nevatal.id without requiring account creation or subscriptions.',
+        'Yes, the web application is hosted and accessible completely free directly from your web browser at hira.nevatal.id without requiring account creation or subscriptions.',
     },
     {
       question: 'Can I use my own OpenRouter API key, custom router endpoint, or switch AI models?',

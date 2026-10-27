@@ -46,7 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSettings, onScrollToTransl
             </div>
             <span className="text-xs text-slate-400 font-mono flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              translate.nevatal.id
+              hira.nevatal.id
             </span>
           </div>
         </a>

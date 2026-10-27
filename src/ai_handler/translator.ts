@@ -339,7 +339,7 @@ function getOpenRouterReferer(): string {
     return window.location.origin;
   }
 
-  return "https://translate.nevatal.id";
+  return "https://hira.nevatal.id";
 }
 
 async function resolveApiKey(

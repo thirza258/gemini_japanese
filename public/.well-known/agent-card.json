@@ -1,0 +1,45 @@
+{
+  "name": "Gemini Japanese Agent",
+  "description": "Japanese-English translation and language-learning assistant with kanji, grammar, reading and vocabulary tools.",
+  "url": "https://hira.nevatal.id",
+  "provider": {
+    "name": "Nevatal",
+    "url": "https://hira.nevatal.id"
+  },
+  "version": "1.0.0",
+  "protocolVersion": "0.3.0",
+  "preferredTransport": "JSONRPC",
+  "supportedInterfaces": [
+    {
+      "url": "https://hira.nevatal.id/api",
+      "protocolBinding": "JSONRPC",
+      "protocolVersion": "0.3.0"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "japanese-translation",
+      "name": "Japanese Translation",
+      "description": "Translate between Japanese and English, explain grammar, kanji readings and vocabulary.",
+      "tags": [
+        "japanese",
+        "translation",
+        "language-learning"
+      ]
+    }
+  ],
+  "authentication": {
+    "type": "oauth2",
+    "discovery_url": "https://hira.nevatal.id/.well-known/oauth-authorization-server"
+  }
+}

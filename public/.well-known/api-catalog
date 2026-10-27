@@ -1,22 +1,22 @@
 {
   "linkset": [
     {
-      "anchor": "https://translate.nevatal.id/api",
+      "anchor": "https://hira.nevatal.id/api",
       "service-desc": [
         {
-          "href": "https://translate.nevatal.id/api/health",
+          "href": "https://hira.nevatal.id/api/health",
           "type": "application/json"
         }
       ],
       "service-doc": [
         {
-          "href": "https://translate.nevatal.id/auth.md",
+          "href": "https://hira.nevatal.id/auth.md",
           "type": "text/markdown"
         }
       ],
       "status": [
         {
-          "href": "https://translate.nevatal.id/api/health",
+          "href": "https://hira.nevatal.id/api/health",
           "type": "application/json"
         }
       ]

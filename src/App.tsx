@@ -177,8 +177,8 @@ function App() {
     if (canonical) {
       const canonicalUrl =
         page === "landing"
-          ? "https://translate.nevatal.id/"
-          : `https://translate.nevatal.id/${page}`;
+          ? "https://hira.nevatal.id/"
+          : `https://hira.nevatal.id/${page}`;
       canonical.setAttribute("href", canonicalUrl);
     }
   }, [page]);
