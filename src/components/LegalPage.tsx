@@ -133,6 +133,19 @@ export const LegalPage: React.FC<LegalPageProps> = ({
                 You may clear your study progress, history logs, and saved flashcards at any time by clearing your browser cache or using the in-app progress reset tools.
               </p>
             </section>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-bold text-white border-b border-slate-800 pb-2">
+                5. Privacy Inquiries &amp; Contact
+              </h2>
+              <p>
+                If you have questions regarding this privacy policy or your data, please contact us at{" "}
+                <a href="mailto:nevatalapp@gmail.com" className="text-rose-400 hover:underline font-medium">
+                  nevatalapp@gmail.com
+                </a>
+                .
+              </p>
+            </section>
           </article>
         ) : (
           <article className="space-y-8 bg-slate-900/60 p-8 rounded-2xl border border-slate-800 leading-relaxed text-sm text-slate-300">
@@ -193,6 +206,19 @@ export const LegalPage: React.FC<LegalPageProps> = ({
               </h2>
               <p>
                 We reserve the right to modify these terms as new features are introduced. Continued use of the platform constitutes acceptance of updated terms.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-bold text-white border-b border-slate-800 pb-2">
+                6. Legal &amp; Contact
+              </h2>
+              <p>
+                For questions regarding these terms of service, reach out to{" "}
+                <a href="mailto:nevatalapp@gmail.com" className="text-rose-400 hover:underline font-medium">
+                  nevatalapp@gmail.com
+                </a>
+                .
               </p>
             </section>
           </article>
