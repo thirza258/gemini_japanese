@@ -524,7 +524,8 @@ export function LandingPage({
               ·{" "}
               <a href="#terms" style={{ color: "inherit", textDecoration: "underline" }}>
                 Terms of Service
-              </a>
+              </a>{" "}
+              · This project is under <a href="https://nevatal.id" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline" }}>nevatal.id</a> for educational purposes.
             </p>
             <a
               className="landing-back-to-top"

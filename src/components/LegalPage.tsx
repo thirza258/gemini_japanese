@@ -227,7 +227,7 @@ export const LegalPage: React.FC<LegalPageProps> = ({
 
       {/* Footer */}
       <footer className="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500">
-        <p>© {new Date().getFullYear()} Nevatal Japanese AI · Fully Self-Hosted</p>
+        <p>© {new Date().getFullYear()} Nevatal Japanese AI · Fully Self-Hosted · This project is under <a href="https://nevatal.id" className="text-rose-400 underline" target="_blank" rel="noopener noreferrer">nevatal.id</a> for educational purposes.</p>
       </footer>
     </div>
   );

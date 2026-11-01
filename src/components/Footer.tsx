@@ -129,16 +129,14 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
-            © {new Date().getFullYear()} Nevatal Tech. All rights reserved. Deployed at{' '}
+            © {new Date().getFullYear()} Nevatal Tech. Deployed at{' '}
             <a href="https://hira.nevatal.id" className="text-rose-400 hover:underline">
               hira.nevatal.id
             </a>
           </div>
 
-          <div className="flex items-center gap-4">
-            <span className="font-jp text-slate-400">日本語 AI 翻訳ツール</span>
-            <span>·</span>
-            <span>English / 日本語</span>
+          <div className="flex items-center gap-4 text-slate-400">
+            <span>This project is under <a href="https://nevatal.id" className="text-rose-400 hover:underline" target="_blank" rel="noopener noreferrer">nevatal.id</a> for educational purposes.</span>
           </div>
         </div>
       </div>
