@@ -218,4 +218,17 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://hira.nevatal.id/privacy</loc>
+    <lastmod>2026-11-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://hira.nevatal.id/terms</loc>
+    <lastmod>2026-11-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
