@@ -107,6 +107,16 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
+                <a href="#privacy" className="hover:text-rose-400 transition-colors">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#terms" className="hover:text-rose-400 transition-colors">
+                  Terms of Service
+                </a>
+              </li>
+              <li>
                 <span className="text-slate-400">OpenRouter API</span>
               </li>
               <li>

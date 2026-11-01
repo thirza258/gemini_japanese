@@ -1,3 +1,4 @@
+import { LegalPage } from "./components/LegalPage";
 import { useEffect, useRef, useState } from "react";
 import { Dashboard } from "./components/Dashboard";
 import { LandingPage } from "./components/LandingPage";
@@ -42,7 +43,7 @@ const navigation: {
   { page: "translator", label: "Detailed translator", icon: "translate" },
   { page: "progress", label: "Your progress", icon: "chart" },
 ];
-type AppPage = Page | "landing";
+type AppPage = Page | "landing" | "privacy" | "terms";
 
 function parseRoute(): { page: AppPage; level?: Level } {
   if (typeof window === "undefined") return { page: "landing" };
@@ -66,6 +67,10 @@ function parseRoute(): { page: AppPage; level?: Level } {
       if (hashSegments[1]) targetLevelStr = hashSegments[1];
     } else if (first === "landing") {
       page = "landing";
+    } else if (first === "privacy") {
+      page = "privacy";
+    } else if (first === "terms") {
+      page = "terms";
     }
   } else if (pathSegments.length > 0) {
     const first = pathSegments[0].toLowerCase();
@@ -75,6 +80,10 @@ function parseRoute(): { page: AppPage; level?: Level } {
       if (pathSegments[1]) targetLevelStr = pathSegments[1];
     } else if (first === "landing") {
       page = "landing";
+    } else if (first === "privacy") {
+      page = "privacy";
+    } else if (first === "terms") {
+      page = "terms";
     }
   }
 
@@ -250,6 +259,15 @@ function App() {
       onClose={() => setAccountOpen(false)}
     />
   ) : null;
+  if (page === "privacy" || page === "terms") {
+    return (
+      <LegalPage
+        initialTab={page === "terms" ? "terms" : "privacy"}
+        onNavigateHome={() => navigate("landing")}
+      />
+    );
+  }
+
   if (page === "landing") {
     return (
       <>

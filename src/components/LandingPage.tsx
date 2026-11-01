@@ -517,7 +517,14 @@ export function LandingPage({
           </div>
           <div className="landing-footer-bottom">
             <p>
-              © {new Date().getFullYear()} Gemini Japanese. All rights reserved.
+              © {new Date().getFullYear()} Gemini Japanese. All rights reserved. ·{" "}
+              <a href="#privacy" style={{ color: "inherit", textDecoration: "underline" }}>
+                Privacy Policy
+              </a>{" "}
+              ·{" "}
+              <a href="#terms" style={{ color: "inherit", textDecoration: "underline" }}>
+                Terms of Service
+              </a>
             </p>
             <a
               className="landing-back-to-top"
